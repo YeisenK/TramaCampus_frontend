@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../data/models/student.dart';
 import '../theme/app_colors.dart';
@@ -122,24 +121,18 @@ class _GlassPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.space3,
-            vertical: AppSpacing.space2,
-          ),
-          decoration: BoxDecoration(
-            color: cs.surfaceContainerLowest.withValues(alpha: 0.6),
-            borderRadius: BorderRadius.circular(AppRadius.pill),
-          ),
-          child: Text(
-            student.program,
-            style: AppTextStyles.labelSm(cs.onSurface),
-          ),
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space3,
+        vertical: AppSpacing.space2,
+      ),
+      decoration: BoxDecoration(
+        color: cs.surfaceContainerLowest.withValues(alpha: 0.82),
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+      ),
+      child: Text(
+        student.program,
+        style: AppTextStyles.labelSm(cs.onSurface),
       ),
     );
   }
@@ -156,24 +149,18 @@ class _SaveButton extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: onSave,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppRadius.pill),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: cs.surfaceContainerLowest.withValues(alpha: 0.6),
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Icon(
-              isSaved ? Icons.bookmark : Icons.bookmark_border,
-              size: 20,
-              color: isSaved ? cs.primary : cs.onSurfaceVariant,
-            ),
-          ),
+      child: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: cs.surfaceContainerLowest.withValues(alpha: 0.82),
+          shape: BoxShape.circle,
+        ),
+        alignment: Alignment.center,
+        child: Icon(
+          isSaved ? Icons.bookmark : Icons.bookmark_border,
+          size: 20,
+          color: isSaved ? cs.primary : cs.onSurfaceVariant,
         ),
       ),
     );

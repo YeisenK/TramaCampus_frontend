@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../app.dart';
+import '../../core/services/preferences_service.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/t_app_bar.dart';
 
 class SettingsThemeScreen extends StatelessWidget {
   const SettingsThemeScreen({super.key});
+
+  void _setTheme(ThemeMode mode) {
+    themeNotifier.value = mode;
+    PreferencesService.instance.setThemeMode(mode);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class SettingsThemeScreen extends StatelessWidget {
                       label: 'Automático',
                       description: 'Sigue la configuración del sistema',
                       isSelected: currentMode == ThemeMode.system,
-                      onTap: () => themeNotifier.value = ThemeMode.system,
+                      onTap: () => _setTheme(ThemeMode.system),
                     ),
                     Divider(indent: 56, height: 0, color: cs.outlineVariant.withValues(alpha: 0.5)),
                     _ThemeOption(
@@ -38,7 +44,7 @@ class SettingsThemeScreen extends StatelessWidget {
                       label: 'Claro',
                       description: 'Siempre usar el tema claro',
                       isSelected: currentMode == ThemeMode.light,
-                      onTap: () => themeNotifier.value = ThemeMode.light,
+                      onTap: () => _setTheme(ThemeMode.light),
                     ),
                     Divider(indent: 56, height: 0, color: cs.outlineVariant.withValues(alpha: 0.5)),
                     _ThemeOption(
@@ -46,7 +52,7 @@ class SettingsThemeScreen extends StatelessWidget {
                       label: 'Oscuro',
                       description: 'Siempre usar el tema oscuro',
                       isSelected: currentMode == ThemeMode.dark,
-                      onTap: () => themeNotifier.value = ThemeMode.dark,
+                      onTap: () => _setTheme(ThemeMode.dark),
                     ),
                   ],
                 ),

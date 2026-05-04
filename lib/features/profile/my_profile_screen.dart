@@ -113,7 +113,7 @@ class _EditButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Navigator.of(context).pushNamed(AppRouter.editProfile),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space3, vertical: AppSpacing.space2),
         decoration: BoxDecoration(

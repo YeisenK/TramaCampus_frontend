@@ -1,33 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_spacing.dart';
+import 'safe_svg.dart';
+
+enum TramaMarkVariant {
+  /// Icon-only hexagon mark (default — all non-splash placements).
+  markOnly,
+
+  /// Horizontal icon + wordmark lockup.
+  lockup,
+}
 
 class TramaMark extends StatelessWidget {
-  const TramaMark({super.key, this.size = 48});
+  const TramaMark({
+    super.key,
+    this.size = 48,
+    this.variant = TramaMarkVariant.markOnly,
+  });
 
   final double size;
+  final TramaMarkVariant variant;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        gradient: AppColors.ctaGradient(),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        'TC',
-        style: GoogleFonts.manrope(
-          fontSize: size * 0.36,
-          fontWeight: FontWeight.w800,
-          color: Colors.white,
-          letterSpacing: -0.5,
-          height: 1,
-        ),
-      ),
-    );
+    switch (variant) {
+      case TramaMarkVariant.markOnly:
+        // SVG is 200×220 — maintain aspect ratio off the given size.
+        final height = size * (220 / 200);
+        return SafeSvg(
+          assetName: 'assets/svg/trama-mark.svg',
+          width: size,
+          height: height,
+        );
+      case TramaMarkVariant.lockup:
+        // SVG is 200×48 — scale height off the given size.
+        final height = size * (48 / 200);
+        return SafeSvg(
+          assetName: 'assets/svg/logo.svg',
+          width: size,
+          height: height,
+        );
+    }
   }
 }

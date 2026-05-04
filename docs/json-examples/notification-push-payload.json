@@ -1,0 +1,78 @@
+{
+  "_comment": "Ejemplos de payloads FCM por tipo de notificación",
+  "examples": [
+    {
+      "_type": "match",
+      "notification": {
+        "title": "¡Nuevo match!",
+        "body": "Tú y Carlos Mendoza son compatibles en Estudio"
+      },
+      "data": {
+        "type": "match",
+        "notification_id": "uuid-notif-1",
+        "action_url": "/conversations/uuid-conv-1",
+        "actor_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "actor_name": "Carlos Mendoza",
+        "actor_hue": "180.0",
+        "compatibility_score": "74"
+      },
+      "android": { "priority": "high" },
+      "apns": { "headers": { "apns-priority": "10" } }
+    },
+    {
+      "_type": "connection_request",
+      "notification": {
+        "title": "Solicitud de conexión",
+        "body": "Ana Torres quiere conectar contigo"
+      },
+      "data": {
+        "type": "connection_request",
+        "notification_id": "uuid-notif-2",
+        "action_url": "/notifications",
+        "actor_id": "uuid-ana",
+        "actor_name": "Ana Torres",
+        "actor_hue": "45.0"
+      },
+      "android": { "priority": "high" },
+      "apns": { "headers": { "apns-priority": "10" } }
+    },
+    {
+      "_type": "message",
+      "notification": {
+        "title": "Carlos Mendoza",
+        "body": "¡Claro! El martes en la biblioteca está perfecto."
+      },
+      "data": {
+        "type": "message",
+        "notification_id": "uuid-notif-3",
+        "action_url": "/conversations/uuid-conv-1",
+        "conversation_id": "uuid-conv-1",
+        "actor_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "actor_name": "Carlos Mendoza",
+        "actor_hue": "180.0",
+        "message_preview": "¡Claro! El martes en la biblioteca está perfecto."
+      },
+      "android": { "priority": "high" },
+      "apns": { "headers": { "apns-priority": "10" } }
+    },
+    {
+      "_type": "group_invite",
+      "notification": {
+        "title": "Invitación a grupo",
+        "body": "Te invitaron a 'Redes y Sistemas — Parcial 3'"
+      },
+      "data": {
+        "type": "group_invite",
+        "notification_id": "uuid-notif-4",
+        "action_url": "/groups/uuid-group-1",
+        "group_id": "uuid-group-1",
+        "group_name": "Redes y Sistemas — Parcial 3",
+        "actor_id": "uuid-inviter",
+        "actor_name": "Luis Herrera",
+        "actor_hue": "290.0"
+      },
+      "android": { "priority": "normal" },
+      "apns": { "headers": { "apns-priority": "5" } }
+    }
+  ]
+}

@@ -11,6 +11,8 @@ class AppSpacing {
   static const double space8 = 40;
   static const double space9 = 48;
   static const double space10 = 64;
+
+  static const double edgePadding = space6;
 }
 
 class AppRadius {

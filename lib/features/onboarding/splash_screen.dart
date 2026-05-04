@@ -61,16 +61,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const TramaMark(size: 80),
-                    const SizedBox(height: AppSpacing.space5),
-                    Text(
-                      'Trama Campus',
-                      style: AppTextStyles.headlineMd(Colors.white),
-                    ),
-                    const SizedBox(height: AppSpacing.space2),
+                    const _SplashLogo(),
+                    const SizedBox(height: AppSpacing.space6),
                     Text(
                       'Conecta con tu campus',
-                      style: AppTextStyles.bodyLg(Colors.white.withValues(alpha: 0.8)),
+                      style: AppTextStyles.bodyLg(Colors.white.withValues(alpha: 0.85)),
                     ),
                   ],
                 ),
@@ -79,6 +74,44 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           ),
         ),
       ),
+    );
+  }
+}
+
+class _SplashLogo extends StatelessWidget {
+  const _SplashLogo();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 120,
+          height: 120,
+          padding: const EdgeInsets.all(AppSpacing.space4),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(AppRadius.xl),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.15),
+                blurRadius: 32,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: const TramaMark(size: 80),
+        ),
+        const SizedBox(height: AppSpacing.space4),
+        Text(
+          'Trama Campus',
+          style: AppTextStyles.headlineSm(Colors.white).copyWith(
+            letterSpacing: 0.5,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ],
     );
   }
 }

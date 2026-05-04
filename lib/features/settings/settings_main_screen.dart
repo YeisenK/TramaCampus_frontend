@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../core/widgets/confirm_modal.dart';
 import '../../core/widgets/t_app_bar.dart';
 
 class SettingsMainScreen extends StatelessWidget {
@@ -21,19 +22,19 @@ class SettingsMainScreen extends StatelessWidget {
                 icon: Icons.person_outline,
                 label: 'Editar perfil',
                 description: 'Nombre, foto, bio',
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.editProfile),
+              ),
+              _SettingsItem(
+                icon: Icons.manage_accounts_outlined,
+                label: 'Mi cuenta',
+                description: 'Información y verificación',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.accountSettings),
               ),
               _SettingsItem(
                 icon: Icons.lock_outline,
                 label: 'Privacidad',
                 description: 'Control de visibilidad',
-                onTap: () {},
-              ),
-              _SettingsItem(
-                icon: Icons.verified_user_outlined,
-                label: 'Verificación',
-                description: 'Estado del correo institucional',
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.privacySettings),
               ),
             ],
           ),
@@ -51,13 +52,15 @@ class SettingsMainScreen extends StatelessWidget {
                 icon: Icons.notifications_none,
                 label: 'Notificaciones',
                 description: 'Gestiona tus alertas',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.notifications),
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.notificationPreferences),
               ),
               _SettingsItem(
                 icon: Icons.language_outlined,
                 label: 'Idioma',
                 description: 'Español',
-                onTap: () {},
+                onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Próximamente disponible')),
+                ),
               ),
             ],
           ),
@@ -69,13 +72,23 @@ class SettingsMainScreen extends StatelessWidget {
                 icon: Icons.tune,
                 label: 'Filtros de búsqueda',
                 description: 'Carrera, semestre, intereses',
-                onTap: () {},
+                onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Próximamente disponible')),
+                ),
               ),
               _SettingsItem(
                 icon: Icons.explore_outlined,
                 label: 'Modalidades activas',
                 description: 'Estudio, Amistad, Conexión',
-                onTap: () {},
+                onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Próximamente disponible')),
+                ),
+              ),
+              _SettingsItem(
+                icon: Icons.block_outlined,
+                label: 'Usuarios bloqueados',
+                description: 'Gestiona tu lista de bloqueos',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.blockedUsers),
               ),
             ],
           ),
@@ -85,21 +98,47 @@ class SettingsMainScreen extends StatelessWidget {
             items: [
               _SettingsItem(
                 icon: Icons.help_outline,
-                label: 'Ayuda y FAQ',
-                description: 'Preguntas frecuentes',
-                onTap: () {},
+                label: 'Centro de ayuda',
+                description: 'Preguntas frecuentes y soporte',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.helpCenter),
               ),
               _SettingsItem(
-                icon: Icons.shield_outlined,
-                label: 'Privacidad y términos',
-                description: 'Políticas de uso',
-                onTap: () {},
+                icon: Icons.chat_bubble_outline,
+                label: 'Contactar soporte',
+                description: 'Envía un mensaje al equipo',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.contactSupport),
               ),
               _SettingsItem(
                 icon: Icons.flag_outlined,
                 label: 'Reportar un problema',
                 description: 'Envía un reporte al equipo',
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.reportProblem),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.space4),
+          _SettingsSection(
+            title: 'Legal',
+            items: [
+              _SettingsItem(
+                icon: Icons.description_outlined,
+                label: 'Términos y condiciones',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.termsConditions),
+              ),
+              _SettingsItem(
+                icon: Icons.privacy_tip_outlined,
+                label: 'Política de privacidad',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
+              ),
+              _SettingsItem(
+                icon: Icons.people_outline,
+                label: 'Normas de la comunidad',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.communityGuidelines),
+              ),
+              _SettingsItem(
+                icon: Icons.info_outline,
+                label: 'Acerca de Trama Campus',
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.about),
               ),
             ],
           ),
@@ -111,7 +150,18 @@ class SettingsMainScreen extends StatelessWidget {
                 icon: Icons.logout,
                 label: 'Cerrar sesión',
                 description: 'Salir de tu cuenta',
-                onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.welcome, (r) => false),
+                onTap: () async {
+                  final ok = await ConfirmModal.show(
+                    context,
+                    title: 'Cerrar sesión',
+                    message: '¿Estás seguro de que deseas salir de tu cuenta?',
+                    confirmLabel: 'Cerrar sesión',
+                    cancelLabel: 'Cancelar',
+                  );
+                  if (ok == true && context.mounted) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.welcome, (r) => false);
+                  }
+                },
                 isDestructive: true,
               ),
             ],
@@ -169,14 +219,14 @@ class _SettingsItem extends StatelessWidget {
   const _SettingsItem({
     required this.icon,
     required this.label,
-    required this.description,
     required this.onTap,
+    this.description,
     this.isDestructive = false,
   });
 
   final IconData icon;
   final String label;
-  final String description;
+  final String? description;
   final VoidCallback onTap;
   final bool isDestructive;
 
@@ -197,7 +247,7 @@ class _SettingsItem extends StatelessWidget {
         child: Icon(icon, size: 18, color: isDestructive ? cs.error : cs.onSurfaceVariant),
       ),
       title: Text(label, style: AppTextStyles.bodyMd(color)),
-      subtitle: Text(description, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+      subtitle: description != null ? Text(description!, style: AppTextStyles.labelSm(cs.onSurfaceVariant)) : null,
       trailing: Icon(Icons.chevron_right, color: cs.onSurfaceVariant, size: 20),
       contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
     );

@@ -1,0 +1,97 @@
+{
+  "_comment": "Eventos WebSocket del servidor hacia el cliente",
+  "server_to_client": [
+    {
+      "_event": "Mensaje nuevo recibido",
+      "type": "message.new",
+      "data": {
+        "id": "uuid-msg-101",
+        "conversation_id": "uuid-conv-1",
+        "sender_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "text": "¿Estudiamos juntos el martes?",
+        "sent_at": "2026-05-04T10:30:00Z",
+        "read_at": null,
+        "edited_at": null,
+        "deleted": false
+      }
+    },
+    {
+      "_event": "Mensaje marcado como leído",
+      "type": "message.read",
+      "data": {
+        "conversation_id": "uuid-conv-1",
+        "message_id": "uuid-msg-101",
+        "reader_id": "550e8400-e29b-41d4-a716-446655440000",
+        "read_at": "2026-05-04T10:31:00Z"
+      }
+    },
+    {
+      "_event": "El otro usuario está escribiendo",
+      "type": "typing.start",
+      "data": {
+        "conversation_id": "uuid-conv-1",
+        "user_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
+      }
+    },
+    {
+      "_event": "El otro usuario dejó de escribir",
+      "type": "typing.stop",
+      "data": {
+        "conversation_id": "uuid-conv-1",
+        "user_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
+      }
+    },
+    {
+      "_event": "Usuario se conectó",
+      "type": "presence.online",
+      "data": {
+        "user_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "last_seen": null
+      }
+    },
+    {
+      "_event": "Usuario se desconectó",
+      "type": "presence.offline",
+      "data": {
+        "user_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "last_seen": "2026-05-04T10:35:00Z"
+      }
+    },
+    {
+      "_event": "Nuevo match — se abre conversación",
+      "type": "match.new",
+      "data": {
+        "match_id": "uuid-match-42",
+        "conversation_id": "uuid-conv-42",
+        "elo_delta": 18,
+        "user": {
+          "id": "uuid-new-match",
+          "display_name": "Valentina Cruz",
+          "first_name": "Valentina",
+          "avatar_url": "https://cdn.tramacampus.mx/avatars/uuid-val.jpg",
+          "hue": 320.0,
+          "career": "Diseño Industrial",
+          "semester": 4
+        }
+      }
+    }
+  ],
+  "client_to_server": [
+    {
+      "_event": "Cliente empieza a escribir",
+      "type": "typing.start",
+      "conversation_id": "uuid-conv-1"
+    },
+    {
+      "_event": "Cliente deja de escribir",
+      "type": "typing.stop",
+      "conversation_id": "uuid-conv-1"
+    },
+    {
+      "_event": "Cliente marca mensaje como leído",
+      "type": "message.read",
+      "conversation_id": "uuid-conv-1",
+      "message_id": "uuid-msg-101"
+    }
+  ]
+}

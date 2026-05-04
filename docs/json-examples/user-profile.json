@@ -1,0 +1,53 @@
+{
+  "profile": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "display_name": "Sofía Ramírez",
+    "first_name": "Sofía",
+    "last_name": "Ramírez",
+    "bio": "Apasionada por el diseño UX y la accesibilidad digital. Busco compañeros para proyectos de investigación en HCI.",
+    "avatar_url": "https://cdn.tramacampus.mx/avatars/550e8400.jpg",
+    "birth_date": "2002-03-14",
+    "age": 24,
+    "gender": "F",
+    "gender_preference": "any",
+    "career_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "semester": 6,
+    "university_id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    "hue": 210.0,
+    "is_verified": true,
+    "created_at": "2025-08-01T14:22:00Z",
+    "updated_at": "2026-05-04T09:15:00Z"
+  },
+  "preferences": {
+    "user_id": "550e8400-e29b-41d4-a716-446655440000",
+    "modes": ["study", "research"],
+    "ui_modality": "estudio",
+    "goals": ["aprender_nuevas_habilidades", "preparar_examen", "proyectos_colaborativos"],
+    "skills": ["python", "figma", "diseño_ux", "sql", "investigacion_cualitativa"],
+    "research_interests": ["hci", "accesibilidad", "diseño_inclusivo"],
+    "available_days": ["mon_am", "mon_pm", "wed_am", "wed_pm", "fri_pm"],
+    "connectivity_state": "active",
+    "lifestyle_context": null,
+    "commute_origin_zone": null,
+    "commute_transport": null,
+    "commute_schedule": null,
+    "roomie_zones": null,
+    "roomie_rent_range": null,
+    "roomie_start_date": null
+  },
+  "profile_attributes": [
+    { "attribute_type": "hobby",             "value": "fotografía" },
+    { "attribute_type": "hobby",             "value": "senderismo" },
+    { "attribute_type": "hobby",             "value": "lectura" },
+    { "attribute_type": "sport",             "value": { "sport": "yoga", "frequency": "regular" } },
+    { "attribute_type": "sport",             "value": { "sport": "natacion", "frequency": "casual" } },
+    { "attribute_type": "personality_trait", "value": "curioso" },
+    { "attribute_type": "personality_trait", "value": "organizado" },
+    { "attribute_type": "personality_trait", "value": "empático" },
+    { "attribute_type": "language",          "value": { "lang": "en", "level": "advanced" } },
+    { "attribute_type": "language",          "value": { "lang": "fr", "level": "intermediate" } },
+    { "attribute_type": "diet",              "value": "vegetariano" },
+    { "attribute_type": "music_genre",       "value": "indie" },
+    { "attribute_type": "music_genre",       "value": "jazz" }
+  ]
+}

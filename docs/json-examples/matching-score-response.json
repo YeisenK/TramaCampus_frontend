@@ -1,0 +1,38 @@
+{
+  "user_a": "550e8400-e29b-41d4-a716-446655440000",
+  "user_b": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+  "modality": "study",
+  "score": 0.74,
+  "eros_active": false,
+  "breakdown": {
+    "s_acad":  0.82,
+    "s_pers":  0.61,
+    "s_int":   0.79,
+    "s_behav": 0.68,
+    "s_eros":  null
+  },
+  "factors": {
+    "f_carr":      0.80,
+    "f_sem":       0.83,
+    "f_skill":     0.76,
+    "f_res":       0.65,
+    "f_idioma":    1.00,
+    "f_hora":      0.60,
+    "f_hob":       0.55,
+    "f_dep":       0.40,
+    "f_pers":      0.70,
+    "f_dieta":     1.00,
+    "f_mus":       0.50,
+    "f_mod":       0.90,
+    "f_goal":      1.00,
+    "f_lifestyle": 0.00,
+    "f_elo_match": 0.88,
+    "f_act":       0.92,
+    "f_prof":      0.77,
+    "f_resp":      0.80,
+    "f_recip":     1.00,
+    "delta_con_a": 1.0,
+    "delta_con_b": 1.0
+  },
+  "computed_at": "2026-05-04T02:01:44Z"
+}

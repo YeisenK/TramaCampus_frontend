@@ -11,18 +11,34 @@ import '../../features/onboarding/profile_complete_screen.dart';
 import '../../features/discover/discover_screen.dart';
 import '../../features/profile/profile_detail_screen.dart';
 import '../../features/profile/my_profile_screen.dart';
+import '../../features/profile/edit_profile_screen.dart';
 import '../../features/connections/connections_screen.dart';
 import '../../features/connections/match_success_screen.dart';
 import '../../features/chat/chat_list_screen.dart';
 import '../../features/chat/conversation_screen.dart';
 import '../../features/settings/settings_main_screen.dart';
 import '../../features/settings/settings_theme_screen.dart';
+import '../../features/settings/account_settings_screen.dart';
+import '../../features/settings/privacy_settings_screen.dart';
+import '../../features/settings/notification_preferences_screen.dart';
+import '../../features/settings/security_settings_screen.dart';
+import '../../features/settings/blocked_users_screen.dart';
+import '../../features/settings/delete_account_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
+import '../../features/help/help_center_screen.dart';
+import '../../features/help/faq_screen.dart';
+import '../../features/help/contact_support_screen.dart';
+import '../../features/help/report_problem_screen.dart';
+import '../../features/legal/terms_conditions_screen.dart';
+import '../../features/legal/privacy_policy_screen.dart';
+import '../../features/legal/community_guidelines_screen.dart';
+import '../../features/legal/about_screen.dart';
 import '../../features/onboarding/login_screen.dart';
 
 class AppRouter {
   AppRouter._();
 
+  // Onboarding
   static const String splash = '/';
   static const String login = '/login';
   static const String welcome = '/welcome';
@@ -32,19 +48,43 @@ class AppRouter {
   static const String academicProfile = '/onboarding/academic';
   static const String personalGoals = '/onboarding/goals';
   static const String profileComplete = '/onboarding/complete';
+
+  // Core app
   static const String discover = '/discover';
   static const String profileDetail = '/profile-detail';
   static const String myProfile = '/my-profile';
+  static const String editProfile = '/profile/edit';
   static const String connections = '/connections';
   static const String matchSuccess = '/match-success';
   static const String chatList = '/chats';
   static const String conversation = '/conversation';
+  static const String notifications = '/notifications';
+
+  // Settings
   static const String settingsMain = '/settings';
   static const String settingsTheme = '/settings/theme';
-  static const String notifications = '/notifications';
+  static const String accountSettings = '/settings/account';
+  static const String privacySettings = '/settings/privacy';
+  static const String notificationPreferences = '/settings/notifications';
+  static const String securitySettings = '/settings/security';
+  static const String blockedUsers = '/settings/blocked';
+  static const String deleteAccount = '/settings/delete-account';
+
+  // Help
+  static const String helpCenter = '/help';
+  static const String faq = '/help/faq';
+  static const String contactSupport = '/help/contact';
+  static const String reportProblem = '/help/report';
+
+  // Legal
+  static const String termsConditions = '/legal/terms';
+  static const String privacyPolicy = '/legal/privacy';
+  static const String communityGuidelines = '/legal/community';
+  static const String about = '/about';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      // Onboarding
       case splash:
         return _slide(const SplashScreen());
       case welcome:
@@ -63,6 +103,8 @@ class AppRouter {
         return _slide(const PersonalGoalsScreen());
       case profileComplete:
         return _slide(const ProfileCompleteScreen());
+
+      // Core app
       case discover:
         return _slide(const DiscoverScreen());
       case profileDetail:
@@ -70,6 +112,8 @@ class AppRouter {
         return _slide(ProfileDetailScreen(student: student));
       case myProfile:
         return _slide(const MyProfileScreen());
+      case editProfile:
+        return _slide(const EditProfileScreen());
       case connections:
         return _slide(const ConnectionsScreen());
       case matchSuccess:
@@ -80,12 +124,48 @@ class AppRouter {
       case conversation:
         final student = settings.arguments as Student;
         return _slide(ConversationScreen(student: student));
+      case notifications:
+        return _slide(const NotificationsScreen());
+
+      // Settings
       case settingsMain:
         return _slide(const SettingsMainScreen());
       case settingsTheme:
         return _slide(const SettingsThemeScreen());
-      case notifications:
-        return _slide(const NotificationsScreen());
+      case accountSettings:
+        return _slide(const AccountSettingsScreen());
+      case privacySettings:
+        return _slide(const PrivacySettingsScreen());
+      case notificationPreferences:
+        return _slide(const NotificationPreferencesScreen());
+      case securitySettings:
+        return _slide(const SecuritySettingsScreen());
+      case blockedUsers:
+        return _slide(const BlockedUsersScreen());
+      case deleteAccount:
+        return _slide(const DeleteAccountScreen());
+
+      // Help
+      case helpCenter:
+        return _slide(const HelpCenterScreen());
+      case faq:
+        return _slide(const FaqScreen());
+      case contactSupport:
+        return _slide(const ContactSupportScreen());
+      case reportProblem:
+        final student = settings.arguments as Student?;
+        return _slide(ReportProblemScreen(reportedStudent: student));
+
+      // Legal
+      case termsConditions:
+        return _slide(const TermsConditionsScreen());
+      case privacyPolicy:
+        return _slide(const PrivacyPolicyScreen());
+      case communityGuidelines:
+        return _slide(const CommunityGuidelinesScreen());
+      case about:
+        return _slide(const AboutScreen());
+
       default:
         return _slide(const SplashScreen());
     }

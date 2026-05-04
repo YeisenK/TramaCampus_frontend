@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220" fill="none">
+  <defs>
+    <pattern id="weave" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M0 11 L22 11 M11 0 L11 22 M0 0 L22 22 M22 0 L0 22" stroke="#ffffff" stroke-opacity="0.18" stroke-width="0.8"/>
+      <circle cx="11" cy="11" r="1.1" fill="#ffffff" fill-opacity="0.22"/>
+    </pattern>
+    <clipPath id="hex-clip">
+      <path d="M110 8 L188 50 L188 150 Q188 162 178 168 L118 200 Q110 204 102 200 L42 168 Q32 162 32 150 L32 50 Z"/>
+    </clipPath>
+  </defs>
+
+  <path d="M110 8 L188 50 L188 150 Q188 162 178 168 L118 200 Q110 204 102 200 L42 168 Q32 162 32 150 L32 50 Z" fill="#F26B1A"/>
+
+  <rect x="0" y="0" width="220" height="220" fill="url(#weave)" clip-path="url(#hex-clip)"/>
+
+  <path d="M62 70 L158 70 L158 96 L126 96 L126 170 L94 170 L94 96 L62 96 Z" fill="#ffffff"/>
+</svg>

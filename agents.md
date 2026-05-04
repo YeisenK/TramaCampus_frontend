@@ -16,11 +16,19 @@ The current codebase is a fully working Flutter prototype with mock data. The ar
 
 ```
 lib/
-  core/           # Shared infrastructure (theme, router, widgets)
+  core/
+    database/     # SQLite service, schema, migrations
+    navigation/   # AppRouter (named routes)
+    services/     # PreferencesService (meta table wrapper)
+    theme/        # Design tokens (colors, typography, spacing)
+    widgets/      # Reusable UI components
   data/           # Models, mock data, repositories
   features/       # One folder per product feature
   app.dart        # Root widget + theme notifier
   main.dart       # Entry point
+docs/
+  json-integration.md        # Backend API contract (binding)
+  json-examples/             # Example payloads for each endpoint
 ```
 
 ### Rules
@@ -90,6 +98,7 @@ All values in `lib/core/theme/app_spacing.dart`. Use `AppSpacing.space*` — nev
 | space8 | 40 |
 | space9 | 48 |
 | space10 | 64 |
+| edgePadding | 24 (alias of space6 — semantic name for screen horizontal padding) |
 
 Border radii in `AppRadius`: xs=8, sm=12, md=16, lg=24, xl=32, pill=999.
 
@@ -131,10 +140,12 @@ For pill-shaped glass (e.g., the feed card label): use `ClipRRect` with `BorderR
 
 | Widget | File | Purpose |
 |---|---|---|
-| `TramaMark` | `core/widgets/trama_mark.dart` | App logo — gradient rounded square with "TC" glyph |
+| `TramaMark` | `core/widgets/trama_mark.dart` | Official SVG logo. `variant: markOnly` (default, trama-mark.svg) or `lockup` (logo.svg). **Always use this widget — never `Image.asset` the logo except in `splash_screen.dart`.** |
+| `SafeSvg` | `core/widgets/safe_svg.dart` | `SvgPicture.asset` with `SizedBox` fallback. `TramaMark` wraps this internally. |
 | `TAvatar` | `core/widgets/t_avatar.dart` | Circular gradient avatar from initials + hue |
 | `TChip` | `core/widgets/t_chip.dart` | Selectable interest/filter chip |
 | `TButton` | `core/widgets/t_button.dart` | CTA button (primary gradient, secondary outlined, ghost text) |
+| `TTextField` | `core/widgets/t_text_field.dart` | Labeled `TextFormField` with full border styling; use in all forms |
 | `StepDots` | `core/widgets/step_dots.dart` | Onboarding progress dots |
 | `PhotoPlaceholder` | `core/widgets/photo_placeholder.dart` | Full-bleed gradient photo fill |
 | `SegmentedControl` | `core/widgets/segmented_control.dart` | Tabbed control (Feed / Cuadrícula / Historias) |
@@ -144,6 +155,12 @@ For pill-shaped glass (e.g., the feed card label): use `ClipRRect` with `BorderR
 | `FeedCard` | `core/widgets/feed_card.dart` | Discovery feed item |
 | `CompatibilityCard` | `core/widgets/compatibility_card.dart` | Profile detail compatibility breakdown |
 | `SkeletonLoader` | `core/widgets/skeleton_loader.dart` | Animated loading skeleton |
+| `EmptyState` | `core/widgets/empty_state.dart` | Centered icon + title + subtitle + optional action. Use for empty lists. |
+| `ErrorState` | `core/widgets/error_state.dart` | Centered error icon + message + optional retry button. Use for failed loads. |
+| `ConfirmModal` | `core/widgets/confirm_modal.dart` | `ConfirmModal.show(context, {...})` — glass-blur bottom sheet for destructive confirmations. |
+| `SectionCard` | `core/widgets/section_card.dart` | Rounded container with optional header label and dividers between children. |
+| `ToggleTile` | `core/widgets/toggle_tile.dart` | `ListTile` + `Switch.adaptive`. `onChanged` is nullable for disabled state. |
+| `StaticTextPage` | `core/widgets/static_text_page.dart` | Scaffold + TAppBar + `ListView` of titled sections. Powers all legal/info screens. |
 
 ### TButton Variants
 
@@ -183,6 +200,21 @@ Defined in `lib/core/navigation/app_router.dart`. All route names are static `St
 | `AppRouter.settingsMain` | `SettingsMainScreen` |
 | `AppRouter.settingsTheme` | `SettingsThemeScreen` |
 | `AppRouter.notifications` | `NotificationsScreen` |
+| `AppRouter.editProfile` | `EditProfileScreen` |
+| `AppRouter.accountSettings` | `AccountSettingsScreen` |
+| `AppRouter.privacySettings` | `PrivacySettingsScreen` |
+| `AppRouter.notificationPreferences` | `NotificationPreferencesScreen` |
+| `AppRouter.securitySettings` | `SecuritySettingsScreen` |
+| `AppRouter.blockedUsers` | `BlockedUsersScreen` |
+| `AppRouter.deleteAccount` | `DeleteAccountScreen` |
+| `AppRouter.helpCenter` | `HelpCenterScreen` |
+| `AppRouter.faq` | `FaqScreen` |
+| `AppRouter.contactSupport` | `ContactSupportScreen` |
+| `AppRouter.reportProblem` | `ReportProblemScreen` (arg: optional `Student?`) |
+| `AppRouter.termsConditions` | `TermsConditionsScreen` |
+| `AppRouter.privacyPolicy` | `PrivacyPolicyScreen` |
+| `AppRouter.communityGuidelines` | `CommunityGuidelinesScreen` |
+| `AppRouter.about` | `AboutScreen` |
 
 ### Passing Arguments
 
@@ -317,7 +349,7 @@ No comments unless the logic is genuinely non-obvious. Self-documenting code via
 1. **Run `flutter analyze` before committing.** Zero errors and zero warnings required. Info-level hints should be addressed.
 2. **Test with both light and dark themes** via `SettingsThemeScreen` before calling a screen done.
 3. **Test all modalities** in `DiscoverScreen` — each filter (Estudio, Amistad, Conexión) must return a non-empty list from mock data.
-4. **Do not add packages** without team approval. The current dependency surface is minimal by design: `google_fonts`, `flutter_svg`, `cupertino_icons`.
+4. **Do not add packages** without team approval. The current dependency surface is minimal by design: `google_fonts`, `flutter_svg`, `cupertino_icons`, `sqflite`, `path_provider`, `path`. No new packages without explicit approval.
 5. **Do not add features beyond the design spec** — Trama Campus is scope-locked to the 18 screens in this prototype phase.
 6. **Asset directories** (`assets/images/`, `assets/svg/`) exist but are currently empty (`.gitkeep`). Add assets to the correct folder and reference them via `AssetImage` or `SvgPicture.asset`.
 
@@ -360,6 +392,58 @@ Add `firebase_analytics` or `posthog_flutter`. Key events to track:
 ### Localization
 
 All UI strings are currently hardcoded in Spanish. When multi-language support is needed, extract strings to `.arb` files using Flutter's `flutter_localizations` package. The app is Spanish-first; do not introduce an `l10n` layer until there is a concrete need for a second language.
+
+---
+
+## Local Persistence (SQLite)
+
+SQLite is used for two things: profile photo storage (future) and app preferences.
+
+### Bootstrap order
+
+`main.dart` awaits `DatabaseService.instance.database` before `runApp`. Screens must never call `DatabaseService` directly — use the repository layer.
+
+### Migration rule
+
+Every schema change requires a new `Migration` entry in `lib/core/database/migrations.dart`. The top-level assert `kMigrations.last.version == kDatabaseVersion` in `database_service.dart` fails fast if a version bump was missed.
+
+### `meta` table
+
+Reserved for app-level key/value preferences (e.g., theme mode). Access only through `PreferencesService.instance`. Do not write raw SQL against `meta` from feature code.
+
+### Key files
+
+| File | Purpose |
+|---|---|
+| `lib/core/database/database_service.dart` | Singleton; lazy `Future<Database>`; runs migrations |
+| `lib/core/database/schema.dart` | Table and column name constants — no stringly-typed SQL |
+| `lib/core/database/migrations.dart` | `Migration` class + `kMigrations` list |
+| `lib/core/services/preferences_service.dart` | Typed wrapper over `meta` table for app prefs |
+| `lib/data/models/local_profile_photo.dart` | Profile photo model with `fromMap`/`toMap` |
+| `lib/data/repositories/profile_photo_repository.dart` | Abstract interface + SQLite implementation |
+
+---
+
+## Stability Rules
+
+1. **`if (!mounted) return;` after every `await` in async navigation handlers.** Any method that calls `Navigator.*` or shows a `SnackBar` after an `await` must check `mounted` first.
+2. **Every controller must be disposed.** `TextEditingController`, `AnimationController`, `ScrollController` — all disposed in `dispose()`.
+3. **Every list view must handle three states: loading, empty, error.** Use `SkeletonLoader` for loading, `EmptyState` for empty, `ErrorState` for errors. Never show a blank screen.
+
+---
+
+## JSON Integration Contract
+
+The binding contract between the Flutter app and the backend API is documented in `docs/json-integration.md`. It covers:
+
+- Modality mapping (Flutter 3 modes → backend 13 modes)
+- Full profile schema with validation rules
+- Matching request/response format (mirrors [`matching_service/Docs/matching_input.md`](../../Trama_back/matching_service/Docs/matching_input.md))
+- Chat WebSocket event shapes
+- FCM push notification payloads
+- All settings endpoints and JSON keys
+
+**Do not define API contracts inline in feature code.** All schemas live in `docs/json-integration.md`.
 
 ---
 

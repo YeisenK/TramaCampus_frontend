@@ -94,16 +94,13 @@ class _RequestsTab extends StatelessWidget {
         final s = requests[i];
         return _ConnectionCard(
           student: s,
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TButton(
-                label: 'Aceptar',
-                onPressed: () {},
-                isFullWidth: false,
-                variant: TButtonVariant.ghost,
-              ),
-            ],
+          trailing: TButton(
+            label: 'Aceptar',
+            isFullWidth: false,
+            onPressed: () => Navigator.of(context).pushNamed(
+              AppRouter.matchSuccess,
+              arguments: s,
+            ),
           ),
           showAcceptReject: true,
         );

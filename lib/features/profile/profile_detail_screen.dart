@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/compatibility_card.dart';
+import '../../core/widgets/confirm_modal.dart';
 import '../../core/widgets/t_button.dart';
 import '../../core/widgets/t_chip.dart';
 import '../../data/models/student.dart';
@@ -19,6 +20,42 @@ class ProfileDetailScreen extends StatefulWidget {
 
 class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
   bool _isSaved = false;
+
+  void _showMoreMenu(BuildContext context, Student s) {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (_) => _MoreMenuSheet(
+        student: s,
+        onReport: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(AppRouter.reportProblem, arguments: s);
+        },
+        onBlock: () async {
+          Navigator.of(context).pop();
+          final ok = await ConfirmModal.show(
+            context,
+            title: 'Bloquear usuario',
+            message: '${s.firstName} no podrá ver tu perfil ni contactarte.',
+            confirmLabel: 'Bloquear',
+            destructive: true,
+          );
+          if (ok == true && context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('${s.firstName} ha sido bloqueado')),
+            );
+            Navigator.of(context).pop();
+          }
+        },
+        onShare: () {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Próximamente disponible')),
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +81,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
               const SizedBox(width: AppSpacing.space2),
               _GlassButton(
                 icon: Icons.more_vert,
-                onTap: () {},
+                onTap: () => _showMoreMenu(context, s),
               ),
               const SizedBox(width: AppSpacing.space2),
             ],
@@ -228,6 +265,97 @@ class _ActionBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _MoreMenuSheet extends StatelessWidget {
+  const _MoreMenuSheet({
+    required this.student,
+    required this.onReport,
+    required this.onBlock,
+    required this.onShare,
+  });
+
+  final Student student;
+  final VoidCallback onReport;
+  final VoidCallback onBlock;
+  final VoidCallback onShare;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
+      child: Container(
+        color: cs.surfaceContainerLowest,
+        padding: EdgeInsets.fromLTRB(
+          AppSpacing.space6,
+          AppSpacing.space5,
+          AppSpacing.space6,
+          AppSpacing.space6 + MediaQuery.of(context).padding.bottom,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Center(
+              child: Container(
+                width: 36,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: cs.outlineVariant,
+                  borderRadius: BorderRadius.circular(AppRadius.pill),
+                ),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.space5),
+            _MenuAction(
+              icon: Icons.flag_outlined,
+              label: 'Reportar a ${student.firstName}',
+              onTap: onReport,
+            ),
+            const Divider(height: 1),
+            _MenuAction(
+              icon: Icons.block_outlined,
+              label: 'Bloquear a ${student.firstName}',
+              isDestructive: true,
+              onTap: onBlock,
+            ),
+            const Divider(height: 1),
+            _MenuAction(
+              icon: Icons.share_outlined,
+              label: 'Compartir perfil',
+              onTap: onShare,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MenuAction extends StatelessWidget {
+  const _MenuAction({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.isDestructive = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final bool isDestructive;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final color = isDestructive ? cs.error : cs.onSurface;
+    return ListTile(
+      onTap: onTap,
+      leading: Icon(icon, size: 20, color: color),
+      title: Text(label, style: AppTextStyles.bodyMd(color)),
+      contentPadding: const EdgeInsets.symmetric(vertical: AppSpacing.space1),
     );
   }
 }

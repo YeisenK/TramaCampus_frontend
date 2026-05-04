@@ -92,7 +92,13 @@ class _ConversationScreenState extends State<ConversationScreen> {
           ),
         ),
         actions: [
-          IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.more_vert),
+            onPressed: () => Navigator.of(context).pushNamed(
+              AppRouter.reportProblem,
+              arguments: s,
+            ),
+          ),
         ],
       ),
       body: Column(

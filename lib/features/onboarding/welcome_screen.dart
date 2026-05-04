@@ -22,7 +22,20 @@ class WelcomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const Spacer(flex: 2),
-                  const TramaMark(size: 72),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const TramaMark(size: 72),
+                      const SizedBox(height: AppSpacing.space3),
+                      Text(
+                        'Trama Campus',
+                        style: AppTextStyles.headlineSm(AppColors.primary).copyWith(
+                          letterSpacing: 0.5,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: AppSpacing.space6),
                   Text(
                     'Conoce personas\nen tu campus',

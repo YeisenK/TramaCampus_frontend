@@ -11,11 +11,10 @@ class StudentRepository {
       MockData.students.where((s) => s.intent == type).toList();
 
   Student? getById(String id) {
-    try {
-      return MockData.students.firstWhere((s) => s.id == id);
-    } catch (_) {
-      return null;
+    for (final s in MockData.students) {
+      if (s.id == id) return s;
     }
+    return null;
   }
 
   Student getCurrentUser() => MockData.currentUser;

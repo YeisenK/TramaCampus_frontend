@@ -5,10 +5,13 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/t_avatar.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/models/chat_preview.dart';
+import '../../data/repositories/student_repository.dart';
 
 class ChatListScreen extends StatelessWidget {
   const ChatListScreen({super.key, this.embedded = false});
   final bool embedded;
+
+  static final _repo = StudentRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +38,14 @@ class ChatListScreen extends StatelessWidget {
         ),
         itemBuilder: (context, i) {
           final chat = chats[i];
+          final student = _repo.getById(chat.studentId);
+          if (student == null) return const SizedBox.shrink();
           return _ChatRow(
             chat: chat,
-            onTap: () {
-              final student = MockData.students.firstWhere(
-                (s) => s.id == chat.studentId,
-                orElse: () => MockData.students.first,
-              );
-              Navigator.of(context).pushNamed(AppRouter.conversation, arguments: student);
-            },
+            onTap: () => Navigator.of(context).pushNamed(
+              AppRouter.conversation,
+              arguments: student,
+            ),
           );
         },
       ),
