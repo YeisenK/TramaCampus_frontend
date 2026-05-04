@@ -125,8 +125,9 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                 textInputAction: TextInputAction.done,
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Ingresa un precio';
-                  if (double.tryParse(v.trim()) == null)
+                  if (double.tryParse(v.trim()) == null) {
                     return 'Precio inválido';
+                  }
                   return null;
                 },
               ),
