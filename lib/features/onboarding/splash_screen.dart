@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_colors.dart';
@@ -17,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
   late final AnimationController _controller;
   late final Animation<double> _fade;
   late final Animation<double> _scale;
+  Timer? _navTimer;
 
   @override
   void initState() {
@@ -31,18 +34,16 @@ class _SplashScreenState extends State<SplashScreen>
       end: 1.0,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
     _controller.forward();
-    _navigate();
-  }
-
-  Future<void> _navigate() async {
-    await Future.delayed(const Duration(milliseconds: 800));
-    if (mounted) {
-      Navigator.of(context).pushReplacementNamed(AppRouter.welcome);
-    }
+    _navTimer = Timer(const Duration(milliseconds: 800), () {
+      if (mounted) {
+        Navigator.of(context).pushReplacementNamed(AppRouter.welcome);
+      }
+    });
   }
 
   @override
   void dispose() {
+    _navTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }
