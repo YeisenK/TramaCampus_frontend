@@ -60,6 +60,18 @@ class _PhotoArea extends StatelessWidget {
   final VoidCallback onSave;
   final bool isSaved;
 
+  ImageProvider _imageProvider(String url) =>
+      url.startsWith('assets/') ? AssetImage(url) as ImageProvider : NetworkImage(url);
+
+  Widget _gradientFallback(Student s) => Container(
+        decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+        alignment: Alignment.center,
+        child: Text(
+          s.initials,
+          style: AppTextStyles.display(Colors.white.withValues(alpha: 0.85)),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
@@ -70,16 +82,13 @@ class _PhotoArea extends StatelessWidget {
         child: Stack(
           children: [
             Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: AppColors.avatarGradient(student.hue),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  student.initials,
-                  style: AppTextStyles.display(Colors.white.withValues(alpha: 0.85)),
-                ),
-              ),
+              child: student.photoUrl != null
+                  ? Image(
+                      image: _imageProvider(student.photoUrl!),
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, _) => _gradientFallback(student),
+                    )
+                  : _gradientFallback(student),
             ),
             Positioned.fill(
               child: Container(

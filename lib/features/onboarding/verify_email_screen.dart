@@ -90,7 +90,7 @@ class _VerifyHeader extends StatelessWidget {
           Row(
             children: [
               GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
+                onTap: () => Navigator.of(context).maybePop(),
                 child: Icon(Icons.arrow_back_ios_new, size: 20, color: cs.onSurface),
               ),
               const Spacer(),

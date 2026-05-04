@@ -133,7 +133,7 @@ class _ConnectionCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            TAvatar(initials: student.initials, hue: student.hue, size: 52),
+            TAvatar(initials: student.initials, hue: student.hue, photoUrl: student.photoUrl, size: 52),
             const SizedBox(width: AppSpacing.space3),
             Expanded(
               child: Column(

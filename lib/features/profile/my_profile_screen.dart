@@ -32,11 +32,19 @@ class MyProfileScreen extends StatelessWidget {
               background: Stack(
                 children: [
                   Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: AppColors.avatarGradient(user.hue),
-                      ),
-                    ),
+                    child: user.photoUrl != null
+                        ? Image(
+                            image: user.photoUrl!.startsWith('assets/')
+                                ? AssetImage(user.photoUrl!) as ImageProvider
+                                : NetworkImage(user.photoUrl!),
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, _) => Container(
+                              decoration: BoxDecoration(gradient: AppColors.avatarGradient(user.hue)),
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(gradient: AppColors.avatarGradient(user.hue)),
+                          ),
                   ),
                   Positioned.fill(
                     child: Container(

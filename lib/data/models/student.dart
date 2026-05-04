@@ -9,6 +9,7 @@ class Student {
     required this.semester,
     required this.hue,
     required this.intent,
+    this.photoUrl,
     this.bio = '',
     this.interests = const [],
     this.compatibilityScore = 0,
@@ -22,6 +23,7 @@ class Student {
   final int semester;
   final double hue;
   final ModalityType intent;
+  final String? photoUrl;
   final String bio;
   final List<String> interests;
   final int compatibilityScore;

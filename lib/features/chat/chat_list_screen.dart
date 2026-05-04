@@ -42,6 +42,7 @@ class ChatListScreen extends StatelessWidget {
           if (student == null) return const SizedBox.shrink();
           return _ChatRow(
             chat: chat,
+            photoUrl: student.photoUrl,
             onTap: () => Navigator.of(context).pushNamed(
               AppRouter.conversation,
               arguments: student,
@@ -54,9 +55,10 @@ class ChatListScreen extends StatelessWidget {
 }
 
 class _ChatRow extends StatelessWidget {
-  const _ChatRow({required this.chat, required this.onTap});
+  const _ChatRow({required this.chat, required this.onTap, this.photoUrl});
   final ChatPreview chat;
   final VoidCallback onTap;
+  final String? photoUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class _ChatRow extends StatelessWidget {
         horizontal: AppSpacing.space4,
         vertical: AppSpacing.space2,
       ),
-      leading: TAvatar(initials: chat.initials, hue: chat.hue, size: 52),
+      leading: TAvatar(initials: chat.initials, hue: chat.hue, photoUrl: photoUrl, size: 52),
       title: Row(
         children: [
           Expanded(

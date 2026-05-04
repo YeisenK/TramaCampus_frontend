@@ -79,7 +79,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
           onTap: () => Navigator.of(context).pushNamed(AppRouter.profileDetail, arguments: s),
           child: Row(
             children: [
-              TAvatar(initials: s.initials, hue: s.hue, size: 36),
+              TAvatar(initials: s.initials, hue: s.hue, photoUrl: s.photoUrl, size: 36),
               const SizedBox(width: AppSpacing.space3),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +134,7 @@ class _Bubble extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!isMe) ...[
-            TAvatar(initials: student.initials, hue: student.hue, size: 28),
+            TAvatar(initials: student.initials, hue: student.hue, photoUrl: student.photoUrl, size: 28),
             const SizedBox(width: AppSpacing.space2),
           ],
           Flexible(

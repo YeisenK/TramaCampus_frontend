@@ -14,6 +14,27 @@ class DiscoverGridView extends StatelessWidget {
   final List<Student> students;
   final ValueChanged<Student> onTap;
 
+  ImageProvider _imageProvider(String url) =>
+      url.startsWith('assets/') ? AssetImage(url) as ImageProvider : NetworkImage(url);
+
+  Widget _gradientCell(Student s) => Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
+              HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
+            ],
+          ),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          s.initials,
+          style: AppTextStyles.headlineLg(Colors.white.withValues(alpha: 0.9)),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
@@ -51,25 +72,17 @@ class DiscoverGridView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
-                          HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
-                        ],
-                      ),
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(AppRadius.md),
-                      ),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      s.initials,
-                      style: AppTextStyles.headlineLg(Colors.white.withValues(alpha: 0.9)),
-                    ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.md)),
+                    child: s.photoUrl != null
+                        ? Image(
+                            image: _imageProvider(s.photoUrl!),
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                            errorBuilder: (context, error, _) => _gradientCell(s),
+                          )
+                        : _gradientCell(s),
                   ),
                 ),
                 Padding(

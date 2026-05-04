@@ -8,36 +8,20 @@ class TAvatar extends StatelessWidget {
     super.key,
     required this.initials,
     required this.hue,
+    this.photoUrl,
     this.size = 48,
     this.borderWidth = 0,
   });
 
   final String initials;
   final double hue;
+  final String? photoUrl;
   final double size;
   final double borderWidth;
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = size * 0.36;
-    Widget avatar = Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: AppColors.avatarGradient(hue),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        initials,
-        style: GoogleFonts.manrope(
-          fontSize: fontSize,
-          fontWeight: FontWeight.w700,
-          color: Colors.white,
-          height: 1,
-        ),
-      ),
-    );
+    Widget avatar = _buildCircle();
 
     if (borderWidth > 0) {
       avatar = Container(
@@ -58,5 +42,49 @@ class TAvatar extends StatelessWidget {
     }
 
     return avatar;
+  }
+
+  ImageProvider? _imageProvider() {
+    if (photoUrl == null) return null;
+    if (photoUrl!.startsWith('assets/')) return AssetImage(photoUrl!);
+    return NetworkImage(photoUrl!);
+  }
+
+  Widget _buildCircle() {
+    final provider = _imageProvider();
+    if (provider != null) {
+      return ClipOval(
+        child: Image(
+          image: provider,
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, _) => _gradientCircle(),
+        ),
+      );
+    }
+    return _gradientCircle();
+  }
+
+  Widget _gradientCircle() {
+    final fontSize = size * 0.36;
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: AppColors.avatarGradient(hue),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        initials,
+        style: GoogleFonts.manrope(
+          fontSize: fontSize,
+          fontWeight: FontWeight.w700,
+          color: Colors.white,
+          height: 1,
+        ),
+      ),
+    );
   }
 }

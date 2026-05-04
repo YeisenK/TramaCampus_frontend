@@ -89,13 +89,23 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
               background: Stack(
                 children: [
                   Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: AppColors.avatarGradient(s.hue),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(s.initials, style: AppTextStyles.display(Colors.white.withValues(alpha: 0.8))),
-                    ),
+                    child: s.photoUrl != null
+                        ? Image(
+                            image: s.photoUrl!.startsWith('assets/')
+                                ? AssetImage(s.photoUrl!) as ImageProvider
+                                : NetworkImage(s.photoUrl!),
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, _) => Container(
+                              decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+                              alignment: Alignment.center,
+                              child: Text(s.initials, style: AppTextStyles.display(Colors.white.withValues(alpha: 0.8))),
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+                            alignment: Alignment.center,
+                            child: Text(s.initials, style: AppTextStyles.display(Colors.white.withValues(alpha: 0.8))),
+                          ),
                   ),
                   Positioned.fill(
                     child: Container(

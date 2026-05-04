@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../data/models/affiliate_business.dart';
+import '../../data/models/marketplace_listing.dart';
 import '../../data/models/student.dart';
+import '../../features/marketplace/affiliate_detail_screen.dart';
+import '../../features/marketplace/create_listing_screen.dart';
+import '../../features/marketplace/listing_detail_screen.dart';
+import '../../features/marketplace/marketplace_screen.dart';
+import '../../features/marketplace/reservation_screen.dart';
 import '../../features/onboarding/splash_screen.dart';
 import '../../features/onboarding/welcome_screen.dart';
 import '../../features/onboarding/select_uni_screen.dart';
@@ -48,6 +55,13 @@ class AppRouter {
   static const String academicProfile = '/onboarding/academic';
   static const String personalGoals = '/onboarding/goals';
   static const String profileComplete = '/onboarding/complete';
+
+  // Marketplace
+  static const String marketplace = '/marketplace';
+  static const String listingDetail = '/marketplace/listing';
+  static const String affiliateDetail = '/marketplace/affiliate';
+  static const String createListing = '/marketplace/create';
+  static const String reservation = '/marketplace/reservation';
 
   // Core app
   static const String discover = '/discover';
@@ -103,6 +117,21 @@ class AppRouter {
         return _slide(const PersonalGoalsScreen());
       case profileComplete:
         return _slide(const ProfileCompleteScreen());
+
+      // Marketplace
+      case marketplace:
+        return _slide(const MarketplaceScreen());
+      case listingDetail:
+        final listing = settings.arguments as MarketplaceListing;
+        return _slide(ListingDetailScreen(listing: listing));
+      case affiliateDetail:
+        final business = settings.arguments as AffiliateBusiness;
+        return _slide(AffiliateDetailScreen(business: business));
+      case createListing:
+        return _slide(const CreateListingScreen());
+      case reservation:
+        final business = settings.arguments as AffiliateBusiness;
+        return _slide(ReservationScreen(business: business));
 
       // Core app
       case discover:

@@ -9,6 +9,22 @@ class DiscoverStoriesView extends StatelessWidget {
 
   final List<Student> students;
 
+  ImageProvider _imageProvider(String url) =>
+      url.startsWith('assets/') ? AssetImage(url) as ImageProvider : NetworkImage(url);
+
+  Widget _gradientBackground(Student s) => Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
+              HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
+            ],
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     if (students.isEmpty) {
@@ -25,18 +41,13 @@ class DiscoverStoriesView extends StatelessWidget {
         return Stack(
           children: [
             Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
-                      HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
-                    ],
-                  ),
-                ),
-              ),
+              child: s.photoUrl != null
+                  ? Image(
+                      image: _imageProvider(s.photoUrl!),
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, _) => _gradientBackground(s),
+                    )
+                  : _gradientBackground(s),
             ),
             Positioned.fill(
               child: Container(

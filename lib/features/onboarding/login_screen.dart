@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     label: 'Crear cuenta nueva',
                     variant: TButtonVariant.secondary,
                     onPressed: () => Navigator.of(context)
-                        .pushNamedAndRemoveUntil(AppRouter.selectUni, (_) => false),
+                        .pushReplacementNamed(AppRouter.selectUni),
                   ),
                   const SizedBox(height: AppSpacing.space7),
                 ],
@@ -139,7 +139,7 @@ class _Hero extends StatelessWidget {
               children: [
                 IconButton(
                   icon: const Icon(Icons.arrow_back_ios_new, size: 20),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => Navigator.of(context).maybePop(),
                   padding: EdgeInsets.zero,
                 ),
               ],

@@ -15,7 +15,8 @@ class TBottomNav extends StatelessWidget {
 
   static const _items = [
     _NavItem(icon: Icons.explore_outlined, activeIcon: Icons.explore, label: 'Descubrir'),
-    _NavItem(icon: Icons.group_outlined, activeIcon: Icons.group, label: 'Conexiones'),
+    _NavItem(icon: Icons.group_outlined, activeIcon: Icons.group, label: 'Match'),
+    _NavItem(icon: Icons.storefront_outlined, activeIcon: Icons.storefront, label: 'Market'),
     _NavItem(icon: Icons.chat_bubble_outline, activeIcon: Icons.chat_bubble, label: 'Chats'),
     _NavItem(icon: Icons.person_outline, activeIcon: Icons.person, label: 'Perfil'),
   ];
