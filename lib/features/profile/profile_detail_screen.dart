@@ -29,7 +29,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
         student: s,
         onReport: () {
           Navigator.of(context).pop();
-          Navigator.of(context).pushNamed(AppRouter.reportProblem, arguments: s);
+          Navigator.of(
+            context,
+          ).pushNamed(AppRouter.reportProblem, arguments: s);
         },
         onBlock: () async {
           Navigator.of(context).pop();
@@ -96,15 +98,29 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                 : NetworkImage(s.photoUrl!),
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, _) => Container(
-                              decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+                              decoration: BoxDecoration(
+                                gradient: AppColors.avatarGradient(s.hue),
+                              ),
                               alignment: Alignment.center,
-                              child: Text(s.initials, style: AppTextStyles.display(Colors.white.withValues(alpha: 0.8))),
+                              child: Text(
+                                s.initials,
+                                style: AppTextStyles.display(
+                                  Colors.white.withValues(alpha: 0.8),
+                                ),
+                              ),
                             ),
                           )
                         : Container(
-                            decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+                            decoration: BoxDecoration(
+                              gradient: AppColors.avatarGradient(s.hue),
+                            ),
                             alignment: Alignment.center,
-                            child: Text(s.initials, style: AppTextStyles.display(Colors.white.withValues(alpha: 0.8))),
+                            child: Text(
+                              s.initials,
+                              style: AppTextStyles.display(
+                                Colors.white.withValues(alpha: 0.8),
+                              ),
+                            ),
                           ),
                   ),
                   Positioned.fill(
@@ -126,9 +142,15 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${s.name}, ${s.age}', style: AppTextStyles.headlineMd(cs.onSurface)),
+                        Text(
+                          '${s.name}, ${s.age}',
+                          style: AppTextStyles.headlineMd(cs.onSurface),
+                        ),
                         const SizedBox(height: AppSpacing.space1),
-                        Text('${s.program} · Sem. ${s.semester}', style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+                        Text(
+                          '${s.program} · Sem. ${s.semester}',
+                          style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+                        ),
                       ],
                     ),
                   ),
@@ -137,7 +159,12 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.fromLTRB(AppSpacing.space5, AppSpacing.space5, AppSpacing.space5, 120),
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.space5,
+              AppSpacing.space5,
+              AppSpacing.space5,
+              120,
+            ),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 if (s.bio.isNotEmpty) ...[
@@ -178,7 +205,8 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         icon: Icons.flag_outlined,
                         label: 'Objetivo',
                         title: switch (s.intent) {
-                          _ when s.intent.name == 'estudio' => 'Estudiar juntos',
+                          _ when s.intent.name == 'estudio' =>
+                            'Estudiar juntos',
                           _ when s.intent.name == 'amistad' => 'Hacer amigos',
                           _ => 'Conexión personal',
                         },
@@ -192,10 +220,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
       ),
       bottomNavigationBar: _ActionBar(
         student: widget.student,
-        onMatch: () => Navigator.of(context).pushNamed(
-          AppRouter.matchSuccess,
-          arguments: widget.student,
-        ),
+        onMatch: () => Navigator.of(
+          context,
+        ).pushNamed(AppRouter.matchSuccess, arguments: widget.student),
         onPass: () => Navigator.of(context).pop(),
       ),
     );
@@ -233,7 +260,11 @@ class _GlassButton extends StatelessWidget {
 }
 
 class _ActionBar extends StatelessWidget {
-  const _ActionBar({required this.student, required this.onMatch, required this.onPass});
+  const _ActionBar({
+    required this.student,
+    required this.onMatch,
+    required this.onPass,
+  });
   final Student student;
   final VoidCallback onMatch;
   final VoidCallback onPass;
@@ -245,10 +276,17 @@ class _ActionBar extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
         child: Container(
-          padding: const EdgeInsets.fromLTRB(AppSpacing.space5, AppSpacing.space4, AppSpacing.space5, 0),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.space5,
+            AppSpacing.space4,
+            AppSpacing.space5,
+            0,
+          ),
           decoration: BoxDecoration(
             color: cs.surface.withValues(alpha: 0.85),
-            border: Border(top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5))),
+            border: Border(
+              top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5)),
+            ),
           ),
           child: SafeArea(
             top: false,
@@ -296,7 +334,9 @@ class _MoreMenuSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return ClipRRect(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
+      borderRadius: const BorderRadius.vertical(
+        top: Radius.circular(AppRadius.xl),
+      ),
       child: Container(
         color: cs.surfaceContainerLowest,
         padding: EdgeInsets.fromLTRB(

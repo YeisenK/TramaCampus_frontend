@@ -54,29 +54,36 @@ class FeedCard extends StatelessWidget {
 }
 
 class _PhotoArea extends StatelessWidget {
-  const _PhotoArea({required this.student, required this.onSave, required this.isSaved});
+  const _PhotoArea({
+    required this.student,
+    required this.onSave,
+    required this.isSaved,
+  });
 
   final Student student;
   final VoidCallback onSave;
   final bool isSaved;
 
-  ImageProvider _imageProvider(String url) =>
-      url.startsWith('assets/') ? AssetImage(url) as ImageProvider : NetworkImage(url);
+  ImageProvider _imageProvider(String url) => url.startsWith('assets/')
+      ? AssetImage(url) as ImageProvider
+      : NetworkImage(url);
 
   Widget _gradientFallback(Student s) => Container(
-        decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
-        alignment: Alignment.center,
-        child: Text(
-          s.initials,
-          style: AppTextStyles.display(Colors.white.withValues(alpha: 0.85)),
-        ),
-      );
+    decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+    alignment: Alignment.center,
+    child: Text(
+      s.initials,
+      style: AppTextStyles.display(Colors.white.withValues(alpha: 0.85)),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return ClipRRect(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.lg)),
+      borderRadius: const BorderRadius.vertical(
+        top: Radius.circular(AppRadius.lg),
+      ),
       child: SizedBox(
         height: 220,
         child: Stack(
@@ -86,7 +93,8 @@ class _PhotoArea extends StatelessWidget {
                   ? Image(
                       image: _imageProvider(student.photoUrl!),
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, _) => _gradientFallback(student),
+                      errorBuilder: (context, error, _) =>
+                          _gradientFallback(student),
                     )
                   : _gradientFallback(student),
             ),
@@ -139,10 +147,7 @@ class _GlassPill extends StatelessWidget {
         color: cs.surfaceContainerLowest.withValues(alpha: 0.82),
         borderRadius: BorderRadius.circular(AppRadius.pill),
       ),
-      child: Text(
-        student.program,
-        style: AppTextStyles.labelSm(cs.onSurface),
-      ),
+      child: Text(student.program, style: AppTextStyles.labelSm(cs.onSurface)),
     );
   }
 }
@@ -203,7 +208,10 @@ class _CardBody extends StatelessWidget {
               const Spacer(),
               if (student.compatibilityScore > 0)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space2, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.space2,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     gradient: AppColors.ctaGradient(),
                     borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -222,22 +230,31 @@ class _CardBody extends StatelessWidget {
           ),
           if (student.reasons.isNotEmpty) ...[
             const SizedBox(height: AppSpacing.space3),
-            ...student.reasons.take(2).map((r) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.space1),
-                  child: Row(
-                    children: [
-                      Icon(Icons.check, size: 14, color: cs.primary),
-                      const SizedBox(width: AppSpacing.space2),
-                      Text(r, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
-                    ],
+            ...student.reasons
+                .take(2)
+                .map(
+                  (r) => Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpacing.space1),
+                    child: Row(
+                      children: [
+                        Icon(Icons.check, size: 14, color: cs.primary),
+                        const SizedBox(width: AppSpacing.space2),
+                        Text(
+                          r,
+                          style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                        ),
+                      ],
+                    ),
                   ),
-                )),
+                ),
           ],
           if (student.bio.isNotEmpty) ...[
             const SizedBox(height: AppSpacing.space3),
             Text(
               '"${student.bio.length > 80 ? '${student.bio.substring(0, 80)}…' : student.bio}"',
-              style: AppTextStyles.bodySm(cs.onSurfaceVariant).copyWith(fontStyle: FontStyle.italic),
+              style: AppTextStyles.bodySm(
+                cs.onSurfaceVariant,
+              ).copyWith(fontStyle: FontStyle.italic),
             ),
           ],
           if (student.interests.isNotEmpty) ...[
@@ -245,7 +262,10 @@ class _CardBody extends StatelessWidget {
             Wrap(
               spacing: AppSpacing.space2,
               runSpacing: AppSpacing.space2,
-              children: student.interests.take(3).map((i) => TChip(label: i)).toList(),
+              children: student.interests
+                  .take(3)
+                  .map((i) => TChip(label: i))
+                  .toList(),
             ),
           ],
         ],

@@ -31,9 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _login() async {
     setState(() => _loading = true);
-    await Future.delayed(const Duration(milliseconds: 900));
     if (!mounted) return;
-    Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.discover, (_) => false);
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRouter.discover, (_) => false);
   }
 
   @override
@@ -48,8 +49,10 @@ class _LoginScreenState extends State<LoginScreen> {
             _DemoBadge(cs: cs),
             Padding(
               padding: const EdgeInsets.fromLTRB(
-                AppSpacing.space6, AppSpacing.space5,
-                AppSpacing.space6, AppSpacing.space4,
+                AppSpacing.space6,
+                AppSpacing.space5,
+                AppSpacing.space6,
+                AppSpacing.space4,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     cs: cs,
                     suffix: IconButton(
                       icon: Icon(
-                        _obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        _obscure
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                         size: 20,
                         color: cs.onSurfaceVariant,
                       ),
@@ -79,8 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {},
-                      child: Text('¿Olvidaste tu contraseña?',
-                          style: AppTextStyles.bodySm(cs.primary)),
+                      child: Text(
+                        '¿Olvidaste tu contraseña?',
+                        style: AppTextStyles.bodySm(cs.primary),
+                      ),
                     ),
                   ),
                   const SizedBox(height: AppSpacing.space4),
@@ -92,20 +99,34 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: AppSpacing.space5),
                   Row(
                     children: [
-                      Expanded(child: Divider(color: cs.outlineVariant.withValues(alpha: 0.5))),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space3),
-                        child: Text('o', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                      Expanded(
+                        child: Divider(
+                          color: cs.outlineVariant.withValues(alpha: 0.5),
+                        ),
                       ),
-                      Expanded(child: Divider(color: cs.outlineVariant.withValues(alpha: 0.5))),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.space3,
+                        ),
+                        child: Text(
+                          'o',
+                          style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          color: cs.outlineVariant.withValues(alpha: 0.5),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: AppSpacing.space4),
                   TButton(
                     label: 'Crear cuenta nueva',
                     variant: TButtonVariant.secondary,
-                    onPressed: () => Navigator.of(context)
-                        .pushReplacementNamed(AppRouter.selectUni),
+                    onPressed: () => Navigator.of(
+                      context,
+                    ).pushReplacementNamed(AppRouter.selectUni),
                   ),
                   const SizedBox(height: AppSpacing.space7),
                 ],
@@ -127,7 +148,10 @@ class _Hero extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(
-        AppSpacing.space6, 0, AppSpacing.space6, AppSpacing.space6,
+        AppSpacing.space6,
+        0,
+        AppSpacing.space6,
+        AppSpacing.space6,
       ),
       decoration: BoxDecoration(color: cs.surfaceContainerLowest),
       child: SafeArea(
@@ -147,7 +171,10 @@ class _Hero extends StatelessWidget {
             const SizedBox(height: AppSpacing.space4),
             const TramaMark(size: 44),
             const SizedBox(height: AppSpacing.space5),
-            Text('Bienvenida de vuelta', style: AppTextStyles.headlineMd(cs.onSurface)),
+            Text(
+              'Bienvenida de vuelta',
+              style: AppTextStyles.headlineMd(cs.onSurface),
+            ),
             const SizedBox(height: AppSpacing.space2),
             Text(
               'Ingresa con tu correo institucional verificado.',
@@ -169,7 +196,10 @@ class _DemoBadge extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.fromLTRB(
-        AppSpacing.space6, AppSpacing.space5, AppSpacing.space6, 0,
+        AppSpacing.space6,
+        AppSpacing.space5,
+        AppSpacing.space6,
+        0,
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.space4,

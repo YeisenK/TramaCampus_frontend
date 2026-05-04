@@ -11,42 +11,50 @@ class FaqScreen extends StatelessWidget {
     _FaqItem(
       category: 'Cuenta',
       question: '¿Cómo verifico mi correo institucional?',
-      answer: 'Al registrarte, recibirás un código de 6 dígitos en tu correo institucional. Ingresa el código en la pantalla de verificación. Si no lo recibiste, revisa tu carpeta de spam o solicita un nuevo código.',
+      answer:
+          'Al registrarte, recibirás un código de 6 dígitos en tu correo institucional. Ingresa el código en la pantalla de verificación. Si no lo recibiste, revisa tu carpeta de spam o solicita un nuevo código.',
     ),
     _FaqItem(
       category: 'Cuenta',
       question: '¿Puedo cambiar mi universidad?',
-      answer: 'Por el momento no es posible cambiar la universidad una vez verificada. Si cometiste un error, contacta al soporte con tu correo institucional correcto.',
+      answer:
+          'Por el momento no es posible cambiar la universidad una vez verificada. Si cometiste un error, contacta al soporte con tu correo institucional correcto.',
     ),
     _FaqItem(
       category: 'Matching',
       question: '¿Cómo funciona el sistema de compatibilidad?',
-      answer: 'Trama Campus analiza tu carrera, semestre, intereses, habilidades, estilo de vida y objetivos para sugerirte personas afines. El porcentaje de compatibilidad refleja cuántas dimensiones tienen en común.',
+      answer:
+          'Trama Campus analiza tu carrera, semestre, intereses, habilidades, estilo de vida y objetivos para sugerirte personas afines. El porcentaje de compatibilidad refleja cuántas dimensiones tienen en común.',
     ),
     _FaqItem(
       category: 'Matching',
       question: '¿Qué son las modalidades de conexión?',
-      answer: 'Existen tres modalidades: Estudio (compañeros académicos), Amistad (personas con intereses similares) y Conexión personal (vínculos más profundos). Puedes activar varias simultáneamente.',
+      answer:
+          'Existen tres modalidades: Estudio (compañeros académicos), Amistad (personas con intereses similares) y Conexión personal (vínculos más profundos). Puedes activar varias simultáneamente.',
     ),
     _FaqItem(
       category: 'Privacidad',
       question: '¿Quién puede ver mi perfil?',
-      answer: 'Por defecto tu perfil es visible para todos los estudiantes de tu universidad. Puedes cambiar esto en Ajustes → Privacidad y limitar la visibilidad a solo estudiantes verificados o desactivarla temporalmente.',
+      answer:
+          'Por defecto tu perfil es visible para todos los estudiantes de tu universidad. Puedes cambiar esto en Ajustes → Privacidad y limitar la visibilidad a solo estudiantes verificados o desactivarla temporalmente.',
     ),
     _FaqItem(
       category: 'Privacidad',
       question: '¿Cómo bloqueo a alguien?',
-      answer: 'Desde el perfil de la persona, toca los tres puntos (⋯) en la esquina superior derecha y selecciona "Bloquear". El usuario bloqueado no podrá ver tu perfil ni contactarte.',
+      answer:
+          'Desde el perfil de la persona, toca los tres puntos (⋯) en la esquina superior derecha y selecciona "Bloquear". El usuario bloqueado no podrá ver tu perfil ni contactarte.',
     ),
     _FaqItem(
       category: 'Técnico',
       question: '¿La app funciona sin internet?',
-      answer: 'Algunas funciones básicas como revisar tu perfil y conversaciones guardadas están disponibles sin conexión. Para descubrir nuevas personas y enviar mensajes necesitas conexión a internet.',
+      answer:
+          'Algunas funciones básicas como revisar tu perfil y conversaciones guardadas están disponibles sin conexión. Para descubrir nuevas personas y enviar mensajes necesitas conexión a internet.',
     ),
     _FaqItem(
       category: 'Técnico',
       question: '¿Cómo reporto un error en la app?',
-      answer: 'Ve a Ajustes → Soporte → Reportar un problema. Describe lo que ocurrió y el equipo lo revisará a la brevedad. También puedes escribirnos directamente a soporte@tramacampus.mx.',
+      answer:
+          'Ve a Ajustes → Soporte → Reportar un problema. Describe lo que ocurrió y el equipo lo revisará a la brevedad. También puedes escribirnos directamente a soporte@tramacampus.mx.',
     ),
   ];
 
@@ -106,12 +114,18 @@ class _FaqTile extends StatelessWidget {
             AppSpacing.space4,
           ),
           leading: Container(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space2, vertical: 3),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.space2,
+              vertical: 3,
+            ),
             decoration: BoxDecoration(
               color: AppColors.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(AppRadius.pill),
             ),
-            child: Text(item.category, style: AppTextStyles.labelSm(AppColors.primary)),
+            child: Text(
+              item.category,
+              style: AppTextStyles.labelSm(AppColors.primary),
+            ),
           ),
           title: Text(item.question, style: AppTextStyles.bodyMd(cs.onSurface)),
           children: [

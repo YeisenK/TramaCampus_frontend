@@ -50,8 +50,12 @@ class TTextField extends StatelessWidget {
           style: AppTextStyles.bodyMd(cs.onSurface),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: AppTextStyles.bodyMd(cs.onSurfaceVariant.withValues(alpha: 0.6)),
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 20, color: cs.onSurfaceVariant) : null,
+            hintStyle: AppTextStyles.bodyMd(
+              cs.onSurfaceVariant.withValues(alpha: 0.6),
+            ),
+            prefixIcon: prefixIcon != null
+                ? Icon(prefixIcon, size: 20, color: cs.onSurfaceVariant)
+                : null,
             filled: true,
             fillColor: cs.surfaceContainerLowest,
             contentPadding: const EdgeInsets.symmetric(
@@ -76,7 +80,9 @@ class TTextField extends StatelessWidget {
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppRadius.md),
-              borderSide: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.4)),
+              borderSide: BorderSide(
+                color: cs.outlineVariant.withValues(alpha: 0.4),
+              ),
             ),
           ),
         ),

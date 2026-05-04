@@ -65,7 +65,10 @@ class _ListingDetailScreenState extends State<ListingDetailScreen> {
                             color: AppColors.primary,
                             borderRadius: BorderRadius.circular(AppRadius.pill),
                           ),
-                          child: Text('Destacado', style: AppTextStyles.labelSm(Colors.white)),
+                          child: Text(
+                            'Destacado',
+                            style: AppTextStyles.labelSm(Colors.white),
+                          ),
                         ),
                       ],
                     ],
@@ -78,7 +81,10 @@ class _ListingDetailScreenState extends State<ListingDetailScreen> {
                   const SizedBox(height: AppSpacing.space3),
                   TChip(label: listing.category.label),
                   const SizedBox(height: AppSpacing.space5),
-                  Text('Descripción', style: AppTextStyles.titleMd(cs.onSurface)),
+                  Text(
+                    'Descripción',
+                    style: AppTextStyles.titleMd(cs.onSurface),
+                  ),
                   const SizedBox(height: AppSpacing.space2),
                   Text(
                     listing.description,
@@ -138,14 +144,14 @@ class _Gallery extends StatelessWidget {
   final ValueChanged<int> onPageChanged;
 
   Widget _imagePlaceholder(ColorScheme cs) => Container(
-        color: cs.surfaceContainerHigh,
-        alignment: Alignment.center,
-        child: Icon(
-          Icons.image_outlined,
-          size: 64,
-          color: cs.onSurfaceVariant.withValues(alpha: 0.35),
-        ),
-      );
+    color: cs.surfaceContainerHigh,
+    alignment: Alignment.center,
+    child: Icon(
+      Icons.image_outlined,
+      size: 64,
+      color: cs.onSurfaceVariant.withValues(alpha: 0.35),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +212,9 @@ class _SellerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final seller = MockData.students.where((s) => s.name == listing.sellerName).firstOrNull;
+    final seller = MockData.students
+        .where((s) => s.name == listing.sellerName)
+        .firstOrNull;
     return Container(
       padding: const EdgeInsets.all(AppSpacing.space4),
       decoration: BoxDecoration(
@@ -216,7 +224,9 @@ class _SellerCard extends StatelessWidget {
       child: Row(
         children: [
           TAvatar(
-            initials: listing.sellerName.isNotEmpty ? listing.sellerName[0] : '?',
+            initials: listing.sellerName.isNotEmpty
+                ? listing.sellerName[0]
+                : '?',
             hue: seller?.hue ?? 220,
             photoUrl: seller?.photoUrl,
             size: 44,
@@ -225,8 +235,14 @@ class _SellerCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(listing.sellerName, style: AppTextStyles.titleMd(cs.onSurface)),
-              Text('Vendedor', style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+              Text(
+                listing.sellerName,
+                style: AppTextStyles.titleMd(cs.onSurface),
+              ),
+              Text(
+                'Vendedor',
+                style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+              ),
             ],
           ),
         ],

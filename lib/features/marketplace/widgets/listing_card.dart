@@ -15,7 +15,9 @@ class ListingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(AppRouter.listingDetail, arguments: listing),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRouter.listingDetail, arguments: listing),
       child: Container(
         decoration: BoxDecoration(
           color: cs.surfaceContainerLowest,
@@ -46,21 +48,23 @@ class _ThumbnailArea extends StatelessWidget {
   final MarketplaceListing listing;
 
   Widget _placeholder(ColorScheme cs) => Container(
-        width: double.infinity,
-        color: cs.surfaceContainerHigh,
-        alignment: Alignment.center,
-        child: Icon(
-          Icons.image_outlined,
-          size: 36,
-          color: cs.onSurfaceVariant.withValues(alpha: 0.35),
-        ),
-      );
+    width: double.infinity,
+    color: cs.surfaceContainerHigh,
+    alignment: Alignment.center,
+    child: Icon(
+      Icons.image_outlined,
+      size: 36,
+      color: cs.onSurfaceVariant.withValues(alpha: 0.35),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return ClipRRect(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.lg)),
+      borderRadius: const BorderRadius.vertical(
+        top: Radius.circular(AppRadius.lg),
+      ),
       child: SizedBox(
         height: 120,
         child: Stack(
@@ -88,7 +92,10 @@ class _ThumbnailArea extends StatelessWidget {
                     color: AppColors.primary,
                     borderRadius: BorderRadius.circular(AppRadius.pill),
                   ),
-                  child: Text('Destacado', style: AppTextStyles.labelSm(Colors.white)),
+                  child: Text(
+                    'Destacado',
+                    style: AppTextStyles.labelSm(Colors.white),
+                  ),
                 ),
               ),
           ],
@@ -120,7 +127,9 @@ class _CardInfo extends StatelessWidget {
           const SizedBox(height: AppSpacing.space1),
           Text(
             '\$${listing.price.toStringAsFixed(0)} MXN',
-            style: AppTextStyles.bodyMd(cs.primary).copyWith(fontWeight: FontWeight.w600),
+            style: AppTextStyles.bodyMd(
+              cs.primary,
+            ).copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: AppSpacing.space2),
           TChip(label: listing.category.label),

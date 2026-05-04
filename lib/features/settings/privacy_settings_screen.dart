@@ -40,7 +40,10 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('¿Quién puede ver tu perfil?', style: AppTextStyles.bodyMd(cs.onSurface)),
+                    Text(
+                      '¿Quién puede ver tu perfil?',
+                      style: AppTextStyles.bodyMd(cs.onSurface),
+                    ),
                     const SizedBox(height: AppSpacing.space3),
                     _VisibilityOption(
                       label: 'Público',
@@ -165,8 +168,16 @@ class _VisibilityOption extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(label, style: AppTextStyles.bodyMd(isSelected ? cs.primary : cs.onSurface)),
-                  Text(subtitle, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                  Text(
+                    label,
+                    style: AppTextStyles.bodyMd(
+                      isSelected ? cs.primary : cs.onSurface,
+                    ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ),

@@ -17,7 +17,8 @@ class SkeletonLoader extends StatefulWidget {
   State<SkeletonLoader> createState() => _SkeletonLoaderState();
 }
 
-class _SkeletonLoaderState extends State<SkeletonLoader> with SingleTickerProviderStateMixin {
+class _SkeletonLoaderState extends State<SkeletonLoader>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
 

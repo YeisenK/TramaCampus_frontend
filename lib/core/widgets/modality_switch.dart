@@ -46,9 +46,14 @@ class ModalitySwitch extends StatelessWidget {
                   const SizedBox(width: AppSpacing.space1),
                   Text(
                     m.label,
-                    style: AppTextStyles.labelSm(
-                      isSelected ? Colors.white : cs.onSurfaceVariant,
-                    ).copyWith(fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400),
+                    style:
+                        AppTextStyles.labelSm(
+                          isSelected ? Colors.white : cs.onSurfaceVariant,
+                        ).copyWith(
+                          fontWeight: isSelected
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                        ),
                   ),
                 ],
               ),

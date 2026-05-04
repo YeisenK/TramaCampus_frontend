@@ -21,11 +21,15 @@ class MyProfileScreen extends StatelessWidget {
             automaticallyImplyLeading: !embedded,
             expandedHeight: 280,
             pinned: true,
-            title: Text('Mi perfil', style: AppTextStyles.titleMd(cs.onSurface)),
+            title: Text(
+              'Mi perfil',
+              style: AppTextStyles.titleMd(cs.onSurface),
+            ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.settings_outlined),
-                onPressed: () => Navigator.of(context).pushNamed(AppRouter.settingsMain),
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(AppRouter.settingsMain),
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
@@ -39,11 +43,15 @@ class MyProfileScreen extends StatelessWidget {
                                 : NetworkImage(user.photoUrl!),
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, _) => Container(
-                              decoration: BoxDecoration(gradient: AppColors.avatarGradient(user.hue)),
+                              decoration: BoxDecoration(
+                                gradient: AppColors.avatarGradient(user.hue),
+                              ),
                             ),
                           )
                         : Container(
-                            decoration: BoxDecoration(gradient: AppColors.avatarGradient(user.hue)),
+                            decoration: BoxDecoration(
+                              gradient: AppColors.avatarGradient(user.hue),
+                            ),
                           ),
                   ),
                   Positioned.fill(
@@ -85,28 +93,50 @@ class MyProfileScreen extends StatelessWidget {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.fromLTRB(AppSpacing.space5, AppSpacing.space5, AppSpacing.space5, 120),
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.space5,
+              AppSpacing.space5,
+              AppSpacing.space5,
+              120,
+            ),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 _StatRow(user: user),
                 const SizedBox(height: AppSpacing.space5),
                 Text('Bio', style: AppTextStyles.titleMd(cs.onSurface)),
                 const SizedBox(height: AppSpacing.space3),
-                Text(user.bio, style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+                Text(
+                  user.bio,
+                  style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+                ),
                 const SizedBox(height: AppSpacing.space5),
                 Text('Intereses', style: AppTextStyles.titleMd(cs.onSurface)),
                 const SizedBox(height: AppSpacing.space3),
                 Wrap(
                   spacing: AppSpacing.space2,
                   runSpacing: AppSpacing.space2,
-                  children: user.interests.map((i) => TChip(label: i, selected: true)).toList(),
+                  children: user.interests
+                      .map((i) => TChip(label: i, selected: true))
+                      .toList(),
                 ),
                 const SizedBox(height: AppSpacing.space5),
-                _InfoRow(icon: Icons.school_outlined, label: 'Universidad', value: 'Anáhuac Oaxaca'),
+                _InfoRow(
+                  icon: Icons.school_outlined,
+                  label: 'Universidad',
+                  value: 'Anáhuac Oaxaca',
+                ),
                 const SizedBox(height: AppSpacing.space3),
-                _InfoRow(icon: Icons.location_on_outlined, label: 'Ciudad', value: 'Oaxaca de Juárez'),
+                _InfoRow(
+                  icon: Icons.location_on_outlined,
+                  label: 'Ciudad',
+                  value: 'Oaxaca de Juárez',
+                ),
                 const SizedBox(height: AppSpacing.space3),
-                _InfoRow(icon: Icons.access_time_outlined, label: 'En Trama desde', value: 'Mayo 2026'),
+                _InfoRow(
+                  icon: Icons.access_time_outlined,
+                  label: 'En Trama desde',
+                  value: 'Mayo 2026',
+                ),
               ]),
             ),
           ),
@@ -123,7 +153,10 @@ class _EditButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).pushNamed(AppRouter.editProfile),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space3, vertical: AppSpacing.space2),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.space3,
+          vertical: AppSpacing.space2,
+        ),
         decoration: BoxDecoration(
           color: cs.surfaceContainerLowest,
           borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -177,7 +210,11 @@ class _StatRow extends StatelessWidget {
 }
 
 class _InfoRow extends StatelessWidget {
-  const _InfoRow({required this.icon, required this.label, required this.value});
+  const _InfoRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
   final IconData icon;
   final String label;
   final String value;

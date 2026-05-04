@@ -76,16 +76,26 @@ class _ConversationScreenState extends State<ConversationScreen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(AppRouter.profileDetail, arguments: s),
+          onTap: () => Navigator.of(
+            context,
+          ).pushNamed(AppRouter.profileDetail, arguments: s),
           child: Row(
             children: [
-              TAvatar(initials: s.initials, hue: s.hue, photoUrl: s.photoUrl, size: 36),
+              TAvatar(
+                initials: s.initials,
+                hue: s.hue,
+                photoUrl: s.photoUrl,
+                size: 36,
+              ),
               const SizedBox(width: AppSpacing.space3),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(s.name, style: AppTextStyles.titleMd(cs.onSurface)),
-                  Text(s.program, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                  Text(
+                    s.program,
+                    style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ],
@@ -94,10 +104,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert),
-            onPressed: () => Navigator.of(context).pushNamed(
-              AppRouter.reportProblem,
-              arguments: s,
-            ),
+            onPressed: () => Navigator.of(
+              context,
+            ).pushNamed(AppRouter.reportProblem, arguments: s),
           ),
         ],
       ),
@@ -106,9 +115,15 @@ class _ConversationScreenState extends State<ConversationScreen> {
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              padding: const EdgeInsets.fromLTRB(AppSpacing.space4, AppSpacing.space4, AppSpacing.space4, AppSpacing.space4),
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.space4,
+                AppSpacing.space4,
+                AppSpacing.space4,
+                AppSpacing.space4,
+              ),
               itemCount: _messages.length,
-              itemBuilder: (context, i) => _Bubble(message: _messages[i], student: s),
+              itemBuilder: (context, i) =>
+                  _Bubble(message: _messages[i], student: s),
             ),
           ),
           _InputBar(controller: _controller, onSend: _sendMessage),
@@ -130,16 +145,25 @@ class _Bubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSpacing.space3),
       child: Row(
-        mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isMe
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!isMe) ...[
-            TAvatar(initials: student.initials, hue: student.hue, photoUrl: student.photoUrl, size: 28),
+            TAvatar(
+              initials: student.initials,
+              hue: student.hue,
+              photoUrl: student.photoUrl,
+              size: 28,
+            ),
             const SizedBox(width: AppSpacing.space2),
           ],
           Flexible(
             child: Column(
-              crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              crossAxisAlignment: isMe
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -158,11 +182,16 @@ class _Bubble extends StatelessWidget {
                   ),
                   child: Text(
                     message.text,
-                    style: AppTextStyles.bodyMd(isMe ? Colors.white : cs.onSurface),
+                    style: AppTextStyles.bodyMd(
+                      isMe ? Colors.white : cs.onSurface,
+                    ),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.space1),
-                Text(message.time, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                Text(
+                  message.time,
+                  style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                ),
               ],
             ),
           ),
@@ -189,7 +218,9 @@ class _InputBar extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: cs.surface,
-          border: Border(top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5))),
+          border: Border(
+            top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5)),
+          ),
         ),
         child: Row(
           children: [
@@ -226,7 +257,11 @@ class _InputBar extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 alignment: Alignment.center,
-                child: const Icon(Icons.arrow_upward, color: Colors.white, size: 22),
+                child: const Icon(
+                  Icons.arrow_upward,
+                  color: Colors.white,
+                  size: 22,
+                ),
               ),
             ),
           ],

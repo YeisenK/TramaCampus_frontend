@@ -51,8 +51,12 @@ class LocalProfilePhoto {
       height: map[ProfilePhotoColumns.height] as int?,
       isPrimary: (map[ProfilePhotoColumns.isPrimary] as int) == 1,
       position: map[ProfilePhotoColumns.position] as int,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map[ProfilePhotoColumns.createdAt] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map[ProfilePhotoColumns.updatedAt] as int),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(
+        map[ProfilePhotoColumns.createdAt] as int,
+      ),
+      updatedAt: DateTime.fromMillisecondsSinceEpoch(
+        map[ProfilePhotoColumns.updatedAt] as int,
+      ),
     );
   }
 

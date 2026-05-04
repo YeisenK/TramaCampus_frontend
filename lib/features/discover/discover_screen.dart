@@ -49,8 +49,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               _modality = m;
               _filteredStudents = _filterStudents(m);
             }),
-            onStudentTap: (s) =>
-                Navigator.of(context).pushNamed(AppRouter.profileDetail, arguments: s),
+            onStudentTap: (s) => Navigator.of(
+              context,
+            ).pushNamed(AppRouter.profileDetail, arguments: s),
             onSaveToggle: (id) => setState(() {
               if (_saved.contains(id)) {
                 _saved.remove(id);
@@ -114,7 +115,10 @@ class _DiscoverShell extends StatelessWidget {
             preferredSize: const Size.fromHeight(52),
             child: Padding(
               padding: const EdgeInsets.only(bottom: AppSpacing.space2),
-              child: ModalitySwitch(selected: modality, onChanged: onModalityChanged),
+              child: ModalitySwitch(
+                selected: modality,
+                onChanged: onModalityChanged,
+              ),
             ),
           ),
         ),

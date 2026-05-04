@@ -18,7 +18,9 @@ class WelcomeScreen extends StatelessWidget {
           Positioned.fill(child: _BackgroundPattern()),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space6),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.space6,
+              ),
               child: Column(
                 children: [
                   const Spacer(flex: 2),
@@ -29,10 +31,11 @@ class WelcomeScreen extends StatelessWidget {
                       const SizedBox(height: AppSpacing.space3),
                       Text(
                         'Trama Campus',
-                        style: AppTextStyles.headlineSm(AppColors.primary).copyWith(
-                          letterSpacing: 0.5,
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: AppTextStyles.headlineSm(AppColors.primary)
+                            .copyWith(
+                              letterSpacing: 0.5,
+                              fontWeight: FontWeight.w800,
+                            ),
                       ),
                     ],
                   ),
@@ -53,13 +56,15 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: AppSpacing.space7),
                   TButton(
                     label: 'Crear cuenta',
-                    onPressed: () => Navigator.of(context).pushNamed(AppRouter.selectUni),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(AppRouter.selectUni),
                     icon: Icons.arrow_upward,
                   ),
                   const SizedBox(height: AppSpacing.space3),
                   TButton(
                     label: 'Ya tengo cuenta',
-                    onPressed: () => Navigator.of(context).pushNamed(AppRouter.login),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(AppRouter.login),
                     variant: TButtonVariant.secondary,
                   ),
                   const SizedBox(height: AppSpacing.space6),
@@ -116,7 +121,10 @@ class _ModalityRow extends StatelessWidget {
       children: items.map((item) {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: AppSpacing.space2),
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space3),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.space4,
+            vertical: AppSpacing.space3,
+          ),
           decoration: BoxDecoration(
             color: cs.surfaceContainerLowest,
             borderRadius: BorderRadius.circular(AppRadius.md),

@@ -23,11 +23,10 @@ class PreferencesService {
 
   Future<void> setThemeMode(ThemeMode mode) async {
     final db = await DatabaseService.instance.database;
-    await db.insert(
-      Tables.meta,
-      {MetaColumns.key: _keyThemeMode, MetaColumns.value: mode.name},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert(Tables.meta, {
+      MetaColumns.key: _keyThemeMode,
+      MetaColumns.value: mode.name,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   ThemeMode _themeModeFromString(String value) {

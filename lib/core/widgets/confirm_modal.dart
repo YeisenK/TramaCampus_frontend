@@ -50,7 +50,9 @@ class _ConfirmSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return ClipRRect(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
+      borderRadius: const BorderRadius.vertical(
+        top: Radius.circular(AppRadius.xl),
+      ),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Container(
@@ -88,12 +90,17 @@ class _ConfirmSheet extends StatelessWidget {
                       style: OutlinedButton.styleFrom(
                         foregroundColor: cs.onSurface,
                         side: BorderSide(color: cs.outlineVariant),
-                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.space4),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.space4,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
                       ),
-                      child: Text(cancelLabel, style: AppTextStyles.titleMd(cs.onSurface)),
+                      child: Text(
+                        cancelLabel,
+                        style: AppTextStyles.titleMd(cs.onSurface),
+                      ),
                     ),
                   ),
                   const SizedBox(width: AppSpacing.space3),
@@ -102,14 +109,23 @@ class _ConfirmSheet extends StatelessWidget {
                       onPressed: () => Navigator.of(context).pop(true),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: destructive ? cs.error : cs.primary,
-                        foregroundColor: destructive ? cs.onError : cs.onPrimary,
-                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.space4),
+                        foregroundColor: destructive
+                            ? cs.onError
+                            : cs.onPrimary,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.space4,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
                         elevation: 0,
                       ),
-                      child: Text(confirmLabel, style: AppTextStyles.titleMd(destructive ? cs.onError : cs.onPrimary)),
+                      child: Text(
+                        confirmLabel,
+                        style: AppTextStyles.titleMd(
+                          destructive ? cs.onError : cs.onPrimary,
+                        ),
+                      ),
                     ),
                   ),
                 ],

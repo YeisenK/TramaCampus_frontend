@@ -33,13 +33,18 @@ class ToggleTile extends StatelessWidget {
         child: Icon(icon, size: 18, color: cs.onSurfaceVariant),
       ),
       title: Text(label, style: AppTextStyles.bodyMd(cs.onSurface)),
-      subtitle: subtitle != null ? Text(subtitle!, style: AppTextStyles.labelSm(cs.onSurfaceVariant)) : null,
+      subtitle: subtitle != null
+          ? Text(subtitle!, style: AppTextStyles.labelSm(cs.onSurfaceVariant))
+          : null,
       trailing: Switch.adaptive(
         value: value,
         onChanged: onChanged,
         activeTrackColor: cs.primary,
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space4,
+        vertical: AppSpacing.space1,
+      ),
     );
   }
 }

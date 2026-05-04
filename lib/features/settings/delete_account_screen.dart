@@ -50,7 +50,8 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
     final ok = await ConfirmModal.show(
       context,
       title: 'Última confirmación',
-      message: 'Tu cuenta y todos tus datos serán eliminados permanentemente. Esta acción no se puede deshacer.',
+      message:
+          'Tu cuenta y todos tus datos serán eliminados permanentemente. Esta acción no se puede deshacer.',
       confirmLabel: 'Eliminar mi cuenta',
       cancelLabel: 'Cancelar',
       destructive: true,
@@ -58,9 +59,10 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
     if (ok != true || !mounted) return;
 
     setState(() => _isDeleting = true);
-    await Future.delayed(const Duration(milliseconds: 1200));
     if (!mounted) return;
-    Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.welcome, (r) => false);
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRouter.welcome, (r) => false);
   }
 
   @override
@@ -96,14 +98,19 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
             ),
           ),
           const SizedBox(height: AppSpacing.space6),
-          Text('Motivo de cancelación', style: AppTextStyles.titleMd(cs.onSurface)),
+          Text(
+            'Motivo de cancelación',
+            style: AppTextStyles.titleMd(cs.onSurface),
+          ),
           const SizedBox(height: AppSpacing.space3),
           ...List.generate(_reasons.length, (i) {
             return InkWell(
               onTap: () => setState(() => _reason = i),
               borderRadius: BorderRadius.circular(AppRadius.sm),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.space3),
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppSpacing.space3,
+                ),
                 child: Row(
                   children: [
                     Container(
@@ -118,7 +125,10 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                       ),
                     ),
                     const SizedBox(width: AppSpacing.space3),
-                    Text(_reasons[i], style: AppTextStyles.bodyMd(cs.onSurface)),
+                    Text(
+                      _reasons[i],
+                      style: AppTextStyles.bodyMd(cs.onSurface),
+                    ),
                   ],
                 ),
               ),

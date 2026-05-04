@@ -32,7 +32,12 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
     ListingCategory.articulos,
     ListingCategory.freelance,
   ];
-  static const _categoryLabels = ['Apuntes', 'Servicios', 'Artículos', 'Freelance'];
+  static const _categoryLabels = [
+    'Apuntes',
+    'Servicios',
+    'Artículos',
+    'Freelance',
+  ];
 
   @override
   void initState() {
@@ -96,8 +101,9 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                 label: 'Título',
                 hint: 'Ej. Apuntes de Cálculo II',
                 textInputAction: TextInputAction.next,
-                validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Escribe un título' : null,
+                validator: (v) => (v == null || v.trim().isEmpty)
+                    ? 'Escribe un título'
+                    : null,
               ),
               const SizedBox(height: AppSpacing.space4),
               TTextField(
@@ -106,8 +112,9 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                 hint: 'Describe tu producto o servicio...',
                 maxLines: 4,
                 textInputAction: TextInputAction.next,
-                validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Escribe una descripción' : null,
+                validator: (v) => (v == null || v.trim().isEmpty)
+                    ? 'Escribe una descripción'
+                    : null,
               ),
               const SizedBox(height: AppSpacing.space4),
               TTextField(
@@ -118,12 +125,16 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                 textInputAction: TextInputAction.done,
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Ingresa un precio';
-                  if (double.tryParse(v.trim()) == null) return 'Precio inválido';
+                  if (double.tryParse(v.trim()) == null)
+                    return 'Precio inválido';
                   return null;
                 },
               ),
               const SizedBox(height: AppSpacing.space5),
-              Text('Categoría', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+              Text(
+                'Categoría',
+                style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+              ),
               const SizedBox(height: AppSpacing.space2),
               SegmentedControl(
                 segments: _categoryLabels,
@@ -131,7 +142,10 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                 onChanged: (i) => setState(() => _categoryIndex = i),
               ),
               const SizedBox(height: AppSpacing.space5),
-              Text('Imágenes (máx. 4)', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+              Text(
+                'Imágenes (máx. 4)',
+                style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+              ),
               const SizedBox(height: AppSpacing.space2),
               const _ImagePickerRow(),
               const SizedBox(height: AppSpacing.space5),
@@ -202,7 +216,9 @@ class _BoostToggle extends StatelessWidget {
             : cs.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(
-          color: isBoosted ? AppColors.primary.withValues(alpha: 0.4) : cs.outlineVariant,
+          color: isBoosted
+              ? AppColors.primary.withValues(alpha: 0.4)
+              : cs.outlineVariant,
         ),
       ),
       child: Row(
@@ -213,7 +229,10 @@ class _BoostToggle extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text('Destacar publicación', style: AppTextStyles.titleMd(cs.onSurface)),
+                    Text(
+                      'Destacar publicación',
+                      style: AppTextStyles.titleMd(cs.onSurface),
+                    ),
                     const SizedBox(width: AppSpacing.space2),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -224,7 +243,10 @@ class _BoostToggle extends StatelessWidget {
                         color: AppColors.primary,
                         borderRadius: BorderRadius.circular(AppRadius.pill),
                       ),
-                      child: Text('Boost', style: AppTextStyles.labelSm(Colors.white)),
+                      child: Text(
+                        'Boost',
+                        style: AppTextStyles.labelSm(Colors.white),
+                      ),
                     ),
                   ],
                 ),

@@ -17,7 +17,9 @@ class TChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final bgColor = selected ? cs.primary.withValues(alpha: 0.15) : cs.surfaceContainerHigh;
+    final bgColor = selected
+        ? cs.primary.withValues(alpha: 0.15)
+        : cs.surfaceContainerHigh;
     final textColor = selected ? cs.primary : cs.onSurfaceVariant;
     final borderColor = selected ? cs.primary : Colors.transparent;
 
@@ -33,10 +35,7 @@ class TChip extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.pill),
           border: Border.all(color: borderColor, width: 1.5),
         ),
-        child: Text(
-          label,
-          style: AppTextStyles.labelSm(textColor),
-        ),
+        child: Text(label, style: AppTextStyles.labelSm(textColor)),
       ),
     );
   }

@@ -45,7 +45,10 @@ class _SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Padding(
-      padding: const EdgeInsets.only(left: AppSpacing.space2, bottom: AppSpacing.space1),
+      padding: const EdgeInsets.only(
+        left: AppSpacing.space2,
+        bottom: AppSpacing.space1,
+      ),
       child: Text(label, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
     );
   }
@@ -56,10 +59,10 @@ class _NotificationCard extends StatelessWidget {
   final NotificationItem item;
 
   IconData get _icon => switch (item.type) {
-        NotificationType.match => Icons.favorite,
-        NotificationType.request => Icons.person_add_outlined,
-        NotificationType.group => Icons.group_outlined,
-      };
+    NotificationType.match => Icons.favorite,
+    NotificationType.request => Icons.person_add_outlined,
+    NotificationType.group => Icons.group_outlined,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,9 @@ class _NotificationCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: AppSpacing.space3),
       padding: const EdgeInsets.all(AppSpacing.space3),
       decoration: BoxDecoration(
-        color: item.isRead ? cs.surfaceContainerLowest : cs.primary.withValues(alpha: 0.06),
+        color: item.isRead
+            ? cs.surfaceContainerLowest
+            : cs.primary.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(AppRadius.md),
         border: item.isRead
             ? null
@@ -98,7 +103,9 @@ class _NotificationCard extends StatelessWidget {
                       child: Text(
                         item.title,
                         style: AppTextStyles.bodyMd(cs.onSurface).copyWith(
-                          fontWeight: item.isRead ? FontWeight.w400 : FontWeight.w600,
+                          fontWeight: item.isRead
+                              ? FontWeight.w400
+                              : FontWeight.w600,
                         ),
                       ),
                     ),
@@ -115,9 +122,15 @@ class _NotificationCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSpacing.space1),
-                Text(item.subtitle, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                Text(
+                  item.subtitle,
+                  style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                ),
                 const SizedBox(height: AppSpacing.space1),
-                Text(item.time, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                Text(
+                  item.time,
+                  style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                ),
               ],
             ),
           ),

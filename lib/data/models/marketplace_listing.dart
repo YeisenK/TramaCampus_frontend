@@ -6,11 +6,11 @@ enum ListingType { studentListing, affiliateBusiness }
 
 extension ListingCategoryLabel on ListingCategory {
   String get label => switch (this) {
-        ListingCategory.apuntes => 'Apuntes',
-        ListingCategory.servicios => 'Servicios',
-        ListingCategory.articulos => 'Artículos',
-        ListingCategory.freelance => 'Freelance',
-      };
+    ListingCategory.apuntes => 'Apuntes',
+    ListingCategory.servicios => 'Servicios',
+    ListingCategory.articulos => 'Artículos',
+    ListingCategory.freelance => 'Freelance',
+  };
 }
 
 class MarketplaceListing {

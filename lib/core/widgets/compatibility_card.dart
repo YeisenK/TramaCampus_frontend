@@ -23,11 +23,7 @@ class CompatibilityRow {
 }
 
 class CompatibilityCard extends StatelessWidget {
-  const CompatibilityCard({
-    super.key,
-    required this.score,
-    required this.rows,
-  });
+  const CompatibilityCard({super.key, required this.score, required this.rows});
 
   final int score;
   final List<CompatibilityRow> rows;
@@ -53,10 +49,16 @@ class CompatibilityCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text('Compatibilidad', style: AppTextStyles.titleMd(cs.onSurface)),
+              Text(
+                'Compatibilidad',
+                style: AppTextStyles.titleMd(cs.onSurface),
+              ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space3, vertical: AppSpacing.space1),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.space3,
+                  vertical: AppSpacing.space1,
+                ),
                 decoration: BoxDecoration(
                   gradient: AppColors.ctaGradient(),
                   borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -109,19 +111,27 @@ class _CompatibilityRowWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(row.label, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                Text(
+                  row.label,
+                  style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                ),
                 const SizedBox(height: 2),
                 Text(row.title, style: AppTextStyles.titleMd(cs.onSurface)),
                 if (row.detail != null) ...[
                   const SizedBox(height: 2),
-                  Text(row.detail!, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    row.detail!,
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                 ],
                 if (row.chips != null && row.chips!.isNotEmpty) ...[
                   const SizedBox(height: AppSpacing.space2),
                   Wrap(
                     spacing: AppSpacing.space2,
                     runSpacing: AppSpacing.space2,
-                    children: row.chips!.map((c) => TChip(label: c, selected: true)).toList(),
+                    children: row.chips!
+                        .map((c) => TChip(label: c, selected: true))
+                        .toList(),
                   ),
                 ],
               ],

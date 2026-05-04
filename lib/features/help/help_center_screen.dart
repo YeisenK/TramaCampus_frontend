@@ -20,7 +20,10 @@ class HelpCenterScreen extends StatelessWidget {
             padding: const EdgeInsets.all(AppSpacing.space5),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [cs.primary.withValues(alpha: 0.12), cs.primary.withValues(alpha: 0.04)],
+                colors: [
+                  cs.primary.withValues(alpha: 0.12),
+                  cs.primary.withValues(alpha: 0.04),
+                ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -31,7 +34,10 @@ class HelpCenterScreen extends StatelessWidget {
               children: [
                 Icon(Icons.support_agent_outlined, size: 32, color: cs.primary),
                 const SizedBox(height: AppSpacing.space3),
-                Text('¿Cómo podemos ayudarte?', style: AppTextStyles.titleMd(cs.onSurface)),
+                Text(
+                  '¿Cómo podemos ayudarte?',
+                  style: AppTextStyles.titleMd(cs.onSurface),
+                ),
                 const SizedBox(height: AppSpacing.space2),
                 Text(
                   'Encuentra respuestas, reporta problemas o contacta a nuestro equipo.',
@@ -54,13 +60,15 @@ class HelpCenterScreen extends StatelessWidget {
                 icon: Icons.chat_bubble_outline,
                 label: 'Contactar soporte',
                 subtitle: 'Envía un mensaje a nuestro equipo',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.contactSupport),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRouter.contactSupport),
               ),
               _HelpItem(
                 icon: Icons.flag_outlined,
                 label: 'Reportar un problema',
                 subtitle: 'Bugs, contenido inapropiado u otros',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.reportProblem),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRouter.reportProblem),
               ),
             ],
           ),
@@ -71,17 +79,21 @@ class HelpCenterScreen extends StatelessWidget {
               _HelpItem(
                 icon: Icons.description_outlined,
                 label: 'Términos y condiciones',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.termsConditions),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRouter.termsConditions),
               ),
               _HelpItem(
                 icon: Icons.privacy_tip_outlined,
                 label: 'Política de privacidad',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
               ),
               _HelpItem(
                 icon: Icons.people_outline,
                 label: 'Normas de la comunidad',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.communityGuidelines),
+                onTap: () => Navigator.of(
+                  context,
+                ).pushNamed(AppRouter.communityGuidelines),
               ),
             ],
           ),
@@ -130,9 +142,14 @@ class _HelpItem extends StatelessWidget {
         child: Icon(icon, size: 18, color: cs.onSurfaceVariant),
       ),
       title: Text(label, style: AppTextStyles.bodyMd(cs.onSurface)),
-      subtitle: subtitle != null ? Text(subtitle!, style: AppTextStyles.labelSm(cs.onSurfaceVariant)) : null,
+      subtitle: subtitle != null
+          ? Text(subtitle!, style: AppTextStyles.labelSm(cs.onSurfaceVariant))
+          : null,
       trailing: Icon(Icons.chevron_right, color: cs.onSurfaceVariant, size: 20),
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space4,
+        vertical: AppSpacing.space1,
+      ),
     );
   }
 }

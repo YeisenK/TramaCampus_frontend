@@ -8,10 +8,12 @@ class NotificationPreferencesScreen extends StatefulWidget {
   const NotificationPreferencesScreen({super.key});
 
   @override
-  State<NotificationPreferencesScreen> createState() => _NotificationPreferencesScreenState();
+  State<NotificationPreferencesScreen> createState() =>
+      _NotificationPreferencesScreenState();
 }
 
-class _NotificationPreferencesScreenState extends State<NotificationPreferencesScreen> {
+class _NotificationPreferencesScreenState
+    extends State<NotificationPreferencesScreen> {
   bool _newMatches = true;
   bool _matchRequests = true;
   bool _messages = true;
@@ -47,25 +49,33 @@ class _NotificationPreferencesScreenState extends State<NotificationPreferencesS
                 icon: Icons.favorite_outline,
                 label: 'Nuevos matches',
                 value: _newMatches && _pushEnabled,
-                onChanged: _pushEnabled ? (v) => setState(() => _newMatches = v) : null,
+                onChanged: _pushEnabled
+                    ? (v) => setState(() => _newMatches = v)
+                    : null,
               ),
               ToggleTile(
                 icon: Icons.person_add_outlined,
                 label: 'Solicitudes de conexión',
                 value: _matchRequests && _pushEnabled,
-                onChanged: _pushEnabled ? (v) => setState(() => _matchRequests = v) : null,
+                onChanged: _pushEnabled
+                    ? (v) => setState(() => _matchRequests = v)
+                    : null,
               ),
               ToggleTile(
                 icon: Icons.chat_bubble_outline,
                 label: 'Mensajes nuevos',
                 value: _messages && _pushEnabled,
-                onChanged: _pushEnabled ? (v) => setState(() => _messages = v) : null,
+                onChanged: _pushEnabled
+                    ? (v) => setState(() => _messages = v)
+                    : null,
               ),
               ToggleTile(
                 icon: Icons.group_outlined,
                 label: 'Invitaciones a grupos',
                 value: _groupInvites && _pushEnabled,
-                onChanged: _pushEnabled ? (v) => setState(() => _groupInvites = v) : null,
+                onChanged: _pushEnabled
+                    ? (v) => setState(() => _groupInvites = v)
+                    : null,
               ),
             ],
           ),
@@ -78,7 +88,9 @@ class _NotificationPreferencesScreenState extends State<NotificationPreferencesS
                 label: 'Recordatorios de estudio',
                 subtitle: 'Cuando tienes sesiones pendientes',
                 value: _studyReminders && _pushEnabled,
-                onChanged: _pushEnabled ? (v) => setState(() => _studyReminders = v) : null,
+                onChanged: _pushEnabled
+                    ? (v) => setState(() => _studyReminders = v)
+                    : null,
               ),
               ToggleTile(
                 icon: Icons.email_outlined,

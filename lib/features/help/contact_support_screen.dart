@@ -36,11 +36,12 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
   Future<void> _send() async {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isSending = true);
-    await Future.delayed(const Duration(milliseconds: 800));
     if (!mounted) return;
     setState(() => _isSending = false);
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Mensaje enviado. Te responderemos pronto.')),
+      const SnackBar(
+        content: Text('Mensaje enviado. Te responderemos pronto.'),
+      ),
     );
     Navigator.of(context).pop();
   }
@@ -60,7 +61,10 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
             AppSpacing.space10,
           ),
           children: [
-            Text('Tipo de consulta', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+            Text(
+              'Tipo de consulta',
+              style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+            ),
             const SizedBox(height: AppSpacing.space2),
             DropdownButtonFormField<int>(
               initialValue: _typeIndex,
@@ -80,10 +84,13 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
                   vertical: AppSpacing.space4,
                 ),
               ),
-              items: _types.asMap().entries.map((e) => DropdownMenuItem(
-                value: e.key,
-                child: Text(e.value),
-              )).toList(),
+              items: _types
+                  .asMap()
+                  .entries
+                  .map(
+                    (e) => DropdownMenuItem(value: e.key, child: Text(e.value)),
+                  )
+                  .toList(),
               onChanged: (v) => setState(() => _typeIndex = v ?? 0),
             ),
             const SizedBox(height: AppSpacing.space5),
@@ -93,7 +100,9 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
               hint: 'Describe tu consulta con el mayor detalle posible...',
               maxLines: 5,
               keyboardType: TextInputType.multiline,
-              validator: (v) => (v == null || v.trim().length < 10) ? 'Mínimo 10 caracteres' : null,
+              validator: (v) => (v == null || v.trim().length < 10)
+                  ? 'Mínimo 10 caracteres'
+                  : null,
             ),
             const SizedBox(height: AppSpacing.space5),
             TTextField(
@@ -102,7 +111,9 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
               hint: 'tu@correo.com',
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.done,
-              validator: (v) => (v == null || !v.contains('@')) ? 'Ingresa un correo válido' : null,
+              validator: (v) => (v == null || !v.contains('@'))
+                  ? 'Ingresa un correo válido'
+                  : null,
             ),
             const SizedBox(height: AppSpacing.space8),
             TButton(

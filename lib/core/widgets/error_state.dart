@@ -32,9 +32,17 @@ class ErrorState extends StatelessWidget {
               child: Icon(Icons.error_outline, size: 32, color: cs.error),
             ),
             const SizedBox(height: AppSpacing.space5),
-            Text('Ocurrió un error', style: AppTextStyles.titleMd(cs.onSurface), textAlign: TextAlign.center),
+            Text(
+              'Ocurrió un error',
+              style: AppTextStyles.titleMd(cs.onSurface),
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: AppSpacing.space2),
-            Text(message, style: AppTextStyles.bodyMd(cs.onSurfaceVariant), textAlign: TextAlign.center),
+            Text(
+              message,
+              style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+              textAlign: TextAlign.center,
+            ),
             if (onRetry != null) ...[
               const SizedBox(height: AppSpacing.space6),
               TButton(

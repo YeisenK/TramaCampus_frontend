@@ -40,7 +40,10 @@ class AppColors {
   static const darkSecondaryContainer = Color(0xFF1A2C38);
   static const darkOutlineVariant = Color(0xFF3A3F41);
 
-  static LinearGradient ctaGradient({AlignmentGeometry begin = Alignment.topLeft, AlignmentGeometry end = Alignment.bottomRight}) {
+  static LinearGradient ctaGradient({
+    AlignmentGeometry begin = Alignment.topLeft,
+    AlignmentGeometry end = Alignment.bottomRight,
+  }) {
     return LinearGradient(
       begin: begin,
       end: end,

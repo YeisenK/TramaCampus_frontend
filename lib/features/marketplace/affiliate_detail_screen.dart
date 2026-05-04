@@ -29,7 +29,9 @@ class AffiliateDetailScreen extends StatelessWidget {
               const SizedBox(height: AppSpacing.space2),
               Text(
                 business.description,
-                style: AppTextStyles.bodyMd(Theme.of(context).colorScheme.onSurfaceVariant),
+                style: AppTextStyles.bodyMd(
+                  Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               const SizedBox(height: AppSpacing.space5),
             ],
@@ -55,7 +57,10 @@ class _SectionLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text, style: AppTextStyles.titleMd(Theme.of(context).colorScheme.onSurface));
+    return Text(
+      text,
+      style: AppTextStyles.titleMd(Theme.of(context).colorScheme.onSurface),
+    );
   }
 }
 
@@ -87,14 +92,21 @@ class _BusinessHeader extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             alignment: Alignment.center,
-            child: Icon(_iconFor(business.serviceType), color: Colors.white, size: 32),
+            child: Icon(
+              _iconFor(business.serviceType),
+              color: Colors.white,
+              size: 32,
+            ),
           ),
           const SizedBox(width: AppSpacing.space4),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(business.name, style: AppTextStyles.headlineSm(cs.onSurface)),
+                Text(
+                  business.name,
+                  style: AppTextStyles.headlineSm(cs.onSurface),
+                ),
                 const SizedBox(height: 2),
                 Text(
                   business.serviceType.label,
@@ -125,15 +137,15 @@ class _BusinessHeader extends StatelessWidget {
   }
 
   IconData _iconFor(AffiliateServiceType type) => switch (type) {
-        AffiliateServiceType.restaurant => Icons.restaurant_outlined,
-        AffiliateServiceType.gym => Icons.fitness_center_outlined,
-        AffiliateServiceType.salon => Icons.content_cut_outlined,
-        AffiliateServiceType.copyshop => Icons.print_outlined,
-        AffiliateServiceType.laundry => Icons.local_laundry_service_outlined,
-        AffiliateServiceType.tutoring => Icons.school_outlined,
-        AffiliateServiceType.brand => Icons.star_outline,
-        AffiliateServiceType.rental => Icons.home_outlined,
-      };
+    AffiliateServiceType.restaurant => Icons.restaurant_outlined,
+    AffiliateServiceType.gym => Icons.fitness_center_outlined,
+    AffiliateServiceType.salon => Icons.content_cut_outlined,
+    AffiliateServiceType.copyshop => Icons.print_outlined,
+    AffiliateServiceType.laundry => Icons.local_laundry_service_outlined,
+    AffiliateServiceType.tutoring => Icons.school_outlined,
+    AffiliateServiceType.brand => Icons.star_outline,
+    AffiliateServiceType.rental => Icons.home_outlined,
+  };
 }
 
 class _PromotionRow extends StatelessWidget {
@@ -149,10 +161,17 @@ class _PromotionRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.local_offer_outlined, size: 16, color: AppColors.primary),
+          const Icon(
+            Icons.local_offer_outlined,
+            size: 16,
+            color: AppColors.primary,
+          ),
           const SizedBox(width: AppSpacing.space2),
           Expanded(
-            child: Text(promotion, style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+            child: Text(
+              promotion,
+              style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+            ),
           ),
         ],
       ),
@@ -186,10 +205,9 @@ class _ActionButtons extends StatelessWidget {
             label: business.serviceType == AffiliateServiceType.restaurant
                 ? 'Hacer reservación'
                 : 'Agendar cita',
-            onPressed: () => Navigator.of(context).pushNamed(
-              AppRouter.reservation,
-              arguments: business,
-            ),
+            onPressed: () => Navigator.of(
+              context,
+            ).pushNamed(AppRouter.reservation, arguments: business),
             icon: Icons.calendar_today_outlined,
           ),
           const SizedBox(height: AppSpacing.space3),
@@ -197,9 +215,9 @@ class _ActionButtons extends StatelessWidget {
         if (business.acceptsOrders) ...[
           TButton(
             label: 'Hacer pedido',
-            onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Próximamente')),
-            ),
+            onPressed: () => ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('Próximamente'))),
             icon: Icons.shopping_cart_outlined,
             variant: TButtonVariant.secondary,
           ),

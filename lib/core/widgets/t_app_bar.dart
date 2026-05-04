@@ -21,9 +21,8 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool centerTitle;
 
   @override
-  Size get preferredSize => Size.fromHeight(
-        kToolbarHeight + (bottom?.preferredSize.height ?? 0),
-      );
+  Size get preferredSize =>
+      Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0));
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +34,14 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () => Navigator.of(context).pop(),
             )
           : null,
-      title: titleWidget ??
+      title:
+          titleWidget ??
           (title != null
               ? Text(title!, style: AppTextStyles.titleMd(cs.onSurface))
               : null),
       centerTitle: centerTitle,
       actions: actions != null
-          ? [
-              ...actions!,
-              const SizedBox(width: AppSpacing.space2),
-            ]
+          ? [...actions!, const SizedBox(width: AppSpacing.space2)]
           : null,
       bottom: bottom,
     );

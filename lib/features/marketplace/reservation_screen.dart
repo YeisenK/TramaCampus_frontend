@@ -45,15 +45,15 @@ class _ReservationScreenState extends State<ReservationScreen> {
 
   void _confirm() {
     if (_selectedDate == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Selecciona una fecha')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Selecciona una fecha')));
       return;
     }
     if (_selectedSlot == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Selecciona un horario')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Selecciona un horario')));
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(
@@ -76,7 +76,10 @@ class _ReservationScreenState extends State<ReservationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Seleccionar fecha', style: AppTextStyles.titleMd(cs.onSurface)),
+            Text(
+              'Seleccionar fecha',
+              style: AppTextStyles.titleMd(cs.onSurface),
+            ),
             const SizedBox(height: AppSpacing.space2),
             GestureDetector(
               onTap: _pickDate,
@@ -89,14 +92,20 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.calendar_today_outlined, color: cs.primary, size: 20),
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      color: cs.primary,
+                      size: 20,
+                    ),
                     const SizedBox(width: AppSpacing.space3),
                     Text(
                       _selectedDate == null
                           ? 'Elige una fecha'
                           : '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}',
                       style: AppTextStyles.bodyMd(
-                        _selectedDate == null ? cs.onSurfaceVariant : cs.onSurface,
+                        _selectedDate == null
+                            ? cs.onSurfaceVariant
+                            : cs.onSurface,
                       ),
                     ),
                   ],
@@ -104,7 +113,10 @@ class _ReservationScreenState extends State<ReservationScreen> {
               ),
             ),
             const SizedBox(height: AppSpacing.space5),
-            Text('Horario disponible', style: AppTextStyles.titleMd(cs.onSurface)),
+            Text(
+              'Horario disponible',
+              style: AppTextStyles.titleMd(cs.onSurface),
+            ),
             const SizedBox(height: AppSpacing.space3),
             Wrap(
               spacing: AppSpacing.space2,

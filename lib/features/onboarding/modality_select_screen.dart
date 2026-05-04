@@ -40,17 +40,19 @@ class _ModalitySelectScreenState extends State<ModalitySelectScreen> {
                     style: AppTextStyles.bodySm(cs.onSurfaceVariant),
                   ),
                   const SizedBox(height: AppSpacing.space5),
-                  ...Modality.all.map((m) => _ModalityCard(
-                        modality: m,
-                        isSelected: _selected.contains(m.type),
-                        onTap: () => setState(() {
-                          if (_selected.contains(m.type)) {
-                            _selected.remove(m.type);
-                          } else {
-                            _selected.add(m.type);
-                          }
-                        }),
-                      )),
+                  ...Modality.all.map(
+                    (m) => _ModalityCard(
+                      modality: m,
+                      isSelected: _selected.contains(m.type),
+                      onTap: () => setState(() {
+                        if (_selected.contains(m.type)) {
+                          _selected.remove(m.type);
+                        } else {
+                          _selected.add(m.type);
+                        }
+                      }),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -60,7 +62,9 @@ class _ModalitySelectScreenState extends State<ModalitySelectScreen> {
                 label: 'Continuar',
                 onPressed: _selected.isEmpty
                     ? null
-                    : () => Navigator.of(context).pushNamed(AppRouter.academicProfile),
+                    : () => Navigator.of(
+                        context,
+                      ).pushNamed(AppRouter.academicProfile),
               ),
             ),
           ],
@@ -77,7 +81,12 @@ class _Header extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: cs.surfaceDim,
-      padding: const EdgeInsets.fromLTRB(AppSpacing.space5, AppSpacing.space6, AppSpacing.space5, AppSpacing.space5),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.space5,
+        AppSpacing.space6,
+        AppSpacing.space5,
+        AppSpacing.space5,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -85,7 +94,11 @@ class _Header extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () => Navigator.of(context).maybePop(),
-                child: Icon(Icons.arrow_back_ios_new, size: 20, color: cs.onSurface),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 20,
+                  color: cs.onSurface,
+                ),
               ),
               const Spacer(),
               const StepDots(totalSteps: 6, currentStep: 2),
@@ -94,7 +107,10 @@ class _Header extends StatelessWidget {
           const SizedBox(height: AppSpacing.space5),
           Text('Modalidad', style: AppTextStyles.headlineSm(cs.onSurface)),
           const SizedBox(height: AppSpacing.space2),
-          Text('Elige cómo quieres conectar', style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+          Text(
+            'Elige cómo quieres conectar',
+            style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+          ),
         ],
       ),
     );
@@ -113,10 +129,13 @@ class _ModalityCard extends StatelessWidget {
   final VoidCallback onTap;
 
   String get _description => switch (modality.type) {
-        ModalityType.estudio => 'Encuentra compañeros para estudiar, hacer tareas y preparar exámenes juntos.',
-        ModalityType.amistad => 'Conecta con personas que comparten tus intereses y actividades fuera de clase.',
-        ModalityType.personal => 'Conoce a alguien especial en tu campus de una forma auténtica.',
-      };
+    ModalityType.estudio =>
+      'Encuentra compañeros para estudiar, hacer tareas y preparar exámenes juntos.',
+    ModalityType.amistad =>
+      'Conecta con personas que comparten tus intereses y actividades fuera de clase.',
+    ModalityType.personal =>
+      'Conoce a alguien especial en tu campus de una forma auténtica.',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -157,11 +176,17 @@ class _ModalityCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(modality.label, style: AppTextStyles.titleMd(cs.onSurface)),
+                  Text(
+                    modality.label,
+                    style: AppTextStyles.titleMd(cs.onSurface),
+                  ),
                   const SizedBox(height: 2),
                   Text(modality.verb, style: AppTextStyles.labelSm(cs.primary)),
                   const SizedBox(height: AppSpacing.space2),
-                  Text(_description, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    _description,
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ),

@@ -45,12 +45,19 @@ class ProfileCompleteScreen extends StatelessWidget {
                       border: Border.all(color: cs.surface, width: 2),
                     ),
                     alignment: Alignment.center,
-                    child: const Icon(Icons.check, color: Colors.white, size: 18),
+                    child: const Icon(
+                      Icons.check,
+                      color: Colors.white,
+                      size: 18,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppSpacing.space6),
-              Text('¡Perfil creado!', style: AppTextStyles.headlineLg(cs.onSurface)),
+              Text(
+                '¡Perfil creado!',
+                style: AppTextStyles.headlineLg(cs.onSurface),
+              ),
               const SizedBox(height: AppSpacing.space3),
               Text(
                 'Ya puedes empezar a conectar con estudiantes de tu campus.',
@@ -75,10 +82,9 @@ class ProfileCompleteScreen extends StatelessWidget {
               const Spacer(flex: 3),
               TButton(
                 label: 'Empezar a conectar',
-                onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(
-                  AppRouter.discover,
-                  (route) => false,
-                ),
+                onPressed: () => Navigator.of(
+                  context,
+                ).pushNamedAndRemoveUntil(AppRouter.discover, (route) => false),
                 icon: Icons.explore_outlined,
               ),
               const SizedBox(height: AppSpacing.space6),

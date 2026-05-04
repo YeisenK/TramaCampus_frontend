@@ -30,32 +30,42 @@ class TButton extends StatelessWidget {
       height: 56,
       child: switch (variant) {
         TButtonVariant.primary => _GradientButton(
+          label: label,
+          icon: icon,
+          onPressed: isLoading ? null : onPressed,
+          isLoading: isLoading,
+        ),
+        TButtonVariant.secondary => OutlinedButton(
+          onPressed: isLoading ? null : onPressed,
+          style: OutlinedButton.styleFrom(
+            foregroundColor: cs.onSurface,
+            side: BorderSide(color: cs.outlineVariant),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppRadius.md),
+            ),
+          ),
+          child: _ButtonContent(
             label: label,
             icon: icon,
-            onPressed: isLoading ? null : onPressed,
             isLoading: isLoading,
+            color: cs.onSurface,
           ),
-        TButtonVariant.secondary => OutlinedButton(
-            onPressed: isLoading ? null : onPressed,
-            style: OutlinedButton.styleFrom(
-              foregroundColor: cs.onSurface,
-              side: BorderSide(color: cs.outlineVariant),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppRadius.md),
-              ),
-            ),
-            child: _ButtonContent(label: label, icon: icon, isLoading: isLoading, color: cs.onSurface),
-          ),
+        ),
         TButtonVariant.ghost => TextButton(
-            onPressed: isLoading ? null : onPressed,
-            style: TextButton.styleFrom(
-              foregroundColor: cs.primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppRadius.md),
-              ),
+          onPressed: isLoading ? null : onPressed,
+          style: TextButton.styleFrom(
+            foregroundColor: cs.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
-            child: _ButtonContent(label: label, icon: icon, isLoading: isLoading, color: cs.primary),
           ),
+          child: _ButtonContent(
+            label: label,
+            icon: icon,
+            isLoading: isLoading,
+            color: cs.primary,
+          ),
+        ),
       },
     );
   }
@@ -91,7 +101,9 @@ class _GradientButton extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
-            color: onPressed == null ? Colors.grey.withValues(alpha: 0.3) : null,
+            color: onPressed == null
+                ? Colors.grey.withValues(alpha: 0.3)
+                : null,
             borderRadius: BorderRadius.circular(AppRadius.md),
           ),
           child: _ButtonContent(
@@ -122,7 +134,13 @@ class _ButtonContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: color, strokeWidth: 2)));
+      return Center(
+        child: SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(color: color, strokeWidth: 2),
+        ),
+      );
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

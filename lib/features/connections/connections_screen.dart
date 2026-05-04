@@ -15,7 +15,8 @@ class ConnectionsScreen extends StatefulWidget {
   State<ConnectionsScreen> createState() => _ConnectionsScreenState();
 }
 
-class _ConnectionsScreenState extends State<ConnectionsScreen> with SingleTickerProviderStateMixin {
+class _ConnectionsScreenState extends State<ConnectionsScreen>
+    with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
   @override
@@ -50,10 +51,7 @@ class _ConnectionsScreenState extends State<ConnectionsScreen> with SingleTicker
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          _MatchesTab(),
-          _RequestsTab(),
-        ],
+        children: [_MatchesTab(), _RequestsTab()],
       ),
     );
   }
@@ -67,14 +65,17 @@ class _MatchesTab extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.all(AppSpacing.space4),
       itemCount: matches.length,
-      separatorBuilder: (context, idx) => const SizedBox(height: AppSpacing.space3),
+      separatorBuilder: (context, idx) =>
+          const SizedBox(height: AppSpacing.space3),
       itemBuilder: (context, i) {
         final s = matches[i];
         return _ConnectionCard(
           student: s,
           trailing: IconButton(
             icon: Icon(Icons.chat_bubble_outline, color: cs.primary),
-            onPressed: () => Navigator.of(context).pushNamed(AppRouter.conversation, arguments: s),
+            onPressed: () => Navigator.of(
+              context,
+            ).pushNamed(AppRouter.conversation, arguments: s),
           ),
         );
       },
@@ -89,7 +90,8 @@ class _RequestsTab extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.all(AppSpacing.space4),
       itemCount: requests.length,
-      separatorBuilder: (context, idx) => const SizedBox(height: AppSpacing.space3),
+      separatorBuilder: (context, idx) =>
+          const SizedBox(height: AppSpacing.space3),
       itemBuilder: (context, i) {
         final s = requests[i];
         return _ConnectionCard(
@@ -97,10 +99,9 @@ class _RequestsTab extends StatelessWidget {
           trailing: TButton(
             label: 'Aceptar',
             isFullWidth: false,
-            onPressed: () => Navigator.of(context).pushNamed(
-              AppRouter.matchSuccess,
-              arguments: s,
-            ),
+            onPressed: () => Navigator.of(
+              context,
+            ).pushNamed(AppRouter.matchSuccess, arguments: s),
           ),
           showAcceptReject: true,
         );
@@ -124,7 +125,9 @@ class _ConnectionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(AppRouter.profileDetail, arguments: student),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRouter.profileDetail, arguments: student),
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.space3),
         decoration: BoxDecoration(
@@ -133,19 +136,31 @@ class _ConnectionCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            TAvatar(initials: student.initials, hue: student.hue, photoUrl: student.photoUrl, size: 52),
+            TAvatar(
+              initials: student.initials,
+              hue: student.hue,
+              photoUrl: student.photoUrl,
+              size: 52,
+            ),
             const SizedBox(width: AppSpacing.space3),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(student.name, style: AppTextStyles.titleMd(cs.onSurface)),
-                  Text('${student.program} · Sem. ${student.semester}',
-                      style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    student.name,
+                    style: AppTextStyles.titleMd(cs.onSurface),
+                  ),
+                  Text(
+                    '${student.program} · Sem. ${student.semester}',
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                   if (student.compatibilityScore > 0) ...[
                     const SizedBox(height: AppSpacing.space1),
-                    Text('${student.compatibilityScore}% compatibilidad',
-                        style: AppTextStyles.labelSm(cs.primary)),
+                    Text(
+                      '${student.compatibilityScore}% compatibilidad',
+                      style: AppTextStyles.labelSm(cs.primary),
+                    ),
                   ],
                 ],
               ),

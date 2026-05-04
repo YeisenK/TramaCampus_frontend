@@ -14,11 +14,31 @@ class TBottomNav extends StatelessWidget {
   final ValueChanged<int> onTap;
 
   static const _items = [
-    _NavItem(icon: Icons.explore_outlined, activeIcon: Icons.explore, label: 'Descubrir'),
-    _NavItem(icon: Icons.group_outlined, activeIcon: Icons.group, label: 'Match'),
-    _NavItem(icon: Icons.storefront_outlined, activeIcon: Icons.storefront, label: 'Market'),
-    _NavItem(icon: Icons.chat_bubble_outline, activeIcon: Icons.chat_bubble, label: 'Chats'),
-    _NavItem(icon: Icons.person_outline, activeIcon: Icons.person, label: 'Perfil'),
+    _NavItem(
+      icon: Icons.explore_outlined,
+      activeIcon: Icons.explore,
+      label: 'Descubrir',
+    ),
+    _NavItem(
+      icon: Icons.group_outlined,
+      activeIcon: Icons.group,
+      label: 'Match',
+    ),
+    _NavItem(
+      icon: Icons.storefront_outlined,
+      activeIcon: Icons.storefront,
+      label: 'Market',
+    ),
+    _NavItem(
+      icon: Icons.chat_bubble_outline,
+      activeIcon: Icons.chat_bubble,
+      label: 'Chats',
+    ),
+    _NavItem(
+      icon: Icons.person_outline,
+      activeIcon: Icons.person,
+      label: 'Perfil',
+    ),
   ];
 
   @override
@@ -30,7 +50,9 @@ class TBottomNav extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: cs.surface.withValues(alpha: 0.85),
-            border: Border(top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5))),
+            border: Border(
+              top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5)),
+            ),
           ),
           child: SafeArea(
             top: false,
@@ -53,7 +75,9 @@ class TBottomNav extends StatelessWidget {
                               isActive ? item.activeIcon : item.icon,
                               key: ValueKey(isActive),
                               size: 24,
-                              color: isActive ? cs.primary : cs.onSurfaceVariant,
+                              color: isActive
+                                  ? cs.primary
+                                  : cs.onSurfaceVariant,
                             ),
                           ),
                           const SizedBox(height: AppSpacing.space1),
@@ -78,7 +102,11 @@ class TBottomNav extends StatelessWidget {
 }
 
 class _NavItem {
-  const _NavItem({required this.icon, required this.activeIcon, required this.label});
+  const _NavItem({
+    required this.icon,
+    required this.activeIcon,
+    required this.label,
+  });
   final IconData icon;
   final IconData activeIcon;
   final String label;

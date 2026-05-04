@@ -11,15 +11,15 @@ enum AffiliateServiceType {
 
 extension AffiliateServiceTypeLabel on AffiliateServiceType {
   String get label => switch (this) {
-        AffiliateServiceType.restaurant => 'Restaurante',
-        AffiliateServiceType.gym => 'Gym',
-        AffiliateServiceType.salon => 'Salón / Barbería',
-        AffiliateServiceType.copyshop => 'Copistería',
-        AffiliateServiceType.laundry => 'Lavandería',
-        AffiliateServiceType.tutoring => 'Tutorías',
-        AffiliateServiceType.brand => 'Marca / Sponsor',
-        AffiliateServiceType.rental => 'Renta / Roomie',
-      };
+    AffiliateServiceType.restaurant => 'Restaurante',
+    AffiliateServiceType.gym => 'Gym',
+    AffiliateServiceType.salon => 'Salón / Barbería',
+    AffiliateServiceType.copyshop => 'Copistería',
+    AffiliateServiceType.laundry => 'Lavandería',
+    AffiliateServiceType.tutoring => 'Tutorías',
+    AffiliateServiceType.brand => 'Marca / Sponsor',
+    AffiliateServiceType.rental => 'Renta / Roomie',
+  };
 }
 
 class AffiliateBusiness {

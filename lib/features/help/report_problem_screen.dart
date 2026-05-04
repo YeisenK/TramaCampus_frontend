@@ -39,11 +39,12 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
   Future<void> _send() async {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isSending = true);
-    await Future.delayed(const Duration(milliseconds: 800));
     if (!mounted) return;
     setState(() => _isSending = false);
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Reporte enviado. Gracias por ayudarnos a mejorar.')),
+      const SnackBar(
+        content: Text('Reporte enviado. Gracias por ayudarnos a mejorar.'),
+      ),
     );
     Navigator.of(context).pop();
   }
@@ -72,7 +73,11 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.person_outline, color: cs.onSurfaceVariant, size: 20),
+                    Icon(
+                      Icons.person_outline,
+                      color: cs.onSurfaceVariant,
+                      size: 20,
+                    ),
                     const SizedBox(width: AppSpacing.space3),
                     Text(
                       'Reportando a: ${widget.reportedStudent!.name}',
@@ -83,7 +88,10 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
               ),
               const SizedBox(height: AppSpacing.space5),
             ],
-            Text('Tipo de problema', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+            Text(
+              'Tipo de problema',
+              style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+            ),
             const SizedBox(height: AppSpacing.space3),
             ..._types.asMap().entries.map((e) {
               final isSelected = e.key == _typeIndex;
@@ -91,7 +99,9 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                 onTap: () => setState(() => _typeIndex = e.key),
                 borderRadius: BorderRadius.circular(AppRadius.sm),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.space2),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppSpacing.space2,
+                  ),
                   child: Row(
                     children: [
                       Container(

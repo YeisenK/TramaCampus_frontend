@@ -23,8 +23,16 @@ class AccountSettingsScreen extends StatelessWidget {
           SectionCard(
             title: 'Información',
             children: [
-              _InfoTile(icon: Icons.person_outline, label: 'Nombre', value: user.name),
-              _InfoTile(icon: Icons.school_outlined, label: 'Universidad', value: 'Anáhuac Oaxaca'),
+              _InfoTile(
+                icon: Icons.person_outline,
+                label: 'Nombre',
+                value: user.name,
+              ),
+              _InfoTile(
+                icon: Icons.school_outlined,
+                label: 'Universidad',
+                value: 'Anáhuac Oaxaca',
+              ),
               _InfoTile(
                 icon: Icons.email_outlined,
                 label: 'Correo institucional',
@@ -57,7 +65,8 @@ class AccountSettingsScreen extends StatelessWidget {
               _ActionTile(
                 icon: Icons.security_outlined,
                 label: 'Seguridad y contraseña',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.securitySettings),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRouter.securitySettings),
               ),
             ],
           ),
@@ -73,7 +82,8 @@ class AccountSettingsScreen extends StatelessWidget {
                   final ok = await ConfirmModal.show(
                     context,
                     title: '¿Eliminar cuenta?',
-                    message: 'Esta acción no se puede deshacer. Perderás todos tus datos, conexiones y conversaciones.',
+                    message:
+                        'Esta acción no se puede deshacer. Perderás todos tus datos, conexiones y conversaciones.',
                     confirmLabel: 'Continuar',
                     destructive: true,
                   );
@@ -118,8 +128,14 @@ class _InfoTile extends StatelessWidget {
         child: Icon(icon, size: 18, color: cs.onSurfaceVariant),
       ),
       title: Text(label, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
-      subtitle: Text(value, style: AppTextStyles.bodyMd(valueColor ?? cs.onSurface)),
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+      subtitle: Text(
+        value,
+        style: AppTextStyles.bodyMd(valueColor ?? cs.onSurface),
+      ),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space4,
+        vertical: AppSpacing.space1,
+      ),
     );
   }
 }
@@ -147,15 +163,24 @@ class _ActionTile extends StatelessWidget {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: isDestructive ? cs.error.withValues(alpha: 0.12) : cs.surfaceContainerHigh,
+          color: isDestructive
+              ? cs.error.withValues(alpha: 0.12)
+              : cs.surfaceContainerHigh,
           borderRadius: BorderRadius.circular(AppRadius.xs),
         ),
         alignment: Alignment.center,
-        child: Icon(icon, size: 18, color: isDestructive ? cs.error : cs.onSurfaceVariant),
+        child: Icon(
+          icon,
+          size: 18,
+          color: isDestructive ? cs.error : cs.onSurfaceVariant,
+        ),
       ),
       title: Text(label, style: AppTextStyles.bodyMd(color)),
       trailing: Icon(Icons.chevron_right, color: cs.onSurfaceVariant, size: 20),
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space4,
+        vertical: AppSpacing.space1,
+      ),
     );
   }
 }

@@ -34,7 +34,13 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
     ListingCategory.articulos,
     ListingCategory.freelance,
   ];
-  static const _categoryLabels = ['Todos', 'Apuntes', 'Servicios', 'Artículos', 'Freelance'];
+  static const _categoryLabels = [
+    'Todos',
+    'Apuntes',
+    'Servicios',
+    'Artículos',
+    'Freelance',
+  ];
 
   @override
   void initState() {
@@ -44,7 +50,8 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
 
   Future<void> _load() async {
     setState(() => _isLoading = true);
-    final businesses = await MarketplaceRepository.instance.getAffiliateBusinesses();
+    final businesses = await MarketplaceRepository.instance
+        .getAffiliateBusinesses();
     final listings = await MarketplaceRepository.instance.getListings(
       category: _selectedCategory,
     );
@@ -97,10 +104,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
         title: 'Marketplace',
         showBack: false,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search_outlined),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Icons.search_outlined), onPressed: () {}),
         ],
       ),
       body: Column(
@@ -198,7 +202,10 @@ class _ExploreView extends StatelessWidget {
         ),
         children: [
           if (businesses.isNotEmpty) ...[
-            Text('Empresas del campus', style: AppTextStyles.headlineSm(cs.onSurface)),
+            Text(
+              'Empresas del campus',
+              style: AppTextStyles.headlineSm(cs.onSurface),
+            ),
             const SizedBox(height: AppSpacing.space3),
             ...businesses.map(
               (b) => Padding(
@@ -251,7 +258,10 @@ class _EmptyState extends StatelessWidget {
             color: cs.onSurfaceVariant.withValues(alpha: 0.4),
           ),
           const SizedBox(height: AppSpacing.space3),
-          Text('Sin publicaciones', style: AppTextStyles.headlineSm(cs.onSurfaceVariant)),
+          Text(
+            'Sin publicaciones',
+            style: AppTextStyles.headlineSm(cs.onSurfaceVariant),
+          ),
           const SizedBox(height: AppSpacing.space2),
           Text(
             'Prueba cambiando la categoría',
@@ -317,7 +327,10 @@ class _SellOptionsSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.space4),
-            Text('¿Qué quieres hacer?', style: AppTextStyles.headlineSm(cs.onSurface)),
+            Text(
+              '¿Qué quieres hacer?',
+              style: AppTextStyles.headlineSm(cs.onSurface),
+            ),
             const SizedBox(height: AppSpacing.space4),
             _SheetOption(
               icon: Icons.add_box_outlined,
@@ -388,7 +401,10 @@ class _SheetOption extends StatelessWidget {
                 children: [
                   Text(title, style: AppTextStyles.titleMd(cs.onSurface)),
                   const SizedBox(height: 2),
-                  Text(subtitle, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    subtitle,
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ),
@@ -428,7 +444,10 @@ class _MyListingsSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.space4),
-            Text('Mis publicaciones', style: AppTextStyles.headlineSm(cs.onSurface)),
+            Text(
+              'Mis publicaciones',
+              style: AppTextStyles.headlineSm(cs.onSurface),
+            ),
             const SizedBox(height: AppSpacing.space6),
             Icon(
               Icons.inventory_2_outlined,

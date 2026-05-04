@@ -29,7 +29,10 @@ class AboutScreen extends StatelessWidget {
               children: [
                 const TramaMark(size: 72),
                 const SizedBox(height: AppSpacing.space4),
-                Text('Trama Campus', style: AppTextStyles.headlineSm(cs.onSurface)),
+                Text(
+                  'Trama Campus',
+                  style: AppTextStyles.headlineSm(cs.onSurface),
+                ),
                 const SizedBox(height: AppSpacing.space1),
                 Text(
                   'Versión ${AppInfo.version} (${AppInfo.buildNumber})',
@@ -57,27 +60,26 @@ class AboutScreen extends StatelessWidget {
             children: [
               _AboutItem(
                 label: 'Términos y condiciones',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.termsConditions),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRouter.termsConditions),
               ),
               _AboutItem(
                 label: 'Política de privacidad',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
               ),
               _AboutItem(
                 label: 'Normas de la comunidad',
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.communityGuidelines),
+                onTap: () => Navigator.of(
+                  context,
+                ).pushNamed(AppRouter.communityGuidelines),
               ),
             ],
           ),
           const SizedBox(height: AppSpacing.space5),
           SectionCard(
             title: 'Contacto',
-            children: [
-              _AboutItem(
-                label: AppInfo.supportEmail,
-                onTap: () {},
-              ),
-            ],
+            children: [_AboutItem(label: AppInfo.supportEmail, onTap: () {})],
           ),
           const SizedBox(height: AppSpacing.space8),
           Center(
@@ -113,7 +115,10 @@ class _AboutItem extends StatelessWidget {
       onTap: onTap,
       title: Text(label, style: AppTextStyles.bodyMd(cs.onSurface)),
       trailing: Icon(Icons.chevron_right, color: cs.onSurfaceVariant, size: 20),
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space4,
+        vertical: AppSpacing.space1,
+      ),
     );
   }
 }

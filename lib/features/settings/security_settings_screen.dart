@@ -39,11 +39,25 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                     borderRadius: BorderRadius.circular(AppRadius.xs),
                   ),
                   alignment: Alignment.center,
-                  child: Icon(Icons.lock_outline, size: 18, color: cs.onSurfaceVariant),
+                  child: Icon(
+                    Icons.lock_outline,
+                    size: 18,
+                    color: cs.onSurfaceVariant,
+                  ),
                 ),
-                title: Text('Cambiar contraseña', style: AppTextStyles.bodyMd(cs.onSurface)),
-                trailing: Icon(Icons.chevron_right, color: cs.onSurfaceVariant, size: 20),
-                contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+                title: Text(
+                  'Cambiar contraseña',
+                  style: AppTextStyles.bodyMd(cs.onSurface),
+                ),
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: cs.onSurfaceVariant,
+                  size: 20,
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.space4,
+                  vertical: AppSpacing.space1,
+                ),
               ),
             ],
           ),
@@ -116,13 +130,23 @@ class _SessionTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.xs),
         ),
         alignment: Alignment.center,
-        child: Icon(Icons.devices_outlined, size: 18, color: cs.onSurfaceVariant),
+        child: Icon(
+          Icons.devices_outlined,
+          size: 18,
+          color: cs.onSurfaceVariant,
+        ),
       ),
       title: Text(device, style: AppTextStyles.bodyMd(cs.onSurface)),
-      subtitle: Text('$location · $date', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+      subtitle: Text(
+        '$location · $date',
+        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+      ),
       trailing: isCurrent
           ? Container(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space2, vertical: 3),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.space2,
+                vertical: 3,
+              ),
               decoration: BoxDecoration(
                 color: cs.primary.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -133,7 +157,10 @@ class _SessionTile extends StatelessWidget {
               icon: Icon(Icons.close, size: 18, color: cs.error),
               onPressed: () {},
             ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space4,
+        vertical: AppSpacing.space1,
+      ),
     );
   }
 }

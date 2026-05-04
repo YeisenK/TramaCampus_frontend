@@ -45,12 +45,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isSaving = true);
-    await Future.delayed(const Duration(milliseconds: 600));
     if (!mounted) return;
     setState(() => _isSaving = false);
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Perfil actualizado')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Perfil actualizado')));
     Navigator.of(context).pop();
   }
 
@@ -73,7 +72,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               controller: _nameCtrl,
               label: 'Nombre',
               hint: 'Tu nombre completo',
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'El nombre es requerido' : null,
+              validator: (v) => (v == null || v.trim().isEmpty)
+                  ? 'El nombre es requerido'
+                  : null,
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: AppSpacing.space5),
@@ -103,7 +104,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               },
             ),
             const SizedBox(height: AppSpacing.space5),
-            Text('Intereses', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+            Text(
+              'Intereses',
+              style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+            ),
             const SizedBox(height: AppSpacing.space3),
             _InterestPicker(
               selected: _interests,
@@ -156,9 +160,22 @@ class _InterestPicker extends StatelessWidget {
   final ValueChanged<String> onToggle;
 
   static const _tags = [
-    'Tecnología', 'Diseño', 'Música', 'Deportes', 'Arte', 'Cine',
-    'Literatura', 'Fotografía', 'Viajes', 'Cocina', 'Gaming', 'Ciencia',
-    'Emprendimiento', 'Idiomas', 'Yoga', 'Danza',
+    'Tecnología',
+    'Diseño',
+    'Música',
+    'Deportes',
+    'Arte',
+    'Cine',
+    'Literatura',
+    'Fotografía',
+    'Viajes',
+    'Cocina',
+    'Gaming',
+    'Ciencia',
+    'Emprendimiento',
+    'Idiomas',
+    'Yoga',
+    'Danza',
   ];
 
   @override
@@ -166,11 +183,15 @@ class _InterestPicker extends StatelessWidget {
     return Wrap(
       spacing: AppSpacing.space2,
       runSpacing: AppSpacing.space2,
-      children: _tags.map((tag) => TChip(
-        label: tag,
-        selected: selected.contains(tag),
-        onTap: () => onToggle(tag),
-      )).toList(),
+      children: _tags
+          .map(
+            (tag) => TChip(
+              label: tag,
+              selected: selected.contains(tag),
+              onTap: () => onToggle(tag),
+            ),
+          )
+          .toList(),
     );
   }
 }

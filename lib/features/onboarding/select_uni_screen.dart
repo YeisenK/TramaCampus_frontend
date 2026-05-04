@@ -24,16 +24,22 @@ class _SelectUniScreenState extends State<SelectUniScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _OnboardingHeader(step: 0, title: 'Tu universidad', subtitle: 'Selecciona tu institución educativa'),
+            _OnboardingHeader(
+              step: 0,
+              title: 'Tu universidad',
+              subtitle: 'Selecciona tu institución educativa',
+            ),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(AppSpacing.space5),
                 children: [
-                  ...MockData.universities.map((uni) => _UniCard(
-                        university: uni,
-                        isSelected: _selected == uni,
-                        onTap: () => setState(() => _selected = uni),
-                      )),
+                  ...MockData.universities.map(
+                    (uni) => _UniCard(
+                      university: uni,
+                      isSelected: _selected == uni,
+                      onTap: () => setState(() => _selected = uni),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -43,7 +49,9 @@ class _SelectUniScreenState extends State<SelectUniScreen> {
                 label: 'Continuar',
                 onPressed: _selected == null
                     ? null
-                    : () => Navigator.of(context).pushNamed(AppRouter.verifyEmail),
+                    : () => Navigator.of(
+                        context,
+                      ).pushNamed(AppRouter.verifyEmail),
               ),
             ),
           ],
@@ -91,7 +99,11 @@ class _UniCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppRadius.xs),
               ),
               alignment: Alignment.center,
-              child: Icon(Icons.school_outlined, size: 22, color: cs.onSurfaceVariant),
+              child: Icon(
+                Icons.school_outlined,
+                size: 22,
+                color: cs.onSurfaceVariant,
+              ),
             ),
             const SizedBox(width: AppSpacing.space3),
             Expanded(
@@ -100,19 +112,28 @@ class _UniCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(university.name, style: AppTextStyles.titleMd(cs.onSurface)),
+                      Text(
+                        university.name,
+                        style: AppTextStyles.titleMd(cs.onSurface),
+                      ),
                       if (university.verified) ...[
                         const SizedBox(width: AppSpacing.space1),
-                        Icon(Icons.verified_user_outlined, size: 14, color: cs.primary),
+                        Icon(
+                          Icons.verified_user_outlined,
+                          size: 14,
+                          color: cs.primary,
+                        ),
                       ],
                     ],
                   ),
-                  Text(university.emailDomain, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    university.emailDomain,
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ),
-            if (isSelected)
-              Icon(Icons.check, color: cs.primary),
+            if (isSelected) Icon(Icons.check, color: cs.primary),
           ],
         ),
       ),
@@ -150,7 +171,11 @@ class _OnboardingHeader extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () => Navigator.of(context).maybePop(),
-                child: Icon(Icons.arrow_back_ios_new, size: 20, color: cs.onSurface),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 20,
+                  color: cs.onSurface,
+                ),
               ),
               const Spacer(),
               StepDots(totalSteps: 6, currentStep: step),

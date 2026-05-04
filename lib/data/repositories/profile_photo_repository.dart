@@ -32,7 +32,8 @@ class LocalProfilePhotoRepository implements ProfilePhotoRepository {
     final db = await _db;
     final rows = await db.query(
       Tables.profilePhotos,
-      where: '${ProfilePhotoColumns.studentId} = ? AND ${ProfilePhotoColumns.isPrimary} = 1',
+      where:
+          '${ProfilePhotoColumns.studentId} = ? AND ${ProfilePhotoColumns.isPrimary} = 1',
       whereArgs: [studentId],
       limit: 1,
     );

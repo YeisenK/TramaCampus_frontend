@@ -14,26 +14,27 @@ class DiscoverGridView extends StatelessWidget {
   final List<Student> students;
   final ValueChanged<Student> onTap;
 
-  ImageProvider _imageProvider(String url) =>
-      url.startsWith('assets/') ? AssetImage(url) as ImageProvider : NetworkImage(url);
+  ImageProvider _imageProvider(String url) => url.startsWith('assets/')
+      ? AssetImage(url) as ImageProvider
+      : NetworkImage(url);
 
   Widget _gradientCell(Student s) => Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
-              HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
-            ],
-          ),
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          s.initials,
-          style: AppTextStyles.headlineLg(Colors.white.withValues(alpha: 0.9)),
-        ),
-      );
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
+          HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
+        ],
+      ),
+    ),
+    alignment: Alignment.center,
+    child: Text(
+      s.initials,
+      style: AppTextStyles.headlineLg(Colors.white.withValues(alpha: 0.9)),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +74,17 @@ class DiscoverGridView extends StatelessWidget {
               children: [
                 Expanded(
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.md)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(AppRadius.md),
+                    ),
                     child: s.photoUrl != null
                         ? Image(
                             image: _imageProvider(s.photoUrl!),
                             fit: BoxFit.cover,
                             width: double.infinity,
                             height: double.infinity,
-                            errorBuilder: (context, error, _) => _gradientCell(s),
+                            errorBuilder: (context, error, _) =>
+                                _gradientCell(s),
                           )
                         : _gradientCell(s),
                   ),
@@ -90,7 +94,10 @@ class DiscoverGridView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(s.firstName, style: AppTextStyles.titleMd(cs.onSurface)),
+                      Text(
+                        s.firstName,
+                        style: AppTextStyles.titleMd(cs.onSurface),
+                      ),
                       Text(
                         '${s.program} · ${s.semester}°',
                         style: AppTextStyles.bodySm(cs.onSurfaceVariant),

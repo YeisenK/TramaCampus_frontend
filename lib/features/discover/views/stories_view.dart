@@ -9,21 +9,22 @@ class DiscoverStoriesView extends StatelessWidget {
 
   final List<Student> students;
 
-  ImageProvider _imageProvider(String url) =>
-      url.startsWith('assets/') ? AssetImage(url) as ImageProvider : NetworkImage(url);
+  ImageProvider _imageProvider(String url) => url.startsWith('assets/')
+      ? AssetImage(url) as ImageProvider
+      : NetworkImage(url);
 
   Widget _gradientBackground(Student s) => Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
-              HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
-            ],
-          ),
-        ),
-      );
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          HSLColor.fromAHSL(1.0, s.hue, 0.45, 0.72).toColor(),
+          HSLColor.fromAHSL(1.0, (s.hue + 30) % 360, 0.55, 0.42).toColor(),
+        ],
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,8 @@ class DiscoverStoriesView extends StatelessWidget {
                   ? Image(
                       image: _imageProvider(s.photoUrl!),
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, _) => _gradientBackground(s),
+                      errorBuilder: (context, error, _) =>
+                          _gradientBackground(s),
                     )
                   : _gradientBackground(s),
             ),
@@ -68,7 +70,10 @@ class DiscoverStoriesView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('${s.name}, ${s.age}', style: AppTextStyles.headlineMd(Colors.white)),
+                  Text(
+                    '${s.name}, ${s.age}',
+                    style: AppTextStyles.headlineMd(Colors.white),
+                  ),
                   Text(
                     '${s.program} · Sem. ${s.semester}',
                     style: AppTextStyles.bodyLg(Colors.white70),
@@ -77,7 +82,9 @@ class DiscoverStoriesView extends StatelessWidget {
                   if (s.bio.isNotEmpty)
                     Text(
                       '"${s.bio}"',
-                      style: AppTextStyles.bodyMd(Colors.white70).copyWith(fontStyle: FontStyle.italic),
+                      style: AppTextStyles.bodyMd(
+                        Colors.white70,
+                      ).copyWith(fontStyle: FontStyle.italic),
                     ),
                 ],
               ),

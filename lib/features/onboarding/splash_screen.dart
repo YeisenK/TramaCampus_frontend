@@ -12,7 +12,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _fade;
   late final Animation<double> _scale;
@@ -20,17 +21,21 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
-    _fade = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
-    _scale = Tween<double>(begin: 0.8, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
     );
+    _fade = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
+    _scale = Tween<double>(
+      begin: 0.8,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
     _controller.forward();
     _navigate();
   }
 
   Future<void> _navigate() async {
-    await Future.delayed(const Duration(milliseconds: 2200));
+    await Future.delayed(const Duration(milliseconds: 800));
     if (mounted) {
       Navigator.of(context).pushReplacementNamed(AppRouter.welcome);
     }
@@ -65,7 +70,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     const SizedBox(height: AppSpacing.space6),
                     Text(
                       'Conecta con tu campus',
-                      style: AppTextStyles.bodyLg(Colors.white.withValues(alpha: 0.85)),
+                      style: AppTextStyles.bodyLg(
+                        Colors.white.withValues(alpha: 0.85),
+                      ),
                     ),
                   ],
                 ),
@@ -106,10 +113,9 @@ class _SplashLogo extends StatelessWidget {
         const SizedBox(height: AppSpacing.space4),
         Text(
           'Trama Campus',
-          style: AppTextStyles.headlineSm(Colors.white).copyWith(
-            letterSpacing: 0.5,
-            fontWeight: FontWeight.w800,
-          ),
+          style: AppTextStyles.headlineSm(
+            Colors.white,
+          ).copyWith(letterSpacing: 0.5, fontWeight: FontWeight.w800),
         ),
       ],
     );

@@ -19,7 +19,8 @@ class MockData {
     hue: 24,
     intent: ModalityType.estudio,
     photoUrl: 'assets/images/avatars/sofia.jpg',
-    bio: 'Estudio Matemáticas Aplicadas, me interesa la filosofía de la mente y la teoría de categorías. Café, libros y caminatas largas.',
+    bio:
+        'Estudio Matemáticas Aplicadas, me interesa la filosofía de la mente y la teoría de categorías. Café, libros y caminatas largas.',
     interests: [
       'Filosofía de la mente',
       'Topología',
@@ -32,9 +33,21 @@ class MockData {
   );
 
   static const universities = [
-    University(name: 'Anáhuac Oaxaca', emailDomain: '@anahuac.mx', verified: true),
-    University(name: 'Tec Monterrey Oaxaca', emailDomain: '@tec.mx', verified: false),
-    University(name: 'La Salle Oaxaca', emailDomain: '@lasalle.mx', verified: false),
+    University(
+      name: 'Anáhuac Oaxaca',
+      emailDomain: '@anahuac.mx',
+      verified: true,
+    ),
+    University(
+      name: 'Tec Monterrey Oaxaca',
+      emailDomain: '@tec.mx',
+      verified: false,
+    ),
+    University(
+      name: 'La Salle Oaxaca',
+      emailDomain: '@lasalle.mx',
+      verified: false,
+    ),
     University(name: 'UABJO Oaxaca', emailDomain: '@uabjo.mx', verified: false),
   ];
 
@@ -48,8 +61,15 @@ class MockData {
       hue: 20,
       intent: ModalityType.estudio,
       photoUrl: 'assets/images/avatars/ana.jpg',
-      bio: 'Apasionada del marketing digital y las redes sociales. Busco compañeros para estudiar y hacer proyectos creativos.',
-      interests: ['Marketing digital', 'Fotografía', 'Diseño', 'Podcasts', 'Redes sociales'],
+      bio:
+          'Apasionada del marketing digital y las redes sociales. Busco compañeros para estudiar y hacer proyectos creativos.',
+      interests: [
+        'Marketing digital',
+        'Fotografía',
+        'Diseño',
+        'Podcasts',
+        'Redes sociales',
+      ],
       compatibilityScore: 87,
       reasons: ['Mismo semestre', 'Área afín', 'Horario compatible'],
     ),
@@ -62,8 +82,15 @@ class MockData {
       hue: 240,
       intent: ModalityType.estudio,
       photoUrl: 'assets/images/avatars/diego.jpg',
-      bio: 'Matemático en formación. Me gusta la teoría de grafos y los problemas de optimización. Siempre listo para un café de estudio.',
-      interests: ['Teoría de grafos', 'Programación', 'Ajedrez', 'Filosofía', 'Café'],
+      bio:
+          'Matemático en formación. Me gusta la teoría de grafos y los problemas de optimización. Siempre listo para un café de estudio.',
+      interests: [
+        'Teoría de grafos',
+        'Programación',
+        'Ajedrez',
+        'Filosofía',
+        'Café',
+      ],
       compatibilityScore: 94,
       reasons: ['Mismo programa', 'Mismo semestre', 'Intereses en común'],
     ),
@@ -76,7 +103,8 @@ class MockData {
       hue: 320,
       intent: ModalityType.amistad,
       photoUrl: 'assets/images/avatars/renata.jpg',
-      bio: 'Estudiante de psicología con enfoque en neurociencia cognitiva. Me encanta explorar la ciudad y descubrir lugares nuevos.',
+      bio:
+          'Estudiante de psicología con enfoque en neurociencia cognitiva. Me encanta explorar la ciudad y descubrir lugares nuevos.',
       interests: ['Neurociencia', 'Meditación', 'Cine', 'Arte urbano', 'Yoga'],
       compatibilityScore: 78,
       reasons: ['Intereses complementarios', 'Disponible fines de semana'],
@@ -90,8 +118,15 @@ class MockData {
       hue: 180,
       intent: ModalityType.amistad,
       photoUrl: 'assets/images/avatars/mateo.jpg',
-      bio: 'Arquitecto en construcción. Me inspiro en el diseño bioclimático y la arquitectura vernácula oaxaqueña.',
-      interests: ['Diseño bioclimático', 'Fotografía urbana', 'Senderismo', 'Gastronomía', 'Música'],
+      bio:
+          'Arquitecto en construcción. Me inspiro en el diseño bioclimático y la arquitectura vernácula oaxaqueña.',
+      interests: [
+        'Diseño bioclimático',
+        'Fotografía urbana',
+        'Senderismo',
+        'Gastronomía',
+        'Música',
+      ],
       compatibilityScore: 82,
       reasons: ['Mismo semestre', 'Le gusta el senderismo'],
     ),
@@ -104,7 +139,8 @@ class MockData {
       hue: 120,
       intent: ModalityType.personal,
       photoUrl: 'assets/images/avatars/lucia.jpg',
-      bio: 'Estudiante de derecho enfocada en derechos humanos y justicia social. Activista, lectora compulsiva y amante del café.',
+      bio:
+          'Estudiante de derecho enfocada en derechos humanos y justicia social. Activista, lectora compulsiva y amante del café.',
       interests: ['Derechos humanos', 'Lectura', 'Activismo', 'Teatro', 'Café'],
       compatibilityScore: 71,
       reasons: ['Valores compartidos', 'Ama el café'],
@@ -118,8 +154,15 @@ class MockData {
       hue: 60,
       intent: ModalityType.estudio,
       photoUrl: 'assets/images/avatars/javier.jpg',
-      bio: 'Desarrollador en formación. Especializado en apps móviles y machine learning. Busco equipo para hackathons.',
-      interests: ['Machine learning', 'Apps móviles', 'Videojuegos', 'Manga', 'Hackathons'],
+      bio:
+          'Desarrollador en formación. Especializado en apps móviles y machine learning. Busco equipo para hackathons.',
+      interests: [
+        'Machine learning',
+        'Apps móviles',
+        'Videojuegos',
+        'Manga',
+        'Hackathons',
+      ],
       compatibilityScore: 85,
       reasons: ['Mismo semestre', 'Área STEM', 'Hackathons'],
     ),
@@ -132,8 +175,15 @@ class MockData {
       hue: 340,
       intent: ModalityType.amistad,
       photoUrl: 'assets/images/avatars/camila.jpg',
-      bio: 'Diseñadora gráfica apasionada por la identidad visual y el branding. Siempre con bocetos en la mano.',
-      interests: ['Branding', 'Ilustración', 'Tipografía', 'Música indie', 'Viajes'],
+      bio:
+          'Diseñadora gráfica apasionada por la identidad visual y el branding. Siempre con bocetos en la mano.',
+      interests: [
+        'Branding',
+        'Ilustración',
+        'Tipografía',
+        'Música indie',
+        'Viajes',
+      ],
       compatibilityScore: 76,
       reasons: ['Mismo semestre', 'Área creativa'],
     ),
@@ -185,25 +235,29 @@ class MockData {
   static const conversation = [
     ConversationMessage(
       id: 'm1',
-      text: 'Hola Sofía, vi que también estudias Matemáticas Aplicadas. ¿En qué semestre estás?',
+      text:
+          'Hola Sofía, vi que también estudias Matemáticas Aplicadas. ¿En qué semestre estás?',
       isMe: false,
       time: '10:30',
     ),
     ConversationMessage(
       id: 'm2',
-      text: 'Hola Diego! Sí, estoy en quinto. ¿Tú también? Qué coincidencia, jaja',
+      text:
+          'Hola Diego! Sí, estoy en quinto. ¿Tú también? Qué coincidencia, jaja',
       isMe: true,
       time: '10:33',
     ),
     ConversationMessage(
       id: 'm3',
-      text: 'Exacto, quinto semestre. Tengo Álgebra Lineal con el profesor Mendoza y me está costando trabajo. ¿Lo conoces?',
+      text:
+          'Exacto, quinto semestre. Tengo Álgebra Lineal con el profesor Mendoza y me está costando trabajo. ¿Lo conoces?',
       isMe: false,
       time: '10:35',
     ),
     ConversationMessage(
       id: 'm4',
-      text: 'Sí! Yo ya tomé esa clase. Es densa pero interesante. Si quieres podemos estudiar juntos, tengo buenos apuntes.',
+      text:
+          'Sí! Yo ya tomé esa clase. Es densa pero interesante. Si quieres podemos estudiar juntos, tengo buenos apuntes.',
       isMe: true,
       time: '10:38',
     ),
@@ -239,10 +293,7 @@ class MockData {
           'Gimnasio universitario con equipos modernos, clases de yoga, spinning y crossfit. Membresías mensuales y por clase.',
       serviceType: AffiliateServiceType.gym,
       isVerified: true,
-      promotions: [
-        'Primera clase gratis',
-        'Membresía semestral con 20% off',
-      ],
+      promotions: ['Primera clase gratis', 'Membresía semestral con 20% off'],
       acceptsReservations: true,
       acceptsOrders: false,
       contactChannel: '/conversation',
@@ -323,9 +374,7 @@ class MockData {
       isBoosted: false,
       isAffiliate: false,
       sellerName: 'Diego Navarro',
-      imageUrls: [
-        'https://picsum.photos/seed/tutoria1/400/300',
-      ],
+      imageUrls: ['https://picsum.photos/seed/tutoria1/400/300'],
       publishedAt: DateTime(2025, 4, 25),
     ),
     MarketplaceListing(
@@ -356,9 +405,7 @@ class MockData {
       isBoosted: false,
       isAffiliate: false,
       sellerName: 'Lucía Herrera',
-      imageUrls: [
-        'https://picsum.photos/seed/derecho1/400/300',
-      ],
+      imageUrls: ['https://picsum.photos/seed/derecho1/400/300'],
       publishedAt: DateTime(2025, 4, 20),
     ),
     MarketplaceListing(

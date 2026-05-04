@@ -22,10 +22,7 @@ class ChatListScreen extends StatelessWidget {
         automaticallyImplyLeading: !embedded,
         title: Text('Mensajes', style: AppTextStyles.titleMd(cs.onSurface)),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.edit_outlined),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Icons.edit_outlined), onPressed: () {}),
         ],
       ),
       body: ListView.separated(
@@ -43,10 +40,9 @@ class ChatListScreen extends StatelessWidget {
           return _ChatRow(
             chat: chat,
             photoUrl: student.photoUrl,
-            onTap: () => Navigator.of(context).pushNamed(
-              AppRouter.conversation,
-              arguments: student,
-            ),
+            onTap: () => Navigator.of(
+              context,
+            ).pushNamed(AppRouter.conversation, arguments: student),
           );
         },
       ),
@@ -70,7 +66,12 @@ class _ChatRow extends StatelessWidget {
         horizontal: AppSpacing.space4,
         vertical: AppSpacing.space2,
       ),
-      leading: TAvatar(initials: chat.initials, hue: chat.hue, photoUrl: photoUrl, size: 52),
+      leading: TAvatar(
+        initials: chat.initials,
+        hue: chat.hue,
+        photoUrl: photoUrl,
+        size: 52,
+      ),
       title: Row(
         children: [
           Expanded(
@@ -82,7 +83,9 @@ class _ChatRow extends StatelessWidget {
           ),
           Text(
             chat.time,
-            style: AppTextStyles.labelSm(hasUnread ? cs.primary : cs.onSurfaceVariant),
+            style: AppTextStyles.labelSm(
+              hasUnread ? cs.primary : cs.onSurfaceVariant,
+            ),
           ),
         ],
       ),
@@ -91,9 +94,12 @@ class _ChatRow extends StatelessWidget {
           Expanded(
             child: Text(
               chat.lastMessage,
-              style: AppTextStyles.bodyMd(hasUnread ? cs.onSurface : cs.onSurfaceVariant).copyWith(
-                fontWeight: hasUnread ? FontWeight.w500 : FontWeight.w400,
-              ),
+              style:
+                  AppTextStyles.bodyMd(
+                    hasUnread ? cs.onSurface : cs.onSurfaceVariant,
+                  ).copyWith(
+                    fontWeight: hasUnread ? FontWeight.w500 : FontWeight.w400,
+                  ),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -109,7 +115,9 @@ class _ChatRow extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 '${chat.unreadCount}',
-                style: AppTextStyles.labelSm(Colors.white).copyWith(fontSize: 11),
+                style: AppTextStyles.labelSm(
+                  Colors.white,
+                ).copyWith(fontSize: 11),
               ),
             ),
           ],

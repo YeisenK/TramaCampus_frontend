@@ -42,7 +42,10 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                 padding: const EdgeInsets.all(AppSpacing.space5),
                 children: [
                   if (!_sent) ...[
-                    Text('Ingresa tu correo institucional', style: AppTextStyles.titleMd(cs.onSurface)),
+                    Text(
+                      'Ingresa tu correo institucional',
+                      style: AppTextStyles.titleMd(cs.onSurface),
+                    ),
                     const SizedBox(height: AppSpacing.space4),
                     TextField(
                       controller: _emailController,
@@ -60,7 +63,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   ] else ...[
                     _VerifyCodeEntry(
                       email: _emailController.text,
-                      onVerified: () => Navigator.of(context).pushNamed(AppRouter.modalitySelect),
+                      onVerified: () => Navigator.of(
+                        context,
+                      ).pushNamed(AppRouter.modalitySelect),
                     ),
                   ],
                 ],
@@ -83,7 +88,12 @@ class _VerifyHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: cs.surfaceDim,
-      padding: const EdgeInsets.fromLTRB(AppSpacing.space5, AppSpacing.space6, AppSpacing.space5, AppSpacing.space5),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.space5,
+        AppSpacing.space6,
+        AppSpacing.space5,
+        AppSpacing.space5,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -91,16 +101,26 @@ class _VerifyHeader extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () => Navigator.of(context).maybePop(),
-                child: Icon(Icons.arrow_back_ios_new, size: 20, color: cs.onSurface),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 20,
+                  color: cs.onSurface,
+                ),
               ),
               const Spacer(),
               StepDots(totalSteps: 6, currentStep: step),
             ],
           ),
           const SizedBox(height: AppSpacing.space5),
-          Text('Verificar correo', style: AppTextStyles.headlineSm(cs.onSurface)),
+          Text(
+            'Verificar correo',
+            style: AppTextStyles.headlineSm(cs.onSurface),
+          ),
           const SizedBox(height: AppSpacing.space2),
-          Text('Confirma que perteneces a tu universidad', style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+          Text(
+            'Confirma que perteneces a tu universidad',
+            style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+          ),
         ],
       ),
     );
@@ -144,7 +164,10 @@ class _VerifyCodeEntryState extends State<_VerifyCodeEntry> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Código enviado a', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                  Text(
+                    'Código enviado a',
+                    style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                  ),
                   Text(widget.email, style: AppTextStyles.bodyMd(cs.onSurface)),
                 ],
               ),
@@ -152,7 +175,10 @@ class _VerifyCodeEntryState extends State<_VerifyCodeEntry> {
           ),
         ),
         const SizedBox(height: AppSpacing.space5),
-        Text('Código de verificación', style: AppTextStyles.titleMd(cs.onSurface)),
+        Text(
+          'Código de verificación',
+          style: AppTextStyles.titleMd(cs.onSurface),
+        ),
         const SizedBox(height: AppSpacing.space3),
         TextField(
           controller: _codeController,
@@ -166,15 +192,15 @@ class _VerifyCodeEntryState extends State<_VerifyCodeEntry> {
           ),
         ),
         const SizedBox(height: AppSpacing.space5),
-        TButton(
-          label: 'Verificar',
-          onPressed: widget.onVerified,
-        ),
+        TButton(label: 'Verificar', onPressed: widget.onVerified),
         const SizedBox(height: AppSpacing.space3),
         Center(
           child: TextButton(
             onPressed: () {},
-            child: Text('Reenviar código', style: AppTextStyles.bodyMd(cs.primary)),
+            child: Text(
+              'Reenviar código',
+              style: AppTextStyles.bodyMd(cs.primary),
+            ),
           ),
         ),
       ],

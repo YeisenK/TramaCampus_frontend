@@ -35,7 +35,10 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
               child: ListView(
                 padding: const EdgeInsets.all(AppSpacing.space5),
                 children: [
-                  Text('Carrera o programa', style: AppTextStyles.titleMd(cs.onSurface)),
+                  Text(
+                    'Carrera o programa',
+                    style: AppTextStyles.titleMd(cs.onSurface),
+                  ),
                   const SizedBox(height: AppSpacing.space3),
                   TextField(
                     controller: _programController,
@@ -48,8 +51,14 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Semestre', style: AppTextStyles.titleMd(cs.onSurface)),
-                      Text('$_semester de 12', style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+                      Text(
+                        'Semestre',
+                        style: AppTextStyles.titleMd(cs.onSurface),
+                      ),
+                      Text(
+                        '$_semester de 12',
+                        style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+                      ),
                     ],
                   ),
                   const SizedBox(height: AppSpacing.space3),
@@ -70,7 +79,10 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
                     ),
                   ),
                   const SizedBox(height: AppSpacing.space5),
-                  Text('Materias clave (opcional)', style: AppTextStyles.titleMd(cs.onSurface)),
+                  Text(
+                    'Materias clave (opcional)',
+                    style: AppTextStyles.titleMd(cs.onSurface),
+                  ),
                   const SizedBox(height: AppSpacing.space3),
                   TextField(
                     decoration: const InputDecoration(
@@ -85,7 +97,8 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
               padding: const EdgeInsets.all(AppSpacing.space5),
               child: TButton(
                 label: 'Continuar',
-                onPressed: () => Navigator.of(context).pushNamed(AppRouter.personalGoals),
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(AppRouter.personalGoals),
               ),
             ),
           ],
@@ -102,7 +115,12 @@ class _Header extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: cs.surfaceDim,
-      padding: const EdgeInsets.fromLTRB(AppSpacing.space5, AppSpacing.space6, AppSpacing.space5, AppSpacing.space5),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.space5,
+        AppSpacing.space6,
+        AppSpacing.space5,
+        AppSpacing.space5,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -110,16 +128,26 @@ class _Header extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () => Navigator.of(context).maybePop(),
-                child: Icon(Icons.arrow_back_ios_new, size: 20, color: cs.onSurface),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 20,
+                  color: cs.onSurface,
+                ),
               ),
               const Spacer(),
               const StepDots(totalSteps: 6, currentStep: 3),
             ],
           ),
           const SizedBox(height: AppSpacing.space5),
-          Text('Perfil académico', style: AppTextStyles.headlineSm(cs.onSurface)),
+          Text(
+            'Perfil académico',
+            style: AppTextStyles.headlineSm(cs.onSurface),
+          ),
           const SizedBox(height: AppSpacing.space2),
-          Text('Cuéntanos sobre tus estudios', style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+          Text(
+            'Cuéntanos sobre tus estudios',
+            style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+          ),
         ],
       ),
     );

@@ -25,10 +25,7 @@ class SafeSvg extends StatelessWidget {
       height: height,
       fit: fit,
       colorFilter: colorFilter,
-      placeholderBuilder: (_) => SizedBox(
-        width: width,
-        height: height,
-      ),
+      placeholderBuilder: (_) => SizedBox(width: width, height: height),
     );
   }
 }

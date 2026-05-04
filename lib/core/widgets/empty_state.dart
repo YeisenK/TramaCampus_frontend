@@ -35,9 +35,17 @@ class EmptyState extends StatelessWidget {
               child: Icon(icon, size: 32, color: cs.onSurfaceVariant),
             ),
             const SizedBox(height: AppSpacing.space5),
-            Text(title, style: AppTextStyles.titleMd(cs.onSurface), textAlign: TextAlign.center),
+            Text(
+              title,
+              style: AppTextStyles.titleMd(cs.onSurface),
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: AppSpacing.space2),
-            Text(subtitle, style: AppTextStyles.bodyMd(cs.onSurfaceVariant), textAlign: TextAlign.center),
+            Text(
+              subtitle,
+              style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+              textAlign: TextAlign.center,
+            ),
             if (action != null) ...[
               const SizedBox(height: AppSpacing.space6),
               action!,

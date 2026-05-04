@@ -38,7 +38,11 @@ class SettingsThemeScreen extends StatelessWidget {
                       isSelected: currentMode == ThemeMode.system,
                       onTap: () => _setTheme(ThemeMode.system),
                     ),
-                    Divider(indent: 56, height: 0, color: cs.outlineVariant.withValues(alpha: 0.5)),
+                    Divider(
+                      indent: 56,
+                      height: 0,
+                      color: cs.outlineVariant.withValues(alpha: 0.5),
+                    ),
                     _ThemeOption(
                       icon: Icons.light_mode_outlined,
                       label: 'Claro',
@@ -46,7 +50,11 @@ class SettingsThemeScreen extends StatelessWidget {
                       isSelected: currentMode == ThemeMode.light,
                       onTap: () => _setTheme(ThemeMode.light),
                     ),
-                    Divider(indent: 56, height: 0, color: cs.outlineVariant.withValues(alpha: 0.5)),
+                    Divider(
+                      indent: 56,
+                      height: 0,
+                      color: cs.outlineVariant.withValues(alpha: 0.5),
+                    ),
                     _ThemeOption(
                       icon: Icons.dark_mode_outlined,
                       label: 'Oscuro',
@@ -66,7 +74,11 @@ class SettingsThemeScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.info_outline, size: 18, color: cs.onSurfaceVariant),
+                    Icon(
+                      Icons.info_outline,
+                      size: 18,
+                      color: cs.onSurfaceVariant,
+                    ),
                     const SizedBox(width: AppSpacing.space3),
                     Expanded(
                       child: Text(
@@ -109,18 +121,34 @@ class _ThemeOption extends StatelessWidget {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: isSelected ? cs.primary.withValues(alpha: 0.12) : cs.surfaceContainerHigh,
+          color: isSelected
+              ? cs.primary.withValues(alpha: 0.12)
+              : cs.surfaceContainerHigh,
           borderRadius: BorderRadius.circular(AppRadius.xs),
         ),
         alignment: Alignment.center,
-        child: Icon(icon, size: 18, color: isSelected ? cs.primary : cs.onSurfaceVariant),
+        child: Icon(
+          icon,
+          size: 18,
+          color: isSelected ? cs.primary : cs.onSurfaceVariant,
+        ),
       ),
       title: Text(label, style: AppTextStyles.bodyMd(cs.onSurface)),
-      subtitle: Text(description, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+      subtitle: Text(
+        description,
+        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+      ),
       trailing: isSelected
           ? Icon(Icons.check_circle, color: cs.primary, size: 22)
-          : Icon(Icons.radio_button_unchecked, color: cs.outlineVariant, size: 22),
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4, vertical: AppSpacing.space1),
+          : Icon(
+              Icons.radio_button_unchecked,
+              color: cs.outlineVariant,
+              size: 22,
+            ),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space4,
+        vertical: AppSpacing.space1,
+      ),
     );
   }
 }

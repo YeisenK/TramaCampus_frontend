@@ -7,5 +7,6 @@ class ChatRepository {
 
   List<ChatPreview> getChats() => MockData.chats;
 
-  List<ConversationMessage> getConversation(String studentId) => MockData.conversation;
+  List<ConversationMessage> getConversation(String studentId) =>
+      MockData.conversation;
 }
