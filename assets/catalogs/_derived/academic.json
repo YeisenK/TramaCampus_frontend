@@ -1,7 +1,183 @@
 {
   "catalog": "academic",
   "_source": "matching_service/src/shared/catalogs/academic_catalog.json",
-  "version": "2026-05-04",
+  "version": "2026-05-06",
+  "description": "Catálogo académico de programas de la Red de Universidades Anáhuac dividido por campus",
+  "campuses": [
+    {
+      "id": "UAMN",
+      "name": "Universidad Anáhuac México Campus Norte",
+      "location": "Huixquilucan, Estado de México",
+      "programs": [
+        "PARP", "MADF", "MAID", "MSARC",
+        "BADM", "BIBS", "BSMK", "PIRSS", "PITOUR", "MBA", "MEBUS", "MGBM", "MHCD", "MSR", "MSHCM", "MTDM",
+        "BCOM", "PCOMR", "PSCM", "MCOMK", "MEIM", "MICST", "MSJNM", "MSMM",
+        "BFDI", "BGD", "BID", "BMMD", "MAPD", "MFMK",
+        "PEE", "PELIM", "PIDS", "MEDU", "MPPED",
+        "BCE", "BIEM", "BMEC", "PIE", "MENGM", "MLOG", "MTSD",
+        "BFPA", "PACT", "MBFM", "MFIN", "MRISK",
+        "PISEC", "MIA",
+        "BMED", "BPSY", "PABIO", "PHSC", "PNSC", "MBIO", "MCN", "MCPSY", "MGBIO", "MHIM", "MMED",
+        "PHUM", "PPHIL", "MACUL", "MEQD", "MHUM", "MPPHI", "MPHIL", "MTPA",
+        "BLAW", "PLAW", "PPA", "MCORLA", "MCRIM", "MPA", "MTAX",
+        "MSAS",
+        "BITDB", "MITAI", "MSTAT"
+      ]
+    },
+    {
+      "id": "UAMS",
+      "name": "Universidad Anáhuac México Campus Sur",
+      "location": "Álvaro Obregón, Ciudad de México",
+      "programs": [
+        "PARP", "MADF", "MAID", "MSARC",
+        "BADM", "BIBS", "BSMK", "MBA", "MEBUS", "MGBM", "MHCD", "MSR", "MTDM",
+        "BCOM", "MCOMK", "MEIM", "MICST", "MSJNM", "MSMM",
+        "BFDI", "BGD", "BID", "BMMD", "MAPD", "MFMK",
+        "MEDU", "MPPED",
+        "BCE", "BIEM", "BMEC", "MENGM", "MLOG", "MTSD",
+        "BFPA", "MBFM", "MFIN", "MRISK",
+        "MIA",
+        "BMED", "BPSY", "MBIO", "MCN", "MCPSY", "MHIM", "MMED",
+        "MACUL", "MEQD", "MHUM", "MPPHI", "MPHIL", "MTPA",
+        "BLAW", "MCORLA", "MCRIM", "MPA", "MTAX",
+        "MSAS",
+        "BITDB", "MITAI"
+      ]
+    },
+    {
+      "id": "UAMT",
+      "name": "Universidad Anáhuac México Campus Tlalpan",
+      "location": "Tlalpan, Ciudad de México",
+      "focus": "Ciencias de la Salud",
+      "programs": [
+        "PABIO", "PHSC", "PNSC",
+        "MBIO", "MCN", "MCPSY", "MGBIO", "MHIM", "MMED"
+      ]
+    },
+    {
+      "id": "UAO",
+      "name": "Universidad Anáhuac Oaxaca",
+      "location": "San Raymundo Jalpan, Oaxaca",
+      "programs": [
+        "BADM", "BIBS", "BSMK",
+        "BCOM",
+        "BFDI", "BGD", "BID", "BMMD",
+        "BCE", "BIEM", "BMEC",
+        "BFPA",
+        "BMED", "BPSY",
+        "BLAW",
+        "BITDB"
+      ],
+      "partial_programs": [
+        "MADF", "MAID",
+        "MBA",
+        "MFIN",
+        "MMED"
+      ]
+    },
+    {
+      "id": "UAQ",
+      "name": "Universidad Anáhuac Querétaro",
+      "location": "Querétaro, Querétaro",
+      "programs": [
+        "BADM", "BIBS", "BSMK", "MBA", "MTDM",
+        "BCOM",
+        "BGD", "BID",
+        "BIEM", "BMEC",
+        "BFPA",
+        "BPSY",
+        "BLAW",
+        "BITDB"
+      ]
+    },
+    {
+      "id": "UAC",
+      "name": "Universidad Anáhuac Cancún",
+      "location": "Cancún, Quintana Roo",
+      "programs": [
+        "BADM", "BIBS", "BSMK", "MBA", "MTDM",
+        "BCOM",
+        "BGD",
+        "BIEM",
+        "BFPA",
+        "BPSY",
+        "BLAW",
+        "BITDB"
+      ]
+    },
+    {
+      "id": "MAYAB",
+      "name": "Universidad Anáhuac Mayab",
+      "location": "Mérida, Yucatán",
+      "programs": [
+        "BADM", "BIBS", "BSMK", "MBA", "MTDM",
+        "BCOM",
+        "BGD", "BID",
+        "BIEM", "BMEC",
+        "BFPA",
+        "BMED", "BPSY",
+        "BLAW",
+        "BITDB"
+      ]
+    },
+    {
+      "id": "UAP",
+      "name": "Universidad Anáhuac Puebla",
+      "location": "Puebla, Puebla",
+      "programs": [
+        "BADM", "BIBS", "BSMK", "MBA",
+        "BCOM",
+        "BGD",
+        "BIEM",
+        "BFPA",
+        "BPSY",
+        "BLAW",
+        "BITDB"
+      ]
+    },
+    {
+      "id": "UAX",
+      "name": "Universidad Anáhuac Veracruz Campus Xalapa",
+      "location": "Xalapa, Veracruz",
+      "programs": [
+        "BADM", "BIBS", "BSMK",
+        "BCOM",
+        "BGD", "BID",
+        "BIEM", "BMEC",
+        "BFPA",
+        "BPSY",
+        "BLAW",
+        "BITDB"
+      ]
+    },
+    {
+      "id": "UAXC",
+      "name": "Universidad Anáhuac Veracruz Campus Córdoba",
+      "location": "Córdoba, Veracruz",
+      "programs": [
+        "BADM", "BIBS",
+        "BCOM",
+        "BIEM",
+        "BFPA",
+        "BLAW",
+        "BITDB"
+      ]
+    },
+    {
+      "id": "IEST",
+      "name": "Instituto de Estudios Superiores de Tamaulipas Anáhuac",
+      "location": "Tamaulipas",
+      "programs": [
+        "BADM", "BIBS", "BSMK",
+        "BCOM",
+        "BIEM",
+        "BFPA",
+        "BPSY",
+        "BLAW",
+        "BITDB"
+      ]
+    }
+  ],
   "areas": [
     {
       "id": "ARC",
@@ -452,5 +628,11 @@
       "label": "Maestría en Estadística",
       "area": "TEC"
     }
-  ]
+  ],
+  "notes": {
+    "partial_programs": "Algunos campus como Oaxaca ofrecen programas parciales que pueden completarse en otros campus de la Red Anáhuac",
+    "campus_integration": "Campus Norte y Sur de México operan de manera integrada desde 2016",
+    "new_campus": "Campus Tlalpan inaugurado en 2025, especializado en Ciencias de la Salud",
+    "distribution": "La distribución mostrada se basa en información pública disponible al 2026. Los programas específicos pueden variar."
+  }
 }

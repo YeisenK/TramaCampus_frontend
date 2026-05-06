@@ -35,7 +35,7 @@ class MyProfileScreen extends StatelessWidget {
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: _HeroPhoto(user: user),
+              background: RepaintBoundary(child: _HeroPhoto(user: user)),
             ),
           ),
           SliverPadding(
@@ -137,6 +137,22 @@ class _HeroPhoto extends StatelessWidget {
                   ),
                 ),
         ),
+        // Top vignette — keeps photo edge visible against nav bar on light themes
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: const Alignment(0, 0.1),
+                colors: [
+                  Colors.black.withValues(alpha: 0.28),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          ),
+        ),
+        // Bottom fade into surface
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
@@ -233,7 +249,8 @@ class _StatsRow extends StatelessWidget {
         color: cs.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
-      child: IntrinsicHeight(
+      child: SizedBox(
+        height: 72,
         child: Row(
           children: [
             for (int i = 0; i < stats.length; i++) ...[
@@ -244,20 +261,18 @@ class _StatsRow extends StatelessWidget {
                   color: ghostDivider,
                 ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.space4),
-                  child: Column(
-                    children: [
-                      Text(
-                        stats[i].$2,
-                        style: AppTextStyles.headlineSm(cs.primary),
-                      ),
-                      Text(
-                        stats[i].$1,
-                        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      stats[i].$2,
+                      style: AppTextStyles.headlineSm(cs.primary),
+                    ),
+                    Text(
+                      stats[i].$1,
+                      style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                    ),
+                  ],
                 ),
               ),
             ],

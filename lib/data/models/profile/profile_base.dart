@@ -4,6 +4,7 @@ class ProfileBase {
     this.displayName = '',
     this.firstName = '',
     this.lastName = '',
+    this.username = '',
     this.bio = '',
     this.careerId = '',
     this.semester = 1,
@@ -17,10 +18,13 @@ class ProfileBase {
   final String displayName;
   final String firstName;
   final String lastName;
+  // @handle chosen at signup. Lowercase [a-z0-9_], 3–20 chars, unique.
+  // Separate from displayName — "Yeisen Martínez" vs "@yeisen".
+  final String username;
   final String bio;
   final String careerId; // major code, e.g. "BADM"
   final int semester;
-  final String universityId; // campus code, e.g. "0001"
+  final String universityId; // campus code, e.g. "UAO"
   final String gender; // "M" | "F" | "NB" | "prefer_not_say"
   final String genderPreference; // "M" | "F" | "NB" | "any"
   final DateTime? birthDate;
@@ -30,6 +34,7 @@ class ProfileBase {
     String? displayName,
     String? firstName,
     String? lastName,
+    String? username,
     String? bio,
     String? careerId,
     int? semester,
@@ -43,6 +48,7 @@ class ProfileBase {
         displayName: displayName ?? this.displayName,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        username: username ?? this.username,
         bio: bio ?? this.bio,
         careerId: careerId ?? this.careerId,
         semester: semester ?? this.semester,
@@ -57,6 +63,7 @@ class ProfileBase {
         displayName: json['display_name'] as String? ?? '',
         firstName: json['first_name'] as String? ?? '',
         lastName: json['last_name'] as String? ?? '',
+        username: json['username'] as String? ?? '',
         bio: json['bio'] as String? ?? '',
         careerId: json['career_id'] as String? ?? '',
         semester: json['semester'] as int? ?? 1,
@@ -73,6 +80,7 @@ class ProfileBase {
         'display_name': displayName,
         'first_name': firstName,
         'last_name': lastName,
+        'username': username,
         'bio': bio,
         'career_id': careerId,
         'semester': semester,

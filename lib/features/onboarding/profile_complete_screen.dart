@@ -5,15 +5,51 @@ import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/network_texture.dart';
 import '../../core/widgets/t_button.dart';
-import '../../data/mock/mock_data.dart';
+import '../../data/repositories/onboarding_draft_repository.dart';
 
-class ProfileCompleteScreen extends StatelessWidget {
+class ProfileCompleteScreen extends StatefulWidget {
   const ProfileCompleteScreen({super.key});
+
+  @override
+  State<ProfileCompleteScreen> createState() => _ProfileCompleteScreenState();
+}
+
+class _ProfileCompleteScreenState extends State<ProfileCompleteScreen> {
+  String _displayName = '';
+  String _username = '';
+  double _hue = 220;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDraft();
+  }
+
+  Future<void> _loadDraft() async {
+    final draft = await OnboardingDraftRepository.instance.load();
+    if (!mounted) return;
+    final first = draft.firstName ?? '';
+    final last = draft.lastName ?? '';
+    final username = draft.username ?? '';
+    setState(() {
+      _displayName = [first, last].where((s) => s.isNotEmpty).join(' ');
+      _username = username.isNotEmpty ? '@$username' : '';
+      _hue = (first.isNotEmpty ? first.codeUnitAt(0).toDouble() * 1.4 : 220) %
+          360;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final user = MockData.currentUser;
+    final initials = _displayName.isNotEmpty
+        ? _displayName
+            .split(' ')
+            .where((w) => w.isNotEmpty)
+            .map((w) => w[0].toUpperCase())
+            .take(2)
+            .join()
+        : '?';
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -25,7 +61,6 @@ class ProfileCompleteScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const Spacer(flex: 2),
-                  // Duo avatar pair with overlap
                   SizedBox(
                     height: 104,
                     width: 172,
@@ -35,15 +70,15 @@ class ProfileCompleteScreen extends StatelessWidget {
                         Positioned(
                           left: 0,
                           child: _AvatarCircle(
-                            hue: user.hue,
-                            initials: user.initials,
+                            hue: _hue,
+                            initials: initials,
                             size: 96,
                           ),
                         ),
                         Positioned(
                           right: 0,
                           child: _AvatarCircle(
-                            hue: (user.hue + 140) % 360,
+                            hue: (_hue + 140) % 360,
                             initials: '?',
                             size: 96,
                           ),
@@ -57,6 +92,22 @@ class ProfileCompleteScreen extends StatelessWidget {
                     style: AppTextStyles.headlineLg(cs.onSurface),
                     textAlign: TextAlign.center,
                   ),
+                  if (_displayName.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.space2),
+                    Text(
+                      _displayName,
+                      style: AppTextStyles.titleMd(cs.onSurface),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                  if (_username.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.space1),
+                    Text(
+                      _username,
+                      style: AppTextStyles.bodyMd(cs.primary),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                   const SizedBox(height: AppSpacing.space3),
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 280),

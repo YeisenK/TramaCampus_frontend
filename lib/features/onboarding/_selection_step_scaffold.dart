@@ -73,7 +73,7 @@ class SelectionStepScaffold extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                StepDots(totalSteps: 7, currentStep: step),
+                StepDots(totalSteps: 8, currentStep: step),
               ],
             ),
             const SizedBox(height: AppSpacing.space5),

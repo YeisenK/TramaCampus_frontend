@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../../core/navigation/app_router.dart';
 import '../../../core/theme/app_colors.dart';
@@ -75,6 +74,7 @@ class _PhotoArea extends StatelessWidget {
                 ? Image.network(
                     listing.imageUrls.first,
                     fit: BoxFit.cover,
+                    cacheWidth: 600,
                     errorBuilder: (_, __, ___) => Container(
                       color: cs.surfaceContainerHigh,
                       child: Icon(
@@ -118,20 +118,18 @@ class _GlassSaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: ClipOval(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            width: 36,
-            height: 36,
-            color: Colors.black.withValues(alpha: 0.28),
-            alignment: Alignment.center,
-            child: Icon(
-              isSaved ? Icons.bookmark : Icons.bookmark_border,
-              color: Colors.white,
-              size: 18,
-            ),
-          ),
+      child: Container(
+        width: 36,
+        height: 36,
+        decoration: const BoxDecoration(
+          color: Color(0x47000000),
+          shape: BoxShape.circle,
+        ),
+        alignment: Alignment.center,
+        child: Icon(
+          isSaved ? Icons.bookmark : Icons.bookmark_border,
+          color: Colors.white,
+          size: 18,
         ),
       ),
     );
@@ -144,22 +142,19 @@ class _GlassPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          color: Colors.black.withValues(alpha: 0.3),
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              letterSpacing: 0.3,
-            ),
-          ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: const Color(0x4D000000),
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+          letterSpacing: 0.3,
         ),
       ),
     );

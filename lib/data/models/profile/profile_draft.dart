@@ -12,6 +12,7 @@ class ProfileDraft {
     this.displayName,
     this.firstName,
     this.lastName,
+    this.username,
     this.bio,
     this.careerId,
     this.semester,
@@ -39,6 +40,7 @@ class ProfileDraft {
   String? displayName;
   String? firstName;
   String? lastName;
+  String? username;
   String? bio;
   String? careerId;
   int? semester;
@@ -78,6 +80,7 @@ class ProfileDraft {
         displayName: displayName ?? '',
         firstName: firstName ?? '',
         lastName: lastName ?? '',
+        username: username ?? '',
         bio: bio ?? '',
         careerId: careerId ?? '',
         semester: semester ?? 1,
@@ -105,6 +108,7 @@ class ProfileDraft {
         'display_name': displayName,
         'first_name': firstName,
         'last_name': lastName,
+        'username': username,
         'bio': bio,
         'career_id': careerId,
         'semester': semester,
@@ -137,6 +141,7 @@ class ProfileDraft {
       displayName: map['display_name'] as String?,
       firstName: map['first_name'] as String?,
       lastName: map['last_name'] as String?,
+      username: map['username'] as String?,
       bio: map['bio'] as String?,
       careerId: map['career_id'] as String?,
       semester: map['semester'] as int?,

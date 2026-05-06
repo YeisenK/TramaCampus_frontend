@@ -81,6 +81,7 @@ class _Thumbnail extends StatelessWidget {
             ? Image.network(
                 listing.imageUrls.first,
                 fit: BoxFit.cover,
+                cacheWidth: 160,
                 errorBuilder: (_, __, ___) => _placeholder,
               )
             : _placeholder,

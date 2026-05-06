@@ -41,6 +41,7 @@ class ListingCardGrid extends StatelessWidget {
                         listing.imageUrls.first,
                         fit: BoxFit.cover,
                         width: double.infinity,
+                        cacheWidth: 400,
                         errorBuilder: (_, __, ___) => _placeholder(cs),
                       )
                     : _placeholder(cs),

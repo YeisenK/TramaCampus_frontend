@@ -54,8 +54,8 @@ void main() {
       expect(fabShadow.color.blue, closeTo(0x58, 2));  // 88
     });
 
-    test('glass blur sigma is 20', () {
-      expect(AppColors.glassBlurSigma, 20.0);
+    test('glass blur sigma is 12', () {
+      expect(AppColors.glassBlurSigma, 12.0);
     });
 
     test('glass saturation boost is 1.2', () {

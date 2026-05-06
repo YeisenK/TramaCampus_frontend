@@ -22,6 +22,8 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   int _navIndex = 0;
+  // Tracks which tabs have been built at least once — lazy init pattern.
+  final Set<int> _builtTabs = {0};
   ModalityType _modality = ModalityType.estudio;
   final Set<String> _saved = {};
 
@@ -35,6 +37,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   List<Student> _filterStudents(ModalityType m) =>
       MockData.students.where((s) => s.intent == m).toList();
+
+  void _onNav(int i) => setState(() {
+    _navIndex = i;
+    _builtTabs.add(i);
+  });
+
+  Widget _lazyTab(int index, Widget child) =>
+      _builtTabs.contains(index) ? child : const SizedBox.shrink();
 
   @override
   Widget build(BuildContext context) {
@@ -62,17 +72,15 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 Navigator.of(context).pushNamed(AppRouter.notifications),
             filteredStudents: _filteredStudents,
           ),
-          const ConnectionsScreen(embedded: true),
-          const MarketplaceScreen(embedded: true),
-          const ChatListScreen(embedded: true),
-          const MyProfileScreen(embedded: true),
+          _lazyTab(1, const ConnectionsScreen(embedded: true)),
+          _lazyTab(2, const MarketplaceScreen(embedded: true)),
+          _lazyTab(3, const ChatListScreen(embedded: true)),
+          _lazyTab(4, const MyProfileScreen(embedded: true)),
         ],
       ),
       bottomNavigationBar: TBottomNav(currentIndex: _navIndex, onTap: _onNav),
     );
   }
-
-  void _onNav(int i) => setState(() => _navIndex = i);
 }
 
 class _DiscoverShell extends StatelessWidget {

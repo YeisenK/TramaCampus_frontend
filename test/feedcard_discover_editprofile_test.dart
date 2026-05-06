@@ -196,52 +196,53 @@ void main() {
   // ─────────────────────────────────────────────────────────────────────────
   // EditProfileScreen — versión simple (MockData)
   // ─────────────────────────────────────────────────────────────────────────
-  group('EditProfileScreen — versión simple restaurada', () {
-    testWidgets('campo nombre pre-cargado con MockData.currentUser.name',
-        (tester) async {
+  group('EditProfileScreen — premium rewrite (TC2)', () {
+    testWidgets('renders user display name in header', (tester) async {
       await tester.pumpWidget(_app(const EditProfileScreen()));
       await tester.pump();
 
-      final nameField = find.widgetWithText(TextField, MockData.currentUser.name);
-      expect(nameField, findsOneWidget,
-          reason: 'debe pre-cargarse con el nombre del usuario actual');
+      final name = MockData.currentProfile.base.firstName;
+      expect(find.textContaining(name), findsWidgets,
+          reason: 'header must show user first name');
     });
 
-    testWidgets('renderiza exactamente 10 chips de semestre', (tester) async {
+    testWidgets('renders circular progress ring', (tester) async {
       await tester.pumpWidget(_app(const EditProfileScreen()));
       await tester.pump();
 
-      // Busca chips Sem. 1 a Sem. 10
-      for (var i = 1; i <= 10; i++) {
-        expect(find.text('Sem. $i'), findsOneWidget,
-            reason: 'debe existir el chip "Sem. $i"');
-      }
-      expect(find.text('Sem. 11'), findsNothing,
-          reason: 'no debe haber más de 10 semestres');
+      expect(find.byType(CircularProgressIndicator), findsWidgets,
+          reason: 'progress ring must be present in header');
     });
 
-    testWidgets('sección de intereses contiene chips seleccionables',
-        (tester) async {
+    testWidgets('renders group label Para mejor matching', (tester) async {
       await tester.pumpWidget(_app(const EditProfileScreen()));
       await tester.pump();
 
-      // 'Tecnología' es el primer tag en _InterestPicker._tags
-      expect(find.text('Tecnología'), findsOneWidget);
-      expect(find.text('Diseño'), findsOneWidget);
+      expect(find.text('Para mejor matching'), findsOneWidget);
     });
 
-    testWidgets('usa Form widget para validación (versión simple, no ProfileValidator)',
-        (tester) async {
+    testWidgets('renders Objetivos section card', (tester) async {
       await tester.pumpWidget(_app(const EditProfileScreen()));
       await tester.pump();
 
-      // La versión simple usa GlobalKey<FormState> + Form
-      // La versión SelectionExperience no tenía Form
-      expect(find.byType(Form), findsOneWidget,
-          reason: 'versión simple usa Form con _formKey');
+      expect(find.text('Objetivos'), findsOneWidget);
     });
 
-    testWidgets('NO contiene SelectionExperience (versión simple restaurada)',
+    testWidgets('renders Habilidades section card', (tester) async {
+      await tester.pumpWidget(_app(const EditProfileScreen()));
+      await tester.pump();
+
+      expect(find.text('Habilidades'), findsOneWidget);
+    });
+
+    testWidgets('renders Guardar action in app bar', (tester) async {
+      await tester.pumpWidget(_app(const EditProfileScreen()));
+      await tester.pump();
+
+      expect(find.text('Guardar'), findsOneWidget);
+    });
+
+    testWidgets('NO contiene SelectionExperience inline (pickers son full-screen)',
         (tester) async {
       await tester.pumpWidget(_app(const EditProfileScreen()));
       await tester.pump();
@@ -249,7 +250,7 @@ void main() {
       expect(
         find.byType(SelectionExperience),
         findsNothing,
-        reason: 'debe ser la versión simple sin catalog loading',
+        reason: 'catalog pickers are pushed as full-screen routes, not inline',
       );
     });
   });

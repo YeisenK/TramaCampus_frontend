@@ -1,0 +1,10 @@
+{
+  "catalog": "affiliation_type",
+  "version": "2026-05-06",
+  "sets": [],
+  "items": [
+    { "id": "student", "label": "Estudiante" },
+    { "id": "faculty", "label": "Docente" },
+    { "id": "staff",   "label": "Personal administrativo" }
+  ]
+}

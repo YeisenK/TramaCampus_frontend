@@ -117,6 +117,8 @@ class _SelectionExperienceState extends State<SelectionExperience> {
 
   SelectionBuckets? _buckets;
   List<RankedCatalogSet>? _rankedSets;
+  // Items grouped by set.id — computed once after catalog loads, reused on every build.
+  Map<String, List<CatalogItem>> _itemsBySet = {};
 
   @override
   void initState() {
@@ -202,6 +204,13 @@ class _SelectionExperienceState extends State<SelectionExperience> {
       );
 
   void _computeDerived(Catalog catalog, RelevanceData relevance) {
+    // Build the set→items map once; queries into it are O(1) vs O(n) per build.
+    _itemsBySet = {};
+    for (final item in catalog.items) {
+      for (final setId in item.sets) {
+        (_itemsBySet[setId] ??= []).add(item);
+      }
+    }
     final ctx = _ctx();
     if (widget.variant == SelectionVariant.bucketed) {
       final ranked = SelectionRelevanceEngine.rankItems(
@@ -476,7 +485,7 @@ class _SelectionExperienceState extends State<SelectionExperience> {
           _cappedChipsFlat('search', _searchResults)
         else
           ...catalog.sets.map((set) {
-            final items = catalog.items.where((i) => i.sets.contains(set.id)).toList();
+            final items = _itemsBySet[set.id] ?? const [];
             if (items.isEmpty) return const SizedBox.shrink();
             final selectedHere = items.where((i) => _selected.contains(i.id)).length;
             return CategorySection(
@@ -661,8 +670,7 @@ class _SelectionExperienceState extends State<SelectionExperience> {
           _cappedChipsFlat('search', _searchResults)
         else
           ...ranked.map((rs) {
-            final items =
-                catalog.items.where((i) => i.sets.contains(rs.id)).toList();
+            final items = _itemsBySet[rs.id] ?? const [];
             if (items.isEmpty) return const SizedBox.shrink();
             final selectedHere =
                 items.where((i) => _selected.contains(i.id)).length;

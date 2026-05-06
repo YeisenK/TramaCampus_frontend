@@ -9,12 +9,15 @@ import '../../features/marketplace/marketplace_screen.dart';
 import '../../features/marketplace/reservation_screen.dart';
 import '../../features/onboarding/splash_screen.dart';
 import '../../features/onboarding/welcome_screen.dart';
+import '../../features/onboarding/identity_screen.dart';
 import '../../features/onboarding/select_uni_screen.dart';
 import '../../features/onboarding/verify_email_screen.dart';
+import '../../features/onboarding/affiliation_screen.dart';
 import '../../features/onboarding/modality_select_screen.dart';
 import '../../features/onboarding/academic_profile_screen.dart';
 import '../../features/onboarding/personal_goals_screen.dart';
 import '../../features/onboarding/skills_select_screen.dart';
+import '../../features/onboarding/avatar_screen.dart';
 import '../../features/onboarding/profile_complete_screen.dart';
 import '../../features/discover/discover_screen.dart';
 import '../../features/profile/profile_detail_screen.dart';
@@ -53,12 +56,15 @@ class AppRouter {
   static const String splash = '/';
   static const String login = '/login';
   static const String welcome = '/welcome';
+  static const String identity = '/onboarding/identity';
   static const String selectUni = '/onboarding/select-uni';
   static const String verifyEmail = '/onboarding/verify-email';
-  static const String modalitySelect = '/onboarding/modality';
+  static const String affiliation = '/onboarding/affiliation';
   static const String academicProfile = '/onboarding/academic';
-  static const String skillsSelect = '/onboarding/skills';
+  static const String modalitySelect = '/onboarding/modality';
   static const String personalGoals = '/onboarding/goals';
+  static const String skillsSelect = '/onboarding/skills';
+  static const String avatarStep = '/onboarding/avatar';
   static const String profileComplete = '/onboarding/complete';
 
   // Marketplace
@@ -114,10 +120,14 @@ class AppRouter {
         return _slide(const WelcomeScreen(), settings);
       case login:
         return _slide(const LoginScreen(), settings);
+      case identity:
+        return _slide(const IdentityScreen(), settings);
       case selectUni:
         return _slide(const SelectUniScreen(), settings);
       case verifyEmail:
         return _slide(const VerifyEmailScreen(), settings);
+      case affiliation:
+        return _slide(const AffiliationScreen(), settings);
       case modalitySelect:
         return _slide(const ModalitySelectScreen(), settings);
       case academicProfile:
@@ -126,6 +136,8 @@ class AppRouter {
         return _slide(const SkillsSelectScreen(), settings);
       case personalGoals:
         return _slide(const PersonalGoalsScreen(), settings);
+      case avatarStep:
+        return _slide(const AvatarScreen(), settings);
       case profileComplete:
         return _slide(const ProfileCompleteScreen(), settings);
 

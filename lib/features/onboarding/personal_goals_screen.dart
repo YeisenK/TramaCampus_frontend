@@ -60,7 +60,7 @@ class _PersonalGoalsScreenState extends State<PersonalGoalsScreen> {
       ..lastCompletedStep = 'goals';
     await OnboardingDraftRepository.instance.save(draft);
     if (!mounted) return;
-    Navigator.of(context).pushNamed(AppRouter.profileComplete);
+    Navigator.of(context).pushNamed(AppRouter.skillsSelect);
   }
 
   @override
@@ -79,7 +79,7 @@ class _PersonalGoalsScreenState extends State<PersonalGoalsScreen> {
     if (!_draftLoaded) return const Scaffold(body: SkeletonLoader());
 
     return SelectionStepScaffold(
-      step: 5,
+      step: 6,
       title: 'Objetivos en Trama',
       subtitle: '¿Qué esperas encontrar?',
       canContinue: _goals.length >= _min,

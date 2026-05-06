@@ -73,8 +73,9 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
   }
 
   Future<void> _onCategoryChanged(int index) async {
+    // Keep existing data visible during filter — no skeleton flash on cached data.
     setState(() => _selectedCategory = _categories[index]);
-    await _load();
+    await _loadData();
   }
 
   void _onPublishTap() {
@@ -500,27 +501,26 @@ class _StatsBar extends StatelessWidget {
         color: cs.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
-      child: IntrinsicHeight(
+      child: SizedBox(
+        height: 72,
         child: Row(
           children: [
             for (int i = 0; i < stats.length; i++) ...[
               if (i > 0)
                 VerticalDivider(width: 1, thickness: 1, color: ghost),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.space4),
-                  child: Column(
-                    children: [
-                      Text(
-                        stats[i].$2,
-                        style: AppTextStyles.headlineSm(cs.primary),
-                      ),
-                      Text(
-                        stats[i].$1,
-                        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      stats[i].$2,
+                      style: AppTextStyles.headlineSm(cs.primary),
+                    ),
+                    Text(
+                      stats[i].$1,
+                      style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -88,7 +88,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
               const SizedBox(width: AppSpacing.space2),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
+              background: RepaintBoundary(child: Stack(
                 children: [
                   Positioned.fill(
                     child: s.photoUrl != null
@@ -128,6 +128,20 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
+                          end: const Alignment(0, 0.1),
+                          colors: [
+                            Colors.black.withValues(alpha: 0.28),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [Colors.transparent, cs.surface],
                           stops: const [0.6, 1.0],
@@ -155,7 +169,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                     ),
                   ),
                 ],
-              ),
+              )),
             ),
           ),
           SliverPadding(

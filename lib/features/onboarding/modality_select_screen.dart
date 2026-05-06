@@ -6,6 +6,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/step_dots.dart';
 import '../../core/widgets/t_button.dart';
 import '../../data/models/modality.dart';
+import '../../data/repositories/onboarding_draft_repository.dart';
 
 class ModalitySelectScreen extends StatefulWidget {
   const ModalitySelectScreen({super.key});
@@ -16,6 +17,33 @@ class ModalitySelectScreen extends StatefulWidget {
 
 class _ModalitySelectScreenState extends State<ModalitySelectScreen> {
   final Set<ModalityType> _selected = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDraft();
+  }
+
+  Future<void> _loadDraft() async {
+    final draft = await OnboardingDraftRepository.instance.load();
+    if (!mounted) return;
+    final saved = (draft.uiModality ?? '').split(',');
+    setState(() {
+      for (final t in ModalityType.values) {
+        if (saved.contains(t.name)) _selected.add(t);
+      }
+    });
+  }
+
+  Future<void> _continue() async {
+    final draft = await OnboardingDraftRepository.instance.load();
+    draft
+      ..uiModality = _selected.map((t) => t.name).join(',')
+      ..lastCompletedStep = 'modality';
+    await OnboardingDraftRepository.instance.save(draft);
+    if (!mounted) return;
+    Navigator.of(context).pushNamed(AppRouter.personalGoals);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +88,7 @@ class _ModalitySelectScreenState extends State<ModalitySelectScreen> {
               padding: const EdgeInsets.all(AppSpacing.space5),
               child: TButton(
                 label: 'Continuar',
-                onPressed: _selected.isEmpty
-                    ? null
-                    : () => Navigator.of(
-                        context,
-                      ).pushNamed(AppRouter.academicProfile),
+                onPressed: _selected.isEmpty ? null : _continue,
               ),
             ),
           ],
@@ -101,7 +125,7 @@ class _Header extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const StepDots(totalSteps: 7, currentStep: 2),
+              const StepDots(totalSteps: 8, currentStep: 5),
             ],
           ),
           const SizedBox(height: AppSpacing.space5),

@@ -1,0 +1,11 @@
+{
+  "catalog": "gender",
+  "version": "2026-05-06",
+  "sets": [],
+  "items": [
+    { "id": "F",              "label": "Mujer" },
+    { "id": "M",              "label": "Hombre" },
+    { "id": "NB",             "label": "No binario" },
+    { "id": "prefer_not_say", "label": "Prefiero no decirlo" }
+  ]
+}

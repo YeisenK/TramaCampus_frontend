@@ -44,9 +44,24 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
     try {
       final catalog = await BundledCatalogRepository.instance.load('academic');
       final draft = await OnboardingDraftRepository.instance.load();
+      final universityId = draft.universityId;
+      Catalog filtered = catalog;
+      if (universityId != null) {
+        final programs =
+            await BundledCatalogRepository.instance.programsForCampus(
+          universityId,
+        );
+        final allowedIds = {for (final p in programs) p.id};
+        filtered = Catalog(
+          name: catalog.name,
+          version: catalog.version,
+          sets: catalog.sets,
+          items: catalog.items.where((i) => allowedIds.contains(i.id)).toList(),
+        );
+      }
       if (!mounted) return;
       setState(() {
-        _catalog = catalog;
+        _catalog = filtered;
         _selectedId = draft.careerId;
         _semester = draft.semester ?? 1;
       });
@@ -64,7 +79,7 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
       ..lastCompletedStep = 'academic';
     await OnboardingDraftRepository.instance.save(draft);
     if (!mounted) return;
-    Navigator.of(context).pushNamed(AppRouter.skillsSelect);
+    Navigator.of(context).pushNamed(AppRouter.modalitySelect);
   }
 
   @override
@@ -266,7 +281,7 @@ class _Header extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const StepDots(totalSteps: 7, currentStep: 3),
+              const StepDots(totalSteps: 8, currentStep: 4),
             ],
           ),
           const SizedBox(height: AppSpacing.space5),

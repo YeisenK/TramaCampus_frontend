@@ -73,11 +73,12 @@ void main() {
       await tester.pumpWidget(MaterialApp(
         home: const VerifyEmailScreen(),
       ));
-      // Type email and send
+      // Type email — pump so the listener fires and the button enables.
       await tester.enterText(find.byType(TextField), 'test@uni.mx');
+      await tester.pump();
       await tester.tap(find.text('Enviar código de verificación'));
       await tester.pump();
-      // Should show 4 single-char text fields (the code cells)
+      // Should show the OTP entry heading
       expect(find.text('Código de verificación'), findsOneWidget);
     });
   });
@@ -105,8 +106,6 @@ void main() {
 
     testWidgets('renders two avatar circles (duo pair)', (tester) async {
       await tester.pumpWidget(_app(const ProfileCompleteScreen()));
-      // Two _AvatarCircle containers (found by BoxDecoration shape circle)
-      final containers = find.byType(Container);
       // Just verify the screen renders without error and has the expected structure
       expect(find.byType(Stack), findsWidgets);
     });

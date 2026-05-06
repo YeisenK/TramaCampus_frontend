@@ -5,6 +5,9 @@ import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/step_dots.dart';
 import '../../core/widgets/t_button.dart';
+import '../../data/models/catalog/campus_info.dart';
+import '../../data/repositories/catalog_repository.dart';
+import '../../data/repositories/onboarding_draft_repository.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
   const VerifyEmailScreen({super.key});
@@ -16,27 +19,65 @@ class VerifyEmailScreen extends StatefulWidget {
 class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   final _emailController = TextEditingController();
   bool _sent = false;
+  CampusInfo? _campus;
+  String? _domainError;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCampus();
+    _emailController.addListener(_onEmailChanged);
+  }
 
   @override
   void dispose() {
+    _emailController.removeListener(_onEmailChanged);
     _emailController.dispose();
     super.dispose();
   }
 
-  void _sendCode() {
-    if (_emailController.text.isNotEmpty) {
-      setState(() => _sent = true);
+  void _onEmailChanged() {
+    // Rebuild on each keystroke to update the button enabled state.
+    // Also clears domain error inline.
+    if (_domainError != null) {
+      setState(() => _domainError = null);
+    } else {
+      setState(() {});
     }
+  }
+
+  Future<void> _loadCampus() async {
+    final draft = await OnboardingDraftRepository.instance.load();
+    if (!mounted || draft.universityId == null) return;
+    final campus =
+        await BundledCatalogRepository.instance.campusInfo(draft.universityId!);
+    if (!mounted) return;
+    setState(() => _campus = campus);
+  }
+
+  void _sendCode() {
+    final email = _emailController.text.trim();
+    if (email.isEmpty) return;
+    if (_campus != null && !_campus!.allowsEmail(email)) {
+      setState(() => _domainError =
+          'Este correo no pertenece a ${_campus!.name}. Verifica o vuelve a elegir tu campus.');
+      return;
+    }
+    setState(() {
+      _domainError = null;
+      _sent = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _VerifyHeader(step: 1),
+            _buildHeader(cs),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(AppSpacing.space5),
@@ -44,30 +85,39 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   if (!_sent) ...[
                     Text(
                       'Ingresa tu correo institucional',
-                      style: AppTextStyles.titleMd(
-                        Theme.of(context).colorScheme.onSurface,
-                      ),
+                      style: AppTextStyles.titleMd(cs.onSurface),
                     ),
+                    if (_campus != null) ...[
+                      const SizedBox(height: AppSpacing.space2),
+                      Text(
+                        'Dominio válido: ${_campus!.emailDomains.join(', ')}',
+                        style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                      ),
+                    ],
                     const SizedBox(height: AppSpacing.space4),
                     TextField(
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        hintText: 'nombre@universidad.mx',
-                        prefixIcon: Icon(Icons.language_outlined),
+                      decoration: InputDecoration(
+                        hintText: _campus != null
+                            ? 'nombre${_campus!.emailDomains.first}'
+                            : 'nombre@universidad.mx',
+                        prefixIcon: const Icon(Icons.mail_outline),
+                        errorText: _domainError,
                       ),
                     ),
                     const SizedBox(height: AppSpacing.space4),
                     TButton(
                       label: 'Enviar código de verificación',
-                      onPressed: _sendCode,
+                      onPressed: _emailController.text.trim().isEmpty
+                          ? null
+                          : _sendCode,
                     ),
                   ] else ...[
                     _VerifyCodeEntry(
                       email: _emailController.text,
-                      onVerified: () => Navigator.of(
-                        context,
-                      ).pushNamed(AppRouter.modalitySelect),
+                      onVerified: () =>
+                          Navigator.of(context).pushNamed(AppRouter.affiliation),
                     ),
                   ],
                 ],
@@ -78,57 +128,39 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
       ),
     );
   }
-}
 
-class _VerifyHeader extends StatelessWidget {
-  const _VerifyHeader({required this.step});
-  final int step;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return Container(
-      width: double.infinity,
-      color: cs.surfaceDim,
-      padding: const EdgeInsets.fromLTRB(
-        AppSpacing.space5,
-        AppSpacing.space6,
-        AppSpacing.space5,
-        AppSpacing.space5,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.of(context).maybePop(),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 20,
-                  color: cs.onSurface,
+  Widget _buildHeader(ColorScheme cs) => Container(
+        width: double.infinity,
+        color: cs.surfaceDim,
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.space5,
+          AppSpacing.space6,
+          AppSpacing.space5,
+          AppSpacing.space5,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () => Navigator.of(context).maybePop(),
+                  child: Icon(Icons.arrow_back_ios_new,
+                      size: 20, color: cs.onSurface),
                 ),
-              ),
-              const Spacer(),
-              StepDots(totalSteps: 6, currentStep: step, showKicker: false),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.space2),
-          Center(child: StepDots(totalSteps: 6, currentStep: step)),
-          const SizedBox(height: AppSpacing.space5),
-          Text(
-            'Verificar correo',
-            style: AppTextStyles.headlineSm(cs.onSurface),
-          ),
-          const SizedBox(height: AppSpacing.space2),
-          Text(
-            'Confirma que perteneces a tu universidad',
-            style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
-          ),
-        ],
-      ),
-    );
-  }
+                const Spacer(),
+                const StepDots(totalSteps: 8, currentStep: 2),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.space5),
+            Text('Verificar correo',
+                style: AppTextStyles.headlineSm(cs.onSurface)),
+            const SizedBox(height: AppSpacing.space2),
+            Text('Confirma que perteneces a tu universidad',
+                style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+          ],
+        ),
+      );
 }
 
 class _VerifyCodeEntry extends StatefulWidget {
@@ -227,16 +259,18 @@ class _VerifyCodeEntryState extends State<_VerifyCodeEntry> {
                   if (v.isNotEmpty && i < 3) {
                     _focusNodes[i + 1].requestFocus();
                   }
-                  setState(() {});
                 },
               ),
             );
           }),
         ),
         const SizedBox(height: AppSpacing.space5),
-        TButton(
-          label: 'Verificar',
-          onPressed: _isComplete ? widget.onVerified : null,
+        ListenableBuilder(
+          listenable: Listenable.merge(_cells),
+          builder: (ctx, _) => TButton(
+            label: 'Verificar',
+            onPressed: _isComplete ? widget.onVerified : null,
+          ),
         ),
         const SizedBox(height: AppSpacing.space3),
         Center(

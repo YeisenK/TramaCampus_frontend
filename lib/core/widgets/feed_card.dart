@@ -1,9 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../data/models/student.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
-import '../theme/app_text_styles.dart';
 import 't_chip.dart';
 
 class FeedCard extends StatelessWidget {
@@ -31,14 +29,9 @@ class FeedCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: cs.onSurface.withValues(alpha: 0.06),
-              blurRadius: 32,
-              offset: const Offset(0, 12),
-            ),
-            BoxShadow(
-              color: cs.onSurface.withValues(alpha: 0.04),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
+              color: cs.onSurface.withValues(alpha: 0.07),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
             ),
           ],
         ),
@@ -130,28 +123,22 @@ class _CtxPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-          decoration: BoxDecoration(
-            color: glassBg,
-            borderRadius: BorderRadius.circular(AppRadius.pill),
-          ),
-          child: Text(
-            student.program,
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: cs.onSurface,
-              letterSpacing: 0.3,
-              height: 1,
-            ),
-          ),
+    final bg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+      ),
+      child: Text(
+        student.program,
+        style: TextStyle(
+          fontFamily: 'Inter',
+          fontSize: 11,
+          fontWeight: FontWeight.w500,
+          color: cs.onSurface,
+          letterSpacing: 0.3,
+          height: 1,
         ),
       ),
     );
@@ -168,26 +155,18 @@ class _SaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    final bg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
     return GestureDetector(
       onTap: onSave,
-      child: ClipOval(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-          child: Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              color: glassBg,
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Icon(
-              isSaved ? Icons.bookmark : Icons.bookmark_border,
-              size: 16,
-              color: isSaved ? cs.primary : cs.onSurfaceVariant,
-            ),
-          ),
+      child: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(color: bg, shape: BoxShape.circle),
+        alignment: Alignment.center,
+        child: Icon(
+          isSaved ? Icons.bookmark : Icons.bookmark_border,
+          size: 16,
+          color: isSaved ? cs.primary : cs.onSurfaceVariant,
         ),
       ),
     );

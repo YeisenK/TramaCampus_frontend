@@ -44,10 +44,11 @@ class MockData {
       displayName: 'Sofía Ramírez',
       firstName: 'Sofía',
       lastName: 'Ramírez',
+      username: 'sofia_r',
       bio: 'Estudio Ingeniería en Tecnologías de la Información, me apasionan los datos, la IA y el desarrollo de software.',
       careerId: 'BITDB',
       semester: 5,
-      universityId: '0001',
+      universityId: 'UAO',
       gender: 'F',
       genderPreference: 'any',
     ),
@@ -68,24 +69,8 @@ class MockData {
     ],
   );
 
-  static const universities = [
-    University(
-      name: 'Anáhuac Oaxaca',
-      emailDomain: '@anahuac.mx',
-      verified: true,
-    ),
-    University(
-      name: 'Tec Monterrey Oaxaca',
-      emailDomain: '@tec.mx',
-      verified: false,
-    ),
-    University(
-      name: 'La Salle Oaxaca',
-      emailDomain: '@lasalle.mx',
-      verified: false,
-    ),
-    University(name: 'UABJO Oaxaca', emailDomain: '@uabjo.mx', verified: false),
-  ];
+  // Legacy mock list — kept for back-compat. UI now loads from BundledCatalogRepository.activeCampuses().
+  static const universities = <University>[];
 
   static const students = [
     Student(

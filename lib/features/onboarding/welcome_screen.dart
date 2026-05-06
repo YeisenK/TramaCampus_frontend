@@ -80,7 +80,7 @@ class WelcomeScreen extends StatelessWidget {
                   TButton(
                     label: 'Crear cuenta',
                     onPressed: () =>
-                        Navigator.of(context).pushNamed(AppRouter.selectUni),
+                        Navigator.of(context).pushNamed(AppRouter.identity),
                     icon: Icons.arrow_upward,
                   ),
                   const SizedBox(height: AppSpacing.space3),

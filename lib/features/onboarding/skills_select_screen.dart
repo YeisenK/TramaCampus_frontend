@@ -64,7 +64,7 @@ class _SkillsSelectScreenState extends State<SkillsSelectScreen> {
       ..lastCompletedStep = 'skills';
     await OnboardingDraftRepository.instance.save(draft);
     if (!mounted) return;
-    Navigator.of(context).pushNamed(AppRouter.personalGoals);
+    Navigator.of(context).pushNamed(AppRouter.avatarStep);
   }
 
   @override
@@ -83,7 +83,7 @@ class _SkillsSelectScreenState extends State<SkillsSelectScreen> {
     if (!_draftLoaded) return const Scaffold(body: SkeletonLoader());
 
     return SelectionStepScaffold(
-      step: 4,
+      step: 7,
       title: 'Habilidades',
       subtitle: 'Muestra en qué eres bueno',
       canContinue: _skills.length >= _min,
