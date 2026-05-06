@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../core/widgets/t_avatar.dart';
+import '../../core/widgets/t_grab_bar.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/models/group.dart';
 import '../../data/models/group_message.dart';
+import '../../data/models/student.dart';
 import '../../data/models/task.dart';
 import '../../data/repositories/app_state_repository.dart';
+import '../../data/repositories/student_repository.dart';
 import 'widgets/group_hero.dart';
 import 'widgets/task_row.dart';
 
@@ -133,6 +138,30 @@ class _TabBar extends StatelessWidget {
   }
 }
 
+enum _DateBucket { today, week, later }
+
+extension on _DateBucket {
+  String get label => switch (this) {
+    _DateBucket.today => 'Hoy',
+    _DateBucket.week => 'Esta semana',
+    _DateBucket.later => 'Próximas',
+  };
+}
+
+_DateBucket _bucketFor(String due) {
+  final s = due.toLowerCase().trim();
+  if (s.startsWith('hoy') ||
+      s.startsWith('mañana') ||
+      s.startsWith('manana') ||
+      s.startsWith('ayer') ||
+      s.startsWith('hace ')) {
+    return _DateBucket.today;
+  }
+  const weekdays = ['lun', 'mar', 'mié', 'mie', 'jue', 'vie', 'sáb', 'sab', 'dom'];
+  if (weekdays.any(s.startsWith)) return _DateBucket.week;
+  return _DateBucket.later;
+}
+
 class _TasksTab extends StatefulWidget {
   const _TasksTab({super.key});
 
@@ -142,6 +171,7 @@ class _TasksTab extends StatefulWidget {
 
 class _TasksTabState extends State<_TasksTab> {
   late List<Task> _tasks;
+  bool _showCompleted = false;
 
   @override
   void initState() {
@@ -149,13 +179,15 @@ class _TasksTabState extends State<_TasksTab> {
     _tasks = List.from(MockData.mockGroupTasks);
   }
 
-  void _toggleTask(int index) {
+  void _toggleTask(String id) {
     setState(() {
-      final t = _tasks[index];
+      final i = _tasks.indexWhere((t) => t.id == id);
+      if (i < 0) return;
+      final t = _tasks[i];
       final next = t.status == TaskStatus.done
           ? TaskStatus.todo
           : TaskStatus.done;
-      _tasks[index] = Task(
+      _tasks[i] = Task(
         id: t.id,
         code: t.code,
         title: t.title,
@@ -170,63 +202,133 @@ class _TasksTabState extends State<_TasksTab> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final inProgress = _tasks
-        .where((t) => t.status == TaskStatus.inProgress)
-        .toList();
-    final todo = _tasks.where((t) => t.status == TaskStatus.todo).toList();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final ghost = isDark
+        ? AppColors.darkOutlineGhost
+        : AppColors.lightOutlineGhost;
+
+    final open = _tasks.where((t) => t.status != TaskStatus.done).toList();
     final done = _tasks.where((t) => t.status == TaskStatus.done).toList();
+    final inProgressCount = _tasks
+        .where((t) => t.status == TaskStatus.inProgress)
+        .length;
+    final todoCount = _tasks
+        .where((t) => t.status == TaskStatus.todo)
+        .length;
+
+    final byBucket = <_DateBucket, List<Task>>{};
+    for (final t in open) {
+      byBucket.putIfAbsent(_bucketFor(t.due), () => []).add(t);
+    }
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.space5,
         AppSpacing.space4,
         AppSpacing.space5,
-        100,
+        120,
       ),
       children: [
-        if (inProgress.isNotEmpty) ...[
-          _SectionHeader(
-            label: 'EN PROGRESO',
-            count: inProgress.length,
-            cs: cs,
-          ),
-          ...inProgress.asMap().entries.map(
-            (e) => TaskRow(
-              task: e.value,
-              onToggle: () =>
-                  _toggleTask(_tasks.indexWhere((t) => t.id == e.value.id)),
+        _KpiStrip(
+          inProgress: inProgressCount,
+          pending: todoCount,
+          done: done.length,
+          cs: cs,
+          ghost: ghost,
+        ),
+        const SizedBox(height: AppSpacing.space5),
+        for (final bucket in _DateBucket.values)
+          if ((byBucket[bucket] ?? const []).isNotEmpty) ...[
+            _BucketHeader(
+              label: bucket.label,
+              count: byBucket[bucket]!.length,
+              cs: cs,
             ),
-          ),
-          const SizedBox(height: AppSpacing.space4),
-        ],
-        if (todo.isNotEmpty) ...[
-          _SectionHeader(label: 'PENDIENTES', count: todo.length, cs: cs),
-          ...todo.asMap().entries.map(
-            (e) => TaskRow(
-              task: e.value,
-              onToggle: () =>
-                  _toggleTask(_tasks.indexWhere((t) => t.id == e.value.id)),
+            ...byBucket[bucket]!.map(
+              (t) => TaskRow(task: t, onToggle: () => _toggleTask(t.id)),
             ),
-          ),
-          const SizedBox(height: AppSpacing.space4),
-        ],
-        if (done.isNotEmpty) ...[
-          _SectionHeader(label: 'COMPLETADAS', count: done.length, cs: cs),
-          ...done.asMap().entries.map(
-            (e) => TaskRow(
-              task: e.value,
-              onToggle: () =>
-                  _toggleTask(_tasks.indexWhere((t) => t.id == e.value.id)),
-            ),
-          ),
-        ],
+            const SizedBox(height: AppSpacing.space4),
+          ],
+        if (done.isNotEmpty) _CompletedSection(
+          tasks: done,
+          expanded: _showCompleted,
+          onToggleExpand: () =>
+              setState(() => _showCompleted = !_showCompleted),
+          onToggleTask: _toggleTask,
+          cs: cs,
+        ),
       ],
     );
   }
 }
 
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({
+class _KpiStrip extends StatelessWidget {
+  const _KpiStrip({
+    required this.inProgress,
+    required this.pending,
+    required this.done,
+    required this.cs,
+    required this.ghost,
+  });
+
+  final int inProgress;
+  final int pending;
+  final int done;
+  final ColorScheme cs;
+  final Color ghost;
+
+  @override
+  Widget build(BuildContext context) {
+    final items = [
+      ('En curso', inProgress, cs.primary),
+      ('Pendientes', pending, cs.onSurface),
+      ('Hechas', done, cs.onSurfaceVariant),
+    ];
+    return Container(
+      decoration: BoxDecoration(
+        color: cs.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(AppRadius.md),
+      ),
+      child: SizedBox(
+        height: 84,
+        child: Row(
+          children: [
+            for (int i = 0; i < items.length; i++) ...[
+              if (i > 0)
+                VerticalDivider(width: 1, thickness: 1, color: ghost),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '${items[i].$2}',
+                      style: TextStyle(
+                        fontFamily: 'Manrope',
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        color: items[i].$3,
+                        letterSpacing: -0.02 * 28,
+                        height: 1.0,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      items[i].$1,
+                      style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BucketHeader extends StatelessWidget {
+  const _BucketHeader({
     required this.label,
     required this.count,
     required this.cs,
@@ -238,37 +340,79 @@ class _SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.space2),
+      padding: const EdgeInsets.fromLTRB(
+        0,
+        0,
+        0,
+        AppSpacing.space2,
+      ),
       child: Row(
         children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: cs.onSurfaceVariant,
-              letterSpacing: 0.8,
-            ),
-          ),
+          Text(label, style: AppTextStyles.titleMd(cs.onSurface)),
           const SizedBox(width: AppSpacing.space2),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 1),
-            decoration: BoxDecoration(
-              color: cs.surfaceContainerHigh,
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-            ),
-            child: Text(
-              '$count',
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
-                color: cs.onSurfaceVariant,
-              ),
-            ),
+          Text(
+            '$count',
+            style: AppTextStyles.labelSm(cs.onSurfaceVariant),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _CompletedSection extends StatelessWidget {
+  const _CompletedSection({
+    required this.tasks,
+    required this.expanded,
+    required this.onToggleExpand,
+    required this.onToggleTask,
+    required this.cs,
+  });
+
+  final List<Task> tasks;
+  final bool expanded;
+  final VoidCallback onToggleExpand;
+  final ValueChanged<String> onToggleTask;
+  final ColorScheme cs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InkWell(
+          onTap: onToggleExpand,
+          borderRadius: BorderRadius.circular(AppRadius.sm),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: AppSpacing.space2,
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  expanded ? Icons.expand_more : Icons.chevron_right,
+                  size: 18,
+                  color: cs.onSurfaceVariant,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  'Completadas',
+                  style: AppTextStyles.titleMd(cs.onSurface),
+                ),
+                const SizedBox(width: AppSpacing.space2),
+                Text(
+                  '${tasks.length}',
+                  style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                ),
+              ],
+            ),
+          ),
+        ),
+        if (expanded)
+          ...tasks.map(
+            (t) => TaskRow(task: t, onToggle: () => onToggleTask(t.id)),
+          ),
+      ],
     );
   }
 }
@@ -579,53 +723,410 @@ class _AboutTab extends StatelessWidget {
   }
 }
 
+// ---------- Member roster (mix of real students + synthetic anonymous) ----------
+
+const _kFirstNames = [
+  'Andrea', 'Bruno', 'Carolina', 'Daniel', 'Elena', 'Fernando',
+  'Gabriela', 'Hugo', 'Isabel', 'Jorge', 'Karla', 'Luis',
+  'María', 'Nicolás', 'Olivia', 'Pablo', 'Quetzalli', 'Roberto',
+  'Sara', 'Tomás', 'Valeria', 'Ximena', 'Yael', 'Zaira',
+  'Regina', 'Emilio', 'Claudia', 'Sebastián', 'Lorena', 'Patricio',
+];
+
+const _kLastNames = [
+  'Mendoza', 'Reyes', 'Vega', 'Castillo', 'Torres', 'Ramos',
+  'Vargas', 'Jiménez', 'Salazar', 'Domínguez', 'Aguilar', 'Ortega',
+  'Medina', 'Rojas', 'Cruz', 'Estrada', 'Romero', 'Ibarra',
+  'Bautista', 'Núñez', 'Maldonado',
+];
+
+const _kPrograms = [
+  'Ing. Industrial',
+  'Negocios Internacionales',
+  'Comunicación',
+  'Psicología',
+  'Arquitectura',
+  'Diseño Gráfico',
+  'Derecho',
+  'Mercadotecnia',
+  'Ing. Sistemas',
+  'Pedagogía',
+  'Nutrición',
+  'Administración',
+];
+
+enum _MemberBadge { you, leader, notConnected, none }
+
+class _RosterEntry {
+  const _RosterEntry({
+    this.student,
+    required this.name,
+    required this.program,
+    required this.hue,
+    this.photoUrl,
+    required this.badge,
+  });
+
+  final Student? student;
+  final String name;
+  final String program;
+  final double hue;
+  final String? photoUrl;
+  final _MemberBadge badge;
+
+  String get initials {
+    final parts = name.trim().split(' ');
+    if (parts.length >= 2 && parts[0].isNotEmpty && parts[1].isNotEmpty) {
+      return '${parts[0][0]}${parts[1][0]}';
+    }
+    return parts.isNotEmpty && parts[0].isNotEmpty ? parts[0][0] : '?';
+  }
+}
+
+bool _isConnected(String studentId) =>
+    MockData.chats.any((c) => c.studentId == studentId);
+
+_MemberBadge _badgeFor({
+  required Student student,
+  required Group group,
+}) {
+  if (student.id == MockData.currentUser.id) return _MemberBadge.you;
+  if (student.name == group.leader) return _MemberBadge.leader;
+  if (!_isConnected(student.id)) return _MemberBadge.notConnected;
+  return _MemberBadge.none;
+}
+
+List<_RosterEntry> _buildRoster(Group group) {
+  const repo = StudentRepository();
+  final entries = <_RosterEntry>[];
+  final usedIds = <String>{};
+
+  for (final id in group.members) {
+    final s = repo.getById(id);
+    if (s == null || !usedIds.add(s.id)) continue;
+    entries.add(
+      _RosterEntry(
+        student: s,
+        name: s.name,
+        program: s.program,
+        hue: s.hue,
+        photoUrl: s.photoUrl,
+        badge: _badgeFor(student: s, group: group),
+      ),
+    );
+  }
+
+  // Pad with deterministic synthetic members up to memberCount.
+  // Cap at 80 to keep the official channel from generating thousands of rows.
+  final remaining = group.memberCount - entries.length;
+  final synthCount = remaining.clamp(0, 80);
+  for (var i = 0; i < synthCount; i++) {
+    final seed = (group.id.hashCode ^ ((i + 1) * 31)).abs();
+    final first = _kFirstNames[seed % _kFirstNames.length];
+    final last = _kLastNames[(seed ~/ 17) % _kLastNames.length];
+    final program = _kPrograms[(seed ~/ 53) % _kPrograms.length];
+    final hue = ((seed * 47) % 360).toDouble();
+    entries.add(
+      _RosterEntry(
+        name: '$first $last',
+        program: program,
+        hue: hue,
+        badge: _MemberBadge.notConnected,
+      ),
+    );
+  }
+
+  return entries;
+}
+
+int _hiddenAnonymousCount(Group group) {
+  final visibleMax = group.members.length + 80;
+  if (group.memberCount <= visibleMax) return 0;
+  return group.memberCount - visibleMax;
+}
+
 class _MembersInline extends StatelessWidget {
   const _MembersInline({required this.group, required this.cs});
   final Group group;
   final ColorScheme cs;
 
+  void _openMembersSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
+      ),
+      builder: (_) => _MembersSheet(group: group),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final names = [group.leader, 'Miembro 2', 'Miembro 3'];
-    return Row(
-      children: [
-        ...names.take(3).map((name) => _AvatarCircle(name: name, cs: cs)),
-        if (group.memberCount > 3) ...[
-          const SizedBox(width: AppSpacing.space2),
-          Text(
-            '+${group.memberCount - 3} más',
-            style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-          ),
-        ],
-      ],
+    final roster = _buildRoster(group);
+    if (roster.isEmpty) {
+      return Text(
+        '${group.memberCount} miembros',
+        style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+      );
+    }
+    final shown = roster.take(4).toList();
+    final remainder = group.memberCount - shown.length;
+
+    return InkWell(
+      onTap: () => _openMembersSheet(context),
+      borderRadius: BorderRadius.circular(AppRadius.sm),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.space1),
+        child: Row(
+          children: [
+            SizedBox(
+              height: 38,
+              width: shown.length * 26.0 + 12,
+              child: Stack(
+                children: [
+                  for (int i = 0; i < shown.length; i++)
+                    Positioned(
+                      left: i * 26.0,
+                      child: _StackedAvatar(entry: shown[i], cs: cs),
+                    ),
+                ],
+              ),
+            ),
+            const SizedBox(width: AppSpacing.space2),
+            Expanded(
+              child: Text(
+                _buildSummary(shown, remainder),
+                style: AppTextStyles.bodyMd(cs.onSurface),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Icon(
+              Icons.chevron_right,
+              size: 18,
+              color: cs.onSurfaceVariant,
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  String _buildSummary(List<_RosterEntry> shown, int remainder) {
+    final firstNames = shown
+        .take(2)
+        .map((e) => e.name.split(' ').first)
+        .join(', ');
+    if (remainder > 0) return '$firstNames y $remainder más';
+    return firstNames;
   }
 }
 
-class _AvatarCircle extends StatelessWidget {
-  const _AvatarCircle({required this.name, required this.cs});
-  final String name;
+class _StackedAvatar extends StatelessWidget {
+  const _StackedAvatar({required this.entry, required this.cs});
+  final _RosterEntry entry;
   final ColorScheme cs;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 36,
-      height: 36,
-      margin: const EdgeInsets.only(right: 4),
       decoration: BoxDecoration(
-        color: cs.surfaceContainerHigh,
         shape: BoxShape.circle,
         border: Border.all(color: cs.surface, width: 2),
       ),
-      alignment: Alignment.center,
+      child: TAvatar(
+        initials: entry.initials,
+        hue: entry.hue,
+        photoUrl: entry.photoUrl,
+        size: 34,
+      ),
+    );
+  }
+}
+
+class _MembersSheet extends StatelessWidget {
+  const _MembersSheet({required this.group});
+  final Group group;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final roster = _buildRoster(group);
+    final hidden = _hiddenAnonymousCount(group);
+
+    return DraggableScrollableSheet(
+      initialChildSize: 0.6,
+      minChildSize: 0.4,
+      maxChildSize: 0.9,
+      expand: false,
+      builder: (_, controller) => Column(
+        children: [
+          const SizedBox(height: AppSpacing.space3),
+          const Center(child: TGrabBar()),
+          const SizedBox(height: AppSpacing.space3),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.space5,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Miembros',
+                        style: AppTextStyles.titleMd(cs.onSurface),
+                      ),
+                      Text(
+                        '${group.memberCount} en total',
+                        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppSpacing.space3),
+          Expanded(
+            child: ListView.builder(
+              controller: controller,
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.space3,
+                0,
+                AppSpacing.space3,
+                AppSpacing.space5,
+              ),
+              itemCount: roster.length + (hidden > 0 ? 1 : 0),
+              itemBuilder: (context, i) {
+                if (i == roster.length) {
+                  return _HiddenCountRow(count: hidden, cs: cs);
+                }
+                return _MemberRow(entry: roster[i], cs: cs);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MemberRow extends StatelessWidget {
+  const _MemberRow({required this.entry, required this.cs});
+  final _RosterEntry entry;
+  final ColorScheme cs;
+
+  @override
+  Widget build(BuildContext context) {
+    final tappable = entry.student != null;
+    return ListTile(
+      onTap: tappable
+          ? () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(
+                AppRouter.profileDetail,
+                arguments: entry.student,
+              );
+            }
+          : null,
+      leading: TAvatar(
+        initials: entry.initials,
+        hue: entry.hue,
+        photoUrl: entry.photoUrl,
+        size: 44,
+      ),
+      title: Text(
+        entry.name,
+        style: AppTextStyles.titleMd(cs.onSurface),
+      ),
+      subtitle: Text(
+        entry.program,
+        style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+      ),
+      trailing: _BadgePill(badge: entry.badge, cs: cs),
+    );
+  }
+}
+
+class _BadgePill extends StatelessWidget {
+  const _BadgePill({required this.badge, required this.cs});
+  final _MemberBadge badge;
+  final ColorScheme cs;
+
+  @override
+  Widget build(BuildContext context) {
+    if (badge == _MemberBadge.none) return const SizedBox.shrink();
+
+    final (label, bg, fg) = switch (badge) {
+      _MemberBadge.you => (
+        'Tú',
+        cs.primary.withValues(alpha: 0.12),
+        cs.primary,
+      ),
+      _MemberBadge.leader => (
+        'Líder',
+        cs.primary.withValues(alpha: 0.12),
+        cs.primary,
+      ),
+      _MemberBadge.notConnected => (
+        'No conectado',
+        cs.surfaceContainerHigh,
+        cs.onSurfaceVariant,
+      ),
+      _MemberBadge.none => ('', Colors.transparent, Colors.transparent),
+    };
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+      ),
       child: Text(
-        name.isNotEmpty ? name[0] : '?',
+        label,
         style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 13,
+          fontFamily: 'Inter',
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: fg,
+        ),
+      ),
+    );
+  }
+}
+
+class _HiddenCountRow extends StatelessWidget {
+  const _HiddenCountRow({required this.count, required this.cs});
+  final int count;
+  final ColorScheme cs;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          color: cs.surfaceContainerHigh,
+          shape: BoxShape.circle,
+        ),
+        alignment: Alignment.center,
+        child: Icon(
+          Icons.more_horiz,
+          size: 20,
           color: cs.onSurfaceVariant,
         ),
+      ),
+      title: Text(
+        '$count miembros más',
+        style: AppTextStyles.titleMd(cs.onSurface),
+      ),
+      subtitle: Text(
+        'No mostrados',
+        style: AppTextStyles.bodySm(cs.onSurfaceVariant),
       ),
     );
   }

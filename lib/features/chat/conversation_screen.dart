@@ -32,7 +32,6 @@ class _ConversationScreenState extends State<ConversationScreen> {
     if (persisted.isNotEmpty) {
       _messages = List.from(persisted);
     } else if (widget.student.id == 'diego') {
-      // Seed the demo conversation on first launch.
       _messages = List.from(MockData.conversation);
     } else {
       _messages = [];

@@ -240,7 +240,7 @@ class MockData {
       studentId: 'mateo',
       studentName: 'Mateo Álvarez',
       hue: 180,
-      lastMessage: 'El senderismo fue increíble 🏔️',
+      lastMessage: 'El senderismo del sábado estuvo increíble',
       time: 'Dom',
       unreadCount: 1,
     ),
@@ -489,8 +489,8 @@ class MockData {
     ),
   ];
 
-  static const List<Group> mockGroups = [
-    Group(
+  static final List<Group> mockGroups = [
+    const Group(
       id: 'g1',
       name: 'Hackathon Nacional · Equipo C',
       tagline: 'Proyecto cerrado · Ing. de Software · entrega 14 nov',
@@ -506,8 +506,9 @@ class MockData {
       leader: 'Javier Cortés',
       description:
           'Equipo formado para el Hackathon Nacional. Cuatro integrantes activos con roles de backend, frontend y diseño.',
+      members: ['javier', 'sofia', 'camila', 'mateo'],
     ),
-    Group(
+    const Group(
       id: 'g2',
       name: 'Filosofía de la mente',
       tagline: 'Lectura y discusión · martes 18:00',
@@ -523,8 +524,9 @@ class MockData {
       leader: 'Diego Navarro',
       description:
           'Grupo de lectura interdisciplinar. Este semestre: Hofstadter, Dennett y Chalmers. Cualquier carrera es bienvenida.',
+      members: ['diego', 'sofia', 'renata', 'lucia', 'mateo'],
     ),
-    Group(
+    const Group(
       id: 'g3',
       name: 'Trama · Anuncios oficiales',
       tagline: 'Comunicados de la administración del campus',
@@ -533,14 +535,15 @@ class MockData {
       verified: true,
       featured: false,
       hue: 22,
-      memberCount: 2840,
+      memberCount: 240,
       activity: 'Oficial · solo lectura',
       nextAction: 'Sin acción pendiente',
       leader: 'Anáhuac Oaxaca',
       description:
           'Canal oficial de comunicación institucional. Solo administradores del campus pueden publicar.',
+      members: ['diego', 'ana', 'mateo'],
     ),
-    Group(
+    const Group(
       id: 'g4',
       name: 'Running Anáhuac',
       tagline: 'Trail y carrera · 3 sesiones / semana',
@@ -555,8 +558,9 @@ class MockData {
       leader: 'Mateo Álvarez',
       description:
           'Para corredores de cualquier nivel. Coordinamos salidas semanales y preparamos el maratón de Oaxaca.',
+      members: ['mateo', 'sofia', 'javier', 'diego'],
     ),
-    Group(
+    const Group(
       id: 'g5',
       name: 'Emprendimiento · founders Oaxaca',
       tagline: 'Club universitario · pitch nights mensuales',
@@ -571,8 +575,9 @@ class MockData {
       leader: 'Comité estudiantil',
       description:
           'Club oficial reconocido por el campus. Conectamos founders estudiantiles con mentores y aceleradoras regionales.',
+      members: ['javier', 'camila', 'diego', 'ana'],
     ),
-    Group(
+    const Group(
       id: 'g6',
       name: 'Diseño UX · Anáhuac',
       tagline: 'Club de diseño de experiencias · viernes 17:00',
@@ -588,8 +593,9 @@ class MockData {
       leader: 'Camila Ruíz',
       description:
           'Espacio de práctica y crítica para estudiantes de diseño y áreas afines. Proyectos reales de mejora del campus.',
+      members: ['camila', 'ana', 'mateo', 'javier'],
     ),
-    Group(
+    const Group(
       id: 'g7',
       name: 'Álgebra Lineal · semestre 5',
       tagline: 'Grupo de estudio · prof. Mendoza',
@@ -605,6 +611,7 @@ class MockData {
       leader: 'Diego Navarro',
       description:
           'Grupo cerrado de preparación para los exámenes de Álgebra Lineal. Miembros por invitación de Diego.',
+      members: ['diego', 'mateo', 'lucia'],
     ),
     Group(
       id: 'g8',
@@ -623,10 +630,15 @@ class MockData {
       description:
           'Equipo de investigación para proyecto de tesis interdisciplinar entre Psicología y Matemáticas.',
       temporary: true,
+      expiresAt: DateTime(2026, 5, 20),
+      members: ['renata', 'lucia'],
     ),
   ];
 
   static const List<String> myGroupIds = ['g1', 'g2', 'g4'];
+
+  /// Groups the user follows but isn't a member of — demo seed for the rail.
+  static const List<String> myFollowedGroupIds = ['g5', 'g6'];
 
   static const List<Task> mockGroupTasks = [
     Task(

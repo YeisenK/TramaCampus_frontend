@@ -25,6 +25,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   // Tracks which tabs have been built at least once — lazy init pattern.
   final Set<int> _builtTabs = {0};
   ModalityType _modality = ModalityType.estudio;
+  FeedFilter _feedFilter = FeedFilter.all;
   final Set<String> _saved = {};
 
   late List<Student> _filteredStudents;
@@ -55,10 +56,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           _DiscoverShell(
             modality: _modality,
             saved: _saved,
+            feedFilter: _feedFilter,
             onModalityChanged: (m) => setState(() {
               _modality = m;
               _filteredStudents = _filterStudents(m);
             }),
+            onFeedFilterChanged: (f) => setState(() => _feedFilter = f),
             onStudentTap: (s) => Navigator.of(
               context,
             ).pushNamed(AppRouter.profileDetail, arguments: s),
@@ -88,7 +91,9 @@ class _DiscoverShell extends StatelessWidget {
   const _DiscoverShell({
     required this.modality,
     required this.saved,
+    required this.feedFilter,
     required this.onModalityChanged,
+    required this.onFeedFilterChanged,
     required this.onStudentTap,
     required this.onSaveToggle,
     required this.onNotificationsTap,
@@ -97,7 +102,9 @@ class _DiscoverShell extends StatelessWidget {
 
   final ModalityType modality;
   final Set<String> saved;
+  final FeedFilter feedFilter;
   final ValueChanged<ModalityType> onModalityChanged;
+  final ValueChanged<FeedFilter> onFeedFilterChanged;
   final ValueChanged<Student> onStudentTap;
   final ValueChanged<String> onSaveToggle;
   final VoidCallback onNotificationsTap;
@@ -135,6 +142,8 @@ class _DiscoverShell extends StatelessWidget {
         saved: saved,
         onTap: onStudentTap,
         onSave: onSaveToggle,
+        filter: feedFilter,
+        onFilterChanged: onFeedFilterChanged,
       ),
     );
   }

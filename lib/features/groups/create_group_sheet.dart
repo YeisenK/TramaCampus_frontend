@@ -199,7 +199,7 @@ class _KindGrid extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: AppSpacing.space2,
         mainAxisSpacing: AppSpacing.space2,
-        childAspectRatio: 1.05,
+        mainAxisExtent: 132,
       ),
       itemCount: _items.length,
       itemBuilder: (context, i) {
@@ -304,19 +304,19 @@ class _AccessList extends StatelessWidget {
       GroupAccess.open,
       Icons.public_outlined,
       'Abierto',
-      'Cualquier estudiante puede unirse.',
+      'Visible en Descubrir. Cualquier estudiante se une al instante.',
     ),
     (
       GroupAccess.request,
       Icons.how_to_reg_outlined,
-      'Por solicitud',
-      'Tú apruebas a los nuevos miembros.',
+      'Solicitar acceso',
+      'Visible en Descubrir. Tú apruebas cada nueva solicitud.',
     ),
     (
       GroupAccess.invite,
       Icons.lock_outline,
-      'Solo invitación',
-      'No aparece en descubrir.',
+      'Privado',
+      'Solo por invitación. No aparece en Descubrir.',
     ),
   ];
 

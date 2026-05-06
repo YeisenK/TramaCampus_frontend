@@ -40,6 +40,7 @@ class Group {
     this.capacity,
     this.temporary = false,
     this.expiresAt,
+    this.members = const [],
   });
 
   final String id;
@@ -58,6 +59,10 @@ class Group {
   final String description;
   final bool temporary;
   final DateTime? expiresAt;
+
+  /// Visible / known member student IDs. May be a subset of memberCount
+  /// (the rest are anonymous from the demo's perspective).
+  final List<String> members;
 
   bool get isDiscoverable => access != GroupAccess.invite;
 
@@ -78,6 +83,7 @@ class Group {
     'description': description,
     'temporary': temporary,
     'expiresAt': expiresAt?.toIso8601String(),
+    'members': members,
   };
 
   String toJsonString() => jsonEncode(toJson());
@@ -101,6 +107,7 @@ class Group {
     expiresAt: json['expiresAt'] != null
         ? DateTime.parse(json['expiresAt'] as String)
         : null,
+    members: (json['members'] as List?)?.cast<String>() ?? const [],
   );
 
   factory Group.fromJsonString(String s) =>

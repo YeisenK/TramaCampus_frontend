@@ -92,11 +92,12 @@ void main() {
       expect(find.byType(GroupCard), findsWidgets);
     });
 
-    testWidgets('renders first group name', (tester) async {
+    testWidgets('renders first discoverable group name', (tester) async {
       await tester.pumpWidget(_app(const GroupsDiscoverScreen(embedded: true)));
       await tester.pumpAndSettle();
+      final visible = MockData.mockGroups.firstWhere((g) => g.isDiscoverable);
       expect(
-        find.textContaining(MockData.mockGroups.first.name.substring(0, 8)),
+        find.textContaining(visible.name.substring(0, 8)),
         findsWidgets,
       );
     });
@@ -121,14 +122,17 @@ void main() {
       final group = MockData.mockGroups.first;
       await tester.pumpWidget(_scaffold(GroupCard(group: group)));
       await tester.pump();
-      expect(find.text('${group.memberCount}'), findsOneWidget);
+      expect(
+        find.text('${group.memberCount} miembros'),
+        findsOneWidget,
+      );
     });
 
-    testWidgets('renders verified icon when verified', (tester) async {
+    testWidgets('renders OFICIAL marker when verified', (tester) async {
       final verified = MockData.mockGroups.firstWhere((g) => g.verified);
       await tester.pumpWidget(_scaffold(GroupCard(group: verified)));
       await tester.pump();
-      expect(find.byIcon(Icons.verified), findsOneWidget);
+      expect(find.text('OFICIAL'), findsOneWidget);
     });
   });
 
@@ -207,11 +211,11 @@ void main() {
       expect(find.text('Tablero'), findsOneWidget);
     });
 
-    testWidgets('renders Miembros tab', (tester) async {
+    testWidgets('renders Conversación tab', (tester) async {
       final group = MockData.mockGroups.first;
       await tester.pumpWidget(_app(GroupDetailScreen(group: group)));
       await tester.pump();
-      expect(find.text('Miembros'), findsOneWidget);
+      expect(find.text('Conversación'), findsOneWidget);
     });
 
     testWidgets('renders task rows on Tablero tab', (tester) async {
@@ -221,13 +225,13 @@ void main() {
       expect(find.byType(TaskRow), findsWidgets);
     });
 
-    testWidgets('tapping Miembros tab switches view', (tester) async {
+    testWidgets('tapping Acerca de tab switches view', (tester) async {
       final group = MockData.mockGroups.first;
       await tester.pumpWidget(_app(GroupDetailScreen(group: group)));
       await tester.pump();
-      await tester.tap(find.text('Miembros'));
+      await tester.tap(find.text('Acerca de'));
       await tester.pumpAndSettle();
-      expect(find.textContaining('miembros'), findsOneWidget);
+      expect(find.text('Descripción'), findsOneWidget);
     });
   });
 
@@ -263,7 +267,8 @@ void main() {
       );
       await tester.pump();
       expect(find.text('Abierto'), findsOneWidget);
-      expect(find.text('Con solicitud'), findsOneWidget);
+      expect(find.text('Solicitar acceso'), findsOneWidget);
+      expect(find.text('Privado'), findsOneWidget);
     });
 
     testWidgets('renders Crear grupo button', (tester) async {

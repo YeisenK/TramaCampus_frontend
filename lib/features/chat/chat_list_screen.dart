@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../core/navigation/app_router.dart';
-import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/t_avatar.dart';
 import '../../data/mock/mock_data.dart';
-import '../../data/models/chat_preview.dart';
 import '../../data/models/group.dart';
+import '../../data/models/student.dart';
 import '../../data/repositories/app_state_repository.dart';
 import '../../data/repositories/student_repository.dart';
 
@@ -14,13 +13,106 @@ class ChatListScreen extends StatelessWidget {
   const ChatListScreen({super.key, this.embedded = false});
   final bool embedded;
 
-  static final _repo = StudentRepository();
+  static const _repo = StudentRepository();
 
-  List<Group> _followedGroups() {
-    final appState = AppStateRepository.instance;
-    final ids = {...appState.followedGroupIds, ...appState.memberGroupIds};
-    final all = [...MockData.mockGroups, ...appState.userCreatedGroups];
-    return all.where((g) => ids.contains(g.id)).toList();
+  Group? _findGroup(String id, AppStateRepository appState) {
+    for (final g in MockData.mockGroups) {
+      if (g.id == id) return g;
+    }
+    for (final g in appState.userCreatedGroups) {
+      if (g.id == id) return g;
+    }
+    return null;
+  }
+
+  /// Rail = public groups the user follows but is NOT a member of.
+  List<Group> _followOnlyGroups(AppStateRepository appState) {
+    final ids = appState.followedGroupIds.difference(appState.memberGroupIds);
+    return ids
+        .map((id) => _findGroup(id, appState))
+        .whereType<Group>()
+        .toList();
+  }
+
+  /// Conversations list = demo 1:1 chats + member groups, mixed.
+  /// Persisted activity overrides the demo preview where present;
+  /// items without persisted activity keep their natural mock order.
+  List<_ConversationItem> _conversations(AppStateRepository appState) {
+    final items = <_ConversationItem>[];
+
+    // 1:1 chats — every demo chat shows up; new ones bubble up via persisted state.
+    final seenStudentIds = <String>{};
+    for (var i = 0; i < MockData.chats.length; i++) {
+      final preview = MockData.chats[i];
+      final student = _repo.getById(preview.studentId);
+      if (student == null) continue;
+      seenStudentIds.add(preview.studentId);
+
+      final persisted = appState.directMessages(preview.studentId);
+      final lastAt = appState.directLastAt(preview.studentId);
+      final useDemo = persisted.isEmpty;
+
+      items.add(
+        _ConversationItem.direct(
+          student: student,
+          lastText: useDemo ? preview.lastMessage : persisted.last.text,
+          time: useDemo ? preview.time : persisted.last.time,
+          unreadCount: useDemo ? preview.unreadCount : 0,
+          sortKey: lastAt,
+          fallbackOrder: i,
+        ),
+      );
+    }
+    // Other students the user has chatted with (e.g., a new match) but who
+    // aren't in MockData.chats.
+    for (final studentId in appState.activeDirectStudentIds) {
+      if (seenStudentIds.contains(studentId)) continue;
+      final student = _repo.getById(studentId);
+      if (student == null) continue;
+      final persisted = appState.directMessages(studentId);
+      if (persisted.isEmpty) continue;
+      items.add(
+        _ConversationItem.direct(
+          student: student,
+          lastText: persisted.last.text,
+          time: persisted.last.time,
+          unreadCount: 0,
+          sortKey: appState.directLastAt(studentId),
+          fallbackOrder: 1000,
+        ),
+      );
+    }
+
+    // Member groups — appear in the same list as normal conversations.
+    var groupOrder = 0;
+    for (final groupId in appState.memberGroupIds) {
+      final group = _findGroup(groupId, appState);
+      if (group == null) continue;
+      final messages = appState.groupMessages(groupId);
+      final last = messages.isNotEmpty ? messages.last : null;
+      items.add(
+        _ConversationItem.group(
+          group: group,
+          lastText: last?.text ?? group.nextAction,
+          time: last?.time ?? '',
+          unreadCount: 0,
+          sortKey: appState.groupLastAt(groupId),
+          fallbackOrder: 500 + groupOrder,
+        ),
+      );
+      groupOrder++;
+    }
+
+    items.sort((a, b) {
+      // Real activity first (sorted by time desc), then mock order.
+      final ak = a.sortKey;
+      final bk = b.sortKey;
+      if (ak != null && bk != null) return bk.compareTo(ak);
+      if (ak != null) return -1;
+      if (bk != null) return 1;
+      return a.fallbackOrder.compareTo(b.fallbackOrder);
+    });
+    return items;
   }
 
   @override
@@ -33,8 +125,9 @@ class ChatListScreen extends StatelessWidget {
 
   Widget _buildScaffold(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final chats = MockData.chats;
-    final followedGroups = _followedGroups();
+    final appState = AppStateRepository.instance;
+    final followOnly = _followOnlyGroups(appState);
+    final conversations = _conversations(appState);
 
     return Scaffold(
       appBar: AppBar(
@@ -46,9 +139,8 @@ class ChatListScreen extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: _GroupsBand(groups: followedGroups),
-          ),
+          if (followOnly.isNotEmpty)
+            SliverToBoxAdapter(child: _FollowedGroupsBand(groups: followOnly)),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(
@@ -64,24 +156,14 @@ class ChatListScreen extends StatelessWidget {
             ),
           ),
           SliverList.separated(
-            itemCount: chats.length,
+            itemCount: conversations.length,
             separatorBuilder: (context, idx) => Divider(
               indent: 72,
               height: 0,
               color: cs.outlineVariant.withValues(alpha: 0.5),
             ),
-            itemBuilder: (context, i) {
-              final chat = chats[i];
-              final student = _repo.getById(chat.studentId);
-              if (student == null) return const SizedBox.shrink();
-              return _ChatRow(
-                chat: chat,
-                photoUrl: student.photoUrl,
-                onTap: () => Navigator.of(
-                  context,
-                ).pushNamed(AppRouter.conversation, arguments: student),
-              );
-            },
+            itemBuilder: (context, i) =>
+                _ConversationRow(item: conversations[i]),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 120)),
         ],
@@ -90,8 +172,42 @@ class ChatListScreen extends StatelessWidget {
   }
 }
 
-class _GroupsBand extends StatelessWidget {
-  const _GroupsBand({required this.groups});
+// ---------- Models ----------
+
+class _ConversationItem {
+  _ConversationItem.direct({
+    required this.student,
+    required this.lastText,
+    required this.time,
+    required this.unreadCount,
+    required this.sortKey,
+    required this.fallbackOrder,
+  }) : group = null;
+
+  _ConversationItem.group({
+    required this.group,
+    required this.lastText,
+    required this.time,
+    required this.unreadCount,
+    required this.sortKey,
+    required this.fallbackOrder,
+  }) : student = null;
+
+  final Student? student;
+  final Group? group;
+  final String lastText;
+  final String time;
+  final int unreadCount;
+  final DateTime? sortKey;
+  final int fallbackOrder;
+
+  bool get isGroup => group != null;
+}
+
+// ---------- Rail ----------
+
+class _FollowedGroupsBand extends StatelessWidget {
+  const _FollowedGroupsBand({required this.groups});
   final List<Group> groups;
 
   @override
@@ -133,25 +249,16 @@ class _GroupsBand extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 140,
+            height: 132,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSpacing.space5,
               ),
-              itemCount: groups.length + 1,
+              itemCount: groups.length,
               separatorBuilder: (_, _) =>
                   const SizedBox(width: AppSpacing.space3),
-              itemBuilder: (context, i) {
-                if (i == groups.length) {
-                  return _DiscoverGroupsCard(
-                    onTap: () => Navigator.of(
-                      context,
-                    ).pushNamed(AppRouter.groupsDiscover),
-                  );
-                }
-                return _GroupMiniCard(group: groups[i]);
-              },
+              itemBuilder: (context, i) => _FollowedGroupCard(group: groups[i]),
             ),
           ),
         ],
@@ -160,8 +267,8 @@ class _GroupsBand extends StatelessWidget {
   }
 }
 
-class _GroupMiniCard extends StatelessWidget {
-  const _GroupMiniCard({required this.group});
+class _FollowedGroupCard extends StatelessWidget {
+  const _FollowedGroupCard({required this.group});
   final Group group;
 
   @override
@@ -174,7 +281,7 @@ class _GroupMiniCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.md),
         child: SizedBox(
           width: 200,
-          height: 140,
+          height: 132,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -243,7 +350,7 @@ class _GroupMiniCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          group.nextAction,
+                          '${group.memberCount} miembros',
                           style: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 11,
@@ -264,116 +371,81 @@ class _GroupMiniCard extends StatelessWidget {
       ),
     );
   }
-
-  IconData _kindIcon(GroupKind kind) => switch (kind) {
-    GroupKind.project => Icons.code_outlined,
-    GroupKind.study => Icons.menu_book_outlined,
-    GroupKind.club => Icons.groups_outlined,
-    GroupKind.sport => Icons.sports_outlined,
-    GroupKind.official => Icons.campaign_outlined,
-  };
 }
 
-class _DiscoverGroupsCard extends StatelessWidget {
-  const _DiscoverGroupsCard({required this.onTap});
-  final VoidCallback onTap;
+IconData _kindIcon(GroupKind kind) => switch (kind) {
+  GroupKind.project => Icons.code_outlined,
+  GroupKind.study => Icons.menu_book_outlined,
+  GroupKind.club => Icons.groups_outlined,
+  GroupKind.sport => Icons.sports_outlined,
+  GroupKind.official => Icons.campaign_outlined,
+};
+
+// ---------- Conversation row (1:1 + group share the same shape) ----------
+
+class _ConversationRow extends StatelessWidget {
+  const _ConversationRow({required this.item});
+  final _ConversationItem item;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 140,
-        height: 140,
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerLowest,
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
-        ),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                gradient: AppColors.ctaGradient(),
-                shape: BoxShape.circle,
-              ),
-              alignment: Alignment.center,
-              child: const Icon(Icons.add, color: Colors.white, size: 18),
-            ),
-            const SizedBox(height: AppSpacing.space2),
-            Text(
-              'Descubrir',
-              style: AppTextStyles.bodySm(cs.onSurface).copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              'grupos',
-              style: AppTextStyles.bodySm(cs.onSurfaceVariant),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+    final hasUnread = item.unreadCount > 0;
+    final onTap = item.isGroup
+        ? () => Navigator.of(
+            context,
+          ).pushNamed(AppRouter.groupDetail, arguments: item.group)
+        : () => Navigator.of(
+            context,
+          ).pushNamed(AppRouter.conversation, arguments: item.student);
 
-class _ChatRow extends StatelessWidget {
-  const _ChatRow({required this.chat, required this.onTap, this.photoUrl});
-  final ChatPreview chat;
-  final VoidCallback onTap;
-  final String? photoUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    final hasUnread = chat.unreadCount > 0;
     return ListTile(
       onTap: onTap,
       contentPadding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.space4,
         vertical: AppSpacing.space2,
       ),
-      leading: TAvatar(
-        initials: chat.initials,
-        hue: chat.hue,
-        photoUrl: photoUrl,
-        size: 52,
-      ),
+      leading: item.isGroup
+          ? _GroupAvatar(group: item.group!)
+          : TAvatar(
+              initials: item.student!.initials,
+              hue: item.student!.hue,
+              photoUrl: item.student!.photoUrl,
+              size: 52,
+            ),
       title: Row(
         children: [
           Expanded(
             child: Text(
-              chat.studentName,
+              item.isGroup ? item.group!.name : item.student!.name,
               style: AppTextStyles.titleMd(cs.onSurface),
               overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
-          Text(
-            chat.time,
-            style: AppTextStyles.labelSm(
-              hasUnread ? cs.primary : cs.onSurfaceVariant,
+          if (item.time.isNotEmpty)
+            Text(
+              item.time,
+              style: AppTextStyles.labelSm(
+                hasUnread ? cs.primary : cs.onSurfaceVariant,
+              ),
             ),
-          ),
         ],
       ),
       subtitle: Row(
         children: [
           Expanded(
             child: Text(
-              chat.lastMessage,
+              item.lastText,
               style:
                   AppTextStyles.bodyMd(
                     hasUnread ? cs.onSurface : cs.onSurfaceVariant,
                   ).copyWith(
-                    fontWeight: hasUnread ? FontWeight.w500 : FontWeight.w400,
+                    fontWeight:
+                        hasUnread ? FontWeight.w500 : FontWeight.w400,
                   ),
               overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
           if (hasUnread) ...[
@@ -387,7 +459,7 @@ class _ChatRow extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: Text(
-                '${chat.unreadCount}',
+                '${item.unreadCount}',
                 style: AppTextStyles.labelSm(
                   Colors.white,
                 ).copyWith(fontSize: 11),
@@ -396,6 +468,37 @@ class _ChatRow extends StatelessWidget {
           ],
         ],
       ),
+    );
+  }
+}
+
+class _GroupAvatar extends StatelessWidget {
+  const _GroupAvatar({required this.group});
+  final Group group;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 52,
+      height: 52,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            HSLColor.fromAHSL(1.0, group.hue, 0.55, 0.50).toColor(),
+            HSLColor.fromAHSL(
+              1.0,
+              (group.hue + 30) % 360,
+              0.65,
+              0.35,
+            ).toColor(),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(AppRadius.md),
+      ),
+      alignment: Alignment.center,
+      child: Icon(_kindIcon(group.kind), color: Colors.white, size: 22),
     );
   }
 }
