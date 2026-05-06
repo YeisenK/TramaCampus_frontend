@@ -23,15 +23,18 @@ class ModalityAdvancedToggle extends StatelessWidget {
   bool _isEnabled(String modeId) => overrides.isNotEmpty
       ? overrides.contains(modeId)
       : ModalityResolver.expand(
-              buckets: enabledBuckets.toList(), overrides: const [])
-          .contains(modeId);
+          buckets: enabledBuckets.toList(),
+          overrides: const [],
+        ).contains(modeId);
 
   void _toggle(String modeId) {
     // On first toggle, materialise the current implicit list as overrides.
     final current = overrides.isNotEmpty
         ? List<String>.from(overrides)
         : ModalityResolver.expand(
-            buckets: enabledBuckets.toList(), overrides: const []);
+            buckets: enabledBuckets.toList(),
+            overrides: const [],
+          );
     if (current.contains(modeId)) {
       current.remove(modeId);
     } else {
@@ -66,36 +69,36 @@ class ModalityAdvancedToggle extends StatelessWidget {
   }
 
   static IconData _modeIcon(String id) => switch (id) {
-        'study' => Icons.menu_book_outlined,
-        'research' => Icons.science_outlined,
-        'competition' => Icons.emoji_events_outlined,
-        'social' => Icons.people_outline,
-        'networking' => Icons.hub_outlined,
-        'gaming' => Icons.sports_esports_outlined,
-        'language' => Icons.translate,
-        'creative' => Icons.palette_outlined,
-        'volunteer' => Icons.volunteer_activism_outlined,
-        'wellness' => Icons.spa_outlined,
-        'lifestyle' => Icons.local_cafe_outlined,
-        'startup' => Icons.rocket_launch_outlined,
-        'eros' => Icons.favorite_border,
-        _ => Icons.circle_outlined,
-      };
+    'study' => Icons.menu_book_outlined,
+    'research' => Icons.science_outlined,
+    'competition' => Icons.emoji_events_outlined,
+    'social' => Icons.people_outline,
+    'networking' => Icons.hub_outlined,
+    'gaming' => Icons.sports_esports_outlined,
+    'language' => Icons.translate,
+    'creative' => Icons.palette_outlined,
+    'volunteer' => Icons.volunteer_activism_outlined,
+    'wellness' => Icons.spa_outlined,
+    'lifestyle' => Icons.local_cafe_outlined,
+    'startup' => Icons.rocket_launch_outlined,
+    'eros' => Icons.favorite_border,
+    _ => Icons.circle_outlined,
+  };
 
   static String _modeLabel(String id) => switch (id) {
-        'study' => 'Estudio',
-        'research' => 'Investigación',
-        'competition' => 'Competencia',
-        'social' => 'Social',
-        'networking' => 'Networking',
-        'gaming' => 'Gaming',
-        'language' => 'Idiomas',
-        'creative' => 'Creatividad',
-        'volunteer' => 'Voluntariado',
-        'wellness' => 'Bienestar',
-        'lifestyle' => 'Estilo de vida',
-        'startup' => 'Emprendimiento',
-        'eros' => 'Conexión personal',
-        _ => id,
-      };
+    'study' => 'Estudio',
+    'research' => 'Investigación',
+    'competition' => 'Competencia',
+    'social' => 'Social',
+    'networking' => 'Networking',
+    'gaming' => 'Gaming',
+    'language' => 'Idiomas',
+    'creative' => 'Creatividad',
+    'volunteer' => 'Voluntariado',
+    'wellness' => 'Bienestar',
+    'lifestyle' => 'Estilo de vida',
+    'startup' => 'Emprendimiento',
+    'eros' => 'Conexión personal',
+    _ => id,
+  };
 }

@@ -88,16 +88,30 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
               const SizedBox(width: AppSpacing.space2),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: RepaintBoundary(child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: s.photoUrl != null
-                        ? Image(
-                            image: s.photoUrl!.startsWith('assets/')
-                                ? AssetImage(s.photoUrl!) as ImageProvider
-                                : NetworkImage(s.photoUrl!),
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, _) => Container(
+              background: RepaintBoundary(
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: s.photoUrl != null
+                          ? Image(
+                              image: s.photoUrl!.startsWith('assets/')
+                                  ? AssetImage(s.photoUrl!) as ImageProvider
+                                  : NetworkImage(s.photoUrl!),
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, _) => Container(
+                                decoration: BoxDecoration(
+                                  gradient: AppColors.avatarGradient(s.hue),
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  s.initials,
+                                  style: AppTextStyles.display(
+                                    Colors.white.withValues(alpha: 0.8),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(
                               decoration: BoxDecoration(
                                 gradient: AppColors.avatarGradient(s.hue),
                               ),
@@ -109,67 +123,55 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                 ),
                               ),
                             ),
-                          )
-                        : Container(
-                            decoration: BoxDecoration(
-                              gradient: AppColors.avatarGradient(s.hue),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              s.initials,
-                              style: AppTextStyles.display(
-                                Colors.white.withValues(alpha: 0.8),
-                              ),
-                            ),
+                    ),
+                    Positioned.fill(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: const Alignment(0, 0.1),
+                            colors: [
+                              Colors.black.withValues(alpha: 0.28),
+                              Colors.transparent,
+                            ],
                           ),
-                  ),
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: const Alignment(0, 0.1),
-                          colors: [
-                            Colors.black.withValues(alpha: 0.28),
-                            Colors.transparent,
-                          ],
                         ),
                       ),
                     ),
-                  ),
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, cs.surface],
-                          stops: const [0.6, 1.0],
+                    Positioned.fill(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.transparent, cs.surface],
+                            stops: const [0.6, 1.0],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: AppSpacing.space5,
-                    left: AppSpacing.space5,
-                    right: AppSpacing.space5,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${s.name}, ${s.age}',
-                          style: AppTextStyles.headlineMd(cs.onSurface),
-                        ),
-                        const SizedBox(height: AppSpacing.space1),
-                        Text(
-                          '${s.program} · Sem. ${s.semester}',
-                          style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
-                        ),
-                      ],
+                    Positioned(
+                      bottom: AppSpacing.space5,
+                      left: AppSpacing.space5,
+                      right: AppSpacing.space5,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${s.name}, ${s.age}',
+                            style: AppTextStyles.headlineMd(cs.onSurface),
+                          ),
+                          const SizedBox(height: AppSpacing.space1),
+                          Text(
+                            '${s.program} · Sem. ${s.semester}',
+                            style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              )),
+                  ],
+                ),
+              ),
             ),
           ),
           SliverPadding(

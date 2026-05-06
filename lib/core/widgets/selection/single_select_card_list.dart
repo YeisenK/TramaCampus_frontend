@@ -35,11 +35,13 @@ class SingleSelectCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: options
-          .map((opt) => _OptionCard(
-                option: opt,
-                isSelected: opt.id == selectedId,
-                onTap: () => onSelect(opt.id),
-              ))
+          .map(
+            (opt) => _OptionCard(
+              option: opt,
+              isSelected: opt.id == selectedId,
+              onTap: () => onSelect(opt.id),
+            ),
+          )
           .toList(),
     );
   }
@@ -97,13 +99,13 @@ class _OptionCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(option.label,
-                      style: AppTextStyles.bodyMd(cs.onSurface)),
+                  Text(option.label, style: AppTextStyles.bodyMd(cs.onSurface)),
                   if (option.subtitle != null) ...[
                     const SizedBox(height: 2),
-                    Text(option.subtitle!,
-                        style:
-                            AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                    Text(
+                      option.subtitle!,
+                      style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                    ),
                   ],
                 ],
               ),

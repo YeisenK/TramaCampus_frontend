@@ -25,8 +25,9 @@ class MockProfileRepository implements ProfileRepository {
     final db = await DatabaseService.instance.database;
     final rows = await db.query(Tables.profile, limit: 1);
     if (rows.isNotEmpty) {
-      _cached =
-          Profile.fromJsonString(rows.first[ProfileColumns.payload] as String);
+      _cached = Profile.fromJsonString(
+        rows.first[ProfileColumns.payload] as String,
+      );
       return _cached;
     }
     // Fall back to mock data.
@@ -38,14 +39,10 @@ class MockProfileRepository implements ProfileRepository {
   Future<void> save(Profile profile) async {
     _cached = profile;
     final db = await DatabaseService.instance.database;
-    await db.insert(
-      Tables.profile,
-      {
-        ProfileColumns.id: 1,
-        ProfileColumns.payload: profile.toJsonString(),
-        ProfileColumns.updatedAt: DateTime.now().toIso8601String(),
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert(Tables.profile, {
+      ProfileColumns.id: 1,
+      ProfileColumns.payload: profile.toJsonString(),
+      ProfileColumns.updatedAt: DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 }

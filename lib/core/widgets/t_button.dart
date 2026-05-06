@@ -13,11 +13,11 @@ enum TButtonSize {
 
 extension _TButtonSizeHeight on TButtonSize {
   double get height => switch (this) {
-        TButtonSize.xs => 32,
-        TButtonSize.sm => 40,
-        TButtonSize.md => 48,
-        TButtonSize.lg => 56,
-      };
+    TButtonSize.xs => 32,
+    TButtonSize.sm => 40,
+    TButtonSize.md => 48,
+    TButtonSize.lg => 56,
+  };
 }
 
 class TButton extends StatelessWidget {

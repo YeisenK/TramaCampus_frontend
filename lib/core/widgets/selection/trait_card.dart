@@ -25,7 +25,9 @@ class TraitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final bg = selected ? cs.primary.withValues(alpha: 0.12) : cs.surfaceContainerHigh;
+    final bg = selected
+        ? cs.primary.withValues(alpha: 0.12)
+        : cs.surfaceContainerHigh;
     final borderColor = selected ? cs.primary : Colors.transparent;
     final textColor = selected ? cs.primary : cs.onSurface;
     final iconColor = selected ? cs.primary : cs.onSurfaceVariant;
@@ -44,8 +46,7 @@ class TraitCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (icon != null)
-              Icon(icon, size: 22, color: iconColor),
+            if (icon != null) Icon(icon, size: 22, color: iconColor),
             const SizedBox(height: AppSpacing.space2),
             Text(
               label,

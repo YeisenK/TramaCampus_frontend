@@ -8,11 +8,7 @@ enum ScheduleState { free, maybe, busy }
 /// Cells are 20×20 with 4px radius.
 /// free → surfaceContainerHigh, maybe → primary@35%, busy → primary@85%.
 class TScheduleGrid extends StatelessWidget {
-  const TScheduleGrid({
-    super.key,
-    required this.schedule,
-    this.onCellTap,
-  });
+  const TScheduleGrid({super.key, required this.schedule, this.onCellTap});
 
   /// [schedule] is a 7×8 matrix: [day][hour], 0 = Mon, 6 = Sun, row 0 = 8am.
   final List<List<ScheduleState>> schedule;
@@ -32,52 +28,58 @@ class TScheduleGrid extends StatelessWidget {
         Row(
           children: [
             const SizedBox(width: 24), // room for hour labels
-            ...List.generate(_days.length, (d) => Expanded(
-              child: Center(
-                child: Text(
-                  _days[d],
-                  style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+            ...List.generate(
+              _days.length,
+              (d) => Expanded(
+                child: Center(
+                  child: Text(
+                    _days[d],
+                    style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                  ),
                 ),
               ),
-            )),
+            ),
           ],
         ),
         const SizedBox(height: AppSpacing.space1),
         // Grid rows
-        ...List.generate(_hours.length, (h) => Padding(
-          padding: const EdgeInsets.only(bottom: 4),
-          child: Row(
-            children: [
-              SizedBox(
-                width: 24,
-                child: Text(
-                  _hours[h],
-                  style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-                  textAlign: TextAlign.right,
+        ...List.generate(
+          _hours.length,
+          (h) => Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 24,
+                  child: Text(
+                    _hours[h],
+                    style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                    textAlign: TextAlign.right,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 4),
-              ...List.generate(_days.length, (d) {
-                final state = (schedule.length > d && schedule[d].length > h)
-                    ? schedule[d][h]
-                    : ScheduleState.free;
-                return Expanded(
-                  child: GestureDetector(
-                    onTap: onCellTap != null ? () => onCellTap!(d, h) : null,
-                    child: Container(
-                      height: 20,
-                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                      decoration: BoxDecoration(
-                        color: _cellColor(cs, state),
-                        borderRadius: BorderRadius.circular(AppRadius.xs / 2),
+                const SizedBox(width: 4),
+                ...List.generate(_days.length, (d) {
+                  final state = (schedule.length > d && schedule[d].length > h)
+                      ? schedule[d][h]
+                      : ScheduleState.free;
+                  return Expanded(
+                    child: GestureDetector(
+                      onTap: onCellTap != null ? () => onCellTap!(d, h) : null,
+                      child: Container(
+                        height: 20,
+                        margin: const EdgeInsets.symmetric(horizontal: 2),
+                        decoration: BoxDecoration(
+                          color: _cellColor(cs, state),
+                          borderRadius: BorderRadius.circular(AppRadius.xs / 2),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }),
-            ],
+                  );
+                }),
+              ],
+            ),
           ),
-        )),
+        ),
       ],
     );
   }

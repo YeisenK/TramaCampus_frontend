@@ -13,8 +13,9 @@ class ListingCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () =>
-          Navigator.of(context).pushNamed(AppRouter.listingDetail, arguments: listing),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRouter.listingDetail, arguments: listing),
       child: Column(
         children: [
           Padding(
@@ -90,12 +91,12 @@ class _Thumbnail extends StatelessWidget {
   }
 
   Widget get _placeholder => Container(
-        color: cs.surfaceContainerHigh,
-        alignment: Alignment.center,
-        child: Icon(
-          Icons.image_outlined,
-          size: 28,
-          color: cs.onSurfaceVariant.withValues(alpha: 0.35),
-        ),
-      );
+    color: cs.surfaceContainerHigh,
+    alignment: Alignment.center,
+    child: Icon(
+      Icons.image_outlined,
+      size: 28,
+      color: cs.onSurfaceVariant.withValues(alpha: 0.35),
+    ),
+  );
 }

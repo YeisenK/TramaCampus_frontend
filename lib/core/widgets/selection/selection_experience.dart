@@ -33,18 +33,27 @@ enum SelectionVariant {
 }
 
 const kKeystonePersonalityTraits = {
-  'introvertido', 'extrovertido', 'ambicioso', 'tranquilo', 'competitivo',
-  'creativo', 'analítico', 'espontáneo', 'líder', 'disciplinado',
-  'empático', 'adaptable',
+  'introvertido',
+  'extrovertido',
+  'ambicioso',
+  'tranquilo',
+  'competitivo',
+  'creativo',
+  'analítico',
+  'espontáneo',
+  'líder',
+  'disciplinado',
+  'empático',
+  'adaptable',
 };
 
 const _kDietIcons = <String, IconData>{
-  'omnivoro':    Icons.restaurant_menu_outlined,
+  'omnivoro': Icons.restaurant_menu_outlined,
   'vegetariano': Icons.eco_outlined,
-  'vegano':      Icons.spa_outlined,
-  'sin_gluten':  Icons.grain_outlined,
-  'halal':       Icons.star_outline,
-  'kosher':      Icons.verified_outlined,
+  'vegano': Icons.spa_outlined,
+  'sin_gluten': Icons.grain_outlined,
+  'halal': Icons.star_outline,
+  'kosher': Icons.verified_outlined,
   'sin_lactosa': Icons.no_drinks_outlined,
 };
 
@@ -85,7 +94,8 @@ class SelectionExperience extends StatefulWidget {
   final bool allowAffinitySuggestions;
   final Set<String>? keystoneFilter;
   final Map<String, SportFrequency> sportFrequencies;
-  final void Function(String sportId, SportFrequency freq)? onSportFrequencyChanged;
+  final void Function(String sportId, SportFrequency freq)?
+  onSportFrequencyChanged;
 
   @override
   State<SelectionExperience> createState() => _SelectionExperienceState();
@@ -141,7 +151,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
     _searchDebounce = Timer(const Duration(milliseconds: 120), () {
       if (!mounted) return;
       final q = _searchCtrl.text;
-      final results = q.trim().isEmpty ? <CatalogItem>[] : (_catalog?.search(q) ?? []);
+      final results = q.trim().isEmpty
+          ? <CatalogItem>[]
+          : (_catalog?.search(q) ?? []);
       setState(() {
         _query = q;
         _searchResults = results;
@@ -153,7 +165,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
     try {
       // Fire all async reads concurrently — all are memoized so subsequent
       // calls return instantly from cache.
-      final catalogF = BundledCatalogRepository.instance.load(widget.catalogName);
+      final catalogF = BundledCatalogRepository.instance.load(
+        widget.catalogName,
+      );
       final relevanceF = BundledCatalogRepository.instance.loadRelevance();
       final academicF = widget.careerId != null
           ? BundledCatalogRepository.instance.load('academic')
@@ -197,11 +211,11 @@ class _SelectionExperienceState extends State<SelectionExperience> {
   }
 
   SelectionContext _ctx() => SelectionContext(
-        academicAreaId: _areaId,
-        campusId: widget.campusId,
-        buckets: widget.activeBuckets,
-        currentSelections: {'goal': widget.currentGoals},
-      );
+    academicAreaId: _areaId,
+    campusId: widget.campusId,
+    buckets: widget.activeBuckets,
+    currentSelections: {'goal': widget.currentGoals},
+  );
 
   void _computeDerived(Catalog catalog, RelevanceData relevance) {
     // Build the set→items map once; queries into it are O(1) vs O(n) per build.
@@ -301,7 +315,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
             child: _selected.isEmpty
                 ? const SizedBox.shrink()
                 : SelectionPreviewBar(
-                    selectedLabels: {for (final id in _selected) id: _labelFor(id)},
+                    selectedLabels: {
+                      for (final id in _selected) id: _labelFor(id),
+                    },
                     onRemove: _toggle,
                     min: widget.min,
                     max: widget.max,
@@ -313,12 +329,12 @@ class _SelectionExperienceState extends State<SelectionExperience> {
   }
 
   Widget _buildVariant() => switch (widget.variant) {
-        SelectionVariant.bucketed      => _buildBucketed(),
-        SelectionVariant.chipCloud     => _buildChipCloud(),
-        SelectionVariant.traitCards    => _buildTraitCards(),
-        SelectionVariant.iconCards     => _buildIconCards(),
-        SelectionVariant.facultyFaceted => _buildFacultyFaceted(),
-      };
+    SelectionVariant.bucketed => _buildBucketed(),
+    SelectionVariant.chipCloud => _buildChipCloud(),
+    SelectionVariant.traitCards => _buildTraitCards(),
+    SelectionVariant.iconCards => _buildIconCards(),
+    SelectionVariant.facultyFaceted => _buildFacultyFaceted(),
+  };
 
   // ── Bucketed ──────────────────────────────────────────────────────────────
 
@@ -348,7 +364,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AffinitySuggestionStrip(
-                        suggestions: _suggestions, onSelect: _toggle),
+                      suggestions: _suggestions,
+                      onSelect: _toggle,
+                    ),
                     const SizedBox(height: AppSpacing.space2),
                   ],
                 )
@@ -357,11 +375,31 @@ class _SelectionExperienceState extends State<SelectionExperience> {
         if (searching)
           _cappedChipsFlat('search', _searchResults)
         else ...[
-          _bucketBlock('recommended', BucketType.recommended, _buckets!.recommended),
-          _bucketBlock('popularInMajor', BucketType.popularInMajor, _buckets!.popularInMajor),
-          _bucketBlock('popularOnCampus', BucketType.popularOnCampus, _buckets!.popularOnCampus),
-          _bucketBlock('exploreMore', BucketType.exploreMore, _buckets!.exploreMore),
-          _bucketBlock('otherAreas', BucketType.otherAreas, _buckets!.otherAreas),
+          _bucketBlock(
+            'recommended',
+            BucketType.recommended,
+            _buckets!.recommended,
+          ),
+          _bucketBlock(
+            'popularInMajor',
+            BucketType.popularInMajor,
+            _buckets!.popularInMajor,
+          ),
+          _bucketBlock(
+            'popularOnCampus',
+            BucketType.popularOnCampus,
+            _buckets!.popularOnCampus,
+          ),
+          _bucketBlock(
+            'exploreMore',
+            BucketType.exploreMore,
+            _buckets!.exploreMore,
+          ),
+          _bucketBlock(
+            'otherAreas',
+            BucketType.otherAreas,
+            _buckets!.otherAreas,
+          ),
         ],
       ],
     );
@@ -373,7 +411,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
     List<RankedItem<CatalogItem>> items,
   ) {
     if (items.isEmpty) return const SizedBox.shrink();
-    final selectedHere = items.where((ri) => _selected.contains(ri.item.id)).length;
+    final selectedHere = items
+        .where((ri) => _selected.contains(ri.item.id))
+        .length;
     return CategorySection(
       title: _bucketLabel(type),
       expanded: _expandedBuckets.contains(key),
@@ -392,12 +432,12 @@ class _SelectionExperienceState extends State<SelectionExperience> {
   }
 
   String _bucketLabel(BucketType t) => switch (t) {
-        BucketType.recommended    => 'Recomendado para ti',
-        BucketType.popularInMajor => 'Popular en tu carrera',
-        BucketType.popularOnCampus => 'Popular en tu campus',
-        BucketType.exploreMore    => 'Explorar más',
-        BucketType.otherAreas     => 'Otras áreas',
-      };
+    BucketType.recommended => 'Recomendado para ti',
+    BucketType.popularInMajor => 'Popular en tu carrera',
+    BucketType.popularOnCampus => 'Popular en tu campus',
+    BucketType.exploreMore => 'Explorar más',
+    BucketType.otherAreas => 'Otras áreas',
+  };
 
   // Renders up to _kItemCap chips; adds a "Ver más" tap if the list is bigger.
   Widget _cappedChipsRanked(String key, List<RankedItem<CatalogItem>> items) {
@@ -417,7 +457,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
               label: ri.item.label,
               selected: sel,
               reason: ri.reason,
-              onTap: _canSelect(ri.item.id) || sel ? () => _toggle(ri.item.id) : null,
+              onTap: _canSelect(ri.item.id) || sel
+                  ? () => _toggle(ri.item.id)
+                  : null,
             );
           }).toList(),
         ),
@@ -487,7 +529,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
           ...catalog.sets.map((set) {
             final items = _itemsBySet[set.id] ?? const [];
             if (items.isEmpty) return const SizedBox.shrink();
-            final selectedHere = items.where((i) => _selected.contains(i.id)).length;
+            final selectedHere = items
+                .where((i) => _selected.contains(i.id))
+                .length;
             return CategorySection(
               title: set.label,
               expanded: _expandedSets.contains(set.id),
@@ -522,13 +566,15 @@ class _SelectionExperienceState extends State<SelectionExperience> {
           }).toList(),
         ),
         ..._selected.where((id) => items.any((i) => i.id == id)).map((sportId) {
-          final freq = widget.sportFrequencies[sportId] ?? SportFrequency.casual;
+          final freq =
+              widget.sportFrequencies[sportId] ?? SportFrequency.casual;
           return Padding(
             padding: const EdgeInsets.only(top: AppSpacing.space3),
             child: SportFrequencyTile(
               label: _labelFor(sportId),
               frequency: freq,
-              onFrequencyChanged: (f) => widget.onSportFrequencyChanged?.call(sportId, f),
+              onFrequencyChanged: (f) =>
+                  widget.onSportFrequencyChanged?.call(sportId, f),
               onRemove: () => _toggle(sportId),
             ),
           );
@@ -542,22 +588,24 @@ class _SelectionExperienceState extends State<SelectionExperience> {
   static const _traitIcons = <String, IconData>{
     'introvertido': Icons.self_improvement_outlined,
     'extrovertido': Icons.groups_outlined,
-    'ambicioso':    Icons.trending_up_outlined,
-    'tranquilo':    Icons.waves_outlined,
-    'competitivo':  Icons.emoji_events_outlined,
-    'creativo':     Icons.lightbulb_outline,
-    'analítico':    Icons.analytics_outlined,
-    'espontáneo':   Icons.bolt_outlined,
-    'líder':        Icons.star_outline,
+    'ambicioso': Icons.trending_up_outlined,
+    'tranquilo': Icons.waves_outlined,
+    'competitivo': Icons.emoji_events_outlined,
+    'creativo': Icons.lightbulb_outline,
+    'analítico': Icons.analytics_outlined,
+    'espontáneo': Icons.bolt_outlined,
+    'líder': Icons.star_outline,
     'disciplinado': Icons.schedule_outlined,
-    'empático':     Icons.favorite_border,
-    'adaptable':    Icons.swap_horiz_outlined,
+    'empático': Icons.favorite_border,
+    'adaptable': Icons.swap_horiz_outlined,
   };
 
   Widget _buildTraitCards() {
     final catalog = _catalog!;
     final keystone = widget.keystoneFilter ?? kKeystonePersonalityTraits;
-    final visible = catalog.items.where((i) => keystone.contains(i.id) || _selected.contains(i.id)).toList();
+    final visible = catalog.items
+        .where((i) => keystone.contains(i.id) || _selected.contains(i.id))
+        .toList();
     final cs = Theme.of(context).colorScheme;
 
     return ListView(
@@ -606,7 +654,8 @@ class _SelectionExperienceState extends State<SelectionExperience> {
           style: OutlinedButton.styleFrom(
             minimumSize: const Size.fromHeight(44),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppRadius.md)),
+              borderRadius: BorderRadius.circular(AppRadius.md),
+            ),
           ),
         ),
         const SizedBox(height: AppSpacing.space3),
@@ -650,7 +699,8 @@ class _SelectionExperienceState extends State<SelectionExperience> {
 
   Widget _buildFacultyFaceted() {
     final catalog = _catalog!;
-    final ranked = _rankedSets ??
+    final ranked =
+        _rankedSets ??
         catalog.sets.map((s) => RankedCatalogSet(set: s, score: 0)).toList();
     final searching = _query.trim().isNotEmpty;
 
@@ -672,8 +722,9 @@ class _SelectionExperienceState extends State<SelectionExperience> {
           ...ranked.map((rs) {
             final items = _itemsBySet[rs.id] ?? const [];
             if (items.isEmpty) return const SizedBox.shrink();
-            final selectedHere =
-                items.where((i) => _selected.contains(i.id)).length;
+            final selectedHere = items
+                .where((i) => _selected.contains(i.id))
+                .length;
             return FacultySection(
               setId: rs.id,
               title: rs.label,

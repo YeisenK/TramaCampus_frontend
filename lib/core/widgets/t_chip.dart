@@ -4,7 +4,7 @@ import '../theme/app_spacing.dart';
 
 enum TChipSize {
   regular, // 13px Inter 500, 9px padding (default)
-  small,   // 11px Inter 500, 6px padding (filter rows)
+  small, // 11px Inter 500, 6px padding (filter rows)
 }
 
 class TChip extends StatelessWidget {

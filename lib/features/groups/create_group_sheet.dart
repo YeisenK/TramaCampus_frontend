@@ -97,10 +97,7 @@ class _CreateGroupSheetState extends State<CreateGroupSheet> {
                 maxLines: 3,
               ),
               const SizedBox(height: AppSpacing.space4),
-              Text(
-                'Acceso',
-                style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-              ),
+              Text('Acceso', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
               const SizedBox(height: AppSpacing.space2),
               ...GroupAccess.values.map(
                 (a) => _AccessRadio(
@@ -110,10 +107,7 @@ class _CreateGroupSheetState extends State<CreateGroupSheet> {
                 ),
               ),
               const SizedBox(height: AppSpacing.space5),
-              TButton(
-                label: 'Crear grupo',
-                onPressed: _submit,
-              ),
+              TButton(label: 'Crear grupo', onPressed: _submit),
             ],
           ),
         ),
@@ -230,10 +224,7 @@ class _AccessRadio extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  access.label,
-                  style: AppTextStyles.titleMd(cs.onSurface),
-                ),
+                Text(access.label, style: AppTextStyles.titleMd(cs.onSurface)),
               ],
             ),
           ],

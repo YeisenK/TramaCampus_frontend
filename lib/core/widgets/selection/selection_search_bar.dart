@@ -54,7 +54,9 @@ class SelectionSearchBar extends StatelessWidget {
             GestureDetector(
               onTap: controller.clear,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space3),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.space3,
+                ),
                 child: Icon(Icons.close, size: 18, color: cs.onSurfaceVariant),
               ),
             ),

@@ -51,27 +51,21 @@ void main() {
   group('Phase 7 — FeaturedStrip', () {
     testWidgets('renders without error', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        FeaturedStrip(listing: listing),
-      ));
+      await tester.pumpWidget(_scaffold(FeaturedStrip(listing: listing)));
       await tester.pump();
       expect(find.byType(FeaturedStrip), findsOneWidget);
     });
 
     testWidgets('renders DESTACADO label', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        FeaturedStrip(listing: listing),
-      ));
+      await tester.pumpWidget(_scaffold(FeaturedStrip(listing: listing)));
       await tester.pump();
       expect(find.text('DESTACADO'), findsOneWidget);
     });
 
     testWidgets('renders listing title', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        FeaturedStrip(listing: listing),
-      ));
+      await tester.pumpWidget(_scaffold(FeaturedStrip(listing: listing)));
       await tester.pump();
       expect(find.text(listing.title), findsOneWidget);
     });
@@ -80,36 +74,40 @@ void main() {
   group('Phase 7 — ListingCardEditorial', () {
     testWidgets('renders without error', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        ListingCardEditorial(listing: listing),
-      ));
+      await tester.pumpWidget(
+        _scaffold(ListingCardEditorial(listing: listing)),
+      );
       await tester.pump();
       expect(find.byType(ListingCardEditorial), findsOneWidget);
     });
 
     testWidgets('renders seller name', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        SingleChildScrollView(child: ListingCardEditorial(listing: listing)),
-      ));
+      await tester.pumpWidget(
+        _scaffold(
+          SingleChildScrollView(child: ListingCardEditorial(listing: listing)),
+        ),
+      );
       await tester.pump();
       expect(find.text(listing.sellerName), findsOneWidget);
     });
 
-    testWidgets('save button shows bookmark_border when not saved', (tester) async {
+    testWidgets('save button shows bookmark_border when not saved', (
+      tester,
+    ) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        ListingCardEditorial(listing: listing, isSaved: false),
-      ));
+      await tester.pumpWidget(
+        _scaffold(ListingCardEditorial(listing: listing, isSaved: false)),
+      );
       await tester.pump();
       expect(find.byIcon(Icons.bookmark_border), findsOneWidget);
     });
 
     testWidgets('save button shows bookmark when saved', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        ListingCardEditorial(listing: listing, isSaved: true),
-      ));
+      await tester.pumpWidget(
+        _scaffold(ListingCardEditorial(listing: listing, isSaved: true)),
+      );
       await tester.pump();
       expect(find.byIcon(Icons.bookmark), findsOneWidget);
     });
@@ -118,45 +116,38 @@ void main() {
   group('Phase 7 — ListingCardList', () {
     testWidgets('renders without error', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        ListingCardList(listing: listing),
-      ));
+      await tester.pumpWidget(_scaffold(ListingCardList(listing: listing)));
       await tester.pump();
       expect(find.byType(ListingCardList), findsOneWidget);
     });
 
     testWidgets('renders listing title', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        ListingCardList(listing: listing),
-      ));
+      await tester.pumpWidget(_scaffold(ListingCardList(listing: listing)));
       await tester.pump();
       expect(find.text(listing.title), findsOneWidget);
     });
 
     testWidgets('renders price in MXN', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        ListingCardList(listing: listing),
-      ));
+      await tester.pumpWidget(_scaffold(ListingCardList(listing: listing)));
       await tester.pump();
-      expect(
-        find.textContaining('MXN'),
-        findsOneWidget,
-      );
+      expect(find.textContaining('MXN'), findsOneWidget);
     });
   });
 
   group('Phase 7 — ListingCardGrid', () {
     testWidgets('renders without error', (tester) async {
       final listing = MockData.mockListings.first;
-      await tester.pumpWidget(_scaffold(
-        SizedBox(
-          width: 160,
-          height: 200,
-          child: ListingCardGrid(listing: listing),
+      await tester.pumpWidget(
+        _scaffold(
+          SizedBox(
+            width: 160,
+            height: 200,
+            child: ListingCardGrid(listing: listing),
+          ),
         ),
-      ));
+      );
       await tester.pump();
       expect(find.byType(ListingCardGrid), findsOneWidget);
     });
@@ -165,27 +156,21 @@ void main() {
   group('Phase 7 — BusinessCard', () {
     testWidgets('renders without error', (tester) async {
       final business = MockData.mockAffiliateBusinesses.first;
-      await tester.pumpWidget(_scaffold(
-        BusinessCard(business: business),
-      ));
+      await tester.pumpWidget(_scaffold(BusinessCard(business: business)));
       await tester.pump();
       expect(find.byType(BusinessCard), findsOneWidget);
     });
 
     testWidgets('renders business name', (tester) async {
       final business = MockData.mockAffiliateBusinesses.first;
-      await tester.pumpWidget(_scaffold(
-        BusinessCard(business: business),
-      ));
+      await tester.pumpWidget(_scaffold(BusinessCard(business: business)));
       await tester.pump();
       expect(find.text(business.name), findsOneWidget);
     });
 
     testWidgets('renders verified icon', (tester) async {
       final business = MockData.mockAffiliateBusinesses.first;
-      await tester.pumpWidget(_scaffold(
-        BusinessCard(business: business),
-      ));
+      await tester.pumpWidget(_scaffold(BusinessCard(business: business)));
       await tester.pump();
       expect(find.byIcon(Icons.verified), findsOneWidget);
     });
@@ -193,34 +178,34 @@ void main() {
 
   group('Phase 7 — PublishSheet', () {
     testWidgets('renders without error', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        SingleChildScrollView(child: PublishSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(SingleChildScrollView(child: PublishSheet())),
+      );
       await tester.pump();
       expect(find.byType(PublishSheet), findsOneWidget);
     });
 
     testWidgets('renders Publicar anuncio title', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        SingleChildScrollView(child: PublishSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(SingleChildScrollView(child: PublishSheet())),
+      );
       await tester.pump();
       expect(find.text('Publicar anuncio'), findsOneWidget);
     });
 
     testWidgets('renders category options', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        SingleChildScrollView(child: PublishSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(SingleChildScrollView(child: PublishSheet())),
+      );
       await tester.pump();
       expect(find.text('Apuntes'), findsOneWidget);
       expect(find.text('Servicios'), findsOneWidget);
     });
 
     testWidgets('renders Publicar submit button', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        SingleChildScrollView(child: PublishSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(SingleChildScrollView(child: PublishSheet())),
+      );
       await tester.pump();
       expect(find.text('Publicar'), findsOneWidget);
     });

@@ -45,7 +45,8 @@ class MockData {
       firstName: 'Sofía',
       lastName: 'Ramírez',
       username: 'sofia_r',
-      bio: 'Estudio Ingeniería en Tecnologías de la Información, me apasionan los datos, la IA y el desarrollo de software.',
+      bio:
+          'Estudio Ingeniería en Tecnologías de la Información, me apasionan los datos, la IA y el desarrollo de software.',
       careerId: 'BITDB',
       semester: 5,
       universityId: 'UAO',

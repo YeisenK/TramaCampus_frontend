@@ -53,7 +53,10 @@ class AffinitySuggestionStrip extends StatelessWidget {
                         children: [
                           Icon(Icons.add, size: 12, color: cs.primary),
                           const SizedBox(width: 4),
-                          Text(item.label, style: AppTextStyles.labelSm(cs.primary)),
+                          Text(
+                            item.label,
+                            style: AppTextStyles.labelSm(cs.primary),
+                          ),
                         ],
                       ),
                     ),

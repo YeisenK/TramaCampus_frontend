@@ -45,10 +45,7 @@ class RelevanceChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (badge != null) ...[
-              badge,
-              const SizedBox(width: 4),
-            ],
+            if (badge != null) ...[badge, const SizedBox(width: 4)],
             Text(label, style: AppTextStyles.labelSm(textColor)),
           ],
         ),
@@ -59,9 +56,17 @@ class RelevanceChip extends StatelessWidget {
   Widget? _badge(RankReason r) {
     switch (r) {
       case RankReason.major:
-        return const Icon(Icons.school_outlined, size: 12, color: Colors.blueAccent);
+        return const Icon(
+          Icons.school_outlined,
+          size: 12,
+          color: Colors.blueAccent,
+        );
       case RankReason.campusTrend:
-        return const Icon(Icons.local_fire_department_outlined, size: 12, color: Colors.deepOrange);
+        return const Icon(
+          Icons.local_fire_department_outlined,
+          size: 12,
+          color: Colors.deepOrange,
+        );
       default:
         return null;
     }

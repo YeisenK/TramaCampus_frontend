@@ -36,7 +36,10 @@ class CategorySection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: AppSpacing.space3),
             child: Row(
               children: [
-                if (leading != null) ...[leading!, const SizedBox(width: AppSpacing.space2)],
+                if (leading != null) ...[
+                  leading!,
+                  const SizedBox(width: AppSpacing.space2),
+                ],
                 Expanded(
                   child: Text(title, style: AppTextStyles.titleMd(color)),
                 ),
@@ -50,7 +53,9 @@ class CategorySection extends StatelessWidget {
                     child: Container(
                       key: ValueKey(selectedCount),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.space2, vertical: 2),
+                        horizontal: AppSpacing.space2,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: cs.primary.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -67,8 +72,11 @@ class CategorySection extends StatelessWidget {
                   turns: expanded ? 0.0 : 0.5,
                   duration: const Duration(milliseconds: 280),
                   curve: Curves.easeInOutCubic,
-                  child: Icon(Icons.expand_less, size: 20,
-                      color: cs.onSurfaceVariant),
+                  child: Icon(
+                    Icons.expand_less,
+                    size: 20,
+                    color: cs.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),

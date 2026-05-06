@@ -4,20 +4,20 @@ enum GroupAccess { open, request, invite }
 
 extension GroupKindLabel on GroupKind {
   String get label => switch (this) {
-        GroupKind.project => 'Proyecto',
-        GroupKind.study => 'Estudio',
-        GroupKind.club => 'Club',
-        GroupKind.sport => 'Deporte',
-        GroupKind.official => 'Oficial',
-      };
+    GroupKind.project => 'Proyecto',
+    GroupKind.study => 'Estudio',
+    GroupKind.club => 'Club',
+    GroupKind.sport => 'Deporte',
+    GroupKind.official => 'Oficial',
+  };
 }
 
 extension GroupAccessLabel on GroupAccess {
   String get label => switch (this) {
-        GroupAccess.open => 'Abierto',
-        GroupAccess.request => 'Con solicitud',
-        GroupAccess.invite => 'Solo invitación',
-      };
+    GroupAccess.open => 'Abierto',
+    GroupAccess.request => 'Con solicitud',
+    GroupAccess.invite => 'Solo invitación',
+  };
 }
 
 class Group {

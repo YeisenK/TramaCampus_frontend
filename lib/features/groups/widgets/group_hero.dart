@@ -106,7 +106,9 @@ class GroupHero extends StatelessWidget {
                                 Flexible(
                                   child: Text(
                                     group.name,
-                                    style: AppTextStyles.headlineSm(Colors.white),
+                                    style: AppTextStyles.headlineSm(
+                                      Colors.white,
+                                    ),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -146,10 +148,10 @@ class GroupHero extends StatelessWidget {
   }
 
   IconData _kindIcon(GroupKind kind) => switch (kind) {
-        GroupKind.project => Icons.code_outlined,
-        GroupKind.study => Icons.menu_book_outlined,
-        GroupKind.club => Icons.groups_outlined,
-        GroupKind.sport => Icons.sports_outlined,
-        GroupKind.official => Icons.campaign_outlined,
-      };
+    GroupKind.project => Icons.code_outlined,
+    GroupKind.study => Icons.menu_book_outlined,
+    GroupKind.club => Icons.groups_outlined,
+    GroupKind.sport => Icons.sports_outlined,
+    GroupKind.official => Icons.campaign_outlined,
+  };
 }

@@ -144,10 +144,7 @@ void main() {
       final group = MockData.mockGroups.first;
       await tester.pumpWidget(_scaffold(GroupHero(group: group)));
       await tester.pump();
-      expect(
-        find.textContaining(group.name.substring(0, 8)),
-        findsOneWidget,
-      );
+      expect(find.textContaining(group.name.substring(0, 8)), findsOneWidget);
     });
   });
 
@@ -173,7 +170,9 @@ void main() {
       expect(find.text(task.title), findsOneWidget);
     });
 
-    testWidgets('done task renders with line-through decoration', (tester) async {
+    testWidgets('done task renders with line-through decoration', (
+      tester,
+    ) async {
       const doneTask = Task(
         id: 'tx',
         code: 'TX-01',
@@ -187,8 +186,7 @@ void main() {
       await tester.pump();
       final textWidgets = tester.widgetList<Text>(find.text('Done task title'));
       final hasStrikethrough = textWidgets.any(
-        (w) =>
-            w.style?.decoration == TextDecoration.lineThrough,
+        (w) => w.style?.decoration == TextDecoration.lineThrough,
       );
       expect(hasStrikethrough, isTrue);
     });
@@ -235,43 +233,43 @@ void main() {
 
   group('Phase 8 — CreateGroupSheet', () {
     testWidgets('renders without error', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        const SingleChildScrollView(child: CreateGroupSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(const SingleChildScrollView(child: CreateGroupSheet())),
+      );
       await tester.pump();
       expect(find.byType(CreateGroupSheet), findsOneWidget);
     });
 
     testWidgets('renders Arma tu grupo headline', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        const SingleChildScrollView(child: CreateGroupSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(const SingleChildScrollView(child: CreateGroupSheet())),
+      );
       await tester.pump();
       expect(find.text('Arma tu grupo'), findsOneWidget);
     });
 
     testWidgets('renders type options', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        const SingleChildScrollView(child: CreateGroupSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(const SingleChildScrollView(child: CreateGroupSheet())),
+      );
       await tester.pump();
       expect(find.text('Estudio'), findsOneWidget);
       expect(find.text('Proyecto'), findsOneWidget);
     });
 
     testWidgets('renders access radio options', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        const SingleChildScrollView(child: CreateGroupSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(const SingleChildScrollView(child: CreateGroupSheet())),
+      );
       await tester.pump();
       expect(find.text('Abierto'), findsOneWidget);
       expect(find.text('Con solicitud'), findsOneWidget);
     });
 
     testWidgets('renders Crear grupo button', (tester) async {
-      await tester.pumpWidget(_scaffold(
-        const SingleChildScrollView(child: CreateGroupSheet()),
-      ));
+      await tester.pumpWidget(
+        _scaffold(const SingleChildScrollView(child: CreateGroupSheet())),
+      );
       await tester.pump();
       expect(find.text('Crear grupo'), findsOneWidget);
     });

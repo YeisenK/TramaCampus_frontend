@@ -93,12 +93,10 @@ class _IdentityScreenState extends State<IdentityScreen> {
   }
 
   Future<void> _checkAvailability(String handle) async {
-    final available =
-        await MockUsernameRegistry.instance.isAvailable(handle);
+    final available = await MockUsernameRegistry.instance.isAvailable(handle);
     if (!mounted || _usernameCtrl.text.trim().toLowerCase() != handle) return;
     if (!available) {
-      final suggestions =
-          await MockUsernameRegistry.instance.suggest(handle);
+      final suggestions = await MockUsernameRegistry.instance.suggest(handle);
       if (!mounted) return;
       setState(() {
         _usernameAvailable = false;
@@ -199,196 +197,219 @@ class _IdentityScreenState extends State<IdentityScreen> {
   }
 
   Widget _buildHeader(ColorScheme cs) => Container(
-        width: double.infinity,
-        color: cs.surfaceDim,
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space5,
-          AppSpacing.space6,
-          AppSpacing.space5,
-          AppSpacing.space5,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    width: double.infinity,
+    color: cs.surfaceDim,
+    padding: const EdgeInsets.fromLTRB(
+      AppSpacing.space5,
+      AppSpacing.space6,
+      AppSpacing.space5,
+      AppSpacing.space5,
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.of(context).maybePop(),
-                  child: Icon(Icons.arrow_back_ios_new,
-                      size: 20, color: cs.onSurface),
-                ),
-                const Spacer(),
-                const StepDots(totalSteps: 8, currentStep: 0),
-              ],
+            GestureDetector(
+              onTap: () => Navigator.of(context).maybePop(),
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                size: 20,
+                color: cs.onSurface,
+              ),
             ),
-            const SizedBox(height: AppSpacing.space5),
-            Text('Tu identidad',
-                style: AppTextStyles.headlineSm(cs.onSurface)),
-            const SizedBox(height: AppSpacing.space2),
-            Text('Cómo te conocerán en Trama',
-                style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+            const Spacer(),
+            const StepDots(totalSteps: 8, currentStep: 0),
           ],
         ),
-      );
+        const SizedBox(height: AppSpacing.space5),
+        Text('Tu identidad', style: AppTextStyles.headlineSm(cs.onSurface)),
+        const SizedBox(height: AppSpacing.space2),
+        Text(
+          'Cómo te conocerán en Trama',
+          style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+        ),
+      ],
+    ),
+  );
 
   Widget _buildNameRow(ColorScheme cs) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: TTextField(
-              controller: _firstNameCtrl,
-              label: 'Nombre',
-              hint: 'Yeisen',
-              textInputAction: TextInputAction.next,
-            ),
-          ),
-          const SizedBox(width: AppSpacing.space3),
-          Expanded(
-            child: TTextField(
-              controller: _lastNameCtrl,
-              label: 'Apellido',
-              hint: 'Martínez',
-              textInputAction: TextInputAction.next,
-            ),
-          ),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Expanded(
+        child: TTextField(
+          controller: _firstNameCtrl,
+          label: 'Nombre',
+          hint: 'Yeisen',
+          textInputAction: TextInputAction.next,
+        ),
+      ),
+      const SizedBox(width: AppSpacing.space3),
+      Expanded(
+        child: TTextField(
+          controller: _lastNameCtrl,
+          label: 'Apellido',
+          hint: 'Martínez',
+          textInputAction: TextInputAction.next,
+        ),
+      ),
+    ],
+  );
 
   Widget _buildUsernameField(ColorScheme cs) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Usuario', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
-          const SizedBox(height: AppSpacing.space2),
-          TextField(
-            controller: _usernameCtrl,
-            keyboardType: TextInputType.text,
-            autocorrect: false,
-            textInputAction: TextInputAction.done,
-            style: AppTextStyles.bodyMd(cs.onSurface),
-            decoration: InputDecoration(
-              hintText: '@yeisen',
-              hintStyle: AppTextStyles.bodyMd(
-                  cs.onSurfaceVariant.withValues(alpha: 0.6)),
-              prefixText: '@',
-              prefixStyle: AppTextStyles.bodyMd(cs.primary),
-              suffixIcon: _checkingUsername
-                  ? const Padding(
-                      padding: EdgeInsets.all(12),
-                      child: SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: CircularProgressIndicator(strokeWidth: 2)),
-                    )
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text('Usuario', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+      const SizedBox(height: AppSpacing.space2),
+      TextField(
+        controller: _usernameCtrl,
+        keyboardType: TextInputType.text,
+        autocorrect: false,
+        textInputAction: TextInputAction.done,
+        style: AppTextStyles.bodyMd(cs.onSurface),
+        decoration: InputDecoration(
+          hintText: '@yeisen',
+          hintStyle: AppTextStyles.bodyMd(
+            cs.onSurfaceVariant.withValues(alpha: 0.6),
+          ),
+          prefixText: '@',
+          prefixStyle: AppTextStyles.bodyMd(cs.primary),
+          suffixIcon: _checkingUsername
+              ? const Padding(
+                  padding: EdgeInsets.all(12),
+                  child: SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                )
+              : _usernameAvailable == true
+              ? Icon(Icons.check_circle, color: cs.primary, size: 20)
+              : _usernameAvailable == false
+              ? Icon(Icons.cancel, color: cs.error, size: 20)
+              : null,
+          filled: true,
+          fillColor: cs.surfaceContainerLowest,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.space4,
+            vertical: AppSpacing.space4,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+            borderSide: BorderSide(color: cs.outlineVariant),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+            borderSide: BorderSide(
+              color: _usernameAvailable == false
+                  ? cs.error
                   : _usernameAvailable == true
-                      ? Icon(Icons.check_circle, color: cs.primary, size: 20)
-                      : _usernameAvailable == false
-                          ? Icon(Icons.cancel, color: cs.error, size: 20)
-                          : null,
-              filled: true,
-              fillColor: cs.surfaceContainerLowest,
-              contentPadding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.space4, vertical: AppSpacing.space4),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppRadius.md),
-                  borderSide: BorderSide(color: cs.outlineVariant)),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppRadius.md),
-                  borderSide: BorderSide(
-                      color: _usernameAvailable == false
-                          ? cs.error
-                          : _usernameAvailable == true
-                              ? cs.primary
-                              : cs.outlineVariant)),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppRadius.md),
-                  borderSide: BorderSide(color: cs.primary, width: 1.5)),
+                  ? cs.primary
+                  : cs.outlineVariant,
             ),
           ),
-          if (_usernameError != null) ...[
-            const SizedBox(height: AppSpacing.space1),
-            Text(_usernameError!,
-                style: AppTextStyles.bodySm(cs.error)),
-          ] else if (_usernameAvailable == true) ...[
-            const SizedBox(height: AppSpacing.space1),
-            Text('@${_usernameCtrl.text.trim().toLowerCase()} está disponible',
-                style: AppTextStyles.bodySm(cs.primary)),
-          ],
-          if (_usernameSuggestions.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.space2),
-            Text('Sugerencias:',
-                style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
-            const SizedBox(height: AppSpacing.space2),
-            Wrap(
-              spacing: AppSpacing.space2,
-              children: _usernameSuggestions
-                  .map((s) => TChip(
-                        label: '@$s',
-                        selected: false,
-                        onTap: () {
-                          _usernameCtrl.text = s;
-                          _onUsernameChanged();
-                        },
-                      ))
-                  .toList(),
-            ),
-          ],
-        ],
-      );
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+            borderSide: BorderSide(color: cs.primary, width: 1.5),
+          ),
+        ),
+      ),
+      if (_usernameError != null) ...[
+        const SizedBox(height: AppSpacing.space1),
+        Text(_usernameError!, style: AppTextStyles.bodySm(cs.error)),
+      ] else if (_usernameAvailable == true) ...[
+        const SizedBox(height: AppSpacing.space1),
+        Text(
+          '@${_usernameCtrl.text.trim().toLowerCase()} está disponible',
+          style: AppTextStyles.bodySm(cs.primary),
+        ),
+      ],
+      if (_usernameSuggestions.isNotEmpty) ...[
+        const SizedBox(height: AppSpacing.space2),
+        Text('Sugerencias:', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+        const SizedBox(height: AppSpacing.space2),
+        Wrap(
+          spacing: AppSpacing.space2,
+          children: _usernameSuggestions
+              .map(
+                (s) => TChip(
+                  label: '@$s',
+                  selected: false,
+                  onTap: () {
+                    _usernameCtrl.text = s;
+                    _onUsernameChanged();
+                  },
+                ),
+              )
+              .toList(),
+        ),
+      ],
+    ],
+  );
 
   Widget _buildDateField(ColorScheme cs) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Fecha de nacimiento',
-              style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
-          const SizedBox(height: AppSpacing.space2),
-          GestureDetector(
-            onTap: _pickDate,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.space4, vertical: AppSpacing.space4),
-              decoration: BoxDecoration(
-                color: cs.surfaceContainerLowest,
-                borderRadius: BorderRadius.circular(AppRadius.md),
-                border: Border.all(color: cs.outlineVariant),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.calendar_today_outlined,
-                      size: 20, color: cs.onSurfaceVariant),
-                  const SizedBox(width: AppSpacing.space3),
-                  Text(
-                    _birthDate == null
-                        ? 'Seleccionar fecha'
-                        : '${_birthDate!.day}/${_birthDate!.month}/${_birthDate!.year}',
-                    style: _birthDate == null
-                        ? AppTextStyles.bodyMd(
-                            cs.onSurfaceVariant.withValues(alpha: 0.6))
-                        : AppTextStyles.bodyMd(cs.onSurface),
-                  ),
-                ],
-              ),
-            ),
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Fecha de nacimiento',
+        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+      ),
+      const SizedBox(height: AppSpacing.space2),
+      GestureDetector(
+        onTap: _pickDate,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.space4,
+            vertical: AppSpacing.space4,
           ),
-        ],
-      );
+          decoration: BoxDecoration(
+            color: cs.surfaceContainerLowest,
+            borderRadius: BorderRadius.circular(AppRadius.md),
+            border: Border.all(color: cs.outlineVariant),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.calendar_today_outlined,
+                size: 20,
+                color: cs.onSurfaceVariant,
+              ),
+              const SizedBox(width: AppSpacing.space3),
+              Text(
+                _birthDate == null
+                    ? 'Seleccionar fecha'
+                    : '${_birthDate!.day}/${_birthDate!.month}/${_birthDate!.year}',
+                style: _birthDate == null
+                    ? AppTextStyles.bodyMd(
+                        cs.onSurfaceVariant.withValues(alpha: 0.6),
+                      )
+                    : AppTextStyles.bodyMd(cs.onSurface),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
 
   Widget _buildGenderSelector(ColorScheme cs) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Género',
-              style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
-          const SizedBox(height: AppSpacing.space3),
-          Wrap(
-            spacing: AppSpacing.space2,
-            runSpacing: AppSpacing.space2,
-            children: _genders
-                .map((g) => TChip(
-                      label: g.$2,
-                      selected: _gender == g.$1,
-                      onTap: () => setState(() => _gender = g.$1),
-                    ))
-                .toList(),
-          ),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text('Género', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+      const SizedBox(height: AppSpacing.space3),
+      Wrap(
+        spacing: AppSpacing.space2,
+        runSpacing: AppSpacing.space2,
+        children: _genders
+            .map(
+              (g) => TChip(
+                label: g.$2,
+                selected: _gender == g.$1,
+                onTap: () => setState(() => _gender = g.$1),
+              ),
+            )
+            .toList(),
+      ),
+    ],
+  );
 }

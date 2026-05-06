@@ -79,18 +79,20 @@ class MultiSelectChipsField extends StatelessWidget {
   }
 
   Widget _buildFlat(List<CatalogItem> items) => Wrap(
-        spacing: AppSpacing.space2,
-        runSpacing: AppSpacing.space2,
-        children: items
-            .map((item) => TChip(
-                  label: item.label,
-                  selected: selected.contains(item.id),
-                  onTap: _canSelect(item.id)
-                      ? () => onToggle(item.id)
-                      : selected.contains(item.id)
-                          ? () => onToggle(item.id)
-                          : null,
-                ))
-            .toList(),
-      );
+    spacing: AppSpacing.space2,
+    runSpacing: AppSpacing.space2,
+    children: items
+        .map(
+          (item) => TChip(
+            label: item.label,
+            selected: selected.contains(item.id),
+            onTap: _canSelect(item.id)
+                ? () => onToggle(item.id)
+                : selected.contains(item.id)
+                ? () => onToggle(item.id)
+                : null,
+          ),
+        )
+        .toList(),
+  );
 }

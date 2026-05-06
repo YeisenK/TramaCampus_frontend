@@ -6,16 +6,16 @@ enum DiscoverVariant { feed, grid, stories }
 
 extension DiscoverVariantLabel on DiscoverVariant {
   String get label => switch (this) {
-        DiscoverVariant.feed => 'Feed',
-        DiscoverVariant.grid => 'Grid',
-        DiscoverVariant.stories => 'Stories',
-      };
+    DiscoverVariant.feed => 'Feed',
+    DiscoverVariant.grid => 'Grid',
+    DiscoverVariant.stories => 'Stories',
+  };
 
   IconData get icon => switch (this) {
-        DiscoverVariant.feed => Icons.view_agenda_outlined,
-        DiscoverVariant.grid => Icons.grid_view_outlined,
-        DiscoverVariant.stories => Icons.smart_display_outlined,
-      };
+    DiscoverVariant.feed => Icons.view_agenda_outlined,
+    DiscoverVariant.grid => Icons.grid_view_outlined,
+    DiscoverVariant.stories => Icons.smart_display_outlined,
+  };
 }
 
 /// Small segmented picker for discover layout variants (feed / grid / stories).
@@ -49,9 +49,7 @@ class DiscoverVariantSwitch extends StatelessWidget {
                 vertical: AppSpacing.space2,
               ),
               decoration: BoxDecoration(
-                color: isActive
-                    ? cs.onSurface
-                    : cs.surfaceContainerHigh,
+                color: isActive ? cs.onSurface : cs.surfaceContainerHigh,
                 borderRadius: BorderRadius.circular(AppRadius.pill),
               ),
               child: Row(
@@ -65,11 +63,14 @@ class DiscoverVariantSwitch extends StatelessWidget {
                   const SizedBox(width: AppSpacing.space1),
                   Text(
                     v.label,
-                    style: AppTextStyles.labelSm(
-                      isActive ? cs.surface : cs.onSurfaceVariant,
-                    ).copyWith(
-                      fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-                    ),
+                    style:
+                        AppTextStyles.labelSm(
+                          isActive ? cs.surface : cs.onSurfaceVariant,
+                        ).copyWith(
+                          fontWeight: isActive
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                        ),
                   ),
                 ],
               ),

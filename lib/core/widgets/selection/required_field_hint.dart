@@ -23,8 +23,8 @@ class RequiredFieldHint extends StatelessWidget {
     final color = belowMin
         ? cs.error
         : (min != null && current >= min!)
-            ? cs.primary
-            : cs.onSurfaceVariant;
+        ? cs.primary
+        : cs.onSurfaceVariant;
 
     final parts = <String>[];
     if (min != null) parts.add('$current/$min mínimo');

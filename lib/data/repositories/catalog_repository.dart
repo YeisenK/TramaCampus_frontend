@@ -18,21 +18,31 @@ abstract class CatalogRepository {
 // In-memory memoized loader. Reads slimmed JSON from assets/catalogs/.
 class BundledCatalogRepository implements CatalogRepository {
   BundledCatalogRepository._();
-  static final BundledCatalogRepository instance =
-      BundledCatalogRepository._();
+  static final BundledCatalogRepository instance = BundledCatalogRepository._();
 
   final _cache = <String, Catalog>{};
 
   // Derived catalogs (generated from backend).
   static const _derivedCatalogs = {
-    'skill', 'hobby', 'research_interest', 'sport', 'music_genre',
-    'personality_trait', 'goal', 'campus', 'academic',
+    'skill',
+    'hobby',
+    'research_interest',
+    'sport',
+    'music_genre',
+    'personality_trait',
+    'goal',
+    'campus',
+    'academic',
   };
 
   // Frontend-authored catalogs.
   static const _frontendCatalogs = {
-    'diet', 'modality', 'available_days', 'language',
-    'affiliation_type', 'gender',
+    'diet',
+    'modality',
+    'available_days',
+    'language',
+    'affiliation_type',
+    'gender',
   };
 
   @override
@@ -67,8 +77,9 @@ class BundledCatalogRepository implements CatalogRepository {
 
   Future<Map<String, dynamic>> _loadAcademicRaw() async {
     if (_academicRaw != null) return _academicRaw!;
-    final raw = await rootBundle
-        .loadString('assets/catalogs/_derived/academic.json');
+    final raw = await rootBundle.loadString(
+      'assets/catalogs/_derived/academic.json',
+    );
     _academicRaw = jsonDecode(raw) as Map<String, dynamic>;
     return _academicRaw!;
   }
@@ -78,10 +89,12 @@ class BundledCatalogRepository implements CatalogRepository {
   // stores them as career_id and expects the original uppercase codes.
   static Catalog _parseAcademicCatalog(Map<String, dynamic> json) {
     final sets = (json['areas'] as List<dynamic>)
-        .map((a) => CatalogSet(
-              id: (a['id'] as String).toLowerCase(),
-              label: a['label'] as String,
-            ))
+        .map(
+          (a) => CatalogSet(
+            id: (a['id'] as String).toLowerCase(),
+            label: a['label'] as String,
+          ),
+        )
         .toList();
 
     final items = (json['items'] as List<dynamic>).map((raw) {
@@ -107,10 +120,12 @@ class BundledCatalogRepository implements CatalogRepository {
   Future<List<CatalogItem>> programsForCampus(String campusId) async {
     final raw = await _loadAcademicRaw();
     final campuses = raw['campuses'] as List<dynamic>;
-    final entry = campuses.firstWhere(
-      (c) => (c as Map<String, dynamic>)['id'] == campusId,
-      orElse: () => null,
-    ) as Map<String, dynamic>?;
+    final entry =
+        campuses.firstWhere(
+              (c) => (c as Map<String, dynamic>)['id'] == campusId,
+              orElse: () => null,
+            )
+            as Map<String, dynamic>?;
     if (entry == null) return const [];
 
     final allowedIds = (entry['programs'] as List<dynamic>)
@@ -128,8 +143,9 @@ class BundledCatalogRepository implements CatalogRepository {
 
   Future<Map<String, CampusInfo>> _loadCampusInfoCache() async {
     if (_campusInfoCache != null) return _campusInfoCache!;
-    final raw =
-        await rootBundle.loadString('assets/catalogs/_derived/campus.json');
+    final raw = await rootBundle.loadString(
+      'assets/catalogs/_derived/campus.json',
+    );
     final json = jsonDecode(raw) as Map<String, dynamic>;
     final items = (json['items'] as List<dynamic>)
         .map((e) => CampusInfo.fromJson(e as Map<String, dynamic>))
@@ -157,10 +173,12 @@ class BundledCatalogRepository implements CatalogRepository {
   Future<RelevanceData> loadRelevance() async {
     if (_relevanceCache != null) return _relevanceCache!;
     try {
-      final raw = await rootBundle
-          .loadString('assets/catalogs/_derived/relevance.json');
-      _relevanceCache =
-          RelevanceData.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      final raw = await rootBundle.loadString(
+        'assets/catalogs/_derived/relevance.json',
+      );
+      _relevanceCache = RelevanceData.fromJson(
+        jsonDecode(raw) as Map<String, dynamic>,
+      );
     } catch (_) {
       _relevanceCache = RelevanceData.empty();
     }

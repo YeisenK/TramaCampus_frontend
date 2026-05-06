@@ -17,10 +17,8 @@ class Profile {
   final List<ProfileAttribute> attributes;
 
   // Convenience accessors for attribute lists.
-  List<String> get hobbyIds => attributes
-      .whereType<HobbyAttribute>()
-      .map((a) => a.hobbyId)
-      .toList();
+  List<String> get hobbyIds =>
+      attributes.whereType<HobbyAttribute>().map((a) => a.hobbyId).toList();
 
   List<SportAttribute> get sports =>
       attributes.whereType<SportAttribute>().toList();
@@ -33,34 +31,31 @@ class Profile {
   List<LanguageAttribute> get languages =>
       attributes.whereType<LanguageAttribute>().toList();
 
-  List<String> get dietIds => attributes
-      .whereType<DietAttribute>()
-      .map((a) => a.dietId)
-      .toList();
+  List<String> get dietIds =>
+      attributes.whereType<DietAttribute>().map((a) => a.dietId).toList();
 
-  List<String> get musicGenreIds => attributes
-      .whereType<MusicAttribute>()
-      .map((a) => a.genreId)
-      .toList();
+  List<String> get musicGenreIds =>
+      attributes.whereType<MusicAttribute>().map((a) => a.genreId).toList();
 
   Profile copyWith({
     ProfileBase? base,
     Preferences? preferences,
     List<ProfileAttribute>? attributes,
-  }) =>
-      Profile(
-        base: base ?? this.base,
-        preferences: preferences ?? this.preferences,
-        attributes: attributes ?? this.attributes,
-      );
+  }) => Profile(
+    base: base ?? this.base,
+    preferences: preferences ?? this.preferences,
+    attributes: attributes ?? this.attributes,
+  );
 
   factory Profile.fromJson(Map<String, dynamic> json) {
     final attrList = json['profile_attributes'] as List<dynamic>? ?? [];
     return Profile(
       base: ProfileBase.fromJson(
-          (json['profile'] as Map<String, dynamic>?) ?? {}),
+        (json['profile'] as Map<String, dynamic>?) ?? {},
+      ),
       preferences: Preferences.fromJson(
-          (json['preferences'] as Map<String, dynamic>?) ?? {}),
+        (json['preferences'] as Map<String, dynamic>?) ?? {},
+      ),
       attributes: attrList
           .map((e) => ProfileAttribute.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -82,8 +77,7 @@ class Profile {
     return {
       'profile': base.toJson(),
       'preferences': preferences.toJson(),
-      'profile_attributes':
-          effectiveAttributes.map((a) => a.toJson()).toList(),
+      'profile_attributes': effectiveAttributes.map((a) => a.toJson()).toList(),
     };
   }
 

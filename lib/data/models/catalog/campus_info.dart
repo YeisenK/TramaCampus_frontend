@@ -14,14 +14,15 @@ class CampusInfo {
   final List<String> emailDomains; // e.g. ["@anahuac.mx"]
 
   factory CampusInfo.fromJson(Map<String, dynamic> json) => CampusInfo(
-        id: json['id'] as String,
-        name: json['label'] as String,
-        location: json['location'] as String? ?? '',
-        emailDomains: (json['email_domains'] as List<dynamic>?)
-                ?.map((e) => e as String)
-                .toList() ??
-            const [],
-      );
+    id: json['id'] as String,
+    name: json['label'] as String,
+    location: json['location'] as String? ?? '',
+    emailDomains:
+        (json['email_domains'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toList() ??
+        const [],
+  );
 
   // True if the given email's domain matches any of this campus's email_domains.
   bool allowsEmail(String email) {

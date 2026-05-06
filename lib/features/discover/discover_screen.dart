@@ -59,8 +59,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               _modality = m;
               _filteredStudents = _filterStudents(m);
             }),
-            onStudentTap: (s) =>
-                Navigator.of(context).pushNamed(AppRouter.profileDetail, arguments: s),
+            onStudentTap: (s) => Navigator.of(
+              context,
+            ).pushNamed(AppRouter.profileDetail, arguments: s),
             onSaveToggle: (id) => setState(() {
               if (_saved.contains(id)) {
                 _saved.remove(id);

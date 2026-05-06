@@ -112,12 +112,12 @@ class _MatchSuccessScreenState extends State<MatchSuccessScreen>
                         label: 'Iniciar conversación',
                         onPressed: () =>
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                          AppRouter.conversation,
-                          (r) =>
-                              r.settings.name == AppRouter.discover ||
-                              r.settings.name == AppRouter.connections,
-                          arguments: other,
-                        ),
+                              AppRouter.conversation,
+                              (r) =>
+                                  r.settings.name == AppRouter.discover ||
+                                  r.settings.name == AppRouter.connections,
+                              arguments: other,
+                            ),
                       ),
                     ),
                     const SizedBox(height: AppSpacing.space3),

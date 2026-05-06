@@ -29,15 +29,22 @@ class CompleteProfileChecklist extends StatelessWidget {
         title: 'COMPLETA TU PERFIL',
         children: missing.map((f) {
           return ListTile(
-            leading: Icon(Icons.circle_outlined,
-                size: 18, color: cs.onSurfaceVariant),
+            leading: Icon(
+              Icons.circle_outlined,
+              size: 18,
+              color: cs.onSurfaceVariant,
+            ),
             title: Text(f.label, style: AppTextStyles.bodyMd(cs.onSurface)),
-            subtitle: Text(f.hint,
-                style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+            subtitle: Text(
+              f.hint,
+              style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+            ),
             trailing: TextButton(
               onPressed: () => onNavigate(f.key),
-              child: Text('Completar',
-                  style: AppTextStyles.labelSm(cs.primary)),
+              child: Text(
+                'Completar',
+                style: AppTextStyles.labelSm(cs.primary),
+              ),
             ),
           );
         }).toList(),
@@ -48,46 +55,58 @@ class CompleteProfileChecklist extends StatelessWidget {
   static List<_ChecklistField> _missingFields(Profile p) {
     final fields = <_ChecklistField>[];
     if (p.base.bio.length < 20) {
-      fields.add(const _ChecklistField(
-        key: 'bio',
-        label: 'Bio',
-        hint: 'Añade una descripción de al menos 20 caracteres',
-      ));
+      fields.add(
+        const _ChecklistField(
+          key: 'bio',
+          label: 'Bio',
+          hint: 'Añade una descripción de al menos 20 caracteres',
+        ),
+      );
     }
     if (p.hobbyIds.length < 2) {
-      fields.add(const _ChecklistField(
-        key: 'hobbies',
-        label: 'Pasatiempos',
-        hint: 'Al menos 2 pasatiempos mejoran tu visibilidad',
-      ));
+      fields.add(
+        const _ChecklistField(
+          key: 'hobbies',
+          label: 'Pasatiempos',
+          hint: 'Al menos 2 pasatiempos mejoran tu visibilidad',
+        ),
+      );
     }
     if (p.personalityTraitIds.isEmpty) {
-      fields.add(const _ChecklistField(
-        key: 'personality',
-        label: 'Personalidad',
-        hint: 'Agrega rasgos de personalidad',
-      ));
+      fields.add(
+        const _ChecklistField(
+          key: 'personality',
+          label: 'Personalidad',
+          hint: 'Agrega rasgos de personalidad',
+        ),
+      );
     }
     if (p.musicGenreIds.isEmpty) {
-      fields.add(const _ChecklistField(
-        key: 'music',
-        label: 'Música favorita',
-        hint: 'Comparte tus géneros favoritos',
-      ));
+      fields.add(
+        const _ChecklistField(
+          key: 'music',
+          label: 'Música favorita',
+          hint: 'Comparte tus géneros favoritos',
+        ),
+      );
     }
     if (p.sports.isEmpty) {
-      fields.add(const _ChecklistField(
-        key: 'sports',
-        label: 'Deportes',
-        hint: 'Añade los deportes que practicas',
-      ));
+      fields.add(
+        const _ChecklistField(
+          key: 'sports',
+          label: 'Deportes',
+          hint: 'Añade los deportes que practicas',
+        ),
+      );
     }
     if (p.dietIds.isEmpty) {
-      fields.add(const _ChecklistField(
-        key: 'diet',
-        label: 'Dieta',
-        hint: 'Indica tus preferencias alimentarias',
-      ));
+      fields.add(
+        const _ChecklistField(
+          key: 'diet',
+          label: 'Dieta',
+          hint: 'Indica tus preferencias alimentarias',
+        ),
+      );
     }
     return fields;
   }

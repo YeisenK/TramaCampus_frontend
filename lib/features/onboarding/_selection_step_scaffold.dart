@@ -49,38 +49,38 @@ class SelectionStepScaffold extends StatelessWidget {
   }
 
   Widget _buildHeader(ColorScheme cs) => Container(
-        width: double.infinity,
-        color: cs.surfaceDim,
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space5,
-          AppSpacing.space6,
-          AppSpacing.space5,
-          AppSpacing.space5,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    width: double.infinity,
+    color: cs.surfaceDim,
+    padding: const EdgeInsets.fromLTRB(
+      AppSpacing.space5,
+      AppSpacing.space6,
+      AppSpacing.space5,
+      AppSpacing.space5,
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                Builder(
-                  builder: (ctx) => GestureDetector(
-                    onTap: () => Navigator.of(ctx).maybePop(),
-                    child: Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 20,
-                      color: cs.onSurface,
-                    ),
-                  ),
+            Builder(
+              builder: (ctx) => GestureDetector(
+                onTap: () => Navigator.of(ctx).maybePop(),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 20,
+                  color: cs.onSurface,
                 ),
-                const Spacer(),
-                StepDots(totalSteps: 8, currentStep: step),
-              ],
+              ),
             ),
-            const SizedBox(height: AppSpacing.space5),
-            Text(title, style: AppTextStyles.headlineSm(cs.onSurface)),
-            const SizedBox(height: AppSpacing.space2),
-            Text(subtitle, style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+            const Spacer(),
+            StepDots(totalSteps: 8, currentStep: step),
           ],
         ),
-      );
+        const SizedBox(height: AppSpacing.space5),
+        Text(title, style: AppTextStyles.headlineSm(cs.onSurface)),
+        const SizedBox(height: AppSpacing.space2),
+        Text(subtitle, style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+      ],
+    ),
+  );
 }

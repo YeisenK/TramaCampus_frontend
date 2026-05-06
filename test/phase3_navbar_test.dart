@@ -32,7 +32,9 @@ void main() {
       expect(find.text('Match'), findsNothing);
     });
 
-    testWidgets('active tab label is visible, inactive are hidden', (tester) async {
+    testWidgets('active tab label is visible, inactive are hidden', (
+      tester,
+    ) async {
       await tester.pumpWidget(_wrapNav(index: 0));
       await tester.pump();
       // "Descubrir" should be visible (active tab)
@@ -64,15 +66,18 @@ void main() {
       expect(tapped, 2);
     });
 
-    testWidgets('tabs in order: Descubrir/Conexiones/Market/Chats/Perfil icons', (tester) async {
-      await tester.pumpWidget(_wrapNav(index: 0));
-      await tester.pump();
-      // Active (index 0) = filled explore; others outlined
-      expect(find.byIcon(Icons.explore), findsOneWidget);
-      expect(find.byIcon(Icons.people_outline), findsOneWidget);
-      expect(find.byIcon(Icons.storefront_outlined), findsOneWidget);
-      expect(find.byIcon(Icons.chat_bubble_outline), findsOneWidget);
-      expect(find.byIcon(Icons.person_outline), findsOneWidget);
-    });
+    testWidgets(
+      'tabs in order: Descubrir/Conexiones/Market/Chats/Perfil icons',
+      (tester) async {
+        await tester.pumpWidget(_wrapNav(index: 0));
+        await tester.pump();
+        // Active (index 0) = filled explore; others outlined
+        expect(find.byIcon(Icons.explore), findsOneWidget);
+        expect(find.byIcon(Icons.people_outline), findsOneWidget);
+        expect(find.byIcon(Icons.storefront_outlined), findsOneWidget);
+        expect(find.byIcon(Icons.chat_bubble_outline), findsOneWidget);
+        expect(find.byIcon(Icons.person_outline), findsOneWidget);
+      },
+    );
   });
 }

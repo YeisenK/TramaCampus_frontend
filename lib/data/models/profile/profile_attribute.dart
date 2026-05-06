@@ -7,16 +7,16 @@ enum LanguageLevel { basic, intermediate, advanced, native }
 
 extension SportFrequencyExt on SportFrequency {
   String toJson() => name;
-  static SportFrequency fromString(String s) =>
-      SportFrequency.values.firstWhere((e) => e.name == s,
-          orElse: () => SportFrequency.casual);
+  static SportFrequency fromString(String s) => SportFrequency.values
+      .firstWhere((e) => e.name == s, orElse: () => SportFrequency.casual);
 }
 
 extension LanguageLevelExt on LanguageLevel {
   String toJson() => name;
-  static LanguageLevel fromString(String s) =>
-      LanguageLevel.values.firstWhere((e) => e.name == s,
-          orElse: () => LanguageLevel.basic);
+  static LanguageLevel fromString(String s) => LanguageLevel.values.firstWhere(
+    (e) => e.name == s,
+    orElse: () => LanguageLevel.basic,
+  );
 }
 
 sealed class ProfileAttribute {
@@ -28,17 +28,18 @@ sealed class ProfileAttribute {
     return switch (type) {
       'hobby' => HobbyAttribute(hobbyId: value as String),
       'sport' => SportAttribute(
-          sportId: (value as Map<String, dynamic>)['sport'] as String,
-          frequency: SportFrequencyExt.fromString(
-              (value)['frequency'] as String? ?? 'casual'),
+        sportId: (value as Map<String, dynamic>)['sport'] as String,
+        frequency: SportFrequencyExt.fromString(
+          (value)['frequency'] as String? ?? 'casual',
         ),
-      'personality_trait' =>
-        PersonalityAttribute(traitId: value as String),
+      ),
+      'personality_trait' => PersonalityAttribute(traitId: value as String),
       'language' => LanguageAttribute(
-          langCode: (value as Map<String, dynamic>)['lang'] as String,
-          level: LanguageLevelExt.fromString(
-              (value)['level'] as String? ?? 'basic'),
+        langCode: (value as Map<String, dynamic>)['lang'] as String,
+        level: LanguageLevelExt.fromString(
+          (value)['level'] as String? ?? 'basic',
         ),
+      ),
       'diet' => DietAttribute(dietId: value as String),
       'music_genre' => MusicAttribute(genreId: value as String),
       _ => throw FormatException('Unknown attribute_type: $type'),
@@ -53,8 +54,10 @@ class HobbyAttribute extends ProfileAttribute {
   final String hobbyId;
 
   @override
-  Map<String, dynamic> toJson() =>
-      {'attribute_type': 'hobby', 'value': hobbyId};
+  Map<String, dynamic> toJson() => {
+    'attribute_type': 'hobby',
+    'value': hobbyId,
+  };
 }
 
 class SportAttribute extends ProfileAttribute {
@@ -64,9 +67,9 @@ class SportAttribute extends ProfileAttribute {
 
   @override
   Map<String, dynamic> toJson() => {
-        'attribute_type': 'sport',
-        'value': {'sport': sportId, 'frequency': frequency.toJson()},
-      };
+    'attribute_type': 'sport',
+    'value': {'sport': sportId, 'frequency': frequency.toJson()},
+  };
 }
 
 class PersonalityAttribute extends ProfileAttribute {
@@ -74,8 +77,10 @@ class PersonalityAttribute extends ProfileAttribute {
   final String traitId;
 
   @override
-  Map<String, dynamic> toJson() =>
-      {'attribute_type': 'personality_trait', 'value': traitId};
+  Map<String, dynamic> toJson() => {
+    'attribute_type': 'personality_trait',
+    'value': traitId,
+  };
 }
 
 class LanguageAttribute extends ProfileAttribute {
@@ -85,9 +90,9 @@ class LanguageAttribute extends ProfileAttribute {
 
   @override
   Map<String, dynamic> toJson() => {
-        'attribute_type': 'language',
-        'value': {'lang': langCode, 'level': level.toJson()},
-      };
+    'attribute_type': 'language',
+    'value': {'lang': langCode, 'level': level.toJson()},
+  };
 }
 
 class DietAttribute extends ProfileAttribute {
@@ -95,8 +100,7 @@ class DietAttribute extends ProfileAttribute {
   final String dietId;
 
   @override
-  Map<String, dynamic> toJson() =>
-      {'attribute_type': 'diet', 'value': dietId};
+  Map<String, dynamic> toJson() => {'attribute_type': 'diet', 'value': dietId};
 }
 
 class MusicAttribute extends ProfileAttribute {
@@ -104,6 +108,8 @@ class MusicAttribute extends ProfileAttribute {
   final String genreId;
 
   @override
-  Map<String, dynamic> toJson() =>
-      {'attribute_type': 'music_genre', 'value': genreId};
+  Map<String, dynamic> toJson() => {
+    'attribute_type': 'music_genre',
+    'value': genreId,
+  };
 }

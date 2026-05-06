@@ -81,8 +81,9 @@ class _CatalogPickerSheetState extends State<CatalogPickerSheet> {
 
   Future<void> _loadCatalog() async {
     try {
-      final catalog =
-          await BundledCatalogRepository.instance.load(widget.catalogName);
+      final catalog = await BundledCatalogRepository.instance.load(
+        widget.catalogName,
+      );
       if (!mounted) return;
       setState(() {
         _catalog = catalog;
@@ -115,16 +116,17 @@ class _CatalogPickerSheetState extends State<CatalogPickerSheet> {
     });
   }
 
-  bool get _canConfirm =>
-      widget.min == null || _selected.length >= widget.min!;
+  bool get _canConfirm => widget.min == null || _selected.length >= widget.min!;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title ?? 'Seleccionar',
-            style: AppTextStyles.titleMd(cs.onSurface)),
+        title: Text(
+          widget.title ?? 'Seleccionar',
+          style: AppTextStyles.titleMd(cs.onSurface),
+        ),
         backgroundColor: cs.surface,
         surfaceTintColor: Colors.transparent,
         leading: IconButton(
@@ -141,15 +143,16 @@ class _CatalogPickerSheetState extends State<CatalogPickerSheet> {
               },
             )
           : _catalog == null
-              ? const SkeletonLoader()
-              : _buildContent(cs),
+          ? const SkeletonLoader()
+          : _buildContent(cs),
       bottomNavigationBar: _error == null && _catalog != null
           ? _ConfirmBar(
               selected: _selected.length,
               min: widget.min,
               max: widget.max,
               canConfirm: _canConfirm,
-              onConfirm: () => Navigator.of(context).pop(Set<String>.from(_selected)),
+              onConfirm: () =>
+                  Navigator.of(context).pop(Set<String>.from(_selected)),
             )
           : null,
     );
@@ -280,8 +283,10 @@ class _GroupSection extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(set.label,
-                      style: AppTextStyles.bodyMd(cs.onSurface)),
+                  child: Text(
+                    set.label,
+                    style: AppTextStyles.bodyMd(cs.onSurface),
+                  ),
                 ),
                 if (_selectedCount > 0)
                   Container(
@@ -308,11 +313,13 @@ class _GroupSection extends StatelessWidget {
           ),
         ),
         if (expanded)
-          ...items.map((item) => _ItemTile(
-                item: item,
-                selected: selected.contains(item.id),
-                onTap: () => onToggleItem(item.id),
-              )),
+          ...items.map(
+            (item) => _ItemTile(
+              item: item,
+              selected: selected.contains(item.id),
+              onTap: () => onToggleItem(item.id),
+            ),
+          ),
         Divider(height: 0, color: cs.outlineVariant.withValues(alpha: 0.3)),
       ],
     );
@@ -342,8 +349,10 @@ class _ItemTile extends StatelessWidget {
       title: Text(item.label, style: AppTextStyles.bodyMd(cs.onSurface)),
       trailing: selected
           ? Icon(Icons.check_circle, color: cs.primary)
-          : Icon(Icons.circle_outlined,
-              color: cs.onSurfaceVariant.withValues(alpha: 0.4)),
+          : Icon(
+              Icons.circle_outlined,
+              color: cs.onSurfaceVariant.withValues(alpha: 0.4),
+            ),
     );
   }
 }
@@ -376,10 +385,7 @@ class _ConfirmBar extends StatelessWidget {
           AppSpacing.space5,
           AppSpacing.space5,
         ),
-        child: TButton(
-          label: label,
-          onPressed: canConfirm ? onConfirm : null,
-        ),
+        child: TButton(label: label, onPressed: canConfirm ? onConfirm : null),
       ),
     );
   }

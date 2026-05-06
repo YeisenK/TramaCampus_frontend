@@ -43,8 +43,8 @@ class StepDots extends StatelessWidget {
                 color: isDone
                     ? cs.primary.withValues(alpha: 0.45)
                     : isActive
-                        ? cs.primary
-                        : cs.outlineVariant,
+                    ? cs.primary
+                    : cs.outlineVariant,
                 borderRadius: BorderRadius.circular(AppRadius.pill),
               ),
             );

@@ -34,7 +34,9 @@ class TSegmentedUnderline extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: isActive ? cs.primary : cs.outlineVariant.withValues(alpha: 0.4),
+                    color: isActive
+                        ? cs.primary
+                        : cs.outlineVariant.withValues(alpha: 0.4),
                     width: isActive ? 2.0 : 1.0,
                   ),
                 ),

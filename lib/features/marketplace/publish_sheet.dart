@@ -30,7 +30,12 @@ class _PublishSheetState extends State<PublishSheet> {
     ListingCategory.articulos,
     ListingCategory.freelance,
   ];
-  static const _categoryLabels = ['Apuntes', 'Servicios', 'Artículos', 'Freelance'];
+  static const _categoryLabels = [
+    'Apuntes',
+    'Servicios',
+    'Artículos',
+    'Freelance',
+  ];
   static const _categoryIcons = [
     Icons.menu_book_outlined,
     Icons.build_outlined,

@@ -13,7 +13,11 @@ enum RankReason {
 }
 
 class RankedItem<T> {
-  const RankedItem({required this.item, required this.score, required this.reason});
+  const RankedItem({
+    required this.item,
+    required this.score,
+    required this.reason,
+  });
   final T item;
   final double score;
   final RankReason reason;

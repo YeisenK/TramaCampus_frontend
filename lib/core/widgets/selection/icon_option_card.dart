@@ -25,7 +25,9 @@ class IconOptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final bg = selected ? cs.primary.withValues(alpha: 0.12) : cs.surfaceContainerHigh;
+    final bg = selected
+        ? cs.primary.withValues(alpha: 0.12)
+        : cs.surfaceContainerHigh;
     final borderColor = selected ? cs.primary : cs.outlineVariant;
     final textColor = selected ? cs.primary : cs.onSurface;
     final iconColor = selected ? cs.primary : cs.onSurfaceVariant;
@@ -66,13 +68,15 @@ class IconOptionCard extends StatelessWidget {
             ),
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 200),
-              transitionBuilder: (child, animation) => ScaleTransition(
-                scale: animation,
-                child: child,
-              ),
+              transitionBuilder: (child, animation) =>
+                  ScaleTransition(scale: animation, child: child),
               child: selected
-                  ? Icon(Icons.check_circle, size: 18, color: cs.primary,
-                      key: const ValueKey('check'))
+                  ? Icon(
+                      Icons.check_circle,
+                      size: 18,
+                      color: cs.primary,
+                      key: const ValueKey('check'),
+                    )
                   : const SizedBox.shrink(key: ValueKey('empty')),
             ),
           ],

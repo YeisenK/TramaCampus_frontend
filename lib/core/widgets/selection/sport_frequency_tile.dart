@@ -35,12 +35,10 @@ class SportFrequencyTile extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(label,
-                    style: AppTextStyles.bodyMd(cs.onSurface)),
+                child: Text(label, style: AppTextStyles.bodyMd(cs.onSurface)),
               ),
               IconButton(
-                icon:
-                    Icon(Icons.close, size: 18, color: cs.onSurfaceVariant),
+                icon: Icon(Icons.close, size: 18, color: cs.onSurfaceVariant),
                 onPressed: onRemove,
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
@@ -48,10 +46,7 @@ class SportFrequencyTile extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.space2),
-          _FrequencySegment(
-            current: frequency,
-            onChanged: onFrequencyChanged,
-          ),
+          _FrequencySegment(current: frequency, onChanged: onFrequencyChanged),
         ],
       ),
     );
@@ -83,8 +78,7 @@ class _FrequencySegment extends StatelessWidget {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 150),
               margin: const EdgeInsets.only(right: AppSpacing.space1),
-              padding:
-                  const EdgeInsets.symmetric(vertical: AppSpacing.space2),
+              padding: const EdgeInsets.symmetric(vertical: AppSpacing.space2),
               decoration: BoxDecoration(
                 color: selected
                     ? cs.primary.withValues(alpha: 0.15)
@@ -98,7 +92,8 @@ class _FrequencySegment extends StatelessWidget {
               child: Text(
                 label,
                 style: AppTextStyles.labelSm(
-                    selected ? cs.primary : cs.onSurfaceVariant),
+                  selected ? cs.primary : cs.onSurfaceVariant,
+                ),
               ),
             ),
           ),

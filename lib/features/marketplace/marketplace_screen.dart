@@ -55,7 +55,8 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
   }
 
   Future<void> _loadData() async {
-    final businesses = await MarketplaceRepository.instance.getAffiliateBusinesses();
+    final businesses = await MarketplaceRepository.instance
+        .getAffiliateBusinesses();
     final listings = await MarketplaceRepository.instance.getListings(
       category: _selectedCategory,
     );
@@ -107,10 +108,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _EditorialHeader(
-            onSearchTap: () {},
-            onPublishTap: _onPublishTap,
-          ),
+          _EditorialHeader(onSearchTap: () {}, onPublishTap: _onPublishTap),
           _CategoryFilter(
             selectedIndex: _categories.indexOf(_selectedCategory),
             labels: _categoryLabels,
@@ -192,16 +190,9 @@ class _EditorialHeader extends StatelessWidget {
                 ],
               ),
             ),
-            _PillIconButton(
-              icon: Icons.search_outlined,
-              onTap: onSearchTap,
-            ),
+            _PillIconButton(icon: Icons.search_outlined, onTap: onSearchTap),
             const SizedBox(width: AppSpacing.space2),
-            _PillIconButton(
-              icon: Icons.add,
-              onTap: onPublishTap,
-              filled: true,
-            ),
+            _PillIconButton(icon: Icons.add, onTap: onPublishTap, filled: true),
           ],
         ),
       ),
@@ -239,9 +230,7 @@ class _PillIconButton extends StatelessWidget {
               shape: BoxShape.circle,
               border: filled
                   ? null
-                  : Border.all(
-                      color: cs.outlineVariant.withValues(alpha: 0.4),
-                    ),
+                  : Border.all(color: cs.outlineVariant.withValues(alpha: 0.4)),
             ),
             alignment: Alignment.center,
             child: Icon(
@@ -391,10 +380,7 @@ class _ExploreView extends StatelessWidget {
         ),
         children: [
           if (featured.isNotEmpty) ...[
-            FeaturedStrip(
-              listing: featured.first,
-              onTap: () {},
-            ),
+            FeaturedStrip(listing: featured.first, onTap: () {}),
             const SizedBox(height: AppSpacing.space5),
           ],
           if (businesses.isNotEmpty) ...[
@@ -446,9 +432,7 @@ class _ListingsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     if (variant == _ListingVariant.list) {
       return Column(
-        children: listings
-            .map((l) => ListingCardList(listing: l))
-            .toList(),
+        children: listings.map((l) => ListingCardList(listing: l)).toList(),
       );
     }
     if (variant == _ListingVariant.grid) {
@@ -490,7 +474,9 @@ class _StatsBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final ghost = isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
+    final ghost = isDark
+        ? AppColors.darkOutlineGhost
+        : AppColors.lightOutlineGhost;
     final stats = [
       ('Publicaciones', '$listingCount'),
       ('Empresas', '$businessCount'),
@@ -506,8 +492,7 @@ class _StatsBar extends StatelessWidget {
         child: Row(
           children: [
             for (int i = 0; i < stats.length; i++) ...[
-              if (i > 0)
-                VerticalDivider(width: 1, thickness: 1, color: ghost),
+              if (i > 0) VerticalDivider(width: 1, thickness: 1, color: ghost),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

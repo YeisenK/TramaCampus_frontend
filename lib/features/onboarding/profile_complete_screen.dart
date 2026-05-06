@@ -34,8 +34,8 @@ class _ProfileCompleteScreenState extends State<ProfileCompleteScreen> {
     setState(() {
       _displayName = [first, last].where((s) => s.isNotEmpty).join(' ');
       _username = username.isNotEmpty ? '@$username' : '';
-      _hue = (first.isNotEmpty ? first.codeUnitAt(0).toDouble() * 1.4 : 220) %
-          360;
+      _hue =
+          (first.isNotEmpty ? first.codeUnitAt(0).toDouble() * 1.4 : 220) % 360;
     });
   }
 
@@ -44,11 +44,11 @@ class _ProfileCompleteScreenState extends State<ProfileCompleteScreen> {
     final cs = Theme.of(context).colorScheme;
     final initials = _displayName.isNotEmpty
         ? _displayName
-            .split(' ')
-            .where((w) => w.isNotEmpty)
-            .map((w) => w[0].toUpperCase())
-            .take(2)
-            .join()
+              .split(' ')
+              .where((w) => w.isNotEmpty)
+              .map((w) => w[0].toUpperCase())
+              .take(2)
+              .join()
         : '?';
     return Scaffold(
       body: Stack(
@@ -57,7 +57,9 @@ class _ProfileCompleteScreenState extends State<ProfileCompleteScreen> {
           NetworkTexture(opacity: 0.04),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space6),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.space6,
+              ),
               child: Column(
                 children: [
                   const Spacer(flex: 2),
@@ -139,9 +141,11 @@ class _ProfileCompleteScreenState extends State<ProfileCompleteScreen> {
                     child: TButton(
                       label: 'Ir al feed',
                       variant: TButtonVariant.secondary,
-                      onPressed: () => Navigator.of(context)
-                          .pushNamedAndRemoveUntil(
-                              AppRouter.discover, (route) => false),
+                      onPressed: () =>
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            AppRouter.discover,
+                            (route) => false,
+                          ),
                     ),
                   ),
                   const SizedBox(height: AppSpacing.space6),
@@ -180,10 +184,7 @@ class _AvatarCircle extends StatelessWidget {
         ),
       ),
       alignment: Alignment.center,
-      child: Text(
-        initials,
-        style: AppTextStyles.headlineSm(Colors.white),
-      ),
+      child: Text(initials, style: AppTextStyles.headlineSm(Colors.white)),
     );
   }
 }

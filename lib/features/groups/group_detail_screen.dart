@@ -24,7 +24,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final ghost = isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
+    final ghost = isDark
+        ? AppColors.darkOutlineGhost
+        : AppColors.lightOutlineGhost;
 
     return Scaffold(
       body: Column(
@@ -44,16 +46,16 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
               child: _tab == 'tasks'
                   ? _TasksTab(key: const ValueKey('tasks'))
                   : _tab == 'members'
-                      ? _MembersTab(
-                          key: const ValueKey('members'),
-                          group: widget.group,
-                          cs: cs,
-                        )
-                      : _AboutTab(
-                          key: const ValueKey('about'),
-                          group: widget.group,
-                          cs: cs,
-                        ),
+                  ? _MembersTab(
+                      key: const ValueKey('members'),
+                      group: widget.group,
+                      cs: cs,
+                    )
+                  : _AboutTab(
+                      key: const ValueKey('about'),
+                      group: widget.group,
+                      cs: cs,
+                    ),
             ),
           ),
         ],
@@ -90,9 +92,7 @@ class _TabBar extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: ghostColor, width: 1),
-        ),
+        border: Border(bottom: BorderSide(color: ghostColor, width: 1)),
       ),
       child: Row(
         children: _tabs.map((entry) {
@@ -118,8 +118,7 @@ class _TabBar extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14,
-                  fontWeight:
-                      isActive ? FontWeight.w600 : FontWeight.w400,
+                  fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                   color: isActive ? cs.onSurface : cs.onSurfaceVariant,
                 ),
               ),
@@ -168,8 +167,9 @@ class _TasksTabState extends State<_TasksTab> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final inProgress =
-        _tasks.where((t) => t.status == TaskStatus.inProgress).toList();
+    final inProgress = _tasks
+        .where((t) => t.status == TaskStatus.inProgress)
+        .toList();
     final todo = _tasks.where((t) => t.status == TaskStatus.todo).toList();
     final done = _tasks.where((t) => t.status == TaskStatus.done).toList();
 
@@ -188,37 +188,34 @@ class _TasksTabState extends State<_TasksTab> {
             cs: cs,
           ),
           ...inProgress.asMap().entries.map(
-                (e) => TaskRow(
-                  task: e.value,
-                  onToggle: () => _toggleTask(
-                    _tasks.indexWhere((t) => t.id == e.value.id),
-                  ),
-                ),
-              ),
+            (e) => TaskRow(
+              task: e.value,
+              onToggle: () =>
+                  _toggleTask(_tasks.indexWhere((t) => t.id == e.value.id)),
+            ),
+          ),
           const SizedBox(height: AppSpacing.space4),
         ],
         if (todo.isNotEmpty) ...[
           _SectionHeader(label: 'PENDIENTES', count: todo.length, cs: cs),
           ...todo.asMap().entries.map(
-                (e) => TaskRow(
-                  task: e.value,
-                  onToggle: () => _toggleTask(
-                    _tasks.indexWhere((t) => t.id == e.value.id),
-                  ),
-                ),
-              ),
+            (e) => TaskRow(
+              task: e.value,
+              onToggle: () =>
+                  _toggleTask(_tasks.indexWhere((t) => t.id == e.value.id)),
+            ),
+          ),
           const SizedBox(height: AppSpacing.space4),
         ],
         if (done.isNotEmpty) ...[
           _SectionHeader(label: 'COMPLETADAS', count: done.length, cs: cs),
           ...done.asMap().entries.map(
-                (e) => TaskRow(
-                  task: e.value,
-                  onToggle: () => _toggleTask(
-                    _tasks.indexWhere((t) => t.id == e.value.id),
-                  ),
-                ),
-              ),
+            (e) => TaskRow(
+              task: e.value,
+              onToggle: () =>
+                  _toggleTask(_tasks.indexWhere((t) => t.id == e.value.id)),
+            ),
+          ),
         ],
       ],
     );
@@ -253,8 +250,7 @@ class _SectionHeader extends StatelessWidget {
           ),
           const SizedBox(width: AppSpacing.space2),
           Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 7, vertical: 1),
+            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 1),
             decoration: BoxDecoration(
               color: cs.surfaceContainerHigh,
               borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -297,11 +293,7 @@ class _MembersTab extends StatelessWidget {
         _MemberRow(name: group.leader, role: 'Líder', cs: cs),
         ...List.generate(
           3,
-          (i) => _MemberRow(
-            name: 'Miembro ${i + 1}',
-            role: 'Miembro',
-            cs: cs,
-          ),
+          (i) => _MemberRow(name: 'Miembro ${i + 1}', role: 'Miembro', cs: cs),
         ),
       ],
     );
@@ -309,11 +301,7 @@ class _MembersTab extends StatelessWidget {
 }
 
 class _MemberRow extends StatelessWidget {
-  const _MemberRow({
-    required this.name,
-    required this.role,
-    required this.cs,
-  });
+  const _MemberRow({required this.name, required this.role, required this.cs});
   final String name;
   final String role;
   final ColorScheme cs;
@@ -346,10 +334,7 @@ class _MemberRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(name, style: AppTextStyles.titleMd(cs.onSurface)),
-                Text(
-                  role,
-                  style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-                ),
+                Text(role, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
               ],
             ),
           ),

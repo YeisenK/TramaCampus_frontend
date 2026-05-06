@@ -49,8 +49,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   Future<void> _loadCampus() async {
     final draft = await OnboardingDraftRepository.instance.load();
     if (!mounted || draft.universityId == null) return;
-    final campus =
-        await BundledCatalogRepository.instance.campusInfo(draft.universityId!);
+    final campus = await BundledCatalogRepository.instance.campusInfo(
+      draft.universityId!,
+    );
     if (!mounted) return;
     setState(() => _campus = campus);
   }
@@ -59,8 +60,10 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     final email = _emailController.text.trim();
     if (email.isEmpty) return;
     if (_campus != null && !_campus!.allowsEmail(email)) {
-      setState(() => _domainError =
-          'Este correo no pertenece a ${_campus!.name}. Verifica o vuelve a elegir tu campus.');
+      setState(
+        () => _domainError =
+            'Este correo no pertenece a ${_campus!.name}. Verifica o vuelve a elegir tu campus.',
+      );
       return;
     }
     setState(() {
@@ -116,8 +119,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   ] else ...[
                     _VerifyCodeEntry(
                       email: _emailController.text,
-                      onVerified: () =>
-                          Navigator.of(context).pushNamed(AppRouter.affiliation),
+                      onVerified: () => Navigator.of(
+                        context,
+                      ).pushNamed(AppRouter.affiliation),
                     ),
                   ],
                 ],
@@ -130,37 +134,41 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   }
 
   Widget _buildHeader(ColorScheme cs) => Container(
-        width: double.infinity,
-        color: cs.surfaceDim,
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space5,
-          AppSpacing.space6,
-          AppSpacing.space5,
-          AppSpacing.space5,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    width: double.infinity,
+    color: cs.surfaceDim,
+    padding: const EdgeInsets.fromLTRB(
+      AppSpacing.space5,
+      AppSpacing.space6,
+      AppSpacing.space5,
+      AppSpacing.space5,
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.of(context).maybePop(),
-                  child: Icon(Icons.arrow_back_ios_new,
-                      size: 20, color: cs.onSurface),
-                ),
-                const Spacer(),
-                const StepDots(totalSteps: 8, currentStep: 2),
-              ],
+            GestureDetector(
+              onTap: () => Navigator.of(context).maybePop(),
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                size: 20,
+                color: cs.onSurface,
+              ),
             ),
-            const SizedBox(height: AppSpacing.space5),
-            Text('Verificar correo',
-                style: AppTextStyles.headlineSm(cs.onSurface)),
-            const SizedBox(height: AppSpacing.space2),
-            Text('Confirma que perteneces a tu universidad',
-                style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+            const Spacer(),
+            const StepDots(totalSteps: 8, currentStep: 2),
           ],
         ),
-      );
+        const SizedBox(height: AppSpacing.space5),
+        Text('Verificar correo', style: AppTextStyles.headlineSm(cs.onSurface)),
+        const SizedBox(height: AppSpacing.space2),
+        Text(
+          'Confirma que perteneces a tu universidad',
+          style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+        ),
+      ],
+    ),
+  );
 }
 
 class _VerifyCodeEntry extends StatefulWidget {
@@ -173,8 +181,10 @@ class _VerifyCodeEntry extends StatefulWidget {
 }
 
 class _VerifyCodeEntryState extends State<_VerifyCodeEntry> {
-  final List<TextEditingController> _cells =
-      List.generate(4, (_) => TextEditingController());
+  final List<TextEditingController> _cells = List.generate(
+    4,
+    (_) => TextEditingController(),
+  );
   final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
 
   @override

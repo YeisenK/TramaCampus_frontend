@@ -14,8 +14,9 @@ class ListingCardGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () =>
-          Navigator.of(context).pushNamed(AppRouter.listingDetail, arguments: listing),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRouter.listingDetail, arguments: listing),
       child: Container(
         decoration: BoxDecoration(
           color: cs.surfaceContainerLowest,
@@ -42,7 +43,8 @@ class ListingCardGrid extends StatelessWidget {
                         fit: BoxFit.cover,
                         width: double.infinity,
                         cacheWidth: 400,
-                        errorBuilder: (context, error, stack) => _placeholder(cs),
+                        errorBuilder: (context, error, stack) =>
+                            _placeholder(cs),
                       )
                     : _placeholder(cs),
               ),
@@ -54,10 +56,9 @@ class ListingCardGrid extends StatelessWidget {
                 children: [
                   Text(
                     listing.title,
-                    style: AppTextStyles.labelSm(cs.onSurface).copyWith(
-                      fontWeight: FontWeight.w600,
-                      height: 1.3,
-                    ),
+                    style: AppTextStyles.labelSm(
+                      cs.onSurface,
+                    ).copyWith(fontWeight: FontWeight.w600, height: 1.3),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -80,12 +81,12 @@ class ListingCardGrid extends StatelessWidget {
   }
 
   Widget _placeholder(ColorScheme cs) => Container(
-        decoration: BoxDecoration(gradient: AppColors.ctaGradient()),
-        alignment: Alignment.center,
-        child: Icon(
-          Icons.image_outlined,
-          size: 28,
-          color: Colors.white.withValues(alpha: 0.5),
-        ),
-      );
+    decoration: BoxDecoration(gradient: AppColors.ctaGradient()),
+    alignment: Alignment.center,
+    child: Icon(
+      Icons.image_outlined,
+      size: 28,
+      color: Colors.white.withValues(alpha: 0.5),
+    ),
+  );
 }

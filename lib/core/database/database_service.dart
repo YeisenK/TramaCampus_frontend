@@ -34,7 +34,7 @@ class DatabaseService {
 
   Future<void> _onCreate(Database db, int version) async {
     final batch = db.batch();
-    for (final migration in kMigrations) {  
+    for (final migration in kMigrations) {
       for (final sql in migration.up) {
         batch.execute(sql);
       }

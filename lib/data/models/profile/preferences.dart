@@ -11,7 +11,8 @@ class Preferences {
     this.modeOverrides = const [],
   });
 
-  final List<String> modes; // 13-mode backend list (resolved by ModalityResolver)
+  final List<String>
+  modes; // 13-mode backend list (resolved by ModalityResolver)
   final String uiModality; // "estudio" | "amistad" | "personal" — analytics
   final List<String> goals; // catalog IDs, 1–5
   final List<String> skills; // catalog IDs, 3–10
@@ -31,59 +32,53 @@ class Preferences {
     List<String>? availableDays,
     String? connectivityState,
     List<String>? modeOverrides,
-  }) =>
-      Preferences(
-        modes: modes ?? this.modes,
-        uiModality: uiModality ?? this.uiModality,
-        goals: goals ?? this.goals,
-        skills: skills ?? this.skills,
-        researchInterests: researchInterests ?? this.researchInterests,
-        availableDays: availableDays ?? this.availableDays,
-        connectivityState: connectivityState ?? this.connectivityState,
-        modeOverrides: modeOverrides ?? this.modeOverrides,
-      );
+  }) => Preferences(
+    modes: modes ?? this.modes,
+    uiModality: uiModality ?? this.uiModality,
+    goals: goals ?? this.goals,
+    skills: skills ?? this.skills,
+    researchInterests: researchInterests ?? this.researchInterests,
+    availableDays: availableDays ?? this.availableDays,
+    connectivityState: connectivityState ?? this.connectivityState,
+    modeOverrides: modeOverrides ?? this.modeOverrides,
+  );
 
   factory Preferences.fromJson(Map<String, dynamic> json) => Preferences(
-        modes: (json['modes'] as List<dynamic>?)
-                ?.map((e) => e as String)
-                .toList() ??
-            const [],
-        uiModality: json['ui_modality'] as String? ?? '',
-        goals: (json['goals'] as List<dynamic>?)
-                ?.map((e) => e as String)
-                .toList() ??
-            const [],
-        skills: (json['skills'] as List<dynamic>?)
-                ?.map((e) => e as String)
-                .toList() ??
-            const [],
-        researchInterests:
-            (json['research_interests'] as List<dynamic>?)
-                    ?.map((e) => e as String)
-                    .toList() ??
-                const [],
-        availableDays:
-            (json['available_days'] as List<dynamic>?)
-                    ?.map((e) => e as String)
-                    .toList() ??
-                const [],
-        connectivityState:
-            json['connectivity_state'] as String? ?? 'active',
-        modeOverrides:
-            (json['mode_overrides'] as List<dynamic>?)
-                    ?.map((e) => e as String)
-                    .toList() ??
-                const [],
-      );
+    modes:
+        (json['modes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+        const [],
+    uiModality: json['ui_modality'] as String? ?? '',
+    goals:
+        (json['goals'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+        const [],
+    skills:
+        (json['skills'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+        const [],
+    researchInterests:
+        (json['research_interests'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toList() ??
+        const [],
+    availableDays:
+        (json['available_days'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toList() ??
+        const [],
+    connectivityState: json['connectivity_state'] as String? ?? 'active',
+    modeOverrides:
+        (json['mode_overrides'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toList() ??
+        const [],
+  );
 
   Map<String, dynamic> toJson() => {
-        'modes': modes,
-        'ui_modality': uiModality,
-        'goals': goals,
-        'skills': skills,
-        if (researchInterests.isNotEmpty)
-          'research_interests': researchInterests,
-        if (availableDays.isNotEmpty) 'available_days': availableDays,
-        'connectivity_state': connectivityState,
-      };
+    'modes': modes,
+    'ui_modality': uiModality,
+    'goals': goals,
+    'skills': skills,
+    if (researchInterests.isNotEmpty) 'research_interests': researchInterests,
+    if (availableDays.isNotEmpty) 'available_days': availableDays,
+    'connectivity_state': connectivityState,
+  };
 }

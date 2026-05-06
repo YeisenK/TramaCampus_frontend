@@ -98,7 +98,11 @@ class _GroupsDiscoverScreenState extends State<GroupsDiscoverScreen> {
                           shape: BoxShape.circle,
                         ),
                         alignment: Alignment.center,
-                        child: const Icon(Icons.add, color: Colors.white, size: 20),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 20,
+                        ),
                       ),
                     ),
                   ],
@@ -169,10 +173,9 @@ class _GroupsDiscoverScreenState extends State<GroupsDiscoverScreen> {
               itemBuilder: (context, i) => GroupCard(
                 group: _filtered[i],
                 isJoined: MockData.myGroupIds.contains(_filtered[i].id),
-                onTap: () => Navigator.of(context).pushNamed(
-                  AppRouter.groupDetail,
-                  arguments: _filtered[i],
-                ),
+                onTap: () => Navigator.of(
+                  context,
+                ).pushNamed(AppRouter.groupDetail, arguments: _filtered[i]),
               ),
             ),
           ),
@@ -189,10 +192,9 @@ class _FeaturedGroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(
-        AppRouter.groupDetail,
-        arguments: group,
-      ),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRouter.groupDetail, arguments: group),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppRadius.md),
         child: SizedBox(
@@ -294,12 +296,12 @@ class _FeaturedGroupCard extends StatelessWidget {
   }
 
   IconData _kindIcon(GroupKind kind) => switch (kind) {
-        GroupKind.project => Icons.code_outlined,
-        GroupKind.study => Icons.menu_book_outlined,
-        GroupKind.club => Icons.groups_outlined,
-        GroupKind.sport => Icons.sports_outlined,
-        GroupKind.official => Icons.campaign_outlined,
-      };
+    GroupKind.project => Icons.code_outlined,
+    GroupKind.study => Icons.menu_book_outlined,
+    GroupKind.club => Icons.groups_outlined,
+    GroupKind.sport => Icons.sports_outlined,
+    GroupKind.official => Icons.campaign_outlined,
+  };
 }
 
 class _FilterRow extends StatelessWidget {

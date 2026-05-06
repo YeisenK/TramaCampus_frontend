@@ -53,8 +53,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _semester = p.base.semester;
     _goals = p.preferences.goals.toSet();
     _skills = p.preferences.skills.toSet();
-    _modalityBuckets =
-        p.preferences.uiModality.split(',').where((s) => s.isNotEmpty).toSet();
+    _modalityBuckets = p.preferences.uiModality
+        .split(',')
+        .where((s) => s.isNotEmpty)
+        .toSet();
     _availableDays = p.preferences.availableDays.toSet();
     _genderPreference = p.base.genderPreference;
     _hobbies = p.hobbyIds.toSet();
@@ -89,12 +91,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   String _nextInsight(String bioText) {
     if (_goals.isEmpty) return 'Agrega objetivos para mejorar tus matches';
-    if (_skills.length < 3) return 'Completa tus habilidades para destacar en el feed';
-    if (_modalityBuckets.isEmpty) return 'Define cómo quieres conectar con otros';
-    if (_availableDays.isEmpty) return 'Agrega disponibilidad para más conexiones';
-    if (bioText.trim().length < 20) return 'Escribe una bio para presentarte mejor';
-    if (_hobbies.isEmpty) return 'Agrega intereses para mejores recomendaciones';
-    if (_personalityIds.isEmpty) return 'Completa tu personalidad para matches más precisos';
+    if (_skills.length < 3) {
+      return 'Completa tus habilidades para destacar en el feed';
+    }
+    if (_modalityBuckets.isEmpty) {
+      return 'Define cómo quieres conectar con otros';
+    }
+    if (_availableDays.isEmpty) {
+      return 'Agrega disponibilidad para más conexiones';
+    }
+    if (bioText.trim().length < 20) {
+      return 'Escribe una bio para presentarte mejor';
+    }
+    if (_hobbies.isEmpty) {
+      return 'Agrega intereses para mejores recomendaciones';
+    }
+    if (_personalityIds.isEmpty) {
+      return 'Completa tu personalidad para matches más precisos';
+    }
     return 'Perfil sólido. Siempre puedes seguir refinando.';
   }
 
@@ -159,7 +173,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void _openAvailabilityPicker() async {
     final result = await Navigator.of(context).push<Set<String>>(
       MaterialPageRoute(
-        builder: (_) => _AvailabilityPickerPage(selected: Set.from(_availableDays)),
+        builder: (_) =>
+            _AvailabilityPickerPage(selected: Set.from(_availableDays)),
       ),
     );
     if (result != null && mounted) setState(() => _availableDays = result);
@@ -172,10 +187,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (ctx) => _BioSheet(
-        controller: _bioCtrl,
-        onSave: () => Navigator.pop(ctx),
-      ),
+      builder: (ctx) =>
+          _BioSheet(controller: _bioCtrl, onSave: () => Navigator.pop(ctx)),
     );
   }
 
@@ -228,8 +241,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     await Future.delayed(const Duration(milliseconds: 300));
     if (!mounted) return;
     setState(() => _isSaving = false);
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Perfil actualizado')));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Perfil actualizado')));
     Navigator.of(context).pop();
   }
 
@@ -242,7 +256,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar perfil', style: AppTextStyles.titleMd(cs.onSurface)),
+        title: Text(
+          'Editar perfil',
+          style: AppTextStyles.titleMd(cs.onSurface),
+        ),
         centerTitle: false,
         backgroundColor: cs.surface,
         surfaceTintColor: Colors.transparent,
@@ -257,8 +274,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   )
                 : TextButton(
                     onPressed: _save,
-                    child: Text('Guardar',
-                        style: AppTextStyles.titleMd(cs.primary)),
+                    child: Text(
+                      'Guardar',
+                      style: AppTextStyles.titleMd(cs.primary),
+                    ),
                   ),
           ),
         ],
@@ -282,9 +301,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
 
           // --- Alta prioridad ---
-          SliverToBoxAdapter(
-            child: _GroupLabel(label: 'Para mejor matching'),
-          ),
+          SliverToBoxAdapter(child: _GroupLabel(label: 'Para mejor matching')),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space5),
             sliver: SliverList(
@@ -356,9 +373,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
 
           // --- Personalización ---
-          SliverToBoxAdapter(
-            child: _GroupLabel(label: 'Personalización'),
-          ),
+          SliverToBoxAdapter(child: _GroupLabel(label: 'Personalización')),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space5),
             sliver: SliverList(
@@ -418,8 +433,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   impactLabel: 'Media prioridad',
                   isFilled: _personalityIds.isNotEmpty,
                   previewItems: _personalityIds.take(3).map(_label).toList(),
-                  overflow:
-                      _personalityIds.length > 3 ? _personalityIds.length - 3 : 0,
+                  overflow: _personalityIds.length > 3
+                      ? _personalityIds.length - 3
+                      : 0,
                   onTap: () => _openPicker(
                     title: 'Personalidad',
                     catalogName: 'personality_trait',
@@ -445,9 +461,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
 
           // --- Opcionales ---
-          SliverToBoxAdapter(
-            child: _GroupLabel(label: 'Opcional'),
-          ),
+          SliverToBoxAdapter(child: _GroupLabel(label: 'Opcional')),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space5),
             sliver: SliverList(
@@ -493,8 +507,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   impactLabel: null,
                   isFilled: _researchIds.isNotEmpty,
                   previewItems: _researchIds.take(3).map(_label).toList(),
-                  overflow:
-                      _researchIds.length > 3 ? _researchIds.length - 3 : 0,
+                  overflow: _researchIds.length > 3
+                      ? _researchIds.length - 3
+                      : 0,
                   onTap: () => _openPicker(
                     title: 'Investigación',
                     catalogName: 'research_interest',
@@ -533,10 +548,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       .join(' ');
 
   static String _genderLabel(String pref) => switch (pref) {
-        'F' => 'Mujeres',
-        'M' => 'Hombres',
-        _ => 'Todos',
-      };
+    'F' => 'Mujeres',
+    'M' => 'Hombres',
+    _ => 'Todos',
+  };
 }
 
 // ── Profile header ────────────────────────────────────────────────────────────
@@ -563,15 +578,17 @@ class _ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final displayName =
-        [firstName, lastName].where((s) => s.isNotEmpty).join(' ');
+    final displayName = [
+      firstName,
+      lastName,
+    ].where((s) => s.isNotEmpty).join(' ');
     final initials = displayName.isNotEmpty
         ? displayName
-            .split(' ')
-            .where((w) => w.isNotEmpty)
-            .map((w) => w[0].toUpperCase())
-            .take(2)
-            .join()
+              .split(' ')
+              .where((w) => w.isNotEmpty)
+              .map((w) => w[0].toUpperCase())
+              .take(2)
+              .join()
         : '?';
     final pct = (completionScore * 100).round();
 
@@ -587,17 +604,26 @@ class _ProfileHeader extends StatelessWidget {
         children: [
           Row(
             children: [
-              TAvatar(initials: initials, hue: hue, photoUrl: photoUrl, size: 56),
+              TAvatar(
+                initials: initials,
+                hue: hue,
+                photoUrl: photoUrl,
+                size: 56,
+              ),
               const SizedBox(width: AppSpacing.space4),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(displayName.isNotEmpty ? displayName : 'Tu nombre',
-                        style: AppTextStyles.titleMd(cs.onSurface)),
+                    Text(
+                      displayName.isNotEmpty ? displayName : 'Tu nombre',
+                      style: AppTextStyles.titleMd(cs.onSurface),
+                    ),
                     if (username.isNotEmpty)
-                      Text('@$username',
-                          style: AppTextStyles.bodySm(cs.primary)),
+                      Text(
+                        '@$username',
+                        style: AppTextStyles.bodySm(cs.primary),
+                      ),
                   ],
                 ),
               ),
@@ -618,14 +644,19 @@ class _ProfileHeader extends StatelessWidget {
                           strokeCap: StrokeCap.round,
                         ),
                       ),
-                      Text('$pct%',
-                          style: AppTextStyles.titleMd(cs.onSurface)
-                              .copyWith(fontSize: 13)),
+                      Text(
+                        '$pct%',
+                        style: AppTextStyles.titleMd(
+                          cs.onSurface,
+                        ).copyWith(fontSize: 13),
+                      ),
                     ],
                   ),
                   const SizedBox(height: AppSpacing.space1),
-                  Text('completado',
-                      style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+                  Text(
+                    'completado',
+                    style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ],
@@ -642,12 +673,17 @@ class _ProfileHeader extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(Icons.lightbulb_outline,
-                    size: 16, color: cs.onPrimaryContainer),
+                Icon(
+                  Icons.lightbulb_outline,
+                  size: 16,
+                  color: cs.onPrimaryContainer,
+                ),
                 const SizedBox(width: AppSpacing.space3),
                 Expanded(
-                  child: Text(insight,
-                      style: AppTextStyles.bodySm(cs.onPrimaryContainer)),
+                  child: Text(
+                    insight,
+                    style: AppTextStyles.bodySm(cs.onPrimaryContainer),
+                  ),
                 ),
               ],
             ),
@@ -669,7 +705,11 @@ class _GroupLabel extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space5, AppSpacing.space5, AppSpacing.space5, AppSpacing.space3),
+        AppSpacing.space5,
+        AppSpacing.space5,
+        AppSpacing.space5,
+        AppSpacing.space3,
+      ),
       child: Text(label, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
     );
   }
@@ -731,38 +771,45 @@ class _SectionCard extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child:
-                        Text(title, style: AppTextStyles.titleMd(cs.onSurface)),
+                    child: Text(
+                      title,
+                      style: AppTextStyles.titleMd(cs.onSurface),
+                    ),
                   ),
                   const SizedBox(width: AppSpacing.space3),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.space3,
-                        vertical: AppSpacing.space1),
+                      horizontal: AppSpacing.space3,
+                      vertical: AppSpacing.space1,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(color: cs.primary),
                       borderRadius: BorderRadius.circular(AppRadius.pill),
                     ),
-                    child: Text('Completar',
-                        style: AppTextStyles.labelSm(cs.primary)),
+                    child: Text(
+                      'Completar',
+                      style: AppTextStyles.labelSm(cs.primary),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppSpacing.space2),
-              Text(emptyHint,
-                  style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+              Text(emptyHint, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
               if (impactLabel != null) ...[
                 const SizedBox(height: AppSpacing.space3),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.space3,
-                      vertical: AppSpacing.space1),
+                    horizontal: AppSpacing.space3,
+                    vertical: AppSpacing.space1,
+                  ),
                   decoration: BoxDecoration(
                     color: cs.primary.withValues(alpha: 0.08),
                     borderRadius: BorderRadius.circular(AppRadius.pill),
                   ),
-                  child: Text(impactLabel!,
-                      style: AppTextStyles.labelSm(cs.primary)),
+                  child: Text(
+                    impactLabel!,
+                    style: AppTextStyles.labelSm(cs.primary),
+                  ),
                 ),
               ],
             ],
@@ -774,9 +821,8 @@ class _SectionCard extends StatelessWidget {
 
   Widget _buildFilled(ColorScheme cs) {
     const iconWidth = 44.0;
-    final hasPreview = previewText != null ||
-        previewItems.isNotEmpty ||
-        overflow > 0;
+    final hasPreview =
+        previewText != null || previewItems.isNotEmpty || overflow > 0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -786,20 +832,17 @@ class _SectionCard extends StatelessWidget {
             _IconBox(icon: icon, active: true, cs: cs),
             const SizedBox(width: AppSpacing.space3),
             Expanded(
-                child:
-                    Text(title, style: AppTextStyles.titleMd(cs.onSurface))),
-            Text('Editar',
-                style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+              child: Text(title, style: AppTextStyles.titleMd(cs.onSurface)),
+            ),
+            Text('Editar', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
             const SizedBox(width: AppSpacing.space1),
-            Icon(Icons.chevron_right,
-                size: 16, color: cs.onSurfaceVariant),
+            Icon(Icons.chevron_right, size: 16, color: cs.onSurfaceVariant),
           ],
         ),
         if (hasPreview) ...[
           const SizedBox(height: AppSpacing.space2),
           Padding(
-            padding: const EdgeInsets.only(
-                left: iconWidth + AppSpacing.space3),
+            padding: const EdgeInsets.only(left: iconWidth + AppSpacing.space3),
             child: previewText != null
                 ? Text(
                     previewText!,
@@ -811,7 +854,9 @@ class _SectionCard extends StatelessWidget {
                     spacing: AppSpacing.space2,
                     runSpacing: AppSpacing.space2,
                     children: [
-                      ...previewItems.map((l) => _PreviewChip(label: l, cs: cs)),
+                      ...previewItems.map(
+                        (l) => _PreviewChip(label: l, cs: cs),
+                      ),
                       if (overflow > 0)
                         _PreviewChip(label: '+$overflow', cs: cs),
                     ],
@@ -826,27 +871,28 @@ class _SectionCard extends StatelessWidget {
 // ── Small widgets ─────────────────────────────────────────────────────────────
 
 class _IconBox extends StatelessWidget {
-  const _IconBox(
-      {required this.icon, required this.active, required this.cs});
+  const _IconBox({required this.icon, required this.active, required this.cs});
   final IconData icon;
   final bool active;
   final ColorScheme cs;
 
   @override
   Widget build(BuildContext context) => Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-          color: active
-              ? cs.primary.withValues(alpha: 0.12)
-              : cs.surfaceContainerHigh,
-          borderRadius: BorderRadius.circular(AppRadius.sm),
-        ),
-        alignment: Alignment.center,
-        child: Icon(icon,
-            size: 22,
-            color: active ? cs.primary : cs.onSurfaceVariant),
-      );
+    width: 44,
+    height: 44,
+    decoration: BoxDecoration(
+      color: active
+          ? cs.primary.withValues(alpha: 0.12)
+          : cs.surfaceContainerHigh,
+      borderRadius: BorderRadius.circular(AppRadius.sm),
+    ),
+    alignment: Alignment.center,
+    child: Icon(
+      icon,
+      size: 22,
+      color: active ? cs.primary : cs.onSurfaceVariant,
+    ),
+  );
 }
 
 class _PreviewChip extends StatelessWidget {
@@ -856,14 +902,16 @@ class _PreviewChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.space3, vertical: AppSpacing.space1),
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerHigh,
-          borderRadius: BorderRadius.circular(AppRadius.pill),
-        ),
-        child: Text(label, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
-      );
+    padding: const EdgeInsets.symmetric(
+      horizontal: AppSpacing.space3,
+      vertical: AppSpacing.space1,
+    ),
+    decoration: BoxDecoration(
+      color: cs.surfaceContainerHigh,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+    ),
+    child: Text(label, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
+  );
 }
 
 // ── Bottom sheets ─────────────────────────────────────────────────────────────
@@ -909,10 +957,7 @@ class _SheetContainer extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const _SheetHandle(),
-          child,
-        ],
+        children: [const _SheetHandle(), child],
       ),
     );
   }
@@ -944,10 +989,7 @@ class _BioSheet extends StatelessWidget {
           const SizedBox(height: AppSpacing.space5),
           SizedBox(
             width: double.infinity,
-            child: FilledButton(
-              onPressed: onSave,
-              child: const Text('Listo'),
-            ),
+            child: FilledButton(onPressed: onSave, child: const Text('Listo')),
           ),
         ],
       ),
@@ -1018,8 +1060,10 @@ class _ModalitySheetState extends State<_ModalitySheet> {
         children: [
           Text('Modalidad', style: AppTextStyles.titleMd(cs.onSurface)),
           const SizedBox(height: AppSpacing.space2),
-          Text('Puedes seleccionar más de una opción',
-              style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+          Text(
+            'Puedes seleccionar más de una opción',
+            style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+          ),
           const SizedBox(height: AppSpacing.space4),
           Wrap(
             spacing: AppSpacing.space2,
@@ -1073,17 +1117,21 @@ class _GenderPrefSheet extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Prefiero conectar con',
-              style: AppTextStyles.titleMd(cs.onSurface)),
+          Text(
+            'Prefiero conectar con',
+            style: AppTextStyles.titleMd(cs.onSurface),
+          ),
           const SizedBox(height: AppSpacing.space4),
           Wrap(
             spacing: AppSpacing.space2,
             children: _options
-                .map((opt) => TChip(
-                      label: opt.$2,
-                      selected: value == opt.$1,
-                      onTap: () => onChanged(opt.$1),
-                    ))
+                .map(
+                  (opt) => TChip(
+                    label: opt.$2,
+                    selected: value == opt.$1,
+                    onTap: () => onChanged(opt.$1),
+                  ),
+                )
                 .toList(),
           ),
         ],
@@ -1107,12 +1155,15 @@ class _AvailabilityPickerPageState extends State<_AvailabilityPickerPage> {
   late Set<String> _current;
 
   static const _days = [
-    ('mon', 'Lun'), ('tue', 'Mar'), ('wed', 'Mié'),
-    ('thu', 'Jue'), ('fri', 'Vie'), ('sat', 'Sáb'), ('sun', 'Dom'),
+    ('mon', 'Lun'),
+    ('tue', 'Mar'),
+    ('wed', 'Mié'),
+    ('thu', 'Jue'),
+    ('fri', 'Vie'),
+    ('sat', 'Sáb'),
+    ('sun', 'Dom'),
   ];
-  static const _slots = [
-    ('am', 'Mañana'), ('pm', 'Tarde'), ('night', 'Noche'),
-  ];
+  static const _slots = [('am', 'Mañana'), ('pm', 'Tarde'), ('night', 'Noche')];
 
   @override
   void initState() {
@@ -1121,12 +1172,12 @@ class _AvailabilityPickerPageState extends State<_AvailabilityPickerPage> {
   }
 
   void _toggle(String id) => setState(() {
-        if (_current.contains(id)) {
-          _current.remove(id);
-        } else {
-          _current.add(id);
-        }
-      });
+    if (_current.contains(id)) {
+      _current.remove(id);
+    } else {
+      _current.add(id);
+    }
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1146,8 +1197,10 @@ class _AvailabilityPickerPageState extends State<_AvailabilityPickerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Selecciona cuándo estás disponible',
-                style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+            Text(
+              'Selecciona cuándo estás disponible',
+              style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+            ),
             const SizedBox(height: AppSpacing.space5),
             // Header row
             Row(
@@ -1166,44 +1219,45 @@ class _AvailabilityPickerPageState extends State<_AvailabilityPickerPage> {
             ),
             const SizedBox(height: AppSpacing.space3),
             // Day rows
-            ..._days.map((day) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.space3),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 44,
-                        child: Text(
-                          day.$2,
-                          style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-                        ),
+            ..._days.map(
+              (day) => Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.space3),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 44,
+                      child: Text(
+                        day.$2,
+                        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
                       ),
-                      ..._slots.map((slot) {
-                        final id = '${day.$1}_${slot.$1}';
-                        final sel = _current.contains(id);
-                        return Expanded(
-                          child: GestureDetector(
-                            onTap: () => _toggle(id),
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 3),
-                              height: 44,
-                              decoration: BoxDecoration(
-                                color: sel
-                                    ? cs.primary.withValues(alpha: 0.15)
-                                    : cs.surfaceContainerHigh,
-                                borderRadius:
-                                    BorderRadius.circular(AppRadius.sm),
-                                border: Border.all(
-                                  color: sel ? cs.primary : cs.outlineVariant,
-                                  width: sel ? 1.5 : 1,
-                                ),
+                    ),
+                    ..._slots.map((slot) {
+                      final id = '${day.$1}_${slot.$1}';
+                      final sel = _current.contains(id);
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () => _toggle(id),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 3),
+                            height: 44,
+                            decoration: BoxDecoration(
+                              color: sel
+                                  ? cs.primary.withValues(alpha: 0.15)
+                                  : cs.surfaceContainerHigh,
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
+                              border: Border.all(
+                                color: sel ? cs.primary : cs.outlineVariant,
+                                width: sel ? 1.5 : 1,
                               ),
                             ),
                           ),
-                        );
-                      }),
-                    ],
-                  ),
-                )),
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -1271,8 +1325,9 @@ class _SelectionPickerPageState extends State<_SelectionPickerPage> {
             onPressed: () => Navigator.of(context).pop(
               _PickerResult(
                 selected: _current,
-                sportFrequencies:
-                    widget.catalogName == 'sport' ? _frequencies : null,
+                sportFrequencies: widget.catalogName == 'sport'
+                    ? _frequencies
+                    : null,
               ),
             ),
             child: const Text('Listo'),

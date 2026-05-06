@@ -45,15 +45,19 @@ class THeroScaffold extends StatelessWidget {
       backgroundColor: cs.surface,
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: _HeroHeader(
-            photoUrl: photoUrl,
-            gradientColors: gradientColors ?? [cs.surfaceContainerHigh, cs.surfaceContainer],
-            name: name,
-            subtitle: subtitle,
-            height: height,
-            showBack: showBack,
-            trailing: trailing,
-          )),
+          SliverToBoxAdapter(
+            child: _HeroHeader(
+              photoUrl: photoUrl,
+              gradientColors:
+                  gradientColors ??
+                  [cs.surfaceContainerHigh, cs.surfaceContainer],
+              name: name,
+              subtitle: subtitle,
+              height: height,
+              showBack: showBack,
+              trailing: trailing,
+            ),
+          ),
           SliverToBoxAdapter(child: body),
         ],
       ),
@@ -137,7 +141,10 @@ class _HeroHeader extends StatelessWidget {
                 Text(name, style: AppTextStyles.headlineMd(cs.onSurface)),
                 if (subtitle != null) ...[
                   const SizedBox(height: AppSpacing.space1),
-                  Text(subtitle!, style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    subtitle!,
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                 ],
               ],
             ),
@@ -169,7 +176,9 @@ class _GlassBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
-    final iconColor = isDark ? AppColors.darkOnSurface : AppColors.lightOnSurface;
+    final iconColor = isDark
+        ? AppColors.darkOnSurface
+        : AppColors.lightOnSurface;
 
     return GestureDetector(
       onTap: () => Navigator.of(context).maybePop(),
@@ -188,11 +197,7 @@ class _GlassBackButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppRadius.pill),
             ),
             alignment: Alignment.center,
-            child: Icon(
-              Icons.arrow_back_ios_new,
-              size: 18,
-              color: iconColor,
-            ),
+            child: Icon(Icons.arrow_back_ios_new, size: 18, color: iconColor),
           ),
         ),
       ),

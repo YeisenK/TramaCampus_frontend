@@ -15,16 +15,17 @@ class Catalog {
   final List<CatalogItem> items;
 
   factory Catalog.fromJson(Map<String, dynamic> json) => Catalog(
-        name: json['catalog'] as String,
-        version: json['version'] as String,
-        sets: (json['sets'] as List<dynamic>?)
-                ?.map((e) => CatalogSet.fromJson(e as Map<String, dynamic>))
-                .toList() ??
-            const [],
-        items: (json['items'] as List<dynamic>)
-            .map((e) => CatalogItem.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      );
+    name: json['catalog'] as String,
+    version: json['version'] as String,
+    sets:
+        (json['sets'] as List<dynamic>?)
+            ?.map((e) => CatalogSet.fromJson(e as Map<String, dynamic>))
+            .toList() ??
+        const [],
+    items: (json['items'] as List<dynamic>)
+        .map((e) => CatalogItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
 
   CatalogItem? byId(String id) {
     final lower = id.trim().toLowerCase();
@@ -52,8 +53,7 @@ class Catalog {
     if (query.trim().isEmpty) return items;
     final q = query.trim().toLowerCase();
     return items
-        .where((i) =>
-            i.label.toLowerCase().contains(q) || i.id.contains(q))
+        .where((i) => i.label.toLowerCase().contains(q) || i.id.contains(q))
         .toList();
   }
 }

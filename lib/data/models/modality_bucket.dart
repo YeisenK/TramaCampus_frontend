@@ -12,8 +12,15 @@ typedef ModalityBucketId = ModalityType;
 const Map<ModalityBucketId, List<String>> kBucketDefaultModes = {
   ModalityBucketId.estudio: ['study', 'research', 'competition'],
   ModalityBucketId.amistad: [
-    'social', 'networking', 'gaming', 'language',
-    'creative', 'volunteer', 'wellness', 'lifestyle', 'startup',
+    'social',
+    'networking',
+    'gaming',
+    'language',
+    'creative',
+    'volunteer',
+    'wellness',
+    'lifestyle',
+    'startup',
   ],
   ModalityBucketId.personal: ['eros'],
 };
@@ -47,8 +54,15 @@ class ModalityBucket {
     verb: 'Conectar',
     icon: Icons.group_outlined,
     defaultModes: [
-      'social', 'networking', 'gaming', 'language',
-      'creative', 'volunteer', 'wellness', 'lifestyle', 'startup',
+      'social',
+      'networking',
+      'gaming',
+      'language',
+      'creative',
+      'volunteer',
+      'wellness',
+      'lifestyle',
+      'startup',
     ],
   );
 
@@ -63,10 +77,10 @@ class ModalityBucket {
   static const all = [estudio, amistad, personal];
 
   static ModalityBucket fromId(ModalityBucketId id) => switch (id) {
-        ModalityBucketId.estudio => estudio,
-        ModalityBucketId.amistad => amistad,
-        ModalityBucketId.personal => personal,
-      };
+    ModalityBucketId.estudio => estudio,
+    ModalityBucketId.amistad => amistad,
+    ModalityBucketId.personal => personal,
+  };
 
   // Back-compat alias so existing code using `m.type` continues to work.
   ModalityType get type => id;

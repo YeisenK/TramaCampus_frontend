@@ -67,11 +67,13 @@ class _AffiliationScreenState extends State<AffiliationScreen> {
               child: ListView(
                 padding: const EdgeInsets.all(AppSpacing.space5),
                 children: [
-                  ..._options.map((opt) => _AffiliationCard(
-                        option: opt,
-                        isSelected: _selected == opt.id,
-                        onTap: () => setState(() => _selected = opt.id),
-                      )),
+                  ..._options.map(
+                    (opt) => _AffiliationCard(
+                      option: opt,
+                      isSelected: _selected == opt.id,
+                      onTap: () => setState(() => _selected = opt.id),
+                    ),
+                  ),
                   if (_needsApproval) ...[
                     const SizedBox(height: AppSpacing.space4),
                     Container(
@@ -83,14 +85,18 @@ class _AffiliationScreenState extends State<AffiliationScreen> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.schedule_outlined,
-                              size: 20, color: cs.onPrimaryContainer),
+                          Icon(
+                            Icons.schedule_outlined,
+                            size: 20,
+                            color: cs.onPrimaryContainer,
+                          ),
                           const SizedBox(width: AppSpacing.space3),
                           Expanded(
                             child: Text(
                               'Tu cuenta quedará en revisión por hasta 72 horas antes de activarse. Recibirás una notificación cuando esté lista.',
-                              style:
-                                  AppTextStyles.bodySm(cs.onPrimaryContainer),
+                              style: AppTextStyles.bodySm(
+                                cs.onPrimaryContainer,
+                              ),
                             ),
                           ),
                         ],
@@ -114,37 +120,44 @@ class _AffiliationScreenState extends State<AffiliationScreen> {
   }
 
   Widget _buildHeader(ColorScheme cs) => Container(
-        width: double.infinity,
-        color: cs.surfaceDim,
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space5,
-          AppSpacing.space6,
-          AppSpacing.space5,
-          AppSpacing.space5,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    width: double.infinity,
+    color: cs.surfaceDim,
+    padding: const EdgeInsets.fromLTRB(
+      AppSpacing.space5,
+      AppSpacing.space6,
+      AppSpacing.space5,
+      AppSpacing.space5,
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.of(context).maybePop(),
-                  child: Icon(Icons.arrow_back_ios_new,
-                      size: 20, color: cs.onSurface),
-                ),
-                const Spacer(),
-                const StepDots(totalSteps: 8, currentStep: 3),
-              ],
+            GestureDetector(
+              onTap: () => Navigator.of(context).maybePop(),
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                size: 20,
+                color: cs.onSurface,
+              ),
             ),
-            const SizedBox(height: AppSpacing.space5),
-            Text('Tu rol en el campus',
-                style: AppTextStyles.headlineSm(cs.onSurface)),
-            const SizedBox(height: AppSpacing.space2),
-            Text('¿Cómo participas en tu institución?',
-                style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+            const Spacer(),
+            const StepDots(totalSteps: 8, currentStep: 3),
           ],
         ),
-      );
+        const SizedBox(height: AppSpacing.space5),
+        Text(
+          'Tu rol en el campus',
+          style: AppTextStyles.headlineSm(cs.onSurface),
+        ),
+        const SizedBox(height: AppSpacing.space2),
+        Text(
+          '¿Cómo participas en tu institución?',
+          style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+        ),
+      ],
+    ),
+  );
 }
 
 class _AffiliationOption {
@@ -203,19 +216,26 @@ class _AffiliationCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppRadius.sm),
               ),
               alignment: Alignment.center,
-              child: Icon(option.icon,
-                  size: 22,
-                  color: isSelected ? cs.primary : cs.onSurfaceVariant),
+              child: Icon(
+                option.icon,
+                size: 22,
+                color: isSelected ? cs.primary : cs.onSurfaceVariant,
+              ),
             ),
             const SizedBox(width: AppSpacing.space3),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(option.label, style: AppTextStyles.titleMd(cs.onSurface)),
+                  Text(
+                    option.label,
+                    style: AppTextStyles.titleMd(cs.onSurface),
+                  ),
                   const SizedBox(height: 2),
-                  Text(option.subtitle,
-                      style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    option.subtitle,
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ),

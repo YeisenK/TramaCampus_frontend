@@ -26,7 +26,9 @@ void main() {
       expect(find.text('¡Conexión!'), findsOneWidget);
     });
 
-    testWidgets('background scaffold color is surfaceDim (not null)', (tester) async {
+    testWidgets('background scaffold color is surfaceDim (not null)', (
+      tester,
+    ) async {
       final student = MockData.students.first;
       await tester.pumpWidget(_app(MatchSuccessScreen(student: student)));
       await tester.pump();
@@ -64,7 +66,9 @@ void main() {
       expect(find.text('Chats'), findsOneWidget);
     });
 
-    testWidgets('renders Disponibilidad semanal after scrolling', (tester) async {
+    testWidgets('renders Disponibilidad semanal after scrolling', (
+      tester,
+    ) async {
       await tester.pumpWidget(_app(const MyProfileScreen(embedded: true)));
       await tester.pumpAndSettle();
       await tester.drag(find.byType(CustomScrollView), const Offset(0, -700));

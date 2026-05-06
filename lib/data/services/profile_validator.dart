@@ -106,8 +106,7 @@ abstract final class ProfileValidator {
       errors['goals'] = 'Selecciona al menos un objetivo.';
     }
     if ((draft.skills ?? []).length < 3) {
-      errors['skills'] =
-          'Selecciona al menos 3 habilidades.';
+      errors['skills'] = 'Selecciona al menos 3 habilidades.';
     }
     return errors;
   }

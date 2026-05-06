@@ -23,10 +23,24 @@ class MockUsernameRegistry implements UsernameRegistry {
   static final MockUsernameRegistry instance = MockUsernameRegistry._();
 
   static const _taken = {
-    'sofia', 'sofia_r', 'sofiaramirez', 'diego', 'diego_n',
-    'ana', 'renata', 'mateo', 'lucia', 'javier', 'camila',
-    'trama', 'anahuac', 'admin', 'yeisen',
-    'estudiante', 'campus', 'tramacampus',
+    'sofia',
+    'sofia_r',
+    'sofiaramirez',
+    'diego',
+    'diego_n',
+    'ana',
+    'renata',
+    'mateo',
+    'lucia',
+    'javier',
+    'camila',
+    'trama',
+    'anahuac',
+    'admin',
+    'yeisen',
+    'estudiante',
+    'campus',
+    'tramacampus',
   };
 
   @override
@@ -38,13 +52,7 @@ class MockUsernameRegistry implements UsernameRegistry {
   @override
   Future<List<String>> suggest(String handle) async {
     final base = handle.trim().toLowerCase();
-    final candidates = [
-      base,
-      '${base}_',
-      '${base}x',
-      '${base}01',
-      '${base}2',
-    ];
+    final candidates = [base, '${base}_', '${base}x', '${base}01', '${base}2'];
     final available = <String>[];
     for (final c in candidates) {
       if (validateUsernameShape(c) == null && !_taken.contains(c)) {

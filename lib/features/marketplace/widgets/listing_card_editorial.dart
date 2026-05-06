@@ -21,8 +21,9 @@ class ListingCardEditorial extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () =>
-          Navigator.of(context).pushNamed(AppRouter.listingDetail, arguments: listing),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRouter.listingDetail, arguments: listing),
       child: Container(
         decoration: BoxDecoration(
           color: cs.surfaceContainerLowest,
@@ -85,7 +86,9 @@ class _PhotoArea extends StatelessWidget {
                     ),
                   )
                 : Container(
-                    decoration: BoxDecoration(gradient: AppColors.ctaGradient()),
+                    decoration: BoxDecoration(
+                      gradient: AppColors.ctaGradient(),
+                    ),
                     child: Icon(
                       Icons.image_outlined,
                       size: 36,

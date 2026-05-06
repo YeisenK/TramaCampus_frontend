@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 /// Matches the reference design's CSS `.network-texture` pattern
 /// (3 radial dot layers: 48/72/64 px + SVG connecting lines at 4% opacity).
 class NetworkTexture extends StatelessWidget {
-  const NetworkTexture({
-    super.key,
-    this.opacity = 0.04,
-    this.child,
-  });
+  const NetworkTexture({super.key, this.opacity = 0.04, this.child});
 
   final double opacity;
   final Widget? child;
@@ -16,7 +12,9 @@ class NetworkTexture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Apply alpha inside the painter color — avoids Opacity's saveLayer cost.
-    final color = Theme.of(context).colorScheme.onSurface.withValues(alpha: opacity);
+    final color = Theme.of(
+      context,
+    ).colorScheme.onSurface.withValues(alpha: opacity);
     return Stack(
       fit: StackFit.passthrough,
       children: [
@@ -25,9 +23,7 @@ class NetworkTexture extends StatelessWidget {
           child: IgnorePointer(
             // RepaintBoundary isolates texture repaints from parent animations.
             child: RepaintBoundary(
-              child: CustomPaint(
-                painter: _NetworkTexturePainter(color: color),
-              ),
+              child: CustomPaint(painter: _NetworkTexturePainter(color: color)),
             ),
           ),
         ),
@@ -38,13 +34,13 @@ class NetworkTexture extends StatelessWidget {
 
 class _NetworkTexturePainter extends CustomPainter {
   _NetworkTexturePainter({required this.color})
-      : _linePaint = Paint()
-          ..color = color.withValues(alpha: color.a * 0.5)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 0.4,
-        _fillPaint = Paint()
-          ..color = color
-          ..style = PaintingStyle.fill;
+    : _linePaint = Paint()
+        ..color = color.withValues(alpha: color.a * 0.5)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 0.4,
+      _fillPaint = Paint()
+        ..color = color
+        ..style = PaintingStyle.fill;
 
   final Color color;
   final Paint _fillPaint;
@@ -60,19 +56,53 @@ class _NetworkTexturePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Three dot grid layers (48/72/64 px spacing)
-    _paintDots(canvas, size, spacingX: 48, spacingY: 48, anchorX: 0.2, anchorY: 0.3);
-    _paintDots(canvas, size, spacingX: 72, spacingY: 72, anchorX: 0.7, anchorY: 0.6);
-    _paintDots(canvas, size, spacingX: 64, spacingY: 64, anchorX: 0.4, anchorY: 0.8);
+    _paintDots(
+      canvas,
+      size,
+      spacingX: 48,
+      spacingY: 48,
+      anchorX: 0.2,
+      anchorY: 0.3,
+    );
+    _paintDots(
+      canvas,
+      size,
+      spacingX: 72,
+      spacingY: 72,
+      anchorX: 0.7,
+      anchorY: 0.6,
+    );
+    _paintDots(
+      canvas,
+      size,
+      spacingX: 64,
+      spacingY: 64,
+      anchorX: 0.4,
+      anchorY: 0.8,
+    );
     _paintLines(canvas, size);
   }
 
-  void _paintDots(Canvas canvas, Size size,
-      {required double spacingX, required double spacingY,
-       required double anchorX, required double anchorY}) {
+  void _paintDots(
+    Canvas canvas,
+    Size size, {
+    required double spacingX,
+    required double spacingY,
+    required double anchorX,
+    required double anchorY,
+  }) {
     final startX = (anchorX * spacingX) % spacingX;
     final startY = (anchorY * spacingY) % spacingY;
-    for (double x = startX - spacingX; x < size.width + spacingX; x += spacingX) {
-      for (double y = startY - spacingY; y < size.height + spacingY; y += spacingY) {
+    for (
+      double x = startX - spacingX;
+      x < size.width + spacingX;
+      x += spacingX
+    ) {
+      for (
+        double y = startY - spacingY;
+        y < size.height + spacingY;
+        y += spacingY
+      ) {
         canvas.drawCircle(Offset(x, y), 0.8, _fillPaint);
       }
     }

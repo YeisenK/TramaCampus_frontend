@@ -47,10 +47,8 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
       final universityId = draft.universityId;
       Catalog filtered = catalog;
       if (universityId != null) {
-        final programs =
-            await BundledCatalogRepository.instance.programsForCampus(
-          universityId,
-        );
+        final programs = await BundledCatalogRepository.instance
+            .programsForCampus(universityId);
         final allowedIds = {for (final p in programs) p.id};
         filtered = Catalog(
           name: catalog.name,
@@ -123,18 +121,13 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
 
     final cs = Theme.of(context).colorScheme;
     final searching = _query.trim().isNotEmpty;
-    final flatItems = searching
-        ? _catalog!.search(_query)
-        : <CatalogItem>[];
+    final flatItems = searching ? _catalog!.search(_query) : <CatalogItem>[];
     final grouped = searching ? null : _catalog!.groupedBySet();
 
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.space5),
       children: [
-        Text(
-          'Semestre',
-          style: AppTextStyles.titleMd(cs.onSurface),
-        ),
+        Text('Semestre', style: AppTextStyles.titleMd(cs.onSurface)),
         const SizedBox(height: AppSpacing.space2),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -162,10 +155,7 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
           ),
         ),
         const SizedBox(height: AppSpacing.space4),
-        Text(
-          'Carrera o programa',
-          style: AppTextStyles.titleMd(cs.onSurface),
-        ),
+        Text('Carrera o programa', style: AppTextStyles.titleMd(cs.onSurface)),
         const SizedBox(height: AppSpacing.space2),
         Text(
           'Selecciona tu programa académico actual',
@@ -203,21 +193,24 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
       spacing: AppSpacing.space2,
       runSpacing: AppSpacing.space2,
       children: items
-          .map((item) => TChip(
-                label: item.label,
-                selected: _selectedId == item.id,
-                onTap: () => setState(() => _selectedId =
-                    _selectedId == item.id ? null : item.id),
-              ))
+          .map(
+            (item) => TChip(
+              label: item.label,
+              selected: _selectedId == item.id,
+              onTap: () => setState(
+                () => _selectedId = _selectedId == item.id ? null : item.id,
+              ),
+            ),
+          )
           .toList(),
     );
   }
 
   Widget _buildGrouped(
-      Map<CatalogSet, List<CatalogItem>> grouped, ColorScheme cs) {
-    final entries = grouped.entries
-        .where((e) => e.value.isNotEmpty)
-        .toList();
+    Map<CatalogSet, List<CatalogItem>> grouped,
+    ColorScheme cs,
+  ) {
+    final entries = grouped.entries.where((e) => e.value.isNotEmpty).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: entries.map((entry) {
@@ -231,19 +224,25 @@ class _AcademicProfileScreenState extends State<AcademicProfileScreen> {
               Text(
                 set.label,
                 style: AppTextStyles.labelSm(
-                    Theme.of(context).colorScheme.onSurfaceVariant),
+                  Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               const SizedBox(height: AppSpacing.space2),
               Wrap(
                 spacing: AppSpacing.space2,
                 runSpacing: AppSpacing.space2,
                 children: items
-                    .map((item) => TChip(
-                          label: item.label,
-                          selected: _selectedId == item.id,
-                          onTap: () => setState(() => _selectedId =
-                              _selectedId == item.id ? null : item.id),
-                        ))
+                    .map(
+                      (item) => TChip(
+                        label: item.label,
+                        selected: _selectedId == item.id,
+                        onTap: () => setState(
+                          () => _selectedId = _selectedId == item.id
+                              ? null
+                              : item.id,
+                        ),
+                      ),
+                    )
                     .toList(),
               ),
             ],

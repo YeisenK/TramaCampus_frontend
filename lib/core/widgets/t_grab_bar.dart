@@ -12,7 +12,10 @@ class TGrabBar extends StatelessWidget {
       child: Container(
         width: 36,
         height: 4,
-        margin: const EdgeInsets.only(top: AppSpacing.space3, bottom: AppSpacing.space2),
+        margin: const EdgeInsets.only(
+          top: AppSpacing.space3,
+          bottom: AppSpacing.space2,
+        ),
         decoration: BoxDecoration(
           color: cs.surfaceContainerHigh,
           borderRadius: BorderRadius.circular(AppRadius.pill),

@@ -4,9 +4,9 @@ class SetAreaMeta {
   final double weight;
 
   factory SetAreaMeta.fromJson(Map<String, dynamic> j) => SetAreaMeta(
-        academic: (j['academic'] as List<dynamic>).cast<String>(),
-        weight: (j['weight'] as num).toDouble(),
-      );
+    academic: (j['academic'] as List<dynamic>).cast<String>(),
+    weight: (j['weight'] as num).toDouble(),
+  );
 }
 
 class RelevanceData {
@@ -48,12 +48,18 @@ class RelevanceData {
     });
 
     final campusTrends = <String, Map<String, Map<String, double>>>{};
-    (j['campus_trends'] as Map<String, dynamic>? ?? {}).forEach((campus, domains) {
+    (j['campus_trends'] as Map<String, dynamic>? ?? {}).forEach((
+      campus,
+      domains,
+    ) {
       campusTrends[campus] = parsePopularity(domains);
     });
 
     final modalityAffinity = <String, Map<String, List<String>>>{};
-    (j['modality_affinity'] as Map<String, dynamic>? ?? {}).forEach((bucket, domains) {
+    (j['modality_affinity'] as Map<String, dynamic>? ?? {}).forEach((
+      bucket,
+      domains,
+    ) {
       final m = <String, List<String>>{};
       (domains as Map<String, dynamic>? ?? {}).forEach((domain, ids) {
         m[domain] = (ids as List<dynamic>).cast<String>();
@@ -62,7 +68,10 @@ class RelevanceData {
     });
 
     final coOccurrence = <String, Map<String, List<String>>>{};
-    (j['co_occurrence'] as Map<String, dynamic>? ?? {}).forEach((domain, seeds) {
+    (j['co_occurrence'] as Map<String, dynamic>? ?? {}).forEach((
+      domain,
+      seeds,
+    ) {
       final m = <String, List<String>>{};
       (seeds as Map<String, dynamic>? ?? {}).forEach((seed, suggs) {
         m[seed] = (suggs as List<dynamic>).cast<String>();
@@ -80,12 +89,12 @@ class RelevanceData {
   }
 
   factory RelevanceData.empty() => const RelevanceData(
-        setToAreas: {},
-        popularity: {},
-        campusTrends: {},
-        modalityAffinity: {},
-        coOccurrence: {},
-      );
+    setToAreas: {},
+    popularity: {},
+    campusTrends: {},
+    modalityAffinity: {},
+    coOccurrence: {},
+  );
 
   double areaMatchScoreFor(List<String> itemSets, String areaId) {
     var best = 0.0;

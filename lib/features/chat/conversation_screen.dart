@@ -212,8 +212,9 @@ class _InputBar extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
-    final ghostBorder =
-        isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
+    final ghostBorder = isDark
+        ? AppColors.darkOutlineGhost
+        : AppColors.lightOutlineGhost;
 
     return ClipRect(
       child: BackdropFilter(
@@ -229,9 +230,7 @@ class _InputBar extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: glassBg,
-              border: Border(
-                top: BorderSide(color: ghostBorder, width: 1),
-              ),
+              border: Border(top: BorderSide(color: ghostBorder, width: 1)),
             ),
             child: Row(
               children: [

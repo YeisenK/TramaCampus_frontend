@@ -46,95 +46,142 @@ const _noScore = Student(
 void main() {
   group('FeedCard — tipografía TC2', () {
     testWidgets('nombre es 19 px Manrope 700', (tester) async {
-      await tester.pumpWidget(_app(Scaffold(
-        body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
-      )));
-
-      final nameWidget = tester.widget<Text>(
-        find.text('Ana Torres, 21'),
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
+          ),
+        ),
       );
-      expect(nameWidget.style?.fontSize, 19.0,
-          reason: 'TC2 spec: .nm { font: 700 19px Manrope }');
-      expect(nameWidget.style?.fontWeight, FontWeight.w700,
-          reason: 'TC2 spec: weight 700');
+
+      final nameWidget = tester.widget<Text>(find.text('Ana Torres, 21'));
+      expect(
+        nameWidget.style?.fontSize,
+        19.0,
+        reason: 'TC2 spec: .nm { font: 700 19px Manrope }',
+      );
+      expect(
+        nameWidget.style?.fontWeight,
+        FontWeight.w700,
+        reason: 'TC2 spec: weight 700',
+      );
     });
 
-    testWidgets('bio aparece dentro de un bloque quote (Container visible)',
-        (tester) async {
-      await tester.pumpWidget(_app(Scaffold(
-        body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
-      )));
+    testWidgets('bio aparece dentro de un bloque quote (Container visible)', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
+          ),
+        ),
+      );
 
       // El texto de la bio debe empezar con comillas y estar en un Container
-      final quoteText =
-          find.textContaining('"Me apasiona la tipografía');
-      expect(quoteText, findsOneWidget,
-          reason: 'bio debe mostrarse entre comillas dobles');
+      final quoteText = find.textContaining('"Me apasiona la tipografía');
+      expect(
+        quoteText,
+        findsOneWidget,
+        reason: 'bio debe mostrarse entre comillas dobles',
+      );
 
       // El Container del quote block debe existir como ancestro del texto
       final quoteContainer = find.ancestor(
         of: quoteText,
         matching: find.byType(Container),
       );
-      expect(quoteContainer, findsWidgets,
-          reason: 'bio debe estar dentro de un Container (quote block TC2)');
+      expect(
+        quoteContainer,
+        findsWidgets,
+        reason: 'bio debe estar dentro de un Container (quote block TC2)',
+      );
     });
 
     testWidgets('bio vacía no muestra bloque quote', (tester) async {
-      await tester.pumpWidget(_app(Scaffold(
-        body: FeedCard(student: _noScore, onTap: () {}, onSave: () {}),
-      )));
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: FeedCard(student: _noScore, onTap: () {}, onSave: () {}),
+          ),
+        ),
+      );
 
       // Ningún texto entre comillas dobles
       expect(find.textContaining('"'), findsNothing);
     });
 
     testWidgets(
-        'pill de compatibilidad usa tinte primary sin ShaderMask (no gradiente)',
-        (tester) async {
-      await tester.pumpWidget(_app(Scaffold(
-        body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
-      )));
+      'pill de compatibilidad usa tinte primary sin ShaderMask (no gradiente)',
+      (tester) async {
+        await tester.pumpWidget(
+          _app(
+            Scaffold(
+              body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
+            ),
+          ),
+        );
 
-      expect(find.text('88%'), findsOneWidget);
+        expect(find.text('88%'), findsOneWidget);
 
-      // El porcentaje NO debe estar dentro de un ShaderMask (que implicaría gradient)
-      final shaderAncestors = find.ancestor(
-        of: find.text('88%'),
-        matching: find.byType(ShaderMask),
+        // El porcentaje NO debe estar dentro de un ShaderMask (que implicaría gradient)
+        final shaderAncestors = find.ancestor(
+          of: find.text('88%'),
+          matching: find.byType(ShaderMask),
+        );
+        expect(
+          shaderAncestors,
+          findsNothing,
+          reason: 'TC2 spec: pill usa primary@12%, no gradiente completo',
+        );
+      },
+    );
+
+    testWidgets('compatibilityScore cero no muestra el pill', (tester) async {
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: FeedCard(student: _noScore, onTap: () {}, onSave: () {}),
+          ),
+        ),
       );
-      expect(shaderAncestors, findsNothing,
-          reason: 'TC2 spec: pill usa primary@12%, no gradiente completo');
-    });
-
-    testWidgets(
-        'compatibilityScore cero no muestra el pill', (tester) async {
-      await tester.pumpWidget(_app(Scaffold(
-        body: FeedCard(student: _noScore, onTap: () {}, onSave: () {}),
-      )));
 
       expect(find.text('0%'), findsNothing);
     });
 
-    testWidgets('razones usan check_circle_outline (icono TC2)', (tester) async {
-      await tester.pumpWidget(_app(Scaffold(
-        body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
-      )));
+    testWidgets('razones usan check_circle_outline (icono TC2)', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: FeedCard(student: _student, onTap: () {}, onSave: () {}),
+          ),
+        ),
+      );
 
-      expect(find.byIcon(Icons.check_circle_outline), findsWidgets,
-          reason: 'TC2 spec: .reason .ic usa check_circle_outline');
+      expect(
+        find.byIcon(Icons.check_circle_outline),
+        findsWidgets,
+        reason: 'TC2 spec: .reason .ic usa check_circle_outline',
+      );
     });
 
-    testWidgets('callback onSave se dispara al tocar el botón guardar',
-        (tester) async {
+    testWidgets('callback onSave se dispara al tocar el botón guardar', (
+      tester,
+    ) async {
       var fired = false;
-      await tester.pumpWidget(_app(Scaffold(
-        body: FeedCard(
-          student: _student,
-          onTap: () {},
-          onSave: () => fired = true,
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: FeedCard(
+              student: _student,
+              onTap: () {},
+              onSave: () => fired = true,
+            ),
+          ),
         ),
-      )));
+      );
 
       await tester.tap(find.byIcon(Icons.bookmark_border));
       expect(fired, isTrue);
@@ -145,8 +192,7 @@ void main() {
   // Discover — solo feed
   // ─────────────────────────────────────────────────────────────────────────
   group('Discover — solo feed, sin variantes', () {
-    testWidgets('DiscoverVariantSwitch NO aparece en el árbol',
-        (tester) async {
+    testWidgets('DiscoverVariantSwitch NO aparece en el árbol', (tester) async {
       await tester.pumpWidget(_app(const DiscoverScreen()));
       await tester.pump();
 
@@ -164,30 +210,37 @@ void main() {
       expect(find.byType(DiscoverFeedView), findsOneWidget);
     });
 
-    testWidgets('feed vacío muestra mensaje Sin resultados',
-        (tester) async {
-      await tester.pumpWidget(_app(Scaffold(
-        body: DiscoverFeedView(
-          students: const [],
-          saved: const {},
-          onTap: (_) {},
-          onSave: (_) {},
+    testWidgets('feed vacío muestra mensaje Sin resultados', (tester) async {
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: DiscoverFeedView(
+              students: const [],
+              saved: const {},
+              onTap: (_) {},
+              onSave: (_) {},
+            ),
+          ),
         ),
-      )));
+      );
 
       expect(find.text('Sin resultados'), findsOneWidget);
     });
 
     testWidgets('feed con estudiantes renderiza FeedCards', (tester) async {
       final students = MockData.students.take(2).toList();
-      await tester.pumpWidget(_app(Scaffold(
-        body: DiscoverFeedView(
-          students: students,
-          saved: const {},
-          onTap: (_) {},
-          onSave: (_) {},
+      await tester.pumpWidget(
+        _app(
+          Scaffold(
+            body: DiscoverFeedView(
+              students: students,
+              saved: const {},
+              onTap: (_) {},
+              onSave: (_) {},
+            ),
+          ),
         ),
-      )));
+      );
 
       expect(find.byType(FeedCard), findsNWidgets(2));
     });
@@ -202,16 +255,22 @@ void main() {
       await tester.pump();
 
       final name = MockData.currentProfile.base.firstName;
-      expect(find.textContaining(name), findsWidgets,
-          reason: 'header must show user first name');
+      expect(
+        find.textContaining(name),
+        findsWidgets,
+        reason: 'header must show user first name',
+      );
     });
 
     testWidgets('renders circular progress ring', (tester) async {
       await tester.pumpWidget(_app(const EditProfileScreen()));
       await tester.pump();
 
-      expect(find.byType(CircularProgressIndicator), findsWidgets,
-          reason: 'progress ring must be present in header');
+      expect(
+        find.byType(CircularProgressIndicator),
+        findsWidgets,
+        reason: 'progress ring must be present in header',
+      );
     });
 
     testWidgets('renders group label Para mejor matching', (tester) async {
@@ -242,16 +301,19 @@ void main() {
       expect(find.text('Guardar'), findsOneWidget);
     });
 
-    testWidgets('NO contiene SelectionExperience inline (pickers son full-screen)',
-        (tester) async {
-      await tester.pumpWidget(_app(const EditProfileScreen()));
-      await tester.pump();
+    testWidgets(
+      'NO contiene SelectionExperience inline (pickers son full-screen)',
+      (tester) async {
+        await tester.pumpWidget(_app(const EditProfileScreen()));
+        await tester.pump();
 
-      expect(
-        find.byType(SelectionExperience),
-        findsNothing,
-        reason: 'catalog pickers are pushed as full-screen routes, not inline',
-      );
-    });
+        expect(
+          find.byType(SelectionExperience),
+          findsNothing,
+          reason:
+              'catalog pickers are pushed as full-screen routes, not inline',
+        );
+      },
+    );
   });
 }

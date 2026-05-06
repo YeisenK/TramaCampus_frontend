@@ -7,19 +7,14 @@ import '../theme/app_spacing.dart';
 /// Designed to be overlaid at top-right via a [Positioned] widget.
 /// Requires a [ThemeModeNotifier] ancestor; or wire [onToggle] manually.
 class TThemeToggle extends StatelessWidget {
-  const TThemeToggle({
-    super.key,
-    required this.isDark,
-    required this.onToggle,
-  });
+  const TThemeToggle({super.key, required this.isDark, required this.onToggle});
 
   final bool isDark;
   final VoidCallback onToggle;
 
   @override
   Widget build(BuildContext context) {
-    final glassBg =
-        isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
     final iconColor = isDark
         ? AppColors.darkOnSurface
         : AppColors.lightOnSurface;

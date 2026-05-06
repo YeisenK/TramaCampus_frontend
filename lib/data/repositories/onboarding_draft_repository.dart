@@ -19,7 +19,8 @@ class OnboardingDraftRepository {
     final rows = await db.query(Tables.profileDraft, limit: 1);
     if (rows.isNotEmpty) {
       _draft = ProfileDraft.fromJsonString(
-          rows.first[ProfileDraftColumns.payload] as String);
+        rows.first[ProfileDraftColumns.payload] as String,
+      );
     } else {
       _draft = ProfileDraft();
     }
@@ -29,16 +30,12 @@ class OnboardingDraftRepository {
   Future<void> save(ProfileDraft draft) async {
     _draft = draft;
     final db = await DatabaseService.instance.database;
-    await db.insert(
-      Tables.profileDraft,
-      {
-        ProfileDraftColumns.id: 1,
-        ProfileDraftColumns.step: draft.lastCompletedStep ?? '',
-        ProfileDraftColumns.payload: draft.toJsonString(),
-        ProfileDraftColumns.updatedAt: DateTime.now().toIso8601String(),
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert(Tables.profileDraft, {
+      ProfileDraftColumns.id: 1,
+      ProfileDraftColumns.step: draft.lastCompletedStep ?? '',
+      ProfileDraftColumns.payload: draft.toJsonString(),
+      ProfileDraftColumns.updatedAt: DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<void> clear() async {

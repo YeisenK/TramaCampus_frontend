@@ -42,16 +42,16 @@ void main() {
     test('FAB shadow light uses brand coral tint', () {
       final fabShadow = AppColors.shadowFabLight.first;
       // Color should contain the new primary hue (#D94E2F), not the old (#E85A12)
-      expect((fabShadow.color.r * 255.0).round(), closeTo(0xD9, 2));   // 217
+      expect((fabShadow.color.r * 255.0).round(), closeTo(0xD9, 2)); // 217
       expect((fabShadow.color.g * 255.0).round(), closeTo(0x4E, 2)); // 78
-      expect((fabShadow.color.b * 255.0).round(), closeTo(0x2F, 2));  // 47
+      expect((fabShadow.color.b * 255.0).round(), closeTo(0x2F, 2)); // 47
     });
 
     test('FAB shadow dark uses brand coral tint', () {
       final fabShadow = AppColors.shadowFabDark.first;
-      expect((fabShadow.color.r * 255.0).round(), closeTo(0xE8, 2));   // 232
+      expect((fabShadow.color.r * 255.0).round(), closeTo(0xE8, 2)); // 232
       expect((fabShadow.color.g * 255.0).round(), closeTo(0x73, 2)); // 115
-      expect((fabShadow.color.b * 255.0).round(), closeTo(0x58, 2));  // 88
+      expect((fabShadow.color.b * 255.0).round(), closeTo(0x58, 2)); // 88
     });
 
     test('glass blur sigma is 12', () {

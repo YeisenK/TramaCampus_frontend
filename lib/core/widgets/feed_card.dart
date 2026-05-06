@@ -63,19 +63,19 @@ class _PhotoArea extends StatelessWidget {
       : NetworkImage(url);
 
   Widget _gradientFallback(Student s) => Container(
-        decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
-        alignment: Alignment.center,
-        child: Text(
-          s.initials,
-          style: const TextStyle(
-            fontFamily: 'Manrope',
-            fontSize: 56,
-            fontWeight: FontWeight.w700,
-            color: Color(0x52FFFFFF),
-            letterSpacing: -1.12,
-          ),
-        ),
-      );
+    decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+    alignment: Alignment.center,
+    child: Text(
+      s.initials,
+      style: const TextStyle(
+        fontFamily: 'Manrope',
+        fontSize: 56,
+        fontWeight: FontWeight.w700,
+        color: Color(0x52FFFFFF),
+        letterSpacing: -1.12,
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -97,11 +97,7 @@ class _PhotoArea extends StatelessWidget {
                     )
                   : _gradientFallback(student),
             ),
-            Positioned(
-              top: 16,
-              left: 16,
-              child: _CtxPill(student: student),
-            ),
+            Positioned(top: 16, left: 16, child: _CtxPill(student: student)),
             Positioned(
               top: 14,
               right: 14,
@@ -222,8 +218,10 @@ class _CardBody extends StatelessWidget {
               if (student.compatibilityScore > 0) ...[
                 const SizedBox(width: 12),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 11,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: cs.primary.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(AppRadius.pill),

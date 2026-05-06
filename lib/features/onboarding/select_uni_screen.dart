@@ -29,8 +29,7 @@ class _SelectUniScreenState extends State<SelectUniScreen> {
 
   Future<void> _load() async {
     try {
-      final campuses =
-          await BundledCatalogRepository.instance.activeCampuses();
+      final campuses = await BundledCatalogRepository.instance.activeCampuses();
       final draft = await OnboardingDraftRepository.instance.load();
       if (!mounted) return;
       setState(() {
@@ -98,47 +97,53 @@ class _SelectUniScreenState extends State<SelectUniScreen> {
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.space5),
       children: _campuses!
-          .map((c) => _CampusCard(
-                campus: c,
-                isSelected: _selected == c,
-                onTap: () => setState(() => _selected = c),
-              ))
+          .map(
+            (c) => _CampusCard(
+              campus: c,
+              isSelected: _selected == c,
+              onTap: () => setState(() => _selected = c),
+            ),
+          )
           .toList(),
     );
   }
 
   Widget _buildHeader(ColorScheme cs) => Container(
-        width: double.infinity,
-        color: cs.surfaceDim,
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space5,
-          AppSpacing.space6,
-          AppSpacing.space5,
-          AppSpacing.space5,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    width: double.infinity,
+    color: cs.surfaceDim,
+    padding: const EdgeInsets.fromLTRB(
+      AppSpacing.space5,
+      AppSpacing.space6,
+      AppSpacing.space5,
+      AppSpacing.space5,
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.of(context).maybePop(),
-                  child: Icon(Icons.arrow_back_ios_new,
-                      size: 20, color: cs.onSurface),
-                ),
-                const Spacer(),
-                const StepDots(totalSteps: 8, currentStep: 1),
-              ],
+            GestureDetector(
+              onTap: () => Navigator.of(context).maybePop(),
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                size: 20,
+                color: cs.onSurface,
+              ),
             ),
-            const SizedBox(height: AppSpacing.space5),
-            Text('Tu universidad',
-                style: AppTextStyles.headlineSm(cs.onSurface)),
-            const SizedBox(height: AppSpacing.space2),
-            Text('Selecciona tu campus Anáhuac',
-                style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
+            const Spacer(),
+            const StepDots(totalSteps: 8, currentStep: 1),
           ],
         ),
-      );
+        const SizedBox(height: AppSpacing.space5),
+        Text('Tu universidad', style: AppTextStyles.headlineSm(cs.onSurface)),
+        const SizedBox(height: AppSpacing.space2),
+        Text(
+          'Selecciona tu campus Anáhuac',
+          style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+        ),
+      ],
+    ),
+  );
 }
 
 class _CampusCard extends StatelessWidget {
@@ -181,9 +186,11 @@ class _CampusCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppRadius.xs),
               ),
               alignment: Alignment.center,
-              child: Icon(Icons.school_outlined,
-                  size: 22,
-                  color: isSelected ? cs.primary : cs.onSurfaceVariant),
+              child: Icon(
+                Icons.school_outlined,
+                size: 22,
+                color: isSelected ? cs.primary : cs.onSurfaceVariant,
+              ),
             ),
             const SizedBox(width: AppSpacing.space3),
             Expanded(
@@ -192,18 +199,25 @@ class _CampusCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.verified_user_outlined,
-                          size: 14, color: cs.primary),
+                      Icon(
+                        Icons.verified_user_outlined,
+                        size: 14,
+                        color: cs.primary,
+                      ),
                       const SizedBox(width: 4),
                       Expanded(
-                        child: Text(campus.name,
-                            style: AppTextStyles.titleMd(cs.onSurface)),
+                        child: Text(
+                          campus.name,
+                          style: AppTextStyles.titleMd(cs.onSurface),
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 2),
-                  Text(campus.location,
-                      style: AppTextStyles.bodySm(cs.onSurfaceVariant)),
+                  Text(
+                    campus.location,
+                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
+                  ),
                 ],
               ),
             ),

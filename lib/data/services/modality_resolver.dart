@@ -37,9 +37,18 @@ abstract final class ModalityResolver {
 
   // All 13 valid backend mode identifiers.
   static const List<String> allModes = [
-    'study', 'research', 'competition',
-    'social', 'networking', 'gaming', 'language',
-    'creative', 'volunteer', 'wellness', 'lifestyle', 'startup',
+    'study',
+    'research',
+    'competition',
+    'social',
+    'networking',
+    'gaming',
+    'language',
+    'creative',
+    'volunteer',
+    'wellness',
+    'lifestyle',
+    'startup',
     'eros',
   ];
 

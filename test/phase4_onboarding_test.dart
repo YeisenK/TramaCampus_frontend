@@ -11,29 +11,27 @@ Widget _app(Widget child) => MaterialApp(home: child);
 void main() {
   group('Phase 4 — StepDots', () {
     testWidgets('renders kicker text "Paso X de N"', (tester) async {
-      await tester.pumpWidget(_app(
-        const Scaffold(
-          body: StepDots(totalSteps: 6, currentStep: 0),
-        ),
-      ));
+      await tester.pumpWidget(
+        _app(const Scaffold(body: StepDots(totalSteps: 6, currentStep: 0))),
+      );
       expect(find.text('Paso 1 de 6'), findsOneWidget);
     });
 
     testWidgets('kicker hidden when showKicker is false', (tester) async {
-      await tester.pumpWidget(_app(
-        const Scaffold(
-          body: StepDots(totalSteps: 6, currentStep: 2, showKicker: false),
+      await tester.pumpWidget(
+        _app(
+          const Scaffold(
+            body: StepDots(totalSteps: 6, currentStep: 2, showKicker: false),
+          ),
         ),
-      ));
+      );
       expect(find.text('Paso 3 de 6'), findsNothing);
     });
 
     testWidgets('renders correct number of dot containers', (tester) async {
-      await tester.pumpWidget(_app(
-        const Scaffold(
-          body: StepDots(totalSteps: 6, currentStep: 0),
-        ),
-      ));
+      await tester.pumpWidget(
+        _app(const Scaffold(body: StepDots(totalSteps: 6, currentStep: 0))),
+      );
       // 6 AnimatedContainers inside the Row
       final dots = find.descendant(
         of: find.byType(Row).last,
@@ -49,7 +47,9 @@ void main() {
       expect(find.byType(NetworkTexture), findsOneWidget);
     });
 
-    testWidgets('renders Crear cuenta and Ya tengo cuenta buttons', (tester) async {
+    testWidgets('renders Crear cuenta and Ya tengo cuenta buttons', (
+      tester,
+    ) async {
       await tester.pumpWidget(_app(const WelcomeScreen()));
       expect(find.text('Crear cuenta'), findsOneWidget);
       expect(find.text('Ya tengo cuenta'), findsOneWidget);
@@ -63,16 +63,12 @@ void main() {
 
   group('Phase 4 — VerifyEmailScreen code cells', () {
     testWidgets('shows email input initially', (tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: const VerifyEmailScreen(),
-      ));
+      await tester.pumpWidget(MaterialApp(home: const VerifyEmailScreen()));
       expect(find.text('Ingresa tu correo institucional'), findsOneWidget);
     });
 
     testWidgets('shows 4 code cells after sending', (tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: const VerifyEmailScreen(),
-      ));
+      await tester.pumpWidget(MaterialApp(home: const VerifyEmailScreen()));
       // Type email — pump so the listener fires and the button enables.
       await tester.enterText(find.byType(TextField), 'test@uni.mx');
       await tester.pump();
@@ -99,7 +95,9 @@ void main() {
       expect(find.text('Completar mi perfil'), findsOneWidget);
       expect(find.text('Ir al feed'), findsOneWidget);
       // Both are inside ConstrainedBox(maxWidth: 280)
-      final boxes = tester.widgetList<ConstrainedBox>(find.byType(ConstrainedBox));
+      final boxes = tester.widgetList<ConstrainedBox>(
+        find.byType(ConstrainedBox),
+      );
       final has280 = boxes.any((b) => b.constraints.maxWidth == 280);
       expect(has280, isTrue);
     });

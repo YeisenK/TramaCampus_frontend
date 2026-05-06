@@ -33,10 +33,10 @@ class TGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final glassBg =
-        isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
-    final ghostBorder =
-        isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
+    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    final ghostBorder = isDark
+        ? AppColors.darkOutlineGhost
+        : AppColors.lightOutlineGhost;
 
     final leading_ = showBack
         ? _GlassPillButton(
@@ -58,9 +58,7 @@ class TGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Container(
           decoration: BoxDecoration(
             color: glassBg,
-            border: Border(
-              bottom: BorderSide(color: ghostBorder, width: 1),
-            ),
+            border: Border(bottom: BorderSide(color: ghostBorder, width: 1)),
           ),
           child: SafeArea(
             bottom: false,
@@ -77,7 +75,8 @@ class TGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
                       const SizedBox(width: AppSpacing.space3),
                     ],
                     Expanded(
-                      child: titleWidget ??
+                      child:
+                          titleWidget ??
                           (title != null
                               ? Text(
                                   title!,

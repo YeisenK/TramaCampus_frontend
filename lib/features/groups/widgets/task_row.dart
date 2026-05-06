@@ -75,8 +75,9 @@ class TaskRow extends StatelessWidget {
                 Text(
                   task.title,
                   style: AppTextStyles.bodyMd(cs.onSurface).copyWith(
-                    decoration:
-                        isDone ? TextDecoration.lineThrough : TextDecoration.none,
+                    decoration: isDone
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
                     color: isDone ? cs.onSurfaceVariant : cs.onSurface,
                   ),
                 ),
@@ -113,7 +114,9 @@ class TaskRow extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 11,
-                        color: isHighPriority ? cs.primary : cs.onSurfaceVariant,
+                        color: isHighPriority
+                            ? cs.primary
+                            : cs.onSurfaceVariant,
                         fontWeight: isHighPriority
                             ? FontWeight.w600
                             : FontWeight.normal,

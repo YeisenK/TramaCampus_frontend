@@ -45,10 +45,7 @@ class SelectionPreviewBar extends StatelessWidget {
                 style: AppTextStyles.labelSm(cs.onSurfaceVariant),
               ),
               if (max != null) ...[
-                Text(
-                  ' / $max',
-                  style: AppTextStyles.labelSm(cs.outline),
-                ),
+                Text(' / $max', style: AppTextStyles.labelSm(cs.outline)),
               ],
             ],
           ),
@@ -61,12 +58,15 @@ class SelectionPreviewBar extends StatelessWidget {
                   padding: const EdgeInsets.only(right: AppSpacing.space2),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.space2, vertical: 4),
+                      horizontal: AppSpacing.space2,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: cs.primary.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(AppRadius.pill),
                       border: Border.all(
-                          color: cs.primary.withValues(alpha: 0.4)),
+                        color: cs.primary.withValues(alpha: 0.4),
+                      ),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,

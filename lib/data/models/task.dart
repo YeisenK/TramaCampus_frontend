@@ -4,10 +4,10 @@ enum TaskPriority { low, med, high }
 
 extension TaskStatusLabel on TaskStatus {
   String get label => switch (this) {
-        TaskStatus.todo => 'Pendiente',
-        TaskStatus.inProgress => 'En progreso',
-        TaskStatus.done => 'Completada',
-      };
+    TaskStatus.todo => 'Pendiente',
+    TaskStatus.inProgress => 'En progreso',
+    TaskStatus.done => 'Completada',
+  };
 }
 
 class Task {

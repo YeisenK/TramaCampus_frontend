@@ -121,12 +121,12 @@ class _GroupIcon extends StatelessWidget {
   }
 
   IconData get _kindIcon => switch (group.kind) {
-        GroupKind.project => Icons.code_outlined,
-        GroupKind.study => Icons.menu_book_outlined,
-        GroupKind.club => Icons.groups_outlined,
-        GroupKind.sport => Icons.sports_outlined,
-        GroupKind.official => Icons.campaign_outlined,
-      };
+    GroupKind.project => Icons.code_outlined,
+    GroupKind.study => Icons.menu_book_outlined,
+    GroupKind.club => Icons.groups_outlined,
+    GroupKind.sport => Icons.sports_outlined,
+    GroupKind.official => Icons.campaign_outlined,
+  };
 }
 
 class _KindPill extends StatelessWidget {

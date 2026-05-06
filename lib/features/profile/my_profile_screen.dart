@@ -238,12 +238,10 @@ class _StatsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final ghostDivider = isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
-    final stats = [
-      ('Matches', '8'),
-      ('Conexiones', '14'),
-      ('Chats', '5'),
-    ];
+    final ghostDivider = isDark
+        ? AppColors.darkOutlineGhost
+        : AppColors.lightOutlineGhost;
+    final stats = [('Matches', '8'), ('Conexiones', '14'), ('Chats', '5')];
     return Container(
       decoration: BoxDecoration(
         color: cs.surfaceContainerLowest,
@@ -255,11 +253,7 @@ class _StatsRow extends StatelessWidget {
           children: [
             for (int i = 0; i < stats.length; i++) ...[
               if (i > 0)
-                VerticalDivider(
-                  width: 1,
-                  thickness: 1,
-                  color: ghostDivider,
-                ),
+                VerticalDivider(width: 1, thickness: 1, color: ghostDivider),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

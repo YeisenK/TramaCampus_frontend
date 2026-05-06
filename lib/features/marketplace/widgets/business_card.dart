@@ -14,16 +14,15 @@ class BusinessCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () =>
-          Navigator.of(context).pushNamed(AppRouter.affiliateDetail, arguments: business),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRouter.affiliateDetail, arguments: business),
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.space4),
         decoration: BoxDecoration(
           color: cs.surfaceContainerLowest,
           borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(
-            color: cs.outlineVariant.withValues(alpha: 0.5),
-          ),
+          border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
         ),
         child: Row(
           children: [
@@ -44,11 +43,7 @@ class BusinessCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: AppSpacing.space1),
-                      Icon(
-                        Icons.verified,
-                        size: 14,
-                        color: cs.primary,
-                      ),
+                      Icon(Icons.verified, size: 14, color: cs.primary),
                     ],
                   ),
                   const SizedBox(height: 2),
@@ -73,15 +68,15 @@ class _Crest extends StatelessWidget {
   final AffiliateServiceType serviceType;
 
   IconData get _icon => switch (serviceType) {
-        AffiliateServiceType.restaurant => Icons.restaurant_outlined,
-        AffiliateServiceType.gym => Icons.fitness_center_outlined,
-        AffiliateServiceType.salon => Icons.content_cut_outlined,
-        AffiliateServiceType.copyshop => Icons.print_outlined,
-        AffiliateServiceType.laundry => Icons.local_laundry_service_outlined,
-        AffiliateServiceType.tutoring => Icons.school_outlined,
-        AffiliateServiceType.brand => Icons.star_outline,
-        AffiliateServiceType.rental => Icons.home_outlined,
-      };
+    AffiliateServiceType.restaurant => Icons.restaurant_outlined,
+    AffiliateServiceType.gym => Icons.fitness_center_outlined,
+    AffiliateServiceType.salon => Icons.content_cut_outlined,
+    AffiliateServiceType.copyshop => Icons.print_outlined,
+    AffiliateServiceType.laundry => Icons.local_laundry_service_outlined,
+    AffiliateServiceType.tutoring => Icons.school_outlined,
+    AffiliateServiceType.brand => Icons.star_outline,
+    AffiliateServiceType.rental => Icons.home_outlined,
+  };
 
   @override
   Widget build(BuildContext context) {

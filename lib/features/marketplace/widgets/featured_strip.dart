@@ -139,9 +139,7 @@ class _GradientPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: AppColors.ctaGradient(),
-      ),
+      decoration: BoxDecoration(gradient: AppColors.ctaGradient()),
     );
   }
 }
