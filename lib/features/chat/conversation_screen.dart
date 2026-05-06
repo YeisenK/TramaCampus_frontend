@@ -8,6 +8,7 @@ import '../../core/widgets/t_avatar.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/models/conversation_message.dart';
 import '../../data/models/student.dart';
+import '../../data/repositories/app_state_repository.dart';
 
 class ConversationScreen extends StatefulWidget {
   const ConversationScreen({super.key, required this.student});
@@ -25,7 +26,17 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   void initState() {
     super.initState();
-    _messages = List.from(MockData.conversation);
+    final persisted = AppStateRepository.instance.directMessages(
+      widget.student.id,
+    );
+    if (persisted.isNotEmpty) {
+      _messages = List.from(persisted);
+    } else if (widget.student.id == 'diego') {
+      // Seed the demo conversation on first launch.
+      _messages = List.from(MockData.conversation);
+    } else {
+      _messages = [];
+    }
   }
 
   @override
@@ -38,16 +49,15 @@ class _ConversationScreenState extends State<ConversationScreen> {
   void _sendMessage() {
     final text = _controller.text.trim();
     if (text.isEmpty) return;
+    final msg = ConversationMessage(
+      id: '${widget.student.id}_${DateTime.now().millisecondsSinceEpoch}',
+      text: text,
+      isMe: true,
+      time: _nowTime(),
+    );
+    AppStateRepository.instance.sendDirectMessage(widget.student.id, msg);
     setState(() {
-      _messages = [
-        ..._messages,
-        ConversationMessage(
-          id: 'm${_messages.length + 1}',
-          text: text,
-          isMe: true,
-          time: _nowTime(),
-        ),
-      ];
+      _messages = [..._messages, msg];
     });
     _controller.clear();
     WidgetsBinding.instance.addPostFrameCallback((_) {

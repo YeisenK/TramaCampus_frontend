@@ -7,6 +7,11 @@ class Tables {
   static const String profile = 'profile';
   static const String profileDraft = 'profile_draft';
   static const String catalogCache = 'catalog_cache';
+  static const String followedGroups = 'followed_groups';
+  static const String memberGroups = 'member_groups';
+  static const String userGroups = 'user_groups';
+  static const String directMessages = 'direct_messages';
+  static const String groupMessages = 'group_messages';
 }
 
 class ProfilePhotoColumns {
@@ -55,4 +60,45 @@ class CatalogCacheColumns {
   static const String version = 'version';
   static const String payload = 'payload';
   static const String fetchedAt = 'fetched_at';
+}
+
+class FollowedGroupColumns {
+  FollowedGroupColumns._();
+
+  static const String groupId = 'group_id';
+  static const String followedAt = 'followed_at';
+}
+
+class MemberGroupColumns {
+  MemberGroupColumns._();
+
+  static const String groupId = 'group_id';
+  static const String joinedAt = 'joined_at';
+  static const String role = 'role';
+}
+
+class UserGroupColumns {
+  UserGroupColumns._();
+
+  static const String id = 'id';
+  static const String payload = 'payload';
+  static const String createdAt = 'created_at';
+}
+
+class DirectMessageColumns {
+  DirectMessageColumns._();
+
+  static const String id = 'id';
+  static const String studentId = 'student_id';
+  static const String payload = 'payload';
+  static const String sentAt = 'sent_at';
+}
+
+class GroupMessageColumns {
+  GroupMessageColumns._();
+
+  static const String id = 'id';
+  static const String groupId = 'group_id';
+  static const String payload = 'payload';
+  static const String sentAt = 'sent_at';
 }

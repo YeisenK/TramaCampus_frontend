@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'app.dart';
 import 'core/services/preferences_service.dart';
+import 'data/repositories/app_state_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,9 @@ void main() async {
   // Limit image cache to 60 MB — enough for feed + marketplace without bloat.
   PaintingBinding.instance.imageCache.maximumSizeBytes = 60 << 20;
 
-  // DB opens lazily on first repository access — no need to block runApp.
+  // Load runtime mutable state (follow sets, messages, created groups) before first frame.
+  await AppStateRepository.instance.load();
+
   runApp(const TramaApp());
 
   // Lock orientation after first frame — avoids blocking runApp.

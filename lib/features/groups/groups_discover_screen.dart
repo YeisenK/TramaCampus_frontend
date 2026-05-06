@@ -5,6 +5,7 @@ import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/models/group.dart';
+import '../../data/repositories/app_state_repository.dart';
 import 'create_group_sheet.dart';
 import 'widgets/group_card.dart';
 
@@ -20,13 +21,22 @@ class GroupsDiscoverScreen extends StatefulWidget {
 class _GroupsDiscoverScreenState extends State<GroupsDiscoverScreen> {
   GroupKind? _filter;
 
+  List<Group> get _visibleGroups {
+    final appState = AppStateRepository.instance;
+    return [
+      ...MockData.mockGroups,
+      ...appState.userCreatedGroups,
+    ].where((g) => g.isDiscoverable || appState.isMember(g.id)).toList();
+  }
+
   List<Group> get _filtered {
-    if (_filter == null) return MockData.mockGroups;
-    return MockData.mockGroups.where((g) => g.kind == _filter).toList();
+    final all = _visibleGroups;
+    if (_filter == null) return all;
+    return all.where((g) => g.kind == _filter).toList();
   }
 
   List<Group> get _featured =>
-      MockData.mockGroups.where((g) => g.featured).toList();
+      _visibleGroups.where((g) => g.featured).toList();
 
   void _showCreate() {
     showModalBottomSheet(
@@ -42,6 +52,13 @@ class _GroupsDiscoverScreenState extends State<GroupsDiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return ListenableBuilder(
+      listenable: AppStateRepository.instance,
+      builder: (context, _) => _buildScaffold(context),
+    );
+  }
+
+  Widget _buildScaffold(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Scaffold(
       body: CustomScrollView(
@@ -172,7 +189,6 @@ class _GroupsDiscoverScreenState extends State<GroupsDiscoverScreen> {
                   const SizedBox(height: AppSpacing.space3),
               itemBuilder: (context, i) => GroupCard(
                 group: _filtered[i],
-                isJoined: MockData.myGroupIds.contains(_filtered[i].id),
                 onTap: () => Navigator.of(
                   context,
                 ).pushNamed(AppRouter.groupDetail, arguments: _filtered[i]),
@@ -311,10 +327,11 @@ class _FilterRow extends StatelessWidget {
 
   static const _filters = [
     (null, 'Todos'),
-    (GroupKind.project, 'Proyectos'),
     (GroupKind.study, 'Estudio'),
+    (GroupKind.project, 'Proyectos'),
     (GroupKind.club, 'Clubes'),
     (GroupKind.sport, 'Deporte'),
+    (GroupKind.official, 'Oficiales'),
   ];
 
   @override

@@ -8,6 +8,13 @@ class Migration {
 const List<Migration> kMigrations = [
   Migration(version: 1, up: [_v1ProfilePhotos, _v1PhotosIndex, _v1Meta]),
   Migration(version: 2, up: [_v2Profile, _v2ProfileDraft, _v2CatalogCache]),
+  Migration(version: 3, up: [
+    _v3FollowedGroups,
+    _v3MemberGroups,
+    _v3UserGroups,
+    _v3DirectMessages,
+    _v3GroupMessages,
+  ]),
 ];
 
 const String _v1ProfilePhotos = '''
@@ -62,5 +69,48 @@ const String _v2CatalogCache = '''
     version    TEXT NOT NULL,
     payload    TEXT NOT NULL,
     fetched_at TEXT NOT NULL
+  )
+''';
+
+// v3 — runtime mutable state: group follow/membership, user-created groups, messages.
+
+const String _v3FollowedGroups = '''
+  CREATE TABLE followed_groups (
+    group_id    TEXT PRIMARY KEY,
+    followed_at TEXT NOT NULL
+  )
+''';
+
+const String _v3MemberGroups = '''
+  CREATE TABLE member_groups (
+    group_id  TEXT PRIMARY KEY,
+    joined_at TEXT NOT NULL,
+    role      TEXT NOT NULL DEFAULT 'member'
+  )
+''';
+
+const String _v3UserGroups = '''
+  CREATE TABLE user_groups (
+    id         TEXT PRIMARY KEY,
+    payload    TEXT NOT NULL,
+    created_at TEXT NOT NULL
+  )
+''';
+
+const String _v3DirectMessages = '''
+  CREATE TABLE direct_messages (
+    id         TEXT PRIMARY KEY,
+    student_id TEXT NOT NULL,
+    payload    TEXT NOT NULL,
+    sent_at    TEXT NOT NULL
+  )
+''';
+
+const String _v3GroupMessages = '''
+  CREATE TABLE group_messages (
+    id       TEXT PRIMARY KEY,
+    group_id TEXT NOT NULL,
+    payload  TEXT NOT NULL,
+    sent_at  TEXT NOT NULL
   )
 ''';

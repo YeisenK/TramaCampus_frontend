@@ -493,7 +493,7 @@ class MockData {
     Group(
       id: 'g1',
       name: 'Hackathon Nacional · Equipo C',
-      tagline: 'Equipo cerrado · Ing. de Software · entrega 14 nov',
+      tagline: 'Proyecto cerrado · Ing. de Software · entrega 14 nov',
       kind: GroupKind.project,
       access: GroupAccess.invite,
       verified: false,
@@ -505,7 +505,7 @@ class MockData {
       nextAction: 'Sprint hoy 19:00 · Lab Cómputo',
       leader: 'Javier Cortés',
       description:
-          'Equipo formado para el Hackathon Nacional 2025. Buscamos un quinto miembro con perfil de UI/UX o frontend.',
+          'Equipo formado para el Hackathon Nacional. Cuatro integrantes activos con roles de backend, frontend y diseño.',
     ),
     Group(
       id: 'g2',
@@ -522,7 +522,7 @@ class MockData {
       nextAction: 'Sesión martes 18:00 · Biblioteca p.3',
       leader: 'Diego Navarro',
       description:
-          'Grupo de lectura interdisciplinar. Este semestre: Hofstadter, Dennett y Chalmers.',
+          'Grupo de lectura interdisciplinar. Este semestre: Hofstadter, Dennett y Chalmers. Cualquier carrera es bienvenida.',
     ),
     Group(
       id: 'g3',
@@ -538,7 +538,7 @@ class MockData {
       nextAction: 'Sin acción pendiente',
       leader: 'Anáhuac Oaxaca',
       description:
-          'Canal oficial. Solo administradores del campus pueden publicar.',
+          'Canal oficial de comunicación institucional. Solo administradores del campus pueden publicar.',
     ),
     Group(
       id: 'g4',
@@ -551,10 +551,10 @@ class MockData {
       hue: 120,
       memberCount: 32,
       activity: 'Activo hoy',
-      nextAction: 'Quedada sábado 7:00 · Cerro del Fortín',
+      nextAction: 'Salida sábado 7:00 · Cerro del Fortín',
       leader: 'Mateo Álvarez',
       description:
-          'Para corredores de cualquier nivel. Coordinamos quedadas y entrenamos para el maratón de Oaxaca.',
+          'Para corredores de cualquier nivel. Coordinamos salidas semanales y preparamos el maratón de Oaxaca.',
     ),
     Group(
       id: 'g5',
@@ -567,10 +567,62 @@ class MockData {
       hue: 200,
       memberCount: 48,
       activity: 'Activo hoy',
-      nextAction: 'Pitch night 28 nov',
+      nextAction: 'Pitch night 28 nov · Sala A',
       leader: 'Comité estudiantil',
       description:
-          'Club oficial reconocido por el campus. Conectamos founders estudiantiles con mentores y aceleradoras.',
+          'Club oficial reconocido por el campus. Conectamos founders estudiantiles con mentores y aceleradoras regionales.',
+    ),
+    Group(
+      id: 'g6',
+      name: 'Diseño UX · Anáhuac',
+      tagline: 'Club de diseño de experiencias · viernes 17:00',
+      kind: GroupKind.club,
+      access: GroupAccess.request,
+      verified: false,
+      featured: true,
+      hue: 300,
+      memberCount: 21,
+      capacity: 30,
+      activity: 'Activo esta semana',
+      nextAction: 'Critique session viernes 17:00 · Sala Diseño',
+      leader: 'Camila Ruíz',
+      description:
+          'Espacio de práctica y crítica para estudiantes de diseño y áreas afines. Proyectos reales de mejora del campus.',
+    ),
+    Group(
+      id: 'g7',
+      name: 'Álgebra Lineal · semestre 5',
+      tagline: 'Grupo de estudio · prof. Mendoza',
+      kind: GroupKind.study,
+      access: GroupAccess.invite,
+      verified: false,
+      featured: false,
+      hue: 180,
+      memberCount: 6,
+      capacity: 8,
+      activity: 'Activo esta semana',
+      nextAction: 'Sesión miércoles 16:00 · Biblioteca',
+      leader: 'Diego Navarro',
+      description:
+          'Grupo cerrado de preparación para los exámenes de Álgebra Lineal. Miembros por invitación de Diego.',
+    ),
+    Group(
+      id: 'g8',
+      name: 'Tesis colectiva · Psicología',
+      tagline: 'Proyecto colaborativo · cierre semestre',
+      kind: GroupKind.project,
+      access: GroupAccess.invite,
+      verified: false,
+      featured: false,
+      hue: 320,
+      memberCount: 3,
+      capacity: 4,
+      activity: 'Activo esta semana',
+      nextAction: 'Revisión jueves 15:00',
+      leader: 'Renata Fuentes',
+      description:
+          'Equipo de investigación para proyecto de tesis interdisciplinar entre Psicología y Matemáticas.',
+      temporary: true,
     ),
   ];
 

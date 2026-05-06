@@ -9,7 +9,9 @@ import '../../core/widgets/t_text_field.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/models/modality.dart';
 import '../../data/models/modality_bucket.dart';
+import '../../data/models/profile/profile.dart';
 import '../../data/models/profile/profile_attribute.dart';
+import '../../data/repositories/app_state_repository.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -43,7 +45,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    final p = MockData.currentProfile;
+    final p = AppStateRepository.instance.profile;
     _bioCtrl = TextEditingController(text: p.base.bio);
     _firstName = p.base.firstName;
     _lastName = p.base.lastName;
@@ -238,7 +240,40 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   Future<void> _save() async {
     setState(() => _isSaving = true);
-    await Future.delayed(const Duration(milliseconds: 300));
+    final existing = AppStateRepository.instance.profile;
+    final updated = Profile(
+      base: existing.base.copyWith(
+        firstName: _firstName,
+        lastName: _lastName,
+        displayName: '$_firstName $_lastName',
+        username: _username,
+        bio: _bioCtrl.text.trim(),
+        careerId: _careerId,
+        universityId: _campusId,
+        semester: _semester,
+        genderPreference: _genderPreference,
+      ),
+      preferences: existing.preferences.copyWith(
+        goals: _goals.toList(),
+        skills: _skills.toList(),
+        uiModality: _modalityBuckets.join(','),
+        availableDays: _availableDays.toList(),
+        researchInterests: _researchIds.toList(),
+      ),
+      attributes: [
+        ..._hobbies.map((id) => HobbyAttribute(hobbyId: id)),
+        ..._sportIds.map(
+          (id) => SportAttribute(
+            sportId: id,
+            frequency: _sportFrequencies[id] ?? SportFrequency.casual,
+          ),
+        ),
+        ..._personalityIds.map((id) => PersonalityAttribute(traitId: id)),
+        ..._musicIds.map((id) => MusicAttribute(genreId: id)),
+        ..._dietIds.map((id) => DietAttribute(dietId: id)),
+      ],
+    );
+    await AppStateRepository.instance.updateProfile(updated);
     if (!mounted) return;
     setState(() => _isSaving = false);
     ScaffoldMessenger.of(

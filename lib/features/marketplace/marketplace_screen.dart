@@ -104,11 +104,18 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final scopeIdx = _categories.indexOf(_selectedCategory);
+    final scopeLabel = scopeIdx >= 0 ? _categoryLabels[scopeIdx] : 'Todo';
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _EditorialHeader(onSearchTap: () {}, onPublishTap: _onPublishTap),
+          _EditorialHeader(
+            onSavedTap: _showMyListings,
+            onNotificationsTap: () {},
+          ),
+          _SearchBar(scope: scopeLabel, onTap: () {}),
+          const SizedBox(height: AppSpacing.space1),
           _CategoryFilter(
             selectedIndex: _categories.indexOf(_selectedCategory),
             labels: _categoryLabels,
@@ -140,11 +147,11 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
 
 class _EditorialHeader extends StatelessWidget {
   const _EditorialHeader({
-    required this.onSearchTap,
-    required this.onPublishTap,
+    required this.onSavedTap,
+    required this.onNotificationsTap,
   });
-  final VoidCallback onSearchTap;
-  final VoidCallback onPublishTap;
+  final VoidCallback onSavedTap;
+  final VoidCallback onNotificationsTap;
 
   @override
   Widget build(BuildContext context) {
@@ -156,43 +163,49 @@ class _EditorialHeader extends StatelessWidget {
           AppSpacing.space5,
           AppSpacing.space4,
           AppSpacing.space4,
-          AppSpacing.space3,
+          AppSpacing.space2,
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'MARKET',
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: cs.primary,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Marketplace',
+            Text(
+              'Marketplace · Anáhuac Oaxaca',
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: cs.onSurfaceVariant,
+                letterSpacing: 0.5,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.space2),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: Text(
+                    'Mercado del campus',
                     style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                       color: cs.onSurface,
                       letterSpacing: -0.025 * 30,
-                      height: 1.1,
+                      height: 1.05,
                     ),
                   ),
-                ],
-              ),
+                ),
+                _PillIconButton(
+                  icon: Icons.bookmark_outline,
+                  onTap: onSavedTap,
+                ),
+                const SizedBox(width: AppSpacing.space2),
+                _PillIconButton(
+                  icon: Icons.notifications_none_outlined,
+                  onTap: onNotificationsTap,
+                ),
+              ],
             ),
-            _PillIconButton(icon: Icons.search_outlined, onTap: onSearchTap),
-            const SizedBox(width: AppSpacing.space2),
-            _PillIconButton(icon: Icons.add, onTap: onPublishTap, filled: true),
           ],
         ),
       ),
@@ -200,15 +213,76 @@ class _EditorialHeader extends StatelessWidget {
   }
 }
 
+class _SearchBar extends StatelessWidget {
+  const _SearchBar({required this.scope, required this.onTap});
+  final String scope;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.space5,
+        AppSpacing.space2,
+        AppSpacing.space5,
+        AppSpacing.space2,
+      ),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 46,
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4),
+          decoration: BoxDecoration(
+            color: cs.surfaceContainerLowest,
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.search,
+                size: 18,
+                color: cs.onSurfaceVariant,
+              ),
+              const SizedBox(width: AppSpacing.space2),
+              Expanded(
+                child: Text(
+                  'Buscar en el campus…',
+                  style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: cs.surfaceContainerHigh,
+                  borderRadius: BorderRadius.circular(AppRadius.pill),
+                ),
+                child: Text(
+                  scope,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: cs.onSurface,
+                    letterSpacing: 0.2,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _PillIconButton extends StatelessWidget {
-  const _PillIconButton({
-    required this.icon,
-    required this.onTap,
-    this.filled = false,
-  });
+  const _PillIconButton({required this.icon, required this.onTap});
   final IconData icon;
   final VoidCallback onTap;
-  final bool filled;
 
   @override
   Widget build(BuildContext context) {
@@ -225,19 +299,14 @@ class _PillIconButton extends StatelessWidget {
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              gradient: filled ? AppColors.ctaGradient() : null,
-              color: filled ? null : glassBg,
+              color: glassBg,
               shape: BoxShape.circle,
-              border: filled
-                  ? null
-                  : Border.all(color: cs.outlineVariant.withValues(alpha: 0.4)),
+              border: Border.all(
+                color: cs.outlineVariant.withValues(alpha: 0.4),
+              ),
             ),
             alignment: Alignment.center,
-            child: Icon(
-              icon,
-              size: 20,
-              color: filled ? Colors.white : cs.onSurface,
-            ),
+            child: Icon(icon, size: 20, color: cs.onSurface),
           ),
         ),
       ),

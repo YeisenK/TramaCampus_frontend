@@ -96,12 +96,16 @@ class _RequestsTab extends StatelessWidget {
         final s = requests[i];
         return _ConnectionCard(
           student: s,
-          trailing: TButton(
-            label: 'Aceptar',
-            isFullWidth: false,
-            onPressed: () => Navigator.of(
-              context,
-            ).pushNamed(AppRouter.matchSuccess, arguments: s),
+          trailing: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 92),
+            child: TButton(
+              label: 'Aceptar',
+              isFullWidth: false,
+              size: TButtonSize.sm,
+              onPressed: () => Navigator.of(
+                context,
+              ).pushNamed(AppRouter.matchSuccess, arguments: s),
+            ),
           ),
           showAcceptReject: true,
         );

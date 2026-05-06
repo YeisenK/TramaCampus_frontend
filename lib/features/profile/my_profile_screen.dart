@@ -7,6 +7,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/t_chip.dart';
 import '../../core/widgets/t_schedule_grid.dart';
 import '../../data/mock/mock_data.dart';
+import '../../data/repositories/app_state_repository.dart';
 
 class MyProfileScreen extends StatelessWidget {
   const MyProfileScreen({super.key, this.embedded = false});
@@ -14,8 +15,26 @@ class MyProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ListenableBuilder(
+      listenable: AppStateRepository.instance,
+      builder: (context, _) => _ProfileView(embedded: embedded),
+    );
+  }
+}
+
+class _ProfileView extends StatelessWidget {
+  const _ProfileView({required this.embedded});
+  final bool embedded;
+
+  @override
+  Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final user = MockData.currentUser;
+    final profile = AppStateRepository.instance.profile;
+    final bio = profile.base.bio.isNotEmpty ? profile.base.bio : user.bio;
+    final displayName = profile.base.displayName.isNotEmpty
+        ? profile.base.displayName
+        : user.name;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -35,7 +54,9 @@ class MyProfileScreen extends StatelessWidget {
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: RepaintBoundary(child: _HeroPhoto(user: user)),
+              background: RepaintBoundary(
+                child: _HeroPhoto(user: user, displayName: displayName),
+              ),
             ),
           ),
           SliverPadding(
@@ -52,7 +73,7 @@ class MyProfileScreen extends StatelessWidget {
                 Text('Bio', style: AppTextStyles.titleMd(cs.onSurface)),
                 const SizedBox(height: AppSpacing.space3),
                 Text(
-                  user.bio,
+                  bio,
                   style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
                 ),
                 const SizedBox(height: AppSpacing.space5),
@@ -110,8 +131,9 @@ class MyProfileScreen extends StatelessWidget {
 }
 
 class _HeroPhoto extends StatelessWidget {
-  const _HeroPhoto({required this.user});
+  const _HeroPhoto({required this.user, required this.displayName});
   final dynamic user;
+  final String displayName;
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +198,7 @@ class _HeroPhoto extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                user.name as String,
+                displayName,
                 style: AppTextStyles.headlineSm(cs.onSurface),
               ),
               Text(
