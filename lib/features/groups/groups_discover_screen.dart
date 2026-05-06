@@ -35,8 +35,7 @@ class _GroupsDiscoverScreenState extends State<GroupsDiscoverScreen> {
     return all.where((g) => g.kind == _filter).toList();
   }
 
-  List<Group> get _featured =>
-      _visibleGroups.where((g) => g.featured).toList();
+  List<Group> get _featured => _visibleGroups.where((g) => g.featured).toList();
 
   void _showCreate() {
     showModalBottomSheet(

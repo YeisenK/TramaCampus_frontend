@@ -8,13 +8,16 @@ class Migration {
 const List<Migration> kMigrations = [
   Migration(version: 1, up: [_v1ProfilePhotos, _v1PhotosIndex, _v1Meta]),
   Migration(version: 2, up: [_v2Profile, _v2ProfileDraft, _v2CatalogCache]),
-  Migration(version: 3, up: [
-    _v3FollowedGroups,
-    _v3MemberGroups,
-    _v3UserGroups,
-    _v3DirectMessages,
-    _v3GroupMessages,
-  ]),
+  Migration(
+    version: 3,
+    up: [
+      _v3FollowedGroups,
+      _v3MemberGroups,
+      _v3UserGroups,
+      _v3DirectMessages,
+      _v3GroupMessages,
+    ],
+  ),
 ];
 
 const String _v1ProfilePhotos = '''

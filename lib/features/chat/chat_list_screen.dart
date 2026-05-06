@@ -235,14 +235,13 @@ class _FollowedGroupsBand extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.of(
-                    context,
-                  ).pushNamed(AppRouter.groupsDiscover),
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(AppRouter.groupsDiscover),
                   child: Text(
                     'Descubrir',
-                    style: AppTextStyles.labelSm(cs.primary).copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppTextStyles.labelSm(
+                      cs.primary,
+                    ).copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
@@ -441,8 +440,7 @@ class _ConversationRow extends StatelessWidget {
                   AppTextStyles.bodyMd(
                     hasUnread ? cs.onSurface : cs.onSurfaceVariant,
                   ).copyWith(
-                    fontWeight:
-                        hasUnread ? FontWeight.w500 : FontWeight.w400,
+                    fontWeight: hasUnread ? FontWeight.w500 : FontWeight.w400,
                   ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,

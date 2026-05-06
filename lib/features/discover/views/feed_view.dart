@@ -134,10 +134,9 @@ class DiscoverFeedView extends StatelessWidget {
                 return RepaintBoundary(
                   child: GroupFeedCard(
                     group: g,
-                    onTap: () => Navigator.of(context).pushNamed(
-                      AppRouter.groupDetail,
-                      arguments: g,
-                    ),
+                    onTap: () => Navigator.of(
+                      context,
+                    ).pushNamed(AppRouter.groupDetail, arguments: g),
                   ),
                 );
               },
@@ -256,4 +255,3 @@ class _FilterPill extends StatelessWidget {
     );
   }
 }
-

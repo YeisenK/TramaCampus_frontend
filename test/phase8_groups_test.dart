@@ -96,10 +96,7 @@ void main() {
       await tester.pumpWidget(_app(const GroupsDiscoverScreen(embedded: true)));
       await tester.pumpAndSettle();
       final visible = MockData.mockGroups.firstWhere((g) => g.isDiscoverable);
-      expect(
-        find.textContaining(visible.name.substring(0, 8)),
-        findsWidgets,
-      );
+      expect(find.textContaining(visible.name.substring(0, 8)), findsWidgets);
     });
   });
 
@@ -122,10 +119,7 @@ void main() {
       final group = MockData.mockGroups.first;
       await tester.pumpWidget(_scaffold(GroupCard(group: group)));
       await tester.pump();
-      expect(
-        find.text('${group.memberCount} miembros'),
-        findsOneWidget,
-      );
+      expect(find.text('${group.memberCount} miembros'), findsOneWidget);
     });
 
     testWidgets('renders OFICIAL marker when verified', (tester) async {

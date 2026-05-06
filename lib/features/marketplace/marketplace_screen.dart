@@ -239,11 +239,7 @@ class _SearchBar extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(
-                Icons.search,
-                size: 18,
-                color: cs.onSurfaceVariant,
-              ),
+              Icon(Icons.search, size: 18, color: cs.onSurfaceVariant),
               const SizedBox(width: AppSpacing.space2),
               Expanded(
                 child: Text(

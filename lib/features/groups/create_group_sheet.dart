@@ -182,12 +182,7 @@ class _KindGrid extends StatelessWidget {
       'Club',
       'Comunidad recurrente, abierta.',
     ),
-    (
-      GroupKind.sport,
-      Icons.sports_outlined,
-      'Deporte',
-      'Entrenos y quedadas.',
-    ),
+    (GroupKind.sport, Icons.sports_outlined, 'Deporte', 'Entrenos y quedadas.'),
   ];
 
   @override
@@ -341,9 +336,7 @@ class _AccessList extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             onTap: () => onChanged(access),
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: AppSpacing.space3,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: AppSpacing.space3),
               child: Row(
                 children: [
                   Icon(icon, size: 20, color: cs.onSurfaceVariant),
@@ -378,18 +371,11 @@ class _AccessList extends StatelessWidget {
                       color: isActive ? cs.primary : Colors.transparent,
                       border: isActive
                           ? null
-                          : Border.all(
-                              color: cs.outlineVariant,
-                              width: 1.5,
-                            ),
+                          : Border.all(color: cs.outlineVariant, width: 1.5),
                     ),
                     alignment: Alignment.center,
                     child: isActive
-                        ? Icon(
-                            Icons.check,
-                            size: 12,
-                            color: cs.onPrimary,
-                          )
+                        ? Icon(Icons.check, size: 12, color: cs.onPrimary)
                         : null,
                   ),
                 ],

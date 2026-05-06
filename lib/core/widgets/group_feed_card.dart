@@ -260,11 +260,7 @@ class _Body extends StatelessWidget {
             const SizedBox(height: 10),
             Row(
               children: [
-                Icon(
-                  Icons.event_outlined,
-                  size: 14,
-                  color: cs.primary,
-                ),
+                Icon(Icons.event_outlined, size: 14, color: cs.primary),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(

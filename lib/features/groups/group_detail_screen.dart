@@ -157,7 +157,17 @@ _DateBucket _bucketFor(String due) {
       s.startsWith('hace ')) {
     return _DateBucket.today;
   }
-  const weekdays = ['lun', 'mar', 'mié', 'mie', 'jue', 'vie', 'sáb', 'sab', 'dom'];
+  const weekdays = [
+    'lun',
+    'mar',
+    'mié',
+    'mie',
+    'jue',
+    'vie',
+    'sáb',
+    'sab',
+    'dom',
+  ];
   if (weekdays.any(s.startsWith)) return _DateBucket.week;
   return _DateBucket.later;
 }
@@ -212,9 +222,7 @@ class _TasksTabState extends State<_TasksTab> {
     final inProgressCount = _tasks
         .where((t) => t.status == TaskStatus.inProgress)
         .length;
-    final todoCount = _tasks
-        .where((t) => t.status == TaskStatus.todo)
-        .length;
+    final todoCount = _tasks.where((t) => t.status == TaskStatus.todo).length;
 
     final byBucket = <_DateBucket, List<Task>>{};
     for (final t in open) {
@@ -249,14 +257,15 @@ class _TasksTabState extends State<_TasksTab> {
             ),
             const SizedBox(height: AppSpacing.space4),
           ],
-        if (done.isNotEmpty) _CompletedSection(
-          tasks: done,
-          expanded: _showCompleted,
-          onToggleExpand: () =>
-              setState(() => _showCompleted = !_showCompleted),
-          onToggleTask: _toggleTask,
-          cs: cs,
-        ),
+        if (done.isNotEmpty)
+          _CompletedSection(
+            tasks: done,
+            expanded: _showCompleted,
+            onToggleExpand: () =>
+                setState(() => _showCompleted = !_showCompleted),
+            onToggleTask: _toggleTask,
+            cs: cs,
+          ),
       ],
     );
   }
@@ -294,8 +303,7 @@ class _KpiStrip extends StatelessWidget {
         child: Row(
           children: [
             for (int i = 0; i < items.length; i++) ...[
-              if (i > 0)
-                VerticalDivider(width: 1, thickness: 1, color: ghost),
+              if (i > 0) VerticalDivider(width: 1, thickness: 1, color: ghost),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -340,20 +348,12 @@ class _BucketHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        0,
-        0,
-        0,
-        AppSpacing.space2,
-      ),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, AppSpacing.space2),
       child: Row(
         children: [
           Text(label, style: AppTextStyles.titleMd(cs.onSurface)),
           const SizedBox(width: AppSpacing.space2),
-          Text(
-            '$count',
-            style: AppTextStyles.labelSm(cs.onSurfaceVariant),
-          ),
+          Text('$count', style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
         ],
       ),
     );
@@ -384,9 +384,7 @@ class _CompletedSection extends StatelessWidget {
           onTap: onToggleExpand,
           borderRadius: BorderRadius.circular(AppRadius.sm),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: AppSpacing.space2,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: AppSpacing.space2),
             child: Row(
               children: [
                 Icon(
@@ -395,10 +393,7 @@ class _CompletedSection extends StatelessWidget {
                   color: cs.onSurfaceVariant,
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  'Completadas',
-                  style: AppTextStyles.titleMd(cs.onSurface),
-                ),
+                Text('Completadas', style: AppTextStyles.titleMd(cs.onSurface)),
                 const SizedBox(width: AppSpacing.space2),
                 Text(
                   '${tasks.length}',
@@ -524,8 +519,7 @@ class _GroupBubble extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    HSLColor.fromAHSL(1.0, msg.senderHue, 0.50, 0.60)
-                        .toColor(),
+                    HSLColor.fromAHSL(1.0, msg.senderHue, 0.50, 0.60).toColor(),
                     HSLColor.fromAHSL(
                       1.0,
                       (msg.senderHue + 30) % 360,
@@ -620,8 +614,7 @@ class _GroupInputBar extends StatelessWidget {
         padding: EdgeInsets.only(
           left: AppSpacing.space4,
           right: AppSpacing.space4,
-          bottom: AppSpacing.space3 +
-              MediaQuery.viewInsetsOf(context).bottom,
+          bottom: AppSpacing.space3 + MediaQuery.viewInsetsOf(context).bottom,
           top: AppSpacing.space2,
         ),
         child: Row(
@@ -726,18 +719,60 @@ class _AboutTab extends StatelessWidget {
 // ---------- Member roster (mix of real students + synthetic anonymous) ----------
 
 const _kFirstNames = [
-  'Andrea', 'Bruno', 'Carolina', 'Daniel', 'Elena', 'Fernando',
-  'Gabriela', 'Hugo', 'Isabel', 'Jorge', 'Karla', 'Luis',
-  'María', 'Nicolás', 'Olivia', 'Pablo', 'Quetzalli', 'Roberto',
-  'Sara', 'Tomás', 'Valeria', 'Ximena', 'Yael', 'Zaira',
-  'Regina', 'Emilio', 'Claudia', 'Sebastián', 'Lorena', 'Patricio',
+  'Andrea',
+  'Bruno',
+  'Carolina',
+  'Daniel',
+  'Elena',
+  'Fernando',
+  'Gabriela',
+  'Hugo',
+  'Isabel',
+  'Jorge',
+  'Karla',
+  'Luis',
+  'María',
+  'Nicolás',
+  'Olivia',
+  'Pablo',
+  'Quetzalli',
+  'Roberto',
+  'Sara',
+  'Tomás',
+  'Valeria',
+  'Ximena',
+  'Yael',
+  'Zaira',
+  'Regina',
+  'Emilio',
+  'Claudia',
+  'Sebastián',
+  'Lorena',
+  'Patricio',
 ];
 
 const _kLastNames = [
-  'Mendoza', 'Reyes', 'Vega', 'Castillo', 'Torres', 'Ramos',
-  'Vargas', 'Jiménez', 'Salazar', 'Domínguez', 'Aguilar', 'Ortega',
-  'Medina', 'Rojas', 'Cruz', 'Estrada', 'Romero', 'Ibarra',
-  'Bautista', 'Núñez', 'Maldonado',
+  'Mendoza',
+  'Reyes',
+  'Vega',
+  'Castillo',
+  'Torres',
+  'Ramos',
+  'Vargas',
+  'Jiménez',
+  'Salazar',
+  'Domínguez',
+  'Aguilar',
+  'Ortega',
+  'Medina',
+  'Rojas',
+  'Cruz',
+  'Estrada',
+  'Romero',
+  'Ibarra',
+  'Bautista',
+  'Núñez',
+  'Maldonado',
 ];
 
 const _kPrograms = [
@@ -786,10 +821,7 @@ class _RosterEntry {
 bool _isConnected(String studentId) =>
     MockData.chats.any((c) => c.studentId == studentId);
 
-_MemberBadge _badgeFor({
-  required Student student,
-  required Group group,
-}) {
+_MemberBadge _badgeFor({required Student student, required Group group}) {
   if (student.id == MockData.currentUser.id) return _MemberBadge.you;
   if (student.name == group.leader) return _MemberBadge.leader;
   if (!_isConnected(student.id)) return _MemberBadge.notConnected;
@@ -902,11 +934,7 @@ class _MembersInline extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Icon(
-              Icons.chevron_right,
-              size: 18,
-              color: cs.onSurfaceVariant,
-            ),
+            Icon(Icons.chevron_right, size: 18, color: cs.onSurfaceVariant),
           ],
         ),
       ),
@@ -966,9 +994,7 @@ class _MembersSheet extends StatelessWidget {
           const Center(child: TGrabBar()),
           const SizedBox(height: AppSpacing.space3),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.space5,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space5),
             child: Row(
               children: [
                 Expanded(
@@ -1026,10 +1052,9 @@ class _MemberRow extends StatelessWidget {
       onTap: tappable
           ? () {
               Navigator.of(context).pop();
-              Navigator.of(context).pushNamed(
-                AppRouter.profileDetail,
-                arguments: entry.student,
-              );
+              Navigator.of(
+                context,
+              ).pushNamed(AppRouter.profileDetail, arguments: entry.student);
             }
           : null,
       leading: TAvatar(
@@ -1038,10 +1063,7 @@ class _MemberRow extends StatelessWidget {
         photoUrl: entry.photoUrl,
         size: 44,
       ),
-      title: Text(
-        entry.name,
-        style: AppTextStyles.titleMd(cs.onSurface),
-      ),
+      title: Text(entry.name, style: AppTextStyles.titleMd(cs.onSurface)),
       subtitle: Text(
         entry.program,
         style: AppTextStyles.bodySm(cs.onSurfaceVariant),
@@ -1114,11 +1136,7 @@ class _HiddenCountRow extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         alignment: Alignment.center,
-        child: Icon(
-          Icons.more_horiz,
-          size: 20,
-          color: cs.onSurfaceVariant,
-        ),
+        child: Icon(Icons.more_horiz, size: 20, color: cs.onSurfaceVariant),
       ),
       title: Text(
         '$count miembros más',

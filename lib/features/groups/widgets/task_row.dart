@@ -44,9 +44,7 @@ class TaskRow extends StatelessWidget {
                             decoration: isDone
                                 ? TextDecoration.lineThrough
                                 : TextDecoration.none,
-                            color: isDone
-                                ? cs.onSurfaceVariant
-                                : cs.onSurface,
+                            color: isDone ? cs.onSurfaceVariant : cs.onSurface,
                           ),
                         ),
                       ),
@@ -99,14 +97,12 @@ class TaskRow extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 12,
-                fontWeight: isHighPriority
-                    ? FontWeight.w600
-                    : FontWeight.w400,
+                fontWeight: isHighPriority ? FontWeight.w600 : FontWeight.w400,
                 color: isDone
                     ? cs.onSurfaceVariant.withValues(alpha: 0.6)
                     : isHighPriority
-                        ? cs.primary
-                        : cs.onSurfaceVariant,
+                    ? cs.primary
+                    : cs.onSurfaceVariant,
               ),
             ),
           ],
@@ -128,10 +124,7 @@ class _CheckCircle extends StatelessWidget {
         return Container(
           width: 22,
           height: 22,
-          decoration: BoxDecoration(
-            color: cs.primary,
-            shape: BoxShape.circle,
-          ),
+          decoration: BoxDecoration(color: cs.primary, shape: BoxShape.circle),
           alignment: Alignment.center,
           child: Icon(Icons.check, size: 13, color: cs.onPrimary),
         );

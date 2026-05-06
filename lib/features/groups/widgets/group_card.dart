@@ -6,11 +6,7 @@ import '../../../data/models/group.dart';
 import '../../../data/repositories/app_state_repository.dart';
 
 class GroupCard extends StatelessWidget {
-  const GroupCard({
-    super.key,
-    required this.group,
-    this.onTap,
-  });
+  const GroupCard({super.key, required this.group, this.onTap});
 
   final Group group;
   final VoidCallback? onTap;

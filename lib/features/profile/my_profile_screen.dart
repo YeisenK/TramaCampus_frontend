@@ -72,10 +72,7 @@ class _ProfileView extends StatelessWidget {
                 const SizedBox(height: AppSpacing.space5),
                 Text('Bio', style: AppTextStyles.titleMd(cs.onSurface)),
                 const SizedBox(height: AppSpacing.space3),
-                Text(
-                  bio,
-                  style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
-                ),
+                Text(bio, style: AppTextStyles.bodyMd(cs.onSurfaceVariant)),
                 const SizedBox(height: AppSpacing.space5),
                 Text('Intereses', style: AppTextStyles.titleMd(cs.onSurface)),
                 const SizedBox(height: AppSpacing.space3),
@@ -197,10 +194,7 @@ class _HeroPhoto extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                displayName,
-                style: AppTextStyles.headlineSm(cs.onSurface),
-              ),
+              Text(displayName, style: AppTextStyles.headlineSm(cs.onSurface)),
               Text(
                 '${user.program} · Sem. ${user.semester}',
                 style: AppTextStyles.bodyMd(cs.onSurfaceVariant),

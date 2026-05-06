@@ -76,11 +76,10 @@ class AppStateRepository extends ChangeNotifier {
   }
 
   Future<void> _metaSet(Database db, String key, String value) async {
-    await db.insert(
-      Tables.meta,
-      {MetaColumns.key: key, MetaColumns.value: value},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert(Tables.meta, {
+      MetaColumns.key: key,
+      MetaColumns.value: value,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<void> _loadFollowedGroups(Database db) async {
