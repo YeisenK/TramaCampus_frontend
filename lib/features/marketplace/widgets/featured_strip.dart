@@ -125,7 +125,7 @@ class _Background extends StatelessWidget {
       return Image.network(
         listing.imageUrls.first,
         fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => _GradientPlaceholder(cs: cs),
+        errorBuilder: (context, error, stack) => _GradientPlaceholder(cs: cs),
       );
     }
     return _GradientPlaceholder(cs: cs);

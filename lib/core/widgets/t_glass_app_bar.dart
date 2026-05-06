@@ -47,7 +47,7 @@ class TGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             onTap: () => Navigator.of(context).pop(),
           )
-        : this.leading;
+        : leading;
 
     return ClipRect(
       child: BackdropFilter(

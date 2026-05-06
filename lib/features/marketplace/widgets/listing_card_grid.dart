@@ -42,7 +42,7 @@ class ListingCardGrid extends StatelessWidget {
                         fit: BoxFit.cover,
                         width: double.infinity,
                         cacheWidth: 400,
-                        errorBuilder: (_, __, ___) => _placeholder(cs),
+                        errorBuilder: (context, error, stack) => _placeholder(cs),
                       )
                     : _placeholder(cs),
               ),

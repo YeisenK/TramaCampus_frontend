@@ -20,7 +20,7 @@ class NetworkTexture extends StatelessWidget {
     return Stack(
       fit: StackFit.passthrough,
       children: [
-        if (child != null) child!,
+        ?child,
         Positioned.fill(
           child: IgnorePointer(
             // RepaintBoundary isolates texture repaints from parent animations.

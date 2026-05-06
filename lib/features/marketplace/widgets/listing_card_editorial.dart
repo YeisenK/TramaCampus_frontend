@@ -75,7 +75,7 @@ class _PhotoArea extends StatelessWidget {
                     listing.imageUrls.first,
                     fit: BoxFit.cover,
                     cacheWidth: 600,
-                    errorBuilder: (_, __, ___) => Container(
+                    errorBuilder: (context, error, stack) => Container(
                       color: cs.surfaceContainerHigh,
                       child: Icon(
                         Icons.image_outlined,
