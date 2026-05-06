@@ -1,0 +1,3031 @@
+{
+  "catalog": "research_interest",
+  "_source": "matching_service/src/shared/catalogs/research_interest_catalog.json",
+  "version": "2026-05-04",
+  "sets": [
+    {
+      "id": "engineering_research",
+      "label": "Investigación en Ingeniería",
+      "subsets": [
+        {
+          "id": "sustainable_engineering",
+          "label": "Sustainable Engineering"
+        },
+        {
+          "id": "robotics_and_autonomous_systems",
+          "label": "Robotics & Autonomous Systems"
+        },
+        {
+          "id": "civil_infrastructure_research",
+          "label": "Civil Infrastructure Research"
+        },
+        {
+          "id": "industrial_optimization",
+          "label": "Industrial Optimization"
+        },
+        {
+          "id": "energy_systems_research",
+          "label": "Energy Systems Research"
+        }
+      ]
+    },
+    {
+      "id": "computer_science_research",
+      "label": "Investigación en Ciencias Computacionales",
+      "subsets": [
+        {
+          "id": "artificial_intelligence",
+          "label": "Artificial Intelligence"
+        },
+        {
+          "id": "cybersecurity_research",
+          "label": "Cybersecurity Research"
+        },
+        {
+          "id": "software_engineering_research",
+          "label": "Software Engineering Research"
+        },
+        {
+          "id": "human_computer_interaction",
+          "label": "Human-Computer Interaction"
+        }
+      ]
+    },
+    {
+      "id": "data_science_research",
+      "label": "Investigación en Ciencia de Datos",
+      "subsets": [
+        {
+          "id": "statistical_methods",
+          "label": "Statistical Methods"
+        },
+        {
+          "id": "applied_machine_learning",
+          "label": "Applied Machine Learning"
+        },
+        {
+          "id": "computational_social_science",
+          "label": "Computational Social Science"
+        }
+      ]
+    },
+    {
+      "id": "biomedical_research",
+      "label": "Investigación Biomédica",
+      "subsets": [
+        {
+          "id": "clinical_research",
+          "label": "Clinical Research"
+        },
+        {
+          "id": "public_health_research",
+          "label": "Public Health Research"
+        },
+        {
+          "id": "bioethics_studies",
+          "label": "Bioethics Studies"
+        },
+        {
+          "id": "nutrition_research",
+          "label": "Nutrition Research"
+        }
+      ]
+    },
+    {
+      "id": "business_and_economic_research",
+      "label": "Investigación en Negocios y Economía",
+      "subsets": [
+        {
+          "id": "strategic_management",
+          "label": "Strategic Management"
+        },
+        {
+          "id": "marketing_research",
+          "label": "Marketing Research"
+        },
+        {
+          "id": "behavioral_economics",
+          "label": "Behavioral Economics"
+        },
+        {
+          "id": "sustainable_business",
+          "label": "Sustainable Business"
+        }
+      ]
+    },
+    {
+      "id": "legal_research",
+      "label": "Investigación Jurídica",
+      "subsets": [
+        {
+          "id": "comparative_law",
+          "label": "Comparative Law"
+        },
+        {
+          "id": "public_policy_research",
+          "label": "Public Policy Research"
+        },
+        {
+          "id": "criminal_justice_research",
+          "label": "Criminal Justice Research"
+        },
+        {
+          "id": "human_rights_research",
+          "label": "Human Rights Research"
+        }
+      ]
+    },
+    {
+      "id": "communication_research",
+      "label": "Investigación en Comunicación",
+      "subsets": [
+        {
+          "id": "media_studies",
+          "label": "Media Studies"
+        },
+        {
+          "id": "journalism_research",
+          "label": "Journalism Research"
+        },
+        {
+          "id": "digital_communication",
+          "label": "Digital Communication"
+        }
+      ]
+    },
+    {
+      "id": "design_research",
+      "label": "Investigación en Diseño",
+      "subsets": [
+        {
+          "id": "design_theory",
+          "label": "Design Theory"
+        },
+        {
+          "id": "sustainable_design",
+          "label": "Sustainable Design"
+        },
+        {
+          "id": "inclusive_design",
+          "label": "Inclusive Design"
+        }
+      ]
+    },
+    {
+      "id": "architecture_research",
+      "label": "Investigación en Arquitectura",
+      "subsets": [
+        {
+          "id": "sustainable_architecture_research",
+          "label": "Sustainable Architecture Research"
+        },
+        {
+          "id": "urban_studies",
+          "label": "Urban Studies"
+        },
+        {
+          "id": "architectural_history",
+          "label": "Architectural History"
+        }
+      ]
+    },
+    {
+      "id": "educational_research",
+      "label": "Investigación Educativa",
+      "subsets": [
+        {
+          "id": "pedagogical_innovation",
+          "label": "Pedagogical Innovation"
+        },
+        {
+          "id": "educational_policy",
+          "label": "Educational Policy"
+        }
+      ]
+    },
+    {
+      "id": "humanities_research",
+      "label": "Investigación en Humanidades",
+      "subsets": [
+        {
+          "id": "philosophy_research",
+          "label": "Philosophy Research"
+        },
+        {
+          "id": "theology_studies",
+          "label": "Theology Studies"
+        },
+        {
+          "id": "cultural_studies_research",
+          "label": "Cultural Studies Research"
+        },
+        {
+          "id": "linguistics_research",
+          "label": "Linguistics Research"
+        }
+      ]
+    },
+    {
+      "id": "social_sciences_research",
+      "label": "Investigación en Ciencias Sociales",
+      "subsets": [
+        {
+          "id": "psychology_research",
+          "label": "Psychology Research"
+        },
+        {
+          "id": "sociology_research",
+          "label": "Sociology Research"
+        },
+        {
+          "id": "international_relations_research",
+          "label": "International Relations Research"
+        }
+      ]
+    },
+    {
+      "id": "health_and_sports_research",
+      "label": "Investigación en Salud y Deportes",
+      "subsets": [
+        {
+          "id": "sports_science_research",
+          "label": "Sports Science Research"
+        },
+        {
+          "id": "mental_health_research",
+          "label": "Mental Health Research"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "renewable energy systems",
+      "label": "Sistemas de Energía Renovable",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": [
+        "energy_systems_research",
+        "sustainable_engineering"
+      ]
+    },
+    {
+      "id": "smart materials",
+      "label": "Materiales Inteligentes",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": [
+        "sustainable_engineering"
+      ]
+    },
+    {
+      "id": "autonomous vehicles",
+      "label": "Vehículos Autónomos",
+      "sets": [
+        "engineering_research",
+        "computer_science_research"
+      ],
+      "subsets": [
+        "robotics_and_autonomous_systems",
+        "artificial_intelligence"
+      ]
+    },
+    {
+      "id": "smart manufacturing",
+      "label": "Manufactura Inteligente",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": [
+        "industrial_optimization"
+      ]
+    },
+    {
+      "id": "structural resilience",
+      "label": "Resiliencia Estructural",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": [
+        "civil_infrastructure_research"
+      ]
+    },
+    {
+      "id": "green construction",
+      "label": "Construcción Verde",
+      "sets": [
+        "engineering_research",
+        "architecture_research"
+      ],
+      "subsets": [
+        "civil_infrastructure_research",
+        "sustainable_architecture_research"
+      ]
+    },
+    {
+      "id": "industrial process optimization",
+      "label": "Optimización de Procesos Industriales",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": [
+        "industrial_optimization"
+      ]
+    },
+    {
+      "id": "mechatronic systems",
+      "label": "Sistemas Mecatrónicos",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": [
+        "robotics_and_autonomous_systems"
+      ]
+    },
+    {
+      "id": "energy efficiency",
+      "label": "Eficiencia Energética",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": [
+        "energy_systems_research",
+        "sustainable_engineering"
+      ]
+    },
+    {
+      "id": "sustainable logistics",
+      "label": "Logística Sustentable",
+      "sets": [
+        "engineering_research",
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "industrial_optimization",
+        "sustainable_business"
+      ]
+    },
+    {
+      "id": "machine learning theory",
+      "label": "Teoría de Machine Learning",
+      "sets": [
+        "computer_science_research",
+        "data_science_research"
+      ],
+      "subsets": [
+        "artificial_intelligence",
+        "statistical_methods"
+      ]
+    },
+    {
+      "id": "deep learning research",
+      "label": "Investigación en Deep Learning",
+      "sets": [
+        "computer_science_research",
+        "data_science_research"
+      ],
+      "subsets": [
+        "artificial_intelligence",
+        "applied_machine_learning"
+      ]
+    },
+    {
+      "id": "computer vision",
+      "label": "Visión por Computadora",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": [
+        "artificial_intelligence"
+      ]
+    },
+    {
+      "id": "natural language processing research",
+      "label": "Investigación en Procesamiento de Lenguaje Natural",
+      "sets": [
+        "computer_science_research",
+        "humanities_research"
+      ],
+      "subsets": [
+        "artificial_intelligence",
+        "linguistics_research"
+      ]
+    },
+    {
+      "id": "reinforcement learning",
+      "label": "Aprendizaje por Refuerzo",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": [
+        "artificial_intelligence"
+      ]
+    },
+    {
+      "id": "distributed systems",
+      "label": "Sistemas Distribuidos",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": [
+        "software_engineering_research"
+      ]
+    },
+    {
+      "id": "cybersecurity & privacy",
+      "label": "Ciberseguridad y Privacidad",
+      "sets": [
+        "computer_science_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "cybersecurity_research"
+      ]
+    },
+    {
+      "id": "cryptography",
+      "label": "Criptografía",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": [
+        "cybersecurity_research"
+      ]
+    },
+    {
+      "id": "programming languages theory",
+      "label": "Teoría de Lenguajes de Programación",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": [
+        "software_engineering_research"
+      ]
+    },
+    {
+      "id": "quantum computing",
+      "label": "Cómputo Cuántico",
+      "sets": [
+        "computer_science_research",
+        "engineering_research"
+      ],
+      "subsets": [
+        "artificial_intelligence"
+      ]
+    },
+    {
+      "id": "software engineering practices",
+      "label": "Prácticas de Ingeniería de Software",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": [
+        "software_engineering_research"
+      ]
+    },
+    {
+      "id": "user experience research",
+      "label": "Investigación en Experiencia de Usuario",
+      "sets": [
+        "computer_science_research",
+        "design_research"
+      ],
+      "subsets": [
+        "human_computer_interaction",
+        "inclusive_design"
+      ]
+    },
+    {
+      "id": "causal inference",
+      "label": "Inferencia Causal",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": [
+        "statistical_methods"
+      ]
+    },
+    {
+      "id": "bayesian statistics",
+      "label": "Estadística Bayesiana",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": [
+        "statistical_methods"
+      ]
+    },
+    {
+      "id": "time series analysis",
+      "label": "Análisis de Series de Tiempo",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": [
+        "statistical_methods",
+        "applied_machine_learning"
+      ]
+    },
+    {
+      "id": "network science",
+      "label": "Ciencia de Redes",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": [
+        "statistical_methods",
+        "computational_social_science"
+      ]
+    },
+    {
+      "id": "big data systems",
+      "label": "Sistemas de Big Data",
+      "sets": [
+        "data_science_research",
+        "computer_science_research"
+      ],
+      "subsets": [
+        "applied_machine_learning",
+        "software_engineering_research"
+      ]
+    },
+    {
+      "id": "data ethics",
+      "label": "Ética de Datos",
+      "sets": [
+        "data_science_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "computational_social_science",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "cancer research",
+      "label": "Investigación del Cáncer",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": [
+        "clinical_research"
+      ]
+    },
+    {
+      "id": "cardiovascular health",
+      "label": "Salud Cardiovascular",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": [
+        "clinical_research"
+      ]
+    },
+    {
+      "id": "neuroscience",
+      "label": "Neurociencia",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": [
+        "clinical_research"
+      ]
+    },
+    {
+      "id": "pharmacology research",
+      "label": "Investigación en Farmacología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": [
+        "clinical_research"
+      ]
+    },
+    {
+      "id": "public health policy",
+      "label": "Política de Salud Pública",
+      "sets": [
+        "biomedical_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "public_health_research",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "clinical nutrition research",
+      "label": "Investigación en Nutrición Clínica",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": [
+        "nutrition_research"
+      ]
+    },
+    {
+      "id": "epidemiological studies",
+      "label": "Estudios Epidemiológicos",
+      "sets": [
+        "biomedical_research",
+        "data_science_research"
+      ],
+      "subsets": [
+        "public_health_research",
+        "statistical_methods"
+      ]
+    },
+    {
+      "id": "bioethics",
+      "label": "Bioética",
+      "sets": [
+        "biomedical_research",
+        "humanities_research"
+      ],
+      "subsets": [
+        "bioethics_studies",
+        "philosophy_research"
+      ]
+    },
+    {
+      "id": "consumer behavior",
+      "label": "Comportamiento del Consumidor",
+      "sets": [
+        "business_and_economic_research",
+        "communication_research"
+      ],
+      "subsets": [
+        "marketing_research",
+        "behavioral_economics"
+      ]
+    },
+    {
+      "id": "sustainable business strategy",
+      "label": "Estrategia de Negocios Sustentable",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "sustainable_business",
+        "strategic_management"
+      ]
+    },
+    {
+      "id": "esg & corporate responsibility",
+      "label": "ESG y Responsabilidad Corporativa",
+      "sets": [
+        "business_and_economic_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "sustainable_business"
+      ]
+    },
+    {
+      "id": "corporate governance",
+      "label": "Gobierno Corporativo",
+      "sets": [
+        "business_and_economic_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "strategic_management"
+      ]
+    },
+    {
+      "id": "financial markets",
+      "label": "Mercados Financieros",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "behavioral_economics"
+      ]
+    },
+    {
+      "id": "macroeconomics",
+      "label": "Macroeconomía",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "behavioral_economics"
+      ]
+    },
+    {
+      "id": "microeconomics",
+      "label": "Microeconomía",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "behavioral_economics"
+      ]
+    },
+    {
+      "id": "innovation studies",
+      "label": "Estudios de Innovación",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "strategic_management"
+      ]
+    },
+    {
+      "id": "entrepreneurship research",
+      "label": "Investigación en Emprendimiento",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "strategic_management"
+      ]
+    },
+    {
+      "id": "constitutional law research",
+      "label": "Investigación en Derecho Constitucional",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": [
+        "comparative_law",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "international law studies",
+      "label": "Estudios de Derecho Internacional",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": [
+        "comparative_law",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "tax law research",
+      "label": "Investigación en Derecho Fiscal",
+      "sets": [
+        "legal_research",
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "comparative_law"
+      ]
+    },
+    {
+      "id": "public policy analysis",
+      "label": "Análisis de Políticas Públicas",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": [
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "environmental law",
+      "label": "Derecho Ambiental",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": [
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "criminal justice",
+      "label": "Justicia Penal",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": [
+        "criminal_justice_research"
+      ]
+    },
+    {
+      "id": "human rights",
+      "label": "Derechos Humanos",
+      "sets": [
+        "legal_research",
+        "humanities_research"
+      ],
+      "subsets": [
+        "human_rights_research",
+        "philosophy_research"
+      ]
+    },
+    {
+      "id": "media effects",
+      "label": "Efectos de los Medios",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": [
+        "media_studies"
+      ]
+    },
+    {
+      "id": "political communication",
+      "label": "Comunicación Política",
+      "sets": [
+        "communication_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "media_studies",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "digital media studies",
+      "label": "Estudios de Medios Digitales",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": [
+        "digital_communication",
+        "media_studies"
+      ]
+    },
+    {
+      "id": "public relations research",
+      "label": "Investigación en Relaciones Públicas",
+      "sets": [
+        "communication_research",
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "media_studies",
+        "marketing_research"
+      ]
+    },
+    {
+      "id": "advertising research",
+      "label": "Investigación en Publicidad",
+      "sets": [
+        "communication_research",
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "media_studies",
+        "marketing_research"
+      ]
+    },
+    {
+      "id": "service design",
+      "label": "Diseño de Servicios",
+      "sets": [
+        "design_research",
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "design_theory",
+        "inclusive_design"
+      ]
+    },
+    {
+      "id": "design thinking",
+      "label": "Design Thinking",
+      "sets": [
+        "design_research",
+        "business_and_economic_research"
+      ],
+      "subsets": [
+        "design_theory"
+      ]
+    },
+    {
+      "id": "speculative design",
+      "label": "Diseño Especulativo",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": [
+        "design_theory"
+      ]
+    },
+    {
+      "id": "bioclimatic architecture",
+      "label": "Arquitectura Bioclimática",
+      "sets": [
+        "architecture_research"
+      ],
+      "subsets": [
+        "sustainable_architecture_research"
+      ]
+    },
+    {
+      "id": "heritage conservation research",
+      "label": "Investigación en Conservación del Patrimonio",
+      "sets": [
+        "architecture_research",
+        "humanities_research"
+      ],
+      "subsets": [
+        "architectural_history",
+        "cultural_studies_research"
+      ]
+    },
+    {
+      "id": "smart cities",
+      "label": "Ciudades Inteligentes",
+      "sets": [
+        "architecture_research",
+        "engineering_research",
+        "computer_science_research"
+      ],
+      "subsets": [
+        "urban_studies"
+      ]
+    },
+    {
+      "id": "affordable housing",
+      "label": "Vivienda Asequible",
+      "sets": [
+        "architecture_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "urban_studies",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "educational technology research",
+      "label": "Investigación en Tecnología Educativa",
+      "sets": [
+        "educational_research",
+        "computer_science_research"
+      ],
+      "subsets": [
+        "pedagogical_innovation"
+      ]
+    },
+    {
+      "id": "curriculum development",
+      "label": "Desarrollo Curricular",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": [
+        "pedagogical_innovation"
+      ]
+    },
+    {
+      "id": "educational equity",
+      "label": "Equidad Educativa",
+      "sets": [
+        "educational_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "educational_policy"
+      ]
+    },
+    {
+      "id": "special education research",
+      "label": "Investigación en Educación Especial",
+      "sets": [
+        "educational_research",
+        "health_and_sports_research"
+      ],
+      "subsets": [
+        "pedagogical_innovation",
+        "mental_health_research"
+      ]
+    },
+    {
+      "id": "ancient philosophy",
+      "label": "Filosofía Antigua",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": [
+        "philosophy_research"
+      ]
+    },
+    {
+      "id": "modern philosophy",
+      "label": "Filosofía Moderna",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": [
+        "philosophy_research"
+      ]
+    },
+    {
+      "id": "ethics & moral philosophy",
+      "label": "Ética y Filosofía Moral",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": [
+        "philosophy_research"
+      ]
+    },
+    {
+      "id": "religious studies",
+      "label": "Estudios Religiosos",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": [
+        "theology_studies"
+      ]
+    },
+    {
+      "id": "literary theory",
+      "label": "Teoría Literaria",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": [
+        "cultural_studies_research",
+        "linguistics_research"
+      ]
+    },
+    {
+      "id": "translation studies",
+      "label": "Estudios de Traducción",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": [
+        "linguistics_research"
+      ]
+    },
+    {
+      "id": "classical studies",
+      "label": "Estudios Clásicos",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": [
+        "cultural_studies_research"
+      ]
+    },
+    {
+      "id": "cultural heritage",
+      "label": "Patrimonio Cultural",
+      "sets": [
+        "humanities_research",
+        "architecture_research"
+      ],
+      "subsets": [
+        "cultural_studies_research"
+      ]
+    },
+    {
+      "id": "cognitive psychology",
+      "label": "Psicología Cognitiva",
+      "sets": [
+        "social_sciences_research",
+        "health_and_sports_research"
+      ],
+      "subsets": [
+        "psychology_research",
+        "mental_health_research"
+      ]
+    },
+    {
+      "id": "clinical psychology research",
+      "label": "Investigación en Psicología Clínica",
+      "sets": [
+        "social_sciences_research",
+        "health_and_sports_research"
+      ],
+      "subsets": [
+        "psychology_research",
+        "mental_health_research"
+      ]
+    },
+    {
+      "id": "social psychology",
+      "label": "Psicología Social",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": [
+        "psychology_research"
+      ]
+    },
+    {
+      "id": "geopolitics",
+      "label": "Geopolítica",
+      "sets": [
+        "social_sciences_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "international_relations_research",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "migration studies",
+      "label": "Estudios Migratorios",
+      "sets": [
+        "social_sciences_research",
+        "legal_research"
+      ],
+      "subsets": [
+        "sociology_research",
+        "public_policy_research"
+      ]
+    },
+    {
+      "id": "gender studies",
+      "label": "Estudios de Género",
+      "sets": [
+        "social_sciences_research",
+        "humanities_research"
+      ],
+      "subsets": [
+        "sociology_research",
+        "cultural_studies_research"
+      ]
+    },
+    {
+      "id": "sports performance",
+      "label": "Rendimiento Deportivo",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": [
+        "sports_science_research"
+      ]
+    },
+    {
+      "id": "sports psychology",
+      "label": "Psicología del Deporte",
+      "sets": [
+        "health_and_sports_research",
+        "social_sciences_research"
+      ],
+      "subsets": [
+        "sports_science_research",
+        "mental_health_research"
+      ]
+    },
+    {
+      "id": "default",
+      "label": "General",
+      "sets": [],
+      "subsets": []
+    },
+    {
+      "id": "3d printing",
+      "label": "Impresión 3D",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "3d printing",
+      "label": "Impresión 3D",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "advertising",
+      "label": "Publicidad",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "advocacy",
+      "label": "Incidencia Social",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ai",
+      "label": "Inteligencia Artificial",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ai governance",
+      "label": "Gobernanza de IA",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "algorithmic trading",
+      "label": "Trading Algorítmico",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "algorithms",
+      "label": "Algoritmos",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "analytics",
+      "label": "Analítica",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "anatomy",
+      "label": "Anatomía",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "arduino",
+      "label": "Arduino",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "argumentation",
+      "label": "Argumentación",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "art history",
+      "label": "Historia del Arte",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "automation",
+      "label": "Automatización",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "backend development",
+      "label": "Desarrollo Backend",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "behavior",
+      "label": "Comportamiento",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "big data",
+      "label": "Big Data",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "biochemistry",
+      "label": "Bioquímica",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "biology",
+      "label": "Biología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "biomechanics",
+      "label": "Biomecánica",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "branding",
+      "label": "Branding",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "broadcasting",
+      "label": "Radiodifusión",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "budgeting",
+      "label": "Presupuesto",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "cardiology",
+      "label": "Cardiología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ceramics",
+      "label": "Cerámica",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "chess",
+      "label": "Ajedrez",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "civic education",
+      "label": "Educación Cívica",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "clinical psychology",
+      "label": "Psicología Clínica",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "cloud",
+      "label": "Nube / Cloud",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "coffee",
+      "label": "Café",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "communication",
+      "label": "Comunicación",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "communications",
+      "label": "Comunicaciones",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "community",
+      "label": "Comunidad",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "competitive programming",
+      "label": "Programación Competitiva",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "compliance",
+      "label": "Cumplimiento Regulatorio",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "constitutional law",
+      "label": "Derecho Constitucional",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "construction",
+      "label": "Construcción",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "construction management",
+      "label": "Gestión de Construcción",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "content ai",
+      "label": "IA para Contenido",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "content creation",
+      "label": "Creación de Contenido",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "cooking",
+      "label": "Cocina",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "corporate",
+      "label": "Corporativo",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "corporate finance",
+      "label": "Finanzas Corporativas",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "creative industries",
+      "label": "Industrias Creativas",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "criminal law",
+      "label": "Derecho Penal",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "critical thinking",
+      "label": "Pensamiento Crítico",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "cs2",
+      "label": "CS2",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "cultural diplomacy",
+      "label": "Diplomacia Cultural",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "cultural economy",
+      "label": "Economía Cultural",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "curriculum",
+      "label": "Currículo",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "cycling",
+      "label": "Ciclismo",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "dance",
+      "label": "Danza",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "data",
+      "label": "Datos",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "data privacy",
+      "label": "Privacidad de Datos",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "deep learning",
+      "label": "Deep Learning",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "dermatology",
+      "label": "Dermatología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "design",
+      "label": "Diseño",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "design criticism",
+      "label": "Crítica del Diseño",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "development",
+      "label": "Desarrollo",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "devops",
+      "label": "DevOps",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "dietetics",
+      "label": "Dietética",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "digital fabrication",
+      "label": "Fabricación Digital",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "digital marketing",
+      "label": "Marketing Digital",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "digital transformation",
+      "label": "Transformación Digital",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "diplomacy",
+      "label": "Diplomacia",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "e-learning",
+      "label": "E-learning",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "economic history",
+      "label": "Historia Económica",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "economics",
+      "label": "Economía",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "education policy",
+      "label": "Política Educativa",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "efficiency",
+      "label": "Eficiencia",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "emergency medicine",
+      "label": "Medicina de Urgencias",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "energy",
+      "label": "Energía",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "english",
+      "label": "Inglés",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "entrepreneurship",
+      "label": "Emprendimiento",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "epidemiology",
+      "label": "Epidemiología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "essays",
+      "label": "Ensayos",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ethics",
+      "label": "Ética",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ethics in education",
+      "label": "Ética en Educación",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "events",
+      "label": "Eventos",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "excel",
+      "label": "Excel",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "fabrication",
+      "label": "Fabricación",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "fashion",
+      "label": "Moda",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "film",
+      "label": "Cine",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "financial journalism",
+      "label": "Periodismo Financiero",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "financial law",
+      "label": "Derecho Financiero",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "financial literacy",
+      "label": "Educación Financiera",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "fintech",
+      "label": "Fintech",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "football",
+      "label": "Fútbol",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "french",
+      "label": "Francés",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "furniture design",
+      "label": "Diseño de Muebles",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "gaming",
+      "label": "Gaming",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "generative design",
+      "label": "Diseño Generativo",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "genomics",
+      "label": "Genómica",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "green building",
+      "label": "Edificación Sustentable",
+      "sets": [
+        "architecture_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "growth",
+      "label": "Crecimiento",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "growth hacking",
+      "label": "Growth Hacking",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "gym",
+      "label": "Gimnasio",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "gynecology",
+      "label": "Ginecología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "hardware",
+      "label": "Hardware",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "health data",
+      "label": "Datos de Salud",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "healthcare administration",
+      "label": "Administración de la Salud",
+      "sets": [
+        "architecture_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "hiking",
+      "label": "Senderismo",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "history",
+      "label": "Historia",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "hospital management",
+      "label": "Gestión Hospitalaria",
+      "sets": [
+        "architecture_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "human rights law",
+      "label": "Derecho de los Derechos Humanos",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "human-computer interaction",
+      "label": "Interacción Humano-Computadora",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "illustration",
+      "label": "Ilustración",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "inclusive design",
+      "label": "Diseño Inclusivo",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infraestructura",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "innovation",
+      "label": "Innovación",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "interior design",
+      "label": "Diseño de Interiores",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "internal medicine",
+      "label": "Medicina Interna",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "international business",
+      "label": "Negocios Internacionales",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "international development",
+      "label": "Desarrollo Internacional",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "international finance",
+      "label": "Finanzas Internacionales",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "international law",
+      "label": "Derecho Internacional",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "international relations",
+      "label": "Relaciones Internacionales",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "investment",
+      "label": "Inversión",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "investments",
+      "label": "Inversiones",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ip law",
+      "label": "Propiedad Intelectual",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "journaling",
+      "label": "Diario Personal",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "journalism",
+      "label": "Periodismo",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "jurisprudence",
+      "label": "Jurisprudencia",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "justice",
+      "label": "Justicia",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "law",
+      "label": "Derecho",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "learning",
+      "label": "Aprendizaje",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "legal philosophy",
+      "label": "Filosofía Jurídica",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "legal tech",
+      "label": "Legal Tech",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "literature",
+      "label": "Literatura",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "logistics",
+      "label": "Logística",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "machine learning",
+      "label": "Machine Learning",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "management",
+      "label": "Gestión",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "marketing",
+      "label": "Marketing",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "materials",
+      "label": "Materiales",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "media",
+      "label": "Medios",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "media law",
+      "label": "Derecho de Medios",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "media studies",
+      "label": "Estudios de Medios",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "medical research",
+      "label": "Investigación Médica",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "meditation",
+      "label": "Meditación",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "modeling",
+      "label": "Modelado",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "models",
+      "label": "Modelos",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "moot court",
+      "label": "Tribunal Simulado",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "multimedia",
+      "label": "Multimedia",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "music",
+      "label": "Música",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "negotiations",
+      "label": "Negociaciones",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "networking",
+      "label": "Redes",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "neurology",
+      "label": "Neurología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ngos",
+      "label": "ONGs",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "nlp",
+      "label": "PLN",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "nlp",
+      "label": "PLN",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "nutrition",
+      "label": "Nutrición",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "opera",
+      "label": "Ópera",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "operations",
+      "label": "Operaciones",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "optimization",
+      "label": "Optimización",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "parametric design",
+      "label": "Diseño Paramétrico",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "pediatrics",
+      "label": "Pediatría",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "performance metrics",
+      "label": "Métricas de Desempeño",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "pharmacology",
+      "label": "Farmacología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "philosophy",
+      "label": "Filosofía",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "photography",
+      "label": "Fotografía",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "physiology",
+      "label": "Fisiología",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "physiotherapy",
+      "label": "Fisioterapia",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "pilates",
+      "label": "Pilates",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "podcasting",
+      "label": "Podcasting",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "poetry",
+      "label": "Poesía",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "policy",
+      "label": "Política Pública",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "political economy",
+      "label": "Economía Política",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "political theory",
+      "label": "Teoría Política",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "politics",
+      "label": "Política",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "powerbuilding",
+      "label": "Powerbuilding",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "probability",
+      "label": "Probabilidad",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "product management",
+      "label": "Gestión de Producto",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "prototyping",
+      "label": "Prototipado",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "public affairs",
+      "label": "Asuntos Públicos",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "public finance",
+      "label": "Finanzas Públicas",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "public health",
+      "label": "Salud Pública",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "public relations",
+      "label": "Relaciones Públicas",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "public speaking",
+      "label": "Oratoria",
+      "sets": [
+        "social_sciences_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "public spending",
+      "label": "Gasto Público",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "quality management",
+      "label": "Gestión de Calidad",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "quantitative finance",
+      "label": "Finanzas Cuantitativas",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "reading",
+      "label": "Lectura",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "regulation",
+      "label": "Regulación",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "rehabilitation",
+      "label": "Rehabilitación",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "research",
+      "label": "Investigación",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "risk",
+      "label": "Riesgo",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "risk management",
+      "label": "Gestión de Riesgo",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "risk models",
+      "label": "Modelos de Riesgo",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "running",
+      "label": "Correr",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "saas",
+      "label": "SaaS",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sketching",
+      "label": "Bocetado",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "skincare",
+      "label": "Cuidado de la Piel",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "soccer",
+      "label": "Fútbol",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "social media",
+      "label": "Redes Sociales",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "social media ai",
+      "label": "IA en Redes Sociales",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "spatial design",
+      "label": "Diseño Espacial",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "special education",
+      "label": "Educación Especial",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sponsorship",
+      "label": "Patrocinio",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sports analytics",
+      "label": "Analítica Deportiva",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sports journalism",
+      "label": "Periodismo Deportivo",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sports marketing",
+      "label": "Marketing Deportivo",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sports medicine",
+      "label": "Medicina del Deporte",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sports nutrition",
+      "label": "Nutrición Deportiva",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "startups",
+      "label": "Startups",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "statistics",
+      "label": "Estadística",
+      "sets": [
+        "data_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "stocks",
+      "label": "Bolsa de Valores",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "strategy",
+      "label": "Estrategia",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "strength training",
+      "label": "Entrenamiento de Fuerza",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "structures",
+      "label": "Estructuras",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "supply chain",
+      "label": "Cadena de Suministro",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "surgery",
+      "label": "Cirugía",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sustainability",
+      "label": "Sustentabilidad",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sustainable urbanism",
+      "label": "Urbanismo Sustentable",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "systems",
+      "label": "Sistemas",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "systems architecture",
+      "label": "Arquitectura de Sistemas",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "teaching",
+      "label": "Docencia",
+      "sets": [
+        "educational_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "tech policy",
+      "label": "Política Tecnológica",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "therapy",
+      "label": "Terapia",
+      "sets": [
+        "biomedical_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "trade",
+      "label": "Comercio",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "trading",
+      "label": "Trading",
+      "sets": [
+        "business_and_economic_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "transport",
+      "label": "Transporte",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "travel",
+      "label": "Viajes",
+      "sets": [
+        "humanities_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "treaties",
+      "label": "Tratados",
+      "sets": [
+        "legal_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "trends",
+      "label": "Tendencias",
+      "sets": [
+        "design_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "ui/ux",
+      "label": "UI/UX",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "urbanization",
+      "label": "Urbanización",
+      "sets": [
+        "engineering_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "volleyball",
+      "label": "Voleibol",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "wellness",
+      "label": "Bienestar",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "wireframing",
+      "label": "Wireframing",
+      "sets": [
+        "computer_science_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "writing",
+      "label": "Escritura",
+      "sets": [
+        "communication_research"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "yoga",
+      "label": "Yoga",
+      "sets": [
+        "health_and_sports_research"
+      ],
+      "subsets": []
+    }
+  ]
+}

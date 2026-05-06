@@ -4,6 +4,9 @@ class Tables {
 
   static const String profilePhotos = 'profile_photos';
   static const String meta = 'meta';
+  static const String profile = 'profile';
+  static const String profileDraft = 'profile_draft';
+  static const String catalogCache = 'catalog_cache';
 }
 
 class ProfilePhotoColumns {
@@ -26,4 +29,30 @@ class MetaColumns {
 
   static const String key = 'key';
   static const String value = 'value';
+}
+
+class ProfileColumns {
+  ProfileColumns._();
+
+  static const String id = 'id';
+  static const String payload = 'payload';
+  static const String updatedAt = 'updated_at';
+}
+
+class ProfileDraftColumns {
+  ProfileDraftColumns._();
+
+  static const String id = 'id';
+  static const String step = 'step';
+  static const String payload = 'payload';
+  static const String updatedAt = 'updated_at';
+}
+
+class CatalogCacheColumns {
+  CatalogCacheColumns._();
+
+  static const String name = 'name';
+  static const String version = 'version';
+  static const String payload = 'payload';
+  static const String fetchedAt = 'fetched_at';
 }

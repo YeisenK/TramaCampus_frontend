@@ -1,0 +1,456 @@
+{
+  "catalog": "academic",
+  "_source": "matching_service/src/shared/catalogs/academic_catalog.json",
+  "version": "2026-05-04",
+  "areas": [
+    {
+      "id": "ARC",
+      "label": "Arquitectura"
+    },
+    {
+      "id": "BUS",
+      "label": "Negocios y Gestión"
+    },
+    {
+      "id": "COM",
+      "label": "Comunicación"
+    },
+    {
+      "id": "DSN",
+      "label": "Diseño"
+    },
+    {
+      "id": "EDU",
+      "label": "Educación"
+    },
+    {
+      "id": "ENG",
+      "label": "Ingeniería"
+    },
+    {
+      "id": "FIN",
+      "label": "Finanzas"
+    },
+    {
+      "id": "GLB",
+      "label": "Estudios Globales"
+    },
+    {
+      "id": "HLT",
+      "label": "Salud"
+    },
+    {
+      "id": "HUM",
+      "label": "Humanidades"
+    },
+    {
+      "id": "LAW",
+      "label": "Derecho"
+    },
+    {
+      "id": "SPT",
+      "label": "Deportes"
+    },
+    {
+      "id": "TEC",
+      "label": "Tecnología"
+    }
+  ],
+  "items": [
+    {
+      "id": "PARP",
+      "label": "Doctorado en Investigación Aplicada para Proyectos",
+      "area": "ARC"
+    },
+    {
+      "id": "MADF",
+      "label": "Maestría en Arquitectura y Fabricación Digital",
+      "area": "ARC"
+    },
+    {
+      "id": "MAID",
+      "label": "Maestría en Arquitectura y Diseño de Interiores",
+      "area": "ARC"
+    },
+    {
+      "id": "MSARC",
+      "label": "Maestría en Arquitectura Sustentable",
+      "area": "ARC"
+    },
+    {
+      "id": "BADM",
+      "label": "Licenciatura en Administración de Empresas",
+      "area": "BUS"
+    },
+    {
+      "id": "BIBS",
+      "label": "Licenciatura en Negocios Internacionales",
+      "area": "BUS"
+    },
+    {
+      "id": "BSMK",
+      "label": "Licenciatura en Marketing Estratégico",
+      "area": "BUS"
+    },
+    {
+      "id": "PIRSS",
+      "label": "Doctorado en Innovación en Responsabilidad Social y Sustentabilidad",
+      "area": "BUS"
+    },
+    {
+      "id": "PITOUR",
+      "label": "Doctorado Internacional en Turismo",
+      "area": "BUS"
+    },
+    {
+      "id": "MBA",
+      "label": "Maestría en Administración de Empresas (MBA)",
+      "area": "BUS"
+    },
+    {
+      "id": "MEBUS",
+      "label": "Maestría en Economía y Negocios",
+      "area": "BUS"
+    },
+    {
+      "id": "MGBM",
+      "label": "Maestría en Gestión de Negocios Gastronómicos",
+      "area": "BUS"
+    },
+    {
+      "id": "MHCD",
+      "label": "Maestría en Desarrollo de Capital Humano",
+      "area": "BUS"
+    },
+    {
+      "id": "MSR",
+      "label": "Maestría en Responsabilidad Social",
+      "area": "BUS"
+    },
+    {
+      "id": "MSHCM",
+      "label": "Maestría en Gestión Estratégica de Capital Humano",
+      "area": "BUS"
+    },
+    {
+      "id": "MTDM",
+      "label": "Maestría en Gestión de Destinos Turísticos",
+      "area": "BUS"
+    },
+    {
+      "id": "BCOM",
+      "label": "Licenciatura en Comunicación",
+      "area": "COM"
+    },
+    {
+      "id": "PCOMR",
+      "label": "Doctorado en Investigación en Comunicación",
+      "area": "COM"
+    },
+    {
+      "id": "PSCM",
+      "label": "Doctorado en Comunicación Estratégica y Marketing",
+      "area": "COM"
+    },
+    {
+      "id": "MCOMK",
+      "label": "Maestría en Comunicación y Marketing",
+      "area": "COM"
+    },
+    {
+      "id": "MEIM",
+      "label": "Maestría en Gestión de la Industria del Entretenimiento",
+      "area": "COM"
+    },
+    {
+      "id": "MICST",
+      "label": "Maestría en Comunicación Integral y Transformación Social",
+      "area": "COM"
+    },
+    {
+      "id": "MSJNM",
+      "label": "Maestría en Periodismo Estratégico y Nuevos Medios",
+      "area": "COM"
+    },
+    {
+      "id": "MSMM",
+      "label": "Maestría en Gestión Estratégica de Medios",
+      "area": "COM"
+    },
+    {
+      "id": "BFDI",
+      "label": "Licenciatura en Diseño de Moda e Innovación",
+      "area": "DSN"
+    },
+    {
+      "id": "BGD",
+      "label": "Licenciatura en Diseño Gráfico",
+      "area": "DSN"
+    },
+    {
+      "id": "BID",
+      "label": "Licenciatura en Diseño Industrial",
+      "area": "DSN"
+    },
+    {
+      "id": "BMMD",
+      "label": "Licenciatura en Diseño Multimedia",
+      "area": "DSN"
+    },
+    {
+      "id": "MAPD",
+      "label": "Maestría en Diseño Avanzado de Producto",
+      "area": "DSN"
+    },
+    {
+      "id": "MFMK",
+      "label": "Maestría en Moda y Marketing",
+      "area": "DSN"
+    },
+    {
+      "id": "PEE",
+      "label": "Doctorado en Evaluación Educativa",
+      "area": "EDU"
+    },
+    {
+      "id": "PELIM",
+      "label": "Doctorado en Liderazgo Educativo y Gestión Institucional",
+      "area": "EDU"
+    },
+    {
+      "id": "PIDS",
+      "label": "Doctorado en Estudios Interdisciplinarios",
+      "area": "EDU"
+    },
+    {
+      "id": "MEDU",
+      "label": "Maestría en Educación",
+      "area": "EDU"
+    },
+    {
+      "id": "MPPED",
+      "label": "Maestría en Psicopedagogía",
+      "area": "EDU"
+    },
+    {
+      "id": "BCE",
+      "label": "Licenciatura en Ingeniería Civil",
+      "area": "ENG"
+    },
+    {
+      "id": "BIEM",
+      "label": "Licenciatura en Ingeniería Industrial para la Gestión",
+      "area": "ENG"
+    },
+    {
+      "id": "BMEC",
+      "label": "Licenciatura en Ingeniería Mecatrónica",
+      "area": "ENG"
+    },
+    {
+      "id": "PIE",
+      "label": "Doctorado en Ingeniería Industrial",
+      "area": "ENG"
+    },
+    {
+      "id": "MENGM",
+      "label": "Maestría en Gestión de Ingeniería",
+      "area": "ENG"
+    },
+    {
+      "id": "MLOG",
+      "label": "Maestría en Logística",
+      "area": "ENG"
+    },
+    {
+      "id": "MTSD",
+      "label": "Maestría en Tecnologías para el Desarrollo Sustentable",
+      "area": "ENG"
+    },
+    {
+      "id": "BFPA",
+      "label": "Licenciatura en Finanzas y Contaduría Pública",
+      "area": "FIN"
+    },
+    {
+      "id": "PACT",
+      "label": "Doctorado en Ciencias Actuariales",
+      "area": "FIN"
+    },
+    {
+      "id": "MBFM",
+      "label": "Maestría en Banca y Mercados Financieros",
+      "area": "FIN"
+    },
+    {
+      "id": "MFIN",
+      "label": "Maestría en Finanzas",
+      "area": "FIN"
+    },
+    {
+      "id": "MRISK",
+      "label": "Maestría en Gestión de Riesgos",
+      "area": "FIN"
+    },
+    {
+      "id": "PISEC",
+      "label": "Doctorado en Seguridad Internacional",
+      "area": "GLB"
+    },
+    {
+      "id": "MIA",
+      "label": "Maestría en Asuntos Internacionales",
+      "area": "GLB"
+    },
+    {
+      "id": "BMED",
+      "label": "Licenciatura en Medicina",
+      "area": "HLT"
+    },
+    {
+      "id": "BPSY",
+      "label": "Licenciatura en Psicología",
+      "area": "HLT"
+    },
+    {
+      "id": "PABIO",
+      "label": "Doctorado en Bioética Aplicada",
+      "area": "HLT"
+    },
+    {
+      "id": "PHSC",
+      "label": "Doctorado en Ciencias de la Salud",
+      "area": "HLT"
+    },
+    {
+      "id": "PNSC",
+      "label": "Doctorado en Ciencias de la Nutrición",
+      "area": "HLT"
+    },
+    {
+      "id": "MBIO",
+      "label": "Maestría en Bioética",
+      "area": "HLT"
+    },
+    {
+      "id": "MCN",
+      "label": "Maestría en Nutrición Clínica",
+      "area": "HLT"
+    },
+    {
+      "id": "MCPSY",
+      "label": "Maestría en Psicología Clínica",
+      "area": "HLT"
+    },
+    {
+      "id": "MGBIO",
+      "label": "Maestría en Bioética Global",
+      "area": "HLT"
+    },
+    {
+      "id": "MHIM",
+      "label": "Maestría en Gestión de Instituciones de Salud",
+      "area": "HLT"
+    },
+    {
+      "id": "MMED",
+      "label": "Maestría en Ciencias Médicas",
+      "area": "HLT"
+    },
+    {
+      "id": "PHUM",
+      "label": "Doctorado en Humanidades",
+      "area": "HUM"
+    },
+    {
+      "id": "PPHIL",
+      "label": "Doctorado en Filosofía",
+      "area": "HUM"
+    },
+    {
+      "id": "MACUL",
+      "label": "Maestría en Culturas Antiguas",
+      "area": "HUM"
+    },
+    {
+      "id": "MEQD",
+      "label": "Maestría en Equidad y Desarrollo",
+      "area": "HUM"
+    },
+    {
+      "id": "MHUM",
+      "label": "Maestría en Humanidades",
+      "area": "HUM"
+    },
+    {
+      "id": "MPPHI",
+      "label": "Maestría en Filosofía Personalista",
+      "area": "HUM"
+    },
+    {
+      "id": "MPHIL",
+      "label": "Maestría en Filosofía",
+      "area": "HUM"
+    },
+    {
+      "id": "MTPA",
+      "label": "Maestría en Teología y Acción Pastoral",
+      "area": "HUM"
+    },
+    {
+      "id": "BLAW",
+      "label": "Licenciatura en Derecho",
+      "area": "LAW"
+    },
+    {
+      "id": "PLAW",
+      "label": "Doctorado en Derecho",
+      "area": "LAW"
+    },
+    {
+      "id": "PPA",
+      "label": "Doctorado en Administración Pública",
+      "area": "LAW"
+    },
+    {
+      "id": "MCORLA",
+      "label": "Maestría en Derecho Corporativo",
+      "area": "LAW"
+    },
+    {
+      "id": "MCRIM",
+      "label": "Maestría en Ciencias Penales",
+      "area": "LAW"
+    },
+    {
+      "id": "MPA",
+      "label": "Maestría en Administración Pública",
+      "area": "LAW"
+    },
+    {
+      "id": "MTAX",
+      "label": "Maestría en Derecho Fiscal y Administración Tributaria",
+      "area": "LAW"
+    },
+    {
+      "id": "MSAS",
+      "label": "Maestría en Administración del Deporte y Ciencias Aplicadas",
+      "area": "SPT"
+    },
+    {
+      "id": "BITDB",
+      "label": "Ingeniería en Tecnologías de la Información y Negocios Digitales",
+      "area": "TEC"
+    },
+    {
+      "id": "MITAI",
+      "label": "Maestría en Tecnologías de la Información e Inteligencia Analítica",
+      "area": "TEC"
+    },
+    {
+      "id": "MSTAT",
+      "label": "Maestría en Estadística",
+      "area": "TEC"
+    }
+  ]
+}

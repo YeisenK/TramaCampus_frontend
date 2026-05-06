@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_colors.dart';
@@ -50,13 +51,12 @@ class _ConversationScreenState extends State<ConversationScreen> {
     });
     _controller.clear();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      }
+      if (!mounted || !_scrollController.hasClients) return;
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
     });
   }
 
@@ -210,61 +210,74 @@ class _InputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    return SafeArea(
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.space4,
-          vertical: AppSpacing.space3,
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    final ghostBorder =
+        isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
+
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: AppColors.glassBlurSigma,
+          sigmaY: AppColors.glassBlurSigma,
         ),
-        decoration: BoxDecoration(
-          color: cs.surface,
-          border: Border(
-            top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5)),
+        child: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.space4,
+              vertical: AppSpacing.space3,
+            ),
+            decoration: BoxDecoration(
+              color: glassBg,
+              border: Border(
+                top: BorderSide(color: ghostBorder, width: 1),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: controller,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe un mensaje...',
+                      hintStyle: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.pill),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: cs.surfaceContainerLowest,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.space4,
+                        vertical: AppSpacing.space3,
+                      ),
+                    ),
+                    minLines: 1,
+                    maxLines: 4,
+                    onSubmitted: (_) => onSend(),
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.space3),
+                GestureDetector(
+                  onTap: onSend,
+                  child: Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      gradient: AppColors.ctaGradient(),
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
+                    child: const Icon(
+                      Icons.arrow_upward,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: controller,
-                decoration: InputDecoration(
-                  hintText: 'Escribe un mensaje...',
-                  hintStyle: AppTextStyles.bodyMd(cs.onSurfaceVariant),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.xl),
-                    borderSide: BorderSide.none,
-                  ),
-                  filled: true,
-                  fillColor: cs.surfaceContainerHigh,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.space4,
-                    vertical: AppSpacing.space3,
-                  ),
-                ),
-                minLines: 1,
-                maxLines: 4,
-                onSubmitted: (_) => onSend(),
-              ),
-            ),
-            const SizedBox(width: AppSpacing.space3),
-            GestureDetector(
-              onTap: onSend,
-              child: Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  gradient: AppColors.ctaGradient(),
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.arrow_upward,
-                  color: Colors.white,
-                  size: 22,
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );

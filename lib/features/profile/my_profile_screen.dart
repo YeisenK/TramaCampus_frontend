@@ -1,9 +1,11 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/t_chip.dart';
+import '../../core/widgets/t_schedule_grid.dart';
 import '../../data/mock/mock_data.dart';
 
 class MyProfileScreen extends StatelessWidget {
@@ -19,7 +21,7 @@ class MyProfileScreen extends StatelessWidget {
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: !embedded,
-            expandedHeight: 280,
+            expandedHeight: 320,
             pinned: true,
             title: Text(
               'Mi perfil',
@@ -33,63 +35,7 @@ class MyProfileScreen extends StatelessWidget {
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                children: [
-                  Positioned.fill(
-                    child: user.photoUrl != null
-                        ? Image(
-                            image: user.photoUrl!.startsWith('assets/')
-                                ? AssetImage(user.photoUrl!) as ImageProvider
-                                : NetworkImage(user.photoUrl!),
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, _) => Container(
-                              decoration: BoxDecoration(
-                                gradient: AppColors.avatarGradient(user.hue),
-                              ),
-                            ),
-                          )
-                        : Container(
-                            decoration: BoxDecoration(
-                              gradient: AppColors.avatarGradient(user.hue),
-                            ),
-                          ),
-                  ),
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, cs.surface],
-                          stops: const [0.55, 1.0],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: AppSpacing.space5,
-                    left: AppSpacing.space5,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          user.name,
-                          style: AppTextStyles.headlineSm(cs.onSurface),
-                        ),
-                        Text(
-                          '${user.program} · Sem. ${user.semester}',
-                          style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    bottom: AppSpacing.space4,
-                    right: AppSpacing.space5,
-                    child: _EditButton(),
-                  ),
-                ],
-              ),
+              background: _HeroPhoto(user: user),
             ),
           ),
           SliverPadding(
@@ -101,7 +47,7 @@ class MyProfileScreen extends StatelessWidget {
             ),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                _StatRow(user: user),
+                _StatsRow(),
                 const SizedBox(height: AppSpacing.space5),
                 Text('Bio', style: AppTextStyles.titleMd(cs.onSurface)),
                 const SizedBox(height: AppSpacing.space3),
@@ -119,6 +65,13 @@ class MyProfileScreen extends StatelessWidget {
                       .map((i) => TChip(label: i, selected: true))
                       .toList(),
                 ),
+                const SizedBox(height: AppSpacing.space5),
+                Text(
+                  'Disponibilidad semanal',
+                  style: AppTextStyles.titleMd(cs.onSurface),
+                ),
+                const SizedBox(height: AppSpacing.space3),
+                TScheduleGrid(schedule: _demoSchedule()),
                 const SizedBox(height: AppSpacing.space5),
                 _InfoRow(
                   icon: Icons.school_outlined,
@@ -144,6 +97,87 @@ class MyProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+  List<List<ScheduleState>> _demoSchedule() {
+    return List.generate(7, (day) {
+      return List.generate(8, (hour) {
+        if (day < 5 && hour >= 2 && hour <= 5) return ScheduleState.busy;
+        if (day < 5 && (hour == 1 || hour == 6)) return ScheduleState.maybe;
+        return ScheduleState.free;
+      });
+    });
+  }
+}
+
+class _HeroPhoto extends StatelessWidget {
+  const _HeroPhoto({required this.user});
+  final dynamic user;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: user.photoUrl != null
+              ? Image(
+                  image: user.photoUrl!.startsWith('assets/')
+                      ? AssetImage(user.photoUrl!) as ImageProvider
+                      : NetworkImage(user.photoUrl!),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, _) => Container(
+                    decoration: BoxDecoration(
+                      gradient: AppColors.avatarGradient(user.hue as double),
+                    ),
+                  ),
+                )
+              : Container(
+                  decoration: BoxDecoration(
+                    gradient: AppColors.avatarGradient(user.hue as double),
+                  ),
+                ),
+        ),
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  cs.surface.withValues(alpha: 0.55),
+                  cs.surface,
+                ],
+                stops: const [0.4, 0.7, 1.0],
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: AppSpacing.space5,
+          left: AppSpacing.space5,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                user.name as String,
+                style: AppTextStyles.headlineSm(cs.onSurface),
+              ),
+              Text(
+                '${user.program} · Sem. ${user.semester}',
+                style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          bottom: AppSpacing.space4,
+          right: AppSpacing.space5,
+          child: _EditButton(),
+        ),
+      ],
+    );
+  }
 }
 
 class _EditButton extends StatelessWidget {
@@ -152,58 +186,83 @@ class _EditButton extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: () => Navigator.of(context).pushNamed(AppRouter.editProfile),
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.space3,
-          vertical: AppSpacing.space2,
-        ),
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerLowest,
-          borderRadius: BorderRadius.circular(AppRadius.pill),
-          border: Border.all(color: cs.outlineVariant),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.edit_outlined, size: 16, color: cs.onSurface),
-            const SizedBox(width: AppSpacing.space1),
-            Text('Editar', style: AppTextStyles.labelSm(cs.onSurface)),
-          ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: AppColors.glassBlurSigma / 2,
+            sigmaY: AppColors.glassBlurSigma / 2,
+          ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.space3,
+              vertical: AppSpacing.space2,
+            ),
+            decoration: BoxDecoration(
+              color: cs.surfaceContainerLowest.withValues(alpha: 0.82),
+              borderRadius: BorderRadius.circular(AppRadius.pill),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.edit_outlined, size: 16, color: cs.onSurface),
+                const SizedBox(width: AppSpacing.space1),
+                Text('Editar', style: AppTextStyles.labelSm(cs.onSurface)),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
-class _StatRow extends StatelessWidget {
-  const _StatRow({required this.user});
-  final dynamic user;
-
+class _StatsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final ghostDivider = isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
     final stats = [
       ('Matches', '8'),
       ('Conexiones', '14'),
-      ('Chats activos', '5'),
+      ('Chats', '5'),
     ];
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.space4),
       decoration: BoxDecoration(
         color: cs.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
-      child: Row(
-        children: stats.map((s) {
-          return Expanded(
-            child: Column(
-              children: [
-                Text(s.$2, style: AppTextStyles.headlineSm(cs.primary)),
-                Text(s.$1, style: AppTextStyles.labelSm(cs.onSurfaceVariant)),
-              ],
-            ),
-          );
-        }).toList(),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            for (int i = 0; i < stats.length; i++) ...[
+              if (i > 0)
+                VerticalDivider(
+                  width: 1,
+                  thickness: 1,
+                  color: ghostDivider,
+                ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.space4),
+                  child: Column(
+                    children: [
+                      Text(
+                        stats[i].$2,
+                        style: AppTextStyles.headlineSm(cs.primary),
+                      ),
+                      Text(
+                        stats[i].$1,
+                        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }

@@ -1,40 +1,12 @@
-import 'package:flutter/material.dart';
+import 'modality_bucket.dart';
+export 'modality_bucket.dart' show ModalityType, ModalityBucket;
 
-enum ModalityType { estudio, amistad, personal }
-
+// Back-compat shim: old code uses Modality.all / Modality.estudio etc.
+// ModalityBucket is the authoritative class; this just re-exposes statics.
 class Modality {
-  const Modality({
-    required this.type,
-    required this.label,
-    required this.verb,
-    required this.icon,
-  });
-
-  final ModalityType type;
-  final String label;
-  final String verb;
-  final IconData icon;
-
-  static const estudio = Modality(
-    type: ModalityType.estudio,
-    label: 'Estudio',
-    verb: 'Estudiar juntos',
-    icon: Icons.menu_book_outlined,
-  );
-
-  static const amistad = Modality(
-    type: ModalityType.amistad,
-    label: 'Amistad',
-    verb: 'Conectar',
-    icon: Icons.group_outlined,
-  );
-
-  static const personal = Modality(
-    type: ModalityType.personal,
-    label: 'Conexión personal',
-    verb: 'Conocer',
-    icon: Icons.explore_outlined,
-  );
-
-  static const all = [estudio, amistad, personal];
+  Modality._();
+  static const all = ModalityBucket.all;
+  static const estudio = ModalityBucket.estudio;
+  static const amistad = ModalityBucket.amistad;
+  static const personal = ModalityBucket.personal;
 }

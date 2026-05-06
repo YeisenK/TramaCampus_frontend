@@ -1,0 +1,42 @@
+{
+  "catalog": "available_days",
+  "_note": "Frontend-authored. 21 day+shift combos per json-integration.md. Only relevant when study ∈ modes.",
+  "version": "2026-05-04",
+  "days": [
+    { "id": "mon", "label": "Lunes" },
+    { "id": "tue", "label": "Martes" },
+    { "id": "wed", "label": "Miércoles" },
+    { "id": "thu", "label": "Jueves" },
+    { "id": "fri", "label": "Viernes" },
+    { "id": "sat", "label": "Sábado" },
+    { "id": "sun", "label": "Domingo" }
+  ],
+  "shifts": [
+    { "id": "am",  "label": "Mañana (8–12 h)" },
+    { "id": "pm",  "label": "Tarde (13–17 h)" },
+    { "id": "eve", "label": "Noche (18–22 h)" }
+  ],
+  "items": [
+    { "id": "mon_am",  "day": "mon", "shift": "am"  },
+    { "id": "mon_pm",  "day": "mon", "shift": "pm"  },
+    { "id": "mon_eve", "day": "mon", "shift": "eve" },
+    { "id": "tue_am",  "day": "tue", "shift": "am"  },
+    { "id": "tue_pm",  "day": "tue", "shift": "pm"  },
+    { "id": "tue_eve", "day": "tue", "shift": "eve" },
+    { "id": "wed_am",  "day": "wed", "shift": "am"  },
+    { "id": "wed_pm",  "day": "wed", "shift": "pm"  },
+    { "id": "wed_eve", "day": "wed", "shift": "eve" },
+    { "id": "thu_am",  "day": "thu", "shift": "am"  },
+    { "id": "thu_pm",  "day": "thu", "shift": "pm"  },
+    { "id": "thu_eve", "day": "thu", "shift": "eve" },
+    { "id": "fri_am",  "day": "fri", "shift": "am"  },
+    { "id": "fri_pm",  "day": "fri", "shift": "pm"  },
+    { "id": "fri_eve", "day": "fri", "shift": "eve" },
+    { "id": "sat_am",  "day": "sat", "shift": "am"  },
+    { "id": "sat_pm",  "day": "sat", "shift": "pm"  },
+    { "id": "sat_eve", "day": "sat", "shift": "eve" },
+    { "id": "sun_am",  "day": "sun", "shift": "am"  },
+    { "id": "sun_pm",  "day": "sun", "shift": "pm"  },
+    { "id": "sun_eve", "day": "sun", "shift": "eve" }
+  ]
+}

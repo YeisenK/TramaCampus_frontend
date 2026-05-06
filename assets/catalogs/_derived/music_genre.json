@@ -1,0 +1,463 @@
+{
+  "catalog": "music_genre",
+  "_source": "matching_service/src/shared/catalogs/music_genre_catalog.json",
+  "version": "2026-05-04",
+  "sets": [
+    {
+      "id": "urban",
+      "label": "Urbana",
+      "subsets": [
+        {
+          "id": "reggaeton",
+          "label": "Reggaeton"
+        },
+        {
+          "id": "hip_hop",
+          "label": "Hip-Hop"
+        },
+        {
+          "id": "randb",
+          "label": "R&B"
+        },
+        {
+          "id": "trap",
+          "label": "Trap"
+        }
+      ]
+    },
+    {
+      "id": "electronic",
+      "label": "Electrónica",
+      "subsets": [
+        {
+          "id": "house",
+          "label": "House"
+        },
+        {
+          "id": "techno",
+          "label": "Techno"
+        },
+        {
+          "id": "edm",
+          "label": "EDM"
+        },
+        {
+          "id": "ambient",
+          "label": "Ambient"
+        }
+      ]
+    },
+    {
+      "id": "pop",
+      "label": "Pop",
+      "subsets": [
+        {
+          "id": "pop_latino",
+          "label": "Pop Latino"
+        },
+        {
+          "id": "k_pop",
+          "label": "K-Pop"
+        },
+        {
+          "id": "indie_pop",
+          "label": "Indie Pop"
+        },
+        {
+          "id": "synth_pop",
+          "label": "Synth-Pop"
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "label": "Rock",
+      "subsets": [
+        {
+          "id": "classic_rock",
+          "label": "Classic Rock"
+        },
+        {
+          "id": "alternative",
+          "label": "Alternative"
+        },
+        {
+          "id": "metal",
+          "label": "Metal"
+        },
+        {
+          "id": "punk",
+          "label": "Punk"
+        }
+      ]
+    },
+    {
+      "id": "acoustic",
+      "label": "Acústica",
+      "subsets": [
+        {
+          "id": "folk",
+          "label": "Folk"
+        },
+        {
+          "id": "indie_folk",
+          "label": "Indie Folk"
+        },
+        {
+          "id": "singer_songwriter",
+          "label": "Singer-Songwriter"
+        }
+      ]
+    },
+    {
+      "id": "latin",
+      "label": "Latina",
+      "subsets": [
+        {
+          "id": "salsa",
+          "label": "Salsa"
+        },
+        {
+          "id": "cumbia",
+          "label": "Cumbia"
+        },
+        {
+          "id": "vallenato",
+          "label": "Vallenato"
+        },
+        {
+          "id": "merengue",
+          "label": "Merengue"
+        },
+        {
+          "id": "bossa_nova",
+          "label": "Bossa Nova"
+        }
+      ]
+    },
+    {
+      "id": "classical",
+      "label": "Clásica",
+      "subsets": [
+        {
+          "id": "orchestral",
+          "label": "Orchestral"
+        },
+        {
+          "id": "opera",
+          "label": "Opera"
+        },
+        {
+          "id": "chamber",
+          "label": "Chamber"
+        },
+        {
+          "id": "contemporary_classical",
+          "label": "Contemporary Classical"
+        }
+      ]
+    },
+    {
+      "id": "jazz",
+      "label": "Jazz",
+      "subsets": [
+        {
+          "id": "jazz",
+          "label": "Jazz"
+        },
+        {
+          "id": "blues",
+          "label": "Blues"
+        },
+        {
+          "id": "soul",
+          "label": "Soul"
+        },
+        {
+          "id": "fusion",
+          "label": "Fusion"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "pop",
+      "label": "Pop",
+      "sets": [
+        "pop"
+      ],
+      "subsets": [
+        "pop_latino",
+        "indie_pop",
+        "k_pop",
+        "synth_pop"
+      ]
+    },
+    {
+      "id": "rock",
+      "label": "Rock",
+      "sets": [
+        "rock"
+      ],
+      "subsets": [
+        "classic_rock",
+        "alternative",
+        "metal",
+        "punk"
+      ]
+    },
+    {
+      "id": "reggaeton",
+      "label": "Reggaetón",
+      "sets": [
+        "urban"
+      ],
+      "subsets": [
+        "reggaeton"
+      ]
+    },
+    {
+      "id": "jazz",
+      "label": "Jazz",
+      "sets": [
+        "jazz"
+      ],
+      "subsets": [
+        "jazz",
+        "blues",
+        "soul",
+        "fusion"
+      ]
+    },
+    {
+      "id": "clásica",
+      "label": "Clásica",
+      "sets": [
+        "classical"
+      ],
+      "subsets": [
+        "orchestral",
+        "opera",
+        "chamber",
+        "contemporary_classical"
+      ]
+    },
+    {
+      "id": "indie",
+      "label": "Indie",
+      "sets": [
+        "pop"
+      ],
+      "subsets": [
+        "indie_pop"
+      ]
+    },
+    {
+      "id": "hip-hop",
+      "label": "Hip-Hop",
+      "sets": [
+        "urban"
+      ],
+      "subsets": [
+        "hip_hop"
+      ]
+    },
+    {
+      "id": "salsa",
+      "label": "Salsa",
+      "sets": [
+        "latin"
+      ],
+      "subsets": [
+        "salsa"
+      ]
+    },
+    {
+      "id": "electrónica",
+      "label": "Electrónica",
+      "sets": [
+        "electronic"
+      ],
+      "subsets": [
+        "house",
+        "techno",
+        "edm",
+        "ambient"
+      ]
+    },
+    {
+      "id": "latin",
+      "label": "Latina",
+      "sets": [
+        "latin"
+      ],
+      "subsets": [
+        "salsa",
+        "cumbia",
+        "vallenato",
+        "bossa_nova"
+      ]
+    },
+    {
+      "id": "folk",
+      "label": "Folk",
+      "sets": [
+        "acoustic"
+      ],
+      "subsets": [
+        "folk"
+      ]
+    },
+    {
+      "id": "r&b",
+      "label": "R&B",
+      "sets": [
+        "urban"
+      ],
+      "subsets": [
+        "randb"
+      ]
+    },
+    {
+      "id": "cumbia",
+      "label": "Cumbia",
+      "sets": [
+        "latin"
+      ],
+      "subsets": [
+        "cumbia"
+      ]
+    },
+    {
+      "id": "metal",
+      "label": "Metal",
+      "sets": [
+        "rock"
+      ],
+      "subsets": [
+        "metal"
+      ]
+    },
+    {
+      "id": "alternativa",
+      "label": "Alternativa",
+      "sets": [
+        "rock"
+      ],
+      "subsets": [
+        "alternative"
+      ]
+    },
+    {
+      "id": "k-pop",
+      "label": "K-Pop",
+      "sets": [
+        "pop"
+      ],
+      "subsets": [
+        "k_pop"
+      ]
+    },
+    {
+      "id": "vallenato",
+      "label": "Vallenato",
+      "sets": [
+        "latin"
+      ],
+      "subsets": [
+        "vallenato"
+      ]
+    },
+    {
+      "id": "bossa nova",
+      "label": "Bossa Nova",
+      "sets": [
+        "latin"
+      ],
+      "subsets": [
+        "bossa_nova"
+      ]
+    },
+    {
+      "id": "soul",
+      "label": "Soul",
+      "sets": [
+        "jazz"
+      ],
+      "subsets": [
+        "soul"
+      ]
+    },
+    {
+      "id": "blues",
+      "label": "Blues",
+      "sets": [
+        "jazz"
+      ],
+      "subsets": [
+        "blues"
+      ]
+    },
+    {
+      "id": "trap",
+      "label": "Trap",
+      "sets": [
+        "urban"
+      ],
+      "subsets": [
+        "trap"
+      ]
+    },
+    {
+      "id": "ambient",
+      "label": "Ambient",
+      "sets": [
+        "electronic"
+      ],
+      "subsets": [
+        "ambient"
+      ]
+    },
+    {
+      "id": "house",
+      "label": "House",
+      "sets": [
+        "electronic"
+      ],
+      "subsets": [
+        "house"
+      ]
+    },
+    {
+      "id": "techno",
+      "label": "Techno",
+      "sets": [
+        "electronic"
+      ],
+      "subsets": [
+        "techno"
+      ]
+    },
+    {
+      "id": "opera",
+      "label": "Ópera",
+      "sets": [
+        "classical"
+      ],
+      "subsets": [
+        "opera"
+      ]
+    },
+    {
+      "id": "edm",
+      "label": "EDM",
+      "sets": [
+        "electronic"
+      ],
+      "subsets": [
+        "edm"
+      ]
+    }
+  ]
+}

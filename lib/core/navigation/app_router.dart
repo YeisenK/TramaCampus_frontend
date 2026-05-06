@@ -14,6 +14,7 @@ import '../../features/onboarding/verify_email_screen.dart';
 import '../../features/onboarding/modality_select_screen.dart';
 import '../../features/onboarding/academic_profile_screen.dart';
 import '../../features/onboarding/personal_goals_screen.dart';
+import '../../features/onboarding/skills_select_screen.dart';
 import '../../features/onboarding/profile_complete_screen.dart';
 import '../../features/discover/discover_screen.dart';
 import '../../features/profile/profile_detail_screen.dart';
@@ -31,6 +32,9 @@ import '../../features/settings/notification_preferences_screen.dart';
 import '../../features/settings/security_settings_screen.dart';
 import '../../features/settings/blocked_users_screen.dart';
 import '../../features/settings/delete_account_screen.dart';
+import '../../data/models/group.dart';
+import '../../features/groups/group_detail_screen.dart';
+import '../../features/groups/groups_discover_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
 import '../../features/help/help_center_screen.dart';
 import '../../features/help/faq_screen.dart';
@@ -53,6 +57,7 @@ class AppRouter {
   static const String verifyEmail = '/onboarding/verify-email';
   static const String modalitySelect = '/onboarding/modality';
   static const String academicProfile = '/onboarding/academic';
+  static const String skillsSelect = '/onboarding/skills';
   static const String personalGoals = '/onboarding/goals';
   static const String profileComplete = '/onboarding/complete';
 
@@ -84,6 +89,10 @@ class AppRouter {
   static const String blockedUsers = '/settings/blocked';
   static const String deleteAccount = '/settings/delete-account';
 
+  // Groups
+  static const String groupsDiscover = '/groups';
+  static const String groupDetail = '/groups/detail';
+
   // Help
   static const String helpCenter = '/help';
   static const String faq = '/help/faq';
@@ -100,108 +109,118 @@ class AppRouter {
     switch (settings.name) {
       // Onboarding
       case splash:
-        return _slide(const SplashScreen());
+        return _slide(const SplashScreen(), settings);
       case welcome:
-        return _slide(const WelcomeScreen());
+        return _slide(const WelcomeScreen(), settings);
       case login:
-        return _slide(const LoginScreen());
+        return _slide(const LoginScreen(), settings);
       case selectUni:
-        return _slide(const SelectUniScreen());
+        return _slide(const SelectUniScreen(), settings);
       case verifyEmail:
-        return _slide(const VerifyEmailScreen());
+        return _slide(const VerifyEmailScreen(), settings);
       case modalitySelect:
-        return _slide(const ModalitySelectScreen());
+        return _slide(const ModalitySelectScreen(), settings);
       case academicProfile:
-        return _slide(const AcademicProfileScreen());
+        return _slide(const AcademicProfileScreen(), settings);
+      case skillsSelect:
+        return _slide(const SkillsSelectScreen(), settings);
       case personalGoals:
-        return _slide(const PersonalGoalsScreen());
+        return _slide(const PersonalGoalsScreen(), settings);
       case profileComplete:
-        return _slide(const ProfileCompleteScreen());
+        return _slide(const ProfileCompleteScreen(), settings);
 
       // Marketplace
       case marketplace:
-        return _slide(const MarketplaceScreen());
+        return _slide(const MarketplaceScreen(), settings);
       case listingDetail:
         final listing = settings.arguments as MarketplaceListing;
-        return _slide(ListingDetailScreen(listing: listing));
+        return _slide(ListingDetailScreen(listing: listing), settings);
       case affiliateDetail:
         final business = settings.arguments as AffiliateBusiness;
-        return _slide(AffiliateDetailScreen(business: business));
+        return _slide(AffiliateDetailScreen(business: business), settings);
       case createListing:
-        return _slide(const CreateListingScreen());
+        return _slide(const CreateListingScreen(), settings);
       case reservation:
         final business = settings.arguments as AffiliateBusiness;
-        return _slide(ReservationScreen(business: business));
+        return _slide(ReservationScreen(business: business), settings);
 
       // Core app
       case discover:
-        return _slide(const DiscoverScreen());
+        return _slide(const DiscoverScreen(), settings);
       case profileDetail:
         final student = settings.arguments as Student;
-        return _slide(ProfileDetailScreen(student: student));
+        return _slide(ProfileDetailScreen(student: student), settings);
       case myProfile:
-        return _slide(const MyProfileScreen());
+        return _slide(const MyProfileScreen(), settings);
       case editProfile:
-        return _slide(const EditProfileScreen());
+        return _slide(const EditProfileScreen(), settings);
       case connections:
-        return _slide(const ConnectionsScreen());
+        return _slide(const ConnectionsScreen(), settings);
       case matchSuccess:
         final student = settings.arguments as Student;
-        return _fade(MatchSuccessScreen(student: student));
+        return _fade(MatchSuccessScreen(student: student), settings);
       case chatList:
-        return _slide(const ChatListScreen());
+        return _slide(const ChatListScreen(), settings);
       case conversation:
         final student = settings.arguments as Student;
-        return _slide(ConversationScreen(student: student));
+        return _slide(ConversationScreen(student: student), settings);
       case notifications:
-        return _slide(const NotificationsScreen());
+        return _slide(const NotificationsScreen(), settings);
+
+      // Groups
+      case groupsDiscover:
+        return _slide(const GroupsDiscoverScreen(), settings);
+      case groupDetail:
+        final group = settings.arguments as Group;
+        return _slide(GroupDetailScreen(group: group), settings);
 
       // Settings
       case settingsMain:
-        return _slide(const SettingsMainScreen());
+        return _slide(const SettingsMainScreen(), settings);
       case settingsTheme:
-        return _slide(const SettingsThemeScreen());
+        return _slide(const SettingsThemeScreen(), settings);
       case accountSettings:
-        return _slide(const AccountSettingsScreen());
+        return _slide(const AccountSettingsScreen(), settings);
       case privacySettings:
-        return _slide(const PrivacySettingsScreen());
+        return _slide(const PrivacySettingsScreen(), settings);
       case notificationPreferences:
-        return _slide(const NotificationPreferencesScreen());
+        return _slide(const NotificationPreferencesScreen(), settings);
       case securitySettings:
-        return _slide(const SecuritySettingsScreen());
+        return _slide(const SecuritySettingsScreen(), settings);
       case blockedUsers:
-        return _slide(const BlockedUsersScreen());
+        return _slide(const BlockedUsersScreen(), settings);
       case deleteAccount:
-        return _slide(const DeleteAccountScreen());
+        return _slide(const DeleteAccountScreen(), settings);
 
       // Help
       case helpCenter:
-        return _slide(const HelpCenterScreen());
+        return _slide(const HelpCenterScreen(), settings);
       case faq:
-        return _slide(const FaqScreen());
+        return _slide(const FaqScreen(), settings);
       case contactSupport:
-        return _slide(const ContactSupportScreen());
+        return _slide(const ContactSupportScreen(), settings);
       case reportProblem:
         final student = settings.arguments as Student?;
-        return _slide(ReportProblemScreen(reportedStudent: student));
+        return _slide(ReportProblemScreen(reportedStudent: student), settings);
 
       // Legal
       case termsConditions:
-        return _slide(const TermsConditionsScreen());
+        return _slide(const TermsConditionsScreen(), settings);
       case privacyPolicy:
-        return _slide(const PrivacyPolicyScreen());
+        return _slide(const PrivacyPolicyScreen(), settings);
       case communityGuidelines:
-        return _slide(const CommunityGuidelinesScreen());
+        return _slide(const CommunityGuidelinesScreen(), settings);
       case about:
-        return _slide(const AboutScreen());
+        return _slide(const AboutScreen(), settings);
 
       default:
-        return _slide(const SplashScreen());
+        return _slide(const SplashScreen(), settings);
     }
   }
 
-  static PageRouteBuilder _slide(Widget page) {
+  static PageRouteBuilder _slide(Widget page, RouteSettings settings) {
     return PageRouteBuilder(
+      settings: settings,
       pageBuilder: (ctx, anim, anim2) => page,
       transitionsBuilder: (ctx, animation, anim2, child) {
         return SlideTransition(
@@ -216,8 +235,9 @@ class AppRouter {
     );
   }
 
-  static PageRouteBuilder _fade(Widget page) {
+  static PageRouteBuilder _fade(Widget page, RouteSettings settings) {
     return PageRouteBuilder(
+      settings: settings,
       pageBuilder: (ctx, anim, anim2) => page,
       transitionsBuilder: (ctx, animation, anim2, child) {
         return FadeTransition(opacity: animation, child: child);

@@ -1,0 +1,1827 @@
+{
+  "catalog": "hobby",
+  "_source": "matching_service/src/shared/catalogs/hobby_catalog.json",
+  "version": "2026-05-04",
+  "sets": [
+    {
+      "id": "sports_and_fitness",
+      "label": "Deportes y Fitness",
+      "subsets": [
+        {
+          "id": "cardio_and_endurance",
+          "label": "Cardio & Endurance"
+        },
+        {
+          "id": "strength_training",
+          "label": "Strength Training"
+        },
+        {
+          "id": "team_sports",
+          "label": "Team Sports"
+        },
+        {
+          "id": "racquet_sports",
+          "label": "Racquet Sports"
+        },
+        {
+          "id": "water_sports",
+          "label": "Water Sports"
+        }
+      ]
+    },
+    {
+      "id": "combat_and_martial_arts",
+      "label": "Artes Marciales y Combate",
+      "subsets": [
+        {
+          "id": "striking_arts",
+          "label": "Striking Arts"
+        },
+        {
+          "id": "grappling_arts",
+          "label": "Grappling Arts"
+        },
+        {
+          "id": "mixed_combat",
+          "label": "Mixed Combat"
+        }
+      ]
+    },
+    {
+      "id": "outdoor_and_adventure",
+      "label": "Aire Libre y Aventura",
+      "subsets": [
+        {
+          "id": "hiking_and_trekking",
+          "label": "Hiking & Trekking"
+        },
+        {
+          "id": "climbing",
+          "label": "Climbing"
+        },
+        {
+          "id": "snow_and_mountain",
+          "label": "Snow & Mountain"
+        },
+        {
+          "id": "cycling_and_skating",
+          "label": "Cycling & Skating"
+        }
+      ]
+    },
+    {
+      "id": "arts_and_crafts",
+      "label": "Artes y Manualidades",
+      "subsets": [
+        {
+          "id": "drawing_and_painting",
+          "label": "Drawing & Painting"
+        },
+        {
+          "id": "textile_and_fiber_crafts",
+          "label": "Textile & Fiber Crafts"
+        },
+        {
+          "id": "pottery_and_sculpture",
+          "label": "Pottery & Sculpture"
+        },
+        {
+          "id": "diy_and_handmade",
+          "label": "DIY & Handmade"
+        }
+      ]
+    },
+    {
+      "id": "music_and_performance",
+      "label": "Música y Espectáculo",
+      "subsets": [
+        {
+          "id": "instrument_playing",
+          "label": "Instrument Playing"
+        },
+        {
+          "id": "singing_and_vocal",
+          "label": "Singing & Vocal"
+        },
+        {
+          "id": "dance",
+          "label": "Dance"
+        },
+        {
+          "id": "theater",
+          "label": "Theater"
+        }
+      ]
+    },
+    {
+      "id": "gaming",
+      "label": "Gaming",
+      "subsets": [
+        {
+          "id": "video_games",
+          "label": "Video Games"
+        },
+        {
+          "id": "tabletop_and_board_games",
+          "label": "Tabletop & Board Games"
+        },
+        {
+          "id": "esports",
+          "label": "Esports"
+        },
+        {
+          "id": "strategy_and_puzzles",
+          "label": "Strategy & Puzzles"
+        }
+      ]
+    },
+    {
+      "id": "reading_and_writing",
+      "label": "Lectura y Escritura",
+      "subsets": [
+        {
+          "id": "literature_and_fiction",
+          "label": "Literature & Fiction"
+        },
+        {
+          "id": "non_fiction_and_essays",
+          "label": "Non-fiction & Essays"
+        },
+        {
+          "id": "personal_writing",
+          "label": "Personal Writing"
+        },
+        {
+          "id": "comics_and_graphic_novels",
+          "label": "Comics & Graphic Novels"
+        }
+      ]
+    },
+    {
+      "id": "tech_and_making",
+      "label": "Tecnología y Creación",
+      "subsets": [
+        {
+          "id": "recreational_programming",
+          "label": "Recreational Programming"
+        },
+        {
+          "id": "hardware_and_robotics",
+          "label": "Hardware & Robotics"
+        },
+        {
+          "id": "game_development",
+          "label": "Game Development"
+        },
+        {
+          "id": "modding_and_tinkering",
+          "label": "Modding & Tinkering"
+        }
+      ]
+    },
+    {
+      "id": "cooking_and_gastronomy",
+      "label": "Cocina y Gastronomía",
+      "subsets": [
+        {
+          "id": "home_cooking",
+          "label": "Home Cooking"
+        },
+        {
+          "id": "baking_and_pastry",
+          "label": "Baking & Pastry"
+        },
+        {
+          "id": "beverages_and_mixology",
+          "label": "Beverages & Mixology"
+        },
+        {
+          "id": "food_exploration",
+          "label": "Food Exploration"
+        }
+      ]
+    },
+    {
+      "id": "photography_and_film",
+      "label": "Fotografía y Cine",
+      "subsets": [
+        {
+          "id": "photography",
+          "label": "Photography"
+        },
+        {
+          "id": "cinephilia",
+          "label": "Cinephilia"
+        },
+        {
+          "id": "video_production",
+          "label": "Video Production"
+        }
+      ]
+    },
+    {
+      "id": "travel_and_culture",
+      "label": "Viajes y Cultura",
+      "subsets": [
+        {
+          "id": "traveling",
+          "label": "Traveling"
+        },
+        {
+          "id": "languages_and_culture",
+          "label": "Languages & Culture"
+        },
+        {
+          "id": "live_events",
+          "label": "Live Events"
+        },
+        {
+          "id": "heritage_and_museums",
+          "label": "Heritage & Museums"
+        }
+      ]
+    },
+    {
+      "id": "community_and_service",
+      "label": "Comunidad y Servicio",
+      "subsets": [
+        {
+          "id": "volunteering",
+          "label": "Volunteering"
+        },
+        {
+          "id": "activism",
+          "label": "Activism"
+        },
+        {
+          "id": "mentoring_and_faith",
+          "label": "Mentoring & Faith"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "running",
+      "label": "Correr",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "cardio_and_endurance"
+      ]
+    },
+    {
+      "id": "cycling",
+      "label": "Ciclismo",
+      "sets": [
+        "sports_and_fitness",
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "cardio_and_endurance",
+        "cycling_and_skating"
+      ]
+    },
+    {
+      "id": "swimming",
+      "label": "Natación",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "cardio_and_endurance",
+        "water_sports"
+      ]
+    },
+    {
+      "id": "triathlon",
+      "label": "Triatlón",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "cardio_and_endurance"
+      ]
+    },
+    {
+      "id": "weightlifting",
+      "label": "Levantamiento de Pesas",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "strength_training"
+      ]
+    },
+    {
+      "id": "crossfit",
+      "label": "CrossFit",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "strength_training"
+      ]
+    },
+    {
+      "id": "calisthenics",
+      "label": "Calistenia",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "strength_training"
+      ]
+    },
+    {
+      "id": "yoga",
+      "label": "Yoga",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "strength_training"
+      ]
+    },
+    {
+      "id": "soccer",
+      "label": "Fútbol",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "team_sports"
+      ]
+    },
+    {
+      "id": "basketball",
+      "label": "Basquetbol",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "team_sports"
+      ]
+    },
+    {
+      "id": "volleyball",
+      "label": "Voleibol",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "team_sports"
+      ]
+    },
+    {
+      "id": "american football",
+      "label": "Fútbol Americano",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "team_sports"
+      ]
+    },
+    {
+      "id": "tennis",
+      "label": "Tenis",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "racquet_sports"
+      ]
+    },
+    {
+      "id": "padel",
+      "label": "Pádel",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "racquet_sports"
+      ]
+    },
+    {
+      "id": "badminton",
+      "label": "Bádminton",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "racquet_sports"
+      ]
+    },
+    {
+      "id": "surfing",
+      "label": "Surf",
+      "sets": [
+        "sports_and_fitness",
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "water_sports"
+      ]
+    },
+    {
+      "id": "sailing",
+      "label": "Vela",
+      "sets": [
+        "sports_and_fitness",
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "water_sports"
+      ]
+    },
+    {
+      "id": "kayaking",
+      "label": "Kayak",
+      "sets": [
+        "sports_and_fitness",
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "water_sports"
+      ]
+    },
+    {
+      "id": "diving",
+      "label": "Buceo",
+      "sets": [
+        "sports_and_fitness",
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "water_sports"
+      ]
+    },
+    {
+      "id": "boxing",
+      "label": "Boxeo",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "striking_arts"
+      ]
+    },
+    {
+      "id": "muay thai",
+      "label": "Muay Thai",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "striking_arts"
+      ]
+    },
+    {
+      "id": "karate",
+      "label": "Kárate",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "striking_arts"
+      ]
+    },
+    {
+      "id": "taekwondo",
+      "label": "Taekwondo",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "striking_arts"
+      ]
+    },
+    {
+      "id": "brazilian jiu-jitsu",
+      "label": "Jiu-Jitsu Brasileño",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "grappling_arts"
+      ]
+    },
+    {
+      "id": "judo",
+      "label": "Judo",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "grappling_arts"
+      ]
+    },
+    {
+      "id": "wrestling",
+      "label": "Lucha",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "grappling_arts"
+      ]
+    },
+    {
+      "id": "mma",
+      "label": "MMA",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "mixed_combat"
+      ]
+    },
+    {
+      "id": "krav maga",
+      "label": "Krav Maga",
+      "sets": [
+        "combat_and_martial_arts"
+      ],
+      "subsets": [
+        "mixed_combat"
+      ]
+    },
+    {
+      "id": "hiking",
+      "label": "Senderismo",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "hiking_and_trekking"
+      ]
+    },
+    {
+      "id": "trekking",
+      "label": "Trekking",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "hiking_and_trekking"
+      ]
+    },
+    {
+      "id": "backpacking",
+      "label": "Mochilero",
+      "sets": [
+        "outdoor_and_adventure",
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "hiking_and_trekking",
+        "traveling"
+      ]
+    },
+    {
+      "id": "camping",
+      "label": "Camping",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "hiking_and_trekking"
+      ]
+    },
+    {
+      "id": "rock climbing",
+      "label": "Escalada en Roca",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "climbing"
+      ]
+    },
+    {
+      "id": "bouldering",
+      "label": "Bouldering",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "climbing"
+      ]
+    },
+    {
+      "id": "mountaineering",
+      "label": "Montañismo",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "climbing",
+        "snow_and_mountain"
+      ]
+    },
+    {
+      "id": "skiing",
+      "label": "Esquí",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "snow_and_mountain"
+      ]
+    },
+    {
+      "id": "snowboarding",
+      "label": "Snowboard",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "snow_and_mountain"
+      ]
+    },
+    {
+      "id": "mountain biking",
+      "label": "Mountain Bike",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "cycling_and_skating"
+      ]
+    },
+    {
+      "id": "skateboarding",
+      "label": "Skate",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "cycling_and_skating"
+      ]
+    },
+    {
+      "id": "fishing",
+      "label": "Pesca",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "hiking_and_trekking"
+      ]
+    },
+    {
+      "id": "drawing",
+      "label": "Dibujo",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "drawing_and_painting"
+      ]
+    },
+    {
+      "id": "painting",
+      "label": "Pintura",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "drawing_and_painting"
+      ]
+    },
+    {
+      "id": "calligraphy",
+      "label": "Caligrafía",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "drawing_and_painting"
+      ]
+    },
+    {
+      "id": "digital art",
+      "label": "Arte Digital",
+      "sets": [
+        "arts_and_crafts",
+        "tech_and_making"
+      ],
+      "subsets": [
+        "drawing_and_painting"
+      ]
+    },
+    {
+      "id": "knitting",
+      "label": "Tejido con Agujas",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "textile_and_fiber_crafts"
+      ]
+    },
+    {
+      "id": "sewing",
+      "label": "Costura",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "textile_and_fiber_crafts"
+      ]
+    },
+    {
+      "id": "embroidery",
+      "label": "Bordado",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "textile_and_fiber_crafts"
+      ]
+    },
+    {
+      "id": "crochet",
+      "label": "Crochet",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "textile_and_fiber_crafts"
+      ]
+    },
+    {
+      "id": "pottery",
+      "label": "Alfarería",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "pottery_and_sculpture"
+      ]
+    },
+    {
+      "id": "sculpting",
+      "label": "Escultura",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "pottery_and_sculpture"
+      ]
+    },
+    {
+      "id": "origami",
+      "label": "Origami",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "pottery_and_sculpture"
+      ]
+    },
+    {
+      "id": "woodworking",
+      "label": "Carpintería",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "diy_and_handmade"
+      ]
+    },
+    {
+      "id": "jewelry making",
+      "label": "Joyería",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "diy_and_handmade"
+      ]
+    },
+    {
+      "id": "leather crafting",
+      "label": "Marroquinería",
+      "sets": [
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "diy_and_handmade"
+      ]
+    },
+    {
+      "id": "guitar",
+      "label": "Guitarra",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "instrument_playing"
+      ]
+    },
+    {
+      "id": "piano",
+      "label": "Piano",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "instrument_playing"
+      ]
+    },
+    {
+      "id": "drums",
+      "label": "Batería",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "instrument_playing"
+      ]
+    },
+    {
+      "id": "violin",
+      "label": "Violín",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "instrument_playing"
+      ]
+    },
+    {
+      "id": "bass",
+      "label": "Bajo",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "instrument_playing"
+      ]
+    },
+    {
+      "id": "djing",
+      "label": "DJing",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "instrument_playing"
+      ]
+    },
+    {
+      "id": "choir singing",
+      "label": "Canto Coral",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "singing_and_vocal"
+      ]
+    },
+    {
+      "id": "solo singing",
+      "label": "Canto Solo",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "singing_and_vocal"
+      ]
+    },
+    {
+      "id": "salsa",
+      "label": "Salsa",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "dance"
+      ]
+    },
+    {
+      "id": "hip hop dance",
+      "label": "Baile Hip Hop",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "dance"
+      ]
+    },
+    {
+      "id": "ballet",
+      "label": "Ballet",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "dance"
+      ]
+    },
+    {
+      "id": "contemporary dance",
+      "label": "Danza Contemporánea",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "dance"
+      ]
+    },
+    {
+      "id": "acting",
+      "label": "Actuación",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "theater"
+      ]
+    },
+    {
+      "id": "improv",
+      "label": "Improvisación",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "theater"
+      ]
+    },
+    {
+      "id": "stand-up comedy",
+      "label": "Stand-up Comedy",
+      "sets": [
+        "music_and_performance"
+      ],
+      "subsets": [
+        "theater"
+      ]
+    },
+    {
+      "id": "rpg games",
+      "label": "Juegos de Rol",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "video_games"
+      ]
+    },
+    {
+      "id": "fps games",
+      "label": "Juegos FPS",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "video_games"
+      ]
+    },
+    {
+      "id": "strategy games",
+      "label": "Juegos de Estrategia",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "video_games",
+        "strategy_and_puzzles"
+      ]
+    },
+    {
+      "id": "indie games",
+      "label": "Juegos Indie",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "video_games"
+      ]
+    },
+    {
+      "id": "chess",
+      "label": "Ajedrez",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "tabletop_and_board_games",
+        "strategy_and_puzzles"
+      ]
+    },
+    {
+      "id": "go",
+      "label": "Go",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "tabletop_and_board_games",
+        "strategy_and_puzzles"
+      ]
+    },
+    {
+      "id": "tabletop rpg",
+      "label": "RPG de Mesa",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "tabletop_and_board_games"
+      ]
+    },
+    {
+      "id": "strategy board games",
+      "label": "Juegos de Mesa de Estrategia",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "tabletop_and_board_games"
+      ]
+    },
+    {
+      "id": "card games",
+      "label": "Juegos de Cartas",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "tabletop_and_board_games"
+      ]
+    },
+    {
+      "id": "competitive esports",
+      "label": "Esports Competitivo",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "esports"
+      ]
+    },
+    {
+      "id": "sudoku",
+      "label": "Sudoku",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "strategy_and_puzzles"
+      ]
+    },
+    {
+      "id": "crosswords",
+      "label": "Crucigramas",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "strategy_and_puzzles"
+      ]
+    },
+    {
+      "id": "rubik's cube",
+      "label": "Cubo de Rubik",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "strategy_and_puzzles"
+      ]
+    },
+    {
+      "id": "escape rooms",
+      "label": "Escape Rooms",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "strategy_and_puzzles"
+      ]
+    },
+    {
+      "id": "reading novels",
+      "label": "Leer Novelas",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "literature_and_fiction"
+      ]
+    },
+    {
+      "id": "reading poetry",
+      "label": "Leer Poesía",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "literature_and_fiction"
+      ]
+    },
+    {
+      "id": "sci-fi & fantasy reading",
+      "label": "Ciencia Ficción y Fantasía",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "literature_and_fiction"
+      ]
+    },
+    {
+      "id": "reading non-fiction",
+      "label": "Leer No Ficción",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "non_fiction_and_essays"
+      ]
+    },
+    {
+      "id": "reading philosophy",
+      "label": "Leer Filosofía",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "non_fiction_and_essays"
+      ]
+    },
+    {
+      "id": "reading biography",
+      "label": "Leer Biografías",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "non_fiction_and_essays"
+      ]
+    },
+    {
+      "id": "history reading",
+      "label": "Historia",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "non_fiction_and_essays"
+      ]
+    },
+    {
+      "id": "creative writing",
+      "label": "Escritura Creativa",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "personal_writing"
+      ]
+    },
+    {
+      "id": "journaling",
+      "label": "Journaling",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "personal_writing"
+      ]
+    },
+    {
+      "id": "blogging",
+      "label": "Blogging",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "personal_writing"
+      ]
+    },
+    {
+      "id": "poetry writing",
+      "label": "Escritura de Poesía",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "personal_writing"
+      ]
+    },
+    {
+      "id": "reading comics",
+      "label": "Leer Cómics",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "comics_and_graphic_novels"
+      ]
+    },
+    {
+      "id": "reading manga",
+      "label": "Leer Manga",
+      "sets": [
+        "reading_and_writing"
+      ],
+      "subsets": [
+        "comics_and_graphic_novels"
+      ]
+    },
+    {
+      "id": "drawing comics",
+      "label": "Dibujar Cómics",
+      "sets": [
+        "reading_and_writing",
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "comics_and_graphic_novels",
+        "drawing_and_painting"
+      ]
+    },
+    {
+      "id": "coding for fun",
+      "label": "Programar por Pasión",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "recreational_programming"
+      ]
+    },
+    {
+      "id": "open source contribution",
+      "label": "Contribución Open Source",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "recreational_programming"
+      ]
+    },
+    {
+      "id": "hackathons",
+      "label": "Hackathons",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "recreational_programming"
+      ]
+    },
+    {
+      "id": "competitive programming",
+      "label": "Programación Competitiva",
+      "sets": [
+        "tech_and_making",
+        "gaming"
+      ],
+      "subsets": [
+        "recreational_programming"
+      ]
+    },
+    {
+      "id": "robotics hobby",
+      "label": "Robótica",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "hardware_and_robotics"
+      ]
+    },
+    {
+      "id": "arduino projects",
+      "label": "Proyectos Arduino",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "hardware_and_robotics"
+      ]
+    },
+    {
+      "id": "3d printing",
+      "label": "Impresión 3D",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "hardware_and_robotics"
+      ]
+    },
+    {
+      "id": "drone flying",
+      "label": "Vuelo con Drones",
+      "sets": [
+        "tech_and_making",
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "hardware_and_robotics"
+      ]
+    },
+    {
+      "id": "indie game dev",
+      "label": "Desarrollo de Videojuegos Indie",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "game_development"
+      ]
+    },
+    {
+      "id": "pixel art",
+      "label": "Pixel Art",
+      "sets": [
+        "tech_and_making",
+        "arts_and_crafts"
+      ],
+      "subsets": [
+        "game_development",
+        "drawing_and_painting"
+      ]
+    },
+    {
+      "id": "game modding",
+      "label": "Modding de Juegos",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "modding_and_tinkering"
+      ]
+    },
+    {
+      "id": "pc building",
+      "label": "Ensamble de PC",
+      "sets": [
+        "tech_and_making"
+      ],
+      "subsets": [
+        "modding_and_tinkering"
+      ]
+    },
+    {
+      "id": "cooking",
+      "label": "Cocinar",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "home_cooking"
+      ]
+    },
+    {
+      "id": "meal prepping",
+      "label": "Meal Prep",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "home_cooking"
+      ]
+    },
+    {
+      "id": "grilling & bbq",
+      "label": "Asado y BBQ",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "home_cooking"
+      ]
+    },
+    {
+      "id": "baking",
+      "label": "Horneado",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "baking_and_pastry"
+      ]
+    },
+    {
+      "id": "pastry making",
+      "label": "Repostería",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "baking_and_pastry"
+      ]
+    },
+    {
+      "id": "bread making",
+      "label": "Panificación",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "baking_and_pastry"
+      ]
+    },
+    {
+      "id": "cocktail mixing",
+      "label": "Coctelería",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "beverages_and_mixology"
+      ]
+    },
+    {
+      "id": "coffee brewing",
+      "label": "Barismo",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "beverages_and_mixology"
+      ]
+    },
+    {
+      "id": "tea culture",
+      "label": "Cultura del Té",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "beverages_and_mixology"
+      ]
+    },
+    {
+      "id": "wine appreciation",
+      "label": "Enología",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "beverages_and_mixology"
+      ]
+    },
+    {
+      "id": "craft beer",
+      "label": "Cerveza Artesanal",
+      "sets": [
+        "cooking_and_gastronomy"
+      ],
+      "subsets": [
+        "beverages_and_mixology"
+      ]
+    },
+    {
+      "id": "food tourism",
+      "label": "Turismo Gastronómico",
+      "sets": [
+        "cooking_and_gastronomy",
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "food_exploration",
+        "traveling"
+      ]
+    },
+    {
+      "id": "portrait photography",
+      "label": "Fotografía de Retrato",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "photography"
+      ]
+    },
+    {
+      "id": "landscape photography",
+      "label": "Fotografía de Paisaje",
+      "sets": [
+        "photography_and_film",
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "photography"
+      ]
+    },
+    {
+      "id": "street photography",
+      "label": "Fotografía Callejera",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "photography"
+      ]
+    },
+    {
+      "id": "astrophotography",
+      "label": "Astrofotografía",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "photography"
+      ]
+    },
+    {
+      "id": "watching films",
+      "label": "Ver Películas",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "cinephilia"
+      ]
+    },
+    {
+      "id": "film analysis",
+      "label": "Análisis de Cine",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "cinephilia"
+      ]
+    },
+    {
+      "id": "watching anime",
+      "label": "Ver Anime",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "cinephilia"
+      ]
+    },
+    {
+      "id": "documentary watching",
+      "label": "Ver Documentales",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "cinephilia"
+      ]
+    },
+    {
+      "id": "video editing",
+      "label": "Edición de Video",
+      "sets": [
+        "photography_and_film",
+        "tech_and_making"
+      ],
+      "subsets": [
+        "video_production"
+      ]
+    },
+    {
+      "id": "vlogging",
+      "label": "Vlogging",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "video_production"
+      ]
+    },
+    {
+      "id": "solo travel",
+      "label": "Viaje Solo",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "traveling"
+      ]
+    },
+    {
+      "id": "road trips",
+      "label": "Viajes por Carretera",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "traveling"
+      ]
+    },
+    {
+      "id": "language learning",
+      "label": "Aprender Idiomas",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "languages_and_culture"
+      ]
+    },
+    {
+      "id": "cultural exchange",
+      "label": "Intercambio Cultural",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "languages_and_culture"
+      ]
+    },
+    {
+      "id": "concerts",
+      "label": "Conciertos",
+      "sets": [
+        "travel_and_culture",
+        "music_and_performance"
+      ],
+      "subsets": [
+        "live_events"
+      ]
+    },
+    {
+      "id": "festivals",
+      "label": "Festivales",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "live_events"
+      ]
+    },
+    {
+      "id": "theater going",
+      "label": "Ir al Teatro",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "live_events"
+      ]
+    },
+    {
+      "id": "sports events",
+      "label": "Eventos Deportivos",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "live_events"
+      ]
+    },
+    {
+      "id": "museum visiting",
+      "label": "Visitar Museos",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "heritage_and_museums"
+      ]
+    },
+    {
+      "id": "historical tourism",
+      "label": "Turismo Histórico",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "heritage_and_museums",
+        "traveling"
+      ]
+    },
+    {
+      "id": "architecture visiting",
+      "label": "Turismo Arquitectónico",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "heritage_and_museums"
+      ]
+    },
+    {
+      "id": "volunteering",
+      "label": "Voluntariado",
+      "sets": [
+        "community_and_service"
+      ],
+      "subsets": [
+        "volunteering"
+      ]
+    },
+    {
+      "id": "animal rescue",
+      "label": "Rescate Animal",
+      "sets": [
+        "community_and_service"
+      ],
+      "subsets": [
+        "volunteering"
+      ]
+    },
+    {
+      "id": "environmental activism",
+      "label": "Activismo Ambiental",
+      "sets": [
+        "community_and_service"
+      ],
+      "subsets": [
+        "activism"
+      ]
+    },
+    {
+      "id": "social activism",
+      "label": "Activismo Social",
+      "sets": [
+        "community_and_service"
+      ],
+      "subsets": [
+        "activism"
+      ]
+    },
+    {
+      "id": "tutoring",
+      "label": "Tutoría",
+      "sets": [
+        "community_and_service"
+      ],
+      "subsets": [
+        "mentoring_and_faith"
+      ]
+    },
+    {
+      "id": "religious community",
+      "label": "Comunidad Religiosa",
+      "sets": [
+        "community_and_service"
+      ],
+      "subsets": [
+        "mentoring_and_faith"
+      ]
+    },
+    {
+      "id": "mentoring",
+      "label": "Mentoría",
+      "sets": [
+        "community_and_service"
+      ],
+      "subsets": [
+        "mentoring_and_faith"
+      ]
+    },
+    {
+      "id": "birdwatching",
+      "label": "Observación de Aves",
+      "sets": [
+        "outdoor_and_adventure"
+      ],
+      "subsets": [
+        "hiking_and_trekking"
+      ]
+    },
+    {
+      "id": "default",
+      "label": "General",
+      "sets": [],
+      "subsets": []
+    },
+    {
+      "id": "photography",
+      "label": "Fotografía",
+      "sets": [
+        "photography_and_film"
+      ],
+      "subsets": [
+        "photography"
+      ]
+    },
+    {
+      "id": "traveling",
+      "label": "Viajar",
+      "sets": [
+        "travel_and_culture"
+      ],
+      "subsets": [
+        "traveling"
+      ]
+    },
+    {
+      "id": "video games",
+      "label": "Videojuegos",
+      "sets": [
+        "gaming"
+      ],
+      "subsets": [
+        "video_games"
+      ]
+    }
+  ]
+}

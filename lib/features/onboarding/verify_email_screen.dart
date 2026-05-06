@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
@@ -30,7 +31,6 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -44,7 +44,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   if (!_sent) ...[
                     Text(
                       'Ingresa tu correo institucional',
-                      style: AppTextStyles.titleMd(cs.onSurface),
+                      style: AppTextStyles.titleMd(
+                        Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                     const SizedBox(height: AppSpacing.space4),
                     TextField(
@@ -108,9 +110,11 @@ class _VerifyHeader extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              StepDots(totalSteps: 6, currentStep: step),
+              StepDots(totalSteps: 6, currentStep: step, showKicker: false),
             ],
           ),
+          const SizedBox(height: AppSpacing.space2),
+          Center(child: StepDots(totalSteps: 6, currentStep: step)),
           const SizedBox(height: AppSpacing.space5),
           Text(
             'Verificar correo',
@@ -137,13 +141,22 @@ class _VerifyCodeEntry extends StatefulWidget {
 }
 
 class _VerifyCodeEntryState extends State<_VerifyCodeEntry> {
-  final _codeController = TextEditingController();
+  final List<TextEditingController> _cells =
+      List.generate(4, (_) => TextEditingController());
+  final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
 
   @override
   void dispose() {
-    _codeController.dispose();
+    for (final c in _cells) {
+      c.dispose();
+    }
+    for (final f in _focusNodes) {
+      f.dispose();
+    }
     super.dispose();
   }
+
+  bool get _isComplete => _cells.every((c) => c.text.isNotEmpty);
 
   @override
   Widget build(BuildContext context) {
@@ -179,20 +192,52 @@ class _VerifyCodeEntryState extends State<_VerifyCodeEntry> {
           'Código de verificación',
           style: AppTextStyles.titleMd(cs.onSurface),
         ),
-        const SizedBox(height: AppSpacing.space3),
-        TextField(
-          controller: _codeController,
-          keyboardType: TextInputType.number,
-          maxLength: 6,
-          textAlign: TextAlign.center,
-          style: AppTextStyles.headlineSm(cs.onSurface),
-          decoration: const InputDecoration(
-            hintText: '000000',
-            counterText: '',
-          ),
+        const SizedBox(height: AppSpacing.space4),
+        // 4-cell code input
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(4, (i) {
+            return Container(
+              width: 48,
+              height: 56,
+              margin: const EdgeInsets.symmetric(horizontal: AppSpacing.space2),
+              child: TextField(
+                controller: _cells[i],
+                focusNode: _focusNodes[i],
+                maxLength: 1,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                style: AppTextStyles.headlineSm(cs.onSurface),
+                decoration: InputDecoration(
+                  counterText: '',
+                  filled: true,
+                  fillColor: cs.surfaceContainerHigh,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                    borderSide: BorderSide(color: cs.primary, width: 2),
+                  ),
+                  contentPadding: EdgeInsets.zero,
+                ),
+                onChanged: (v) {
+                  if (v.isNotEmpty && i < 3) {
+                    _focusNodes[i + 1].requestFocus();
+                  }
+                  setState(() {});
+                },
+              ),
+            );
+          }),
         ),
         const SizedBox(height: AppSpacing.space5),
-        TButton(label: 'Verificar', onPressed: widget.onVerified),
+        TButton(
+          label: 'Verificar',
+          onPressed: _isComplete ? widget.onVerified : null,
+        ),
         const SizedBox(height: AppSpacing.space3),
         Center(
           child: TextButton(

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_text_styles.dart';
 
@@ -20,9 +21,9 @@ class TBottomNav extends StatelessWidget {
       label: 'Descubrir',
     ),
     _NavItem(
-      icon: Icons.group_outlined,
-      activeIcon: Icons.group,
-      label: 'Match',
+      icon: Icons.people_outline,
+      activeIcon: Icons.people,
+      label: 'Conexiones',
     ),
     _NavItem(
       icon: Icons.storefront_outlined,
@@ -44,14 +45,21 @@ class TBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    final ghostBorder = isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
+
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+        filter: ImageFilter.blur(
+          sigmaX: AppColors.glassBlurSigma,
+          sigmaY: AppColors.glassBlurSigma,
+        ),
         child: Container(
           decoration: BoxDecoration(
-            color: cs.surface.withValues(alpha: 0.85),
+            color: glassBg,
             border: Border(
-              top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5)),
+              top: BorderSide(color: ghostBorder, width: 1),
             ),
           ),
           child: SafeArea(
@@ -75,17 +83,22 @@ class TBottomNav extends StatelessWidget {
                               isActive ? item.activeIcon : item.icon,
                               key: ValueKey(isActive),
                               size: 24,
-                              color: isActive
-                                  ? cs.primary
-                                  : cs.onSurfaceVariant,
+                              color: isActive ? cs.primary : cs.onSurfaceVariant,
                             ),
                           ),
-                          const SizedBox(height: AppSpacing.space1),
-                          Text(
-                            item.label,
-                            style: AppTextStyles.labelSm(
-                              isActive ? cs.primary : cs.onSurfaceVariant,
-                            ),
+                          // Label only visible when active (fades in/out)
+                          AnimatedSize(
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.easeOutCubic,
+                            child: isActive
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: AppSpacing.space1),
+                                    child: Text(
+                                      item.label,
+                                      style: AppTextStyles.labelSm(cs.primary),
+                                    ),
+                                  )
+                                : const SizedBox.shrink(),
                           ),
                         ],
                       ),

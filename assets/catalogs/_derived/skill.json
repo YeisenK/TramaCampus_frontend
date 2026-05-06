@@ -1,0 +1,2414 @@
+{
+  "catalog": "skill",
+  "_source": "matching_service/src/shared/catalogs/skill_catalog.json",
+  "version": "2026-05-04",
+  "sets": [
+    {
+      "id": "engineering",
+      "label": "Ingeniería",
+      "subsets": [
+        {
+          "id": "mechanical_and_manufacturing",
+          "label": "Mechanical & Manufacturing"
+        },
+        {
+          "id": "civil_and_structural",
+          "label": "Civil & Structural"
+        },
+        {
+          "id": "electrical_and_electronics",
+          "label": "Electrical & Electronics"
+        },
+        {
+          "id": "mechatronics_and_automation",
+          "label": "Mechatronics & Automation"
+        },
+        {
+          "id": "industrial_and_logistics",
+          "label": "Industrial & Logistics"
+        },
+        {
+          "id": "materials_and_energy",
+          "label": "Materials & Energy"
+        }
+      ]
+    },
+    {
+      "id": "software_and_technology",
+      "label": "Software y Tecnología",
+      "subsets": [
+        {
+          "id": "programming",
+          "label": "Programming"
+        },
+        {
+          "id": "systems_and_infrastructure",
+          "label": "Systems & Infrastructure"
+        },
+        {
+          "id": "web_and_mobile",
+          "label": "Web & Mobile"
+        },
+        {
+          "id": "cybersecurity",
+          "label": "Cybersecurity"
+        }
+      ]
+    },
+    {
+      "id": "data_and_analytics",
+      "label": "Datos y Analítica",
+      "subsets": [
+        {
+          "id": "statistics_and_modeling",
+          "label": "Statistics & Modeling"
+        },
+        {
+          "id": "machine_learning",
+          "label": "Machine Learning"
+        },
+        {
+          "id": "business_intelligence",
+          "label": "Business Intelligence"
+        },
+        {
+          "id": "research_methods",
+          "label": "Research Methods"
+        }
+      ]
+    },
+    {
+      "id": "health_and_medicine",
+      "label": "Salud y Medicina",
+      "subsets": [
+        {
+          "id": "clinical_practice",
+          "label": "Clinical Practice"
+        },
+        {
+          "id": "biomedical_research",
+          "label": "Biomedical Research"
+        },
+        {
+          "id": "nutrition_and_wellness",
+          "label": "Nutrition & Wellness"
+        },
+        {
+          "id": "mental_health",
+          "label": "Mental Health"
+        }
+      ]
+    },
+    {
+      "id": "business_and_management",
+      "label": "Negocios y Gestión",
+      "subsets": [
+        {
+          "id": "strategy_and_operations",
+          "label": "Strategy & Operations"
+        },
+        {
+          "id": "marketing_and_sales",
+          "label": "Marketing & Sales"
+        },
+        {
+          "id": "human_resources",
+          "label": "Human Resources"
+        },
+        {
+          "id": "entrepreneurship",
+          "label": "Entrepreneurship"
+        }
+      ]
+    },
+    {
+      "id": "finance_and_accounting",
+      "label": "Finanzas y Contabilidad",
+      "subsets": [
+        {
+          "id": "financial_analysis",
+          "label": "Financial Analysis"
+        },
+        {
+          "id": "accounting_and_audit",
+          "label": "Accounting & Audit"
+        },
+        {
+          "id": "investment_and_markets",
+          "label": "Investment & Markets"
+        },
+        {
+          "id": "risk_and_actuarial",
+          "label": "Risk & Actuarial"
+        }
+      ]
+    },
+    {
+      "id": "law_and_compliance",
+      "label": "Derecho y Cumplimiento",
+      "subsets": [
+        {
+          "id": "legal_practice",
+          "label": "Legal Practice"
+        },
+        {
+          "id": "regulatory_compliance",
+          "label": "Regulatory Compliance"
+        },
+        {
+          "id": "litigation_and_negotiation",
+          "label": "Litigation & Negotiation"
+        },
+        {
+          "id": "public_policy",
+          "label": "Public Policy"
+        }
+      ]
+    },
+    {
+      "id": "communication_and_media",
+      "label": "Comunicación y Medios",
+      "subsets": [
+        {
+          "id": "journalism_and_editorial",
+          "label": "Journalism & Editorial"
+        },
+        {
+          "id": "audiovisual_production",
+          "label": "Audiovisual Production"
+        },
+        {
+          "id": "public_relations",
+          "label": "Public Relations"
+        },
+        {
+          "id": "digital_media",
+          "label": "Digital Media"
+        }
+      ]
+    },
+    {
+      "id": "design_and_creative",
+      "label": "Diseño y Creatividad",
+      "subsets": [
+        {
+          "id": "visual_and_graphic_design",
+          "label": "Visual & Graphic Design"
+        },
+        {
+          "id": "ux_ui_design",
+          "label": "UX/UI Design"
+        },
+        {
+          "id": "industrial_and_product_design",
+          "label": "Industrial & Product Design"
+        },
+        {
+          "id": "fashion_and_textile",
+          "label": "Fashion & Textile"
+        },
+        {
+          "id": "3d_and_motion",
+          "label": "3D & Motion"
+        }
+      ]
+    },
+    {
+      "id": "architecture_and_urbanism",
+      "label": "Arquitectura y Urbanismo",
+      "subsets": [
+        {
+          "id": "architectural_design",
+          "label": "Architectural Design"
+        },
+        {
+          "id": "urban_planning",
+          "label": "Urban Planning"
+        },
+        {
+          "id": "sustainable_building",
+          "label": "Sustainable Building"
+        },
+        {
+          "id": "architectural_visualization",
+          "label": "Architectural Visualization"
+        }
+      ]
+    },
+    {
+      "id": "education_and_pedagogy",
+      "label": "Educación y Pedagogía",
+      "subsets": [
+        {
+          "id": "teaching_and_curriculum",
+          "label": "Teaching & Curriculum"
+        },
+        {
+          "id": "educational_assessment",
+          "label": "Educational Assessment"
+        },
+        {
+          "id": "educational_technology",
+          "label": "Educational Technology"
+        }
+      ]
+    },
+    {
+      "id": "humanities_and_research",
+      "label": "Humanidades e Investigación",
+      "subsets": [
+        {
+          "id": "philosophy_and_ethics",
+          "label": "Philosophy & Ethics"
+        },
+        {
+          "id": "history_and_culture",
+          "label": "History & Culture"
+        },
+        {
+          "id": "literature_and_writing",
+          "label": "Literature & Writing"
+        },
+        {
+          "id": "languages_and_linguistics",
+          "label": "Languages & Linguistics"
+        },
+        {
+          "id": "theology_and_religion",
+          "label": "Theology & Religion"
+        }
+      ]
+    },
+    {
+      "id": "sports_and_physical",
+      "label": "Deportes y Actividad Física",
+      "subsets": [
+        {
+          "id": "athletic_performance",
+          "label": "Athletic Performance"
+        },
+        {
+          "id": "combat_and_martial_arts",
+          "label": "Combat & Martial Arts"
+        },
+        {
+          "id": "sports_management",
+          "label": "Sports Management"
+        },
+        {
+          "id": "outdoor_and_adventure",
+          "label": "Outdoor & Adventure"
+        }
+      ]
+    },
+    {
+      "id": "arts_and_performance",
+      "label": "Artes y Espectáculo",
+      "subsets": [
+        {
+          "id": "music_and_audio",
+          "label": "Music & Audio"
+        },
+        {
+          "id": "theater_and_performance",
+          "label": "Theater & Performance"
+        },
+        {
+          "id": "visual_arts",
+          "label": "Visual Arts"
+        },
+        {
+          "id": "photography",
+          "label": "Photography"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "cad design",
+      "label": "Diseño CAD",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechanical_and_manufacturing",
+        "civil_and_structural"
+      ]
+    },
+    {
+      "id": "mechanical design",
+      "label": "Diseño Mecánico",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechanical_and_manufacturing"
+      ]
+    },
+    {
+      "id": "manufacturing processes",
+      "label": "Procesos de Manufactura",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechanical_and_manufacturing",
+        "industrial_and_logistics"
+      ]
+    },
+    {
+      "id": "thermodynamics",
+      "label": "Termodinámica",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechanical_and_manufacturing",
+        "materials_and_energy"
+      ]
+    },
+    {
+      "id": "fluid mechanics",
+      "label": "Mecánica de Fluidos",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechanical_and_manufacturing",
+        "civil_and_structural"
+      ]
+    },
+    {
+      "id": "structural analysis",
+      "label": "Análisis Estructural",
+      "sets": [
+        "engineering",
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "civil_and_structural",
+        "architectural_design"
+      ]
+    },
+    {
+      "id": "reinforced concrete design",
+      "label": "Diseño en Concreto Armado",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "civil_and_structural"
+      ]
+    },
+    {
+      "id": "hydraulics",
+      "label": "Hidráulica",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "civil_and_structural"
+      ]
+    },
+    {
+      "id": "surveying & topography",
+      "label": "Topografía y Geodesia",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "civil_and_structural"
+      ]
+    },
+    {
+      "id": "geotechnical engineering",
+      "label": "Ingeniería Geotécnica",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "civil_and_structural"
+      ]
+    },
+    {
+      "id": "construction management",
+      "label": "Gestión de Construcción",
+      "sets": [
+        "engineering",
+        "business_and_management"
+      ],
+      "subsets": [
+        "civil_and_structural",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "electrical circuits",
+      "label": "Circuitos Eléctricos",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "electrical_and_electronics"
+      ]
+    },
+    {
+      "id": "power systems",
+      "label": "Sistemas de Potencia",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "electrical_and_electronics",
+        "materials_and_energy"
+      ]
+    },
+    {
+      "id": "embedded systems",
+      "label": "Sistemas Embebidos",
+      "sets": [
+        "engineering",
+        "software_and_technology"
+      ],
+      "subsets": [
+        "electrical_and_electronics",
+        "mechatronics_and_automation",
+        "programming"
+      ]
+    },
+    {
+      "id": "robotics",
+      "label": "Robótica",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechatronics_and_automation"
+      ]
+    },
+    {
+      "id": "industrial automation",
+      "label": "Automatización Industrial",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechatronics_and_automation",
+        "industrial_and_logistics"
+      ]
+    },
+    {
+      "id": "control systems",
+      "label": "Sistemas de Control",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechatronics_and_automation"
+      ]
+    },
+    {
+      "id": "plc programming",
+      "label": "Programación PLC",
+      "sets": [
+        "engineering",
+        "software_and_technology"
+      ],
+      "subsets": [
+        "mechatronics_and_automation",
+        "programming"
+      ]
+    },
+    {
+      "id": "operations research",
+      "label": "Investigación de Operaciones",
+      "sets": [
+        "engineering",
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "industrial_and_logistics",
+        "statistics_and_modeling"
+      ]
+    },
+    {
+      "id": "lean manufacturing",
+      "label": "Manufactura Esbelta",
+      "sets": [
+        "engineering",
+        "business_and_management"
+      ],
+      "subsets": [
+        "industrial_and_logistics",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "six sigma",
+      "label": "Six Sigma",
+      "sets": [
+        "engineering",
+        "business_and_management"
+      ],
+      "subsets": [
+        "industrial_and_logistics",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "supply chain management",
+      "label": "Gestión de Cadena de Suministro",
+      "sets": [
+        "engineering",
+        "business_and_management"
+      ],
+      "subsets": [
+        "industrial_and_logistics",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "quality management",
+      "label": "Gestión de Calidad",
+      "sets": [
+        "engineering",
+        "business_and_management"
+      ],
+      "subsets": [
+        "industrial_and_logistics",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "project management (engineering)",
+      "label": "Gestión de Proyectos (Ingeniería)",
+      "sets": [
+        "engineering",
+        "business_and_management"
+      ],
+      "subsets": [
+        "industrial_and_logistics",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "materials science",
+      "label": "Ciencia de Materiales",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "materials_and_energy",
+        "mechanical_and_manufacturing"
+      ]
+    },
+    {
+      "id": "renewable energy",
+      "label": "Energía Renovable",
+      "sets": [
+        "engineering",
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "materials_and_energy",
+        "sustainable_building"
+      ]
+    },
+    {
+      "id": "sustainability engineering",
+      "label": "Ingeniería Sustentable",
+      "sets": [
+        "engineering",
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "materials_and_energy",
+        "sustainable_building"
+      ]
+    },
+    {
+      "id": "mechatronics integration",
+      "label": "Integración Mecatrónica",
+      "sets": [
+        "engineering"
+      ],
+      "subsets": [
+        "mechatronics_and_automation",
+        "mechanical_and_manufacturing"
+      ]
+    },
+    {
+      "id": "programming fundamentals",
+      "label": "Fundamentos de Programación",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "programming"
+      ]
+    },
+    {
+      "id": "web development",
+      "label": "Desarrollo Web",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "web_and_mobile",
+        "programming"
+      ]
+    },
+    {
+      "id": "mobile development",
+      "label": "Desarrollo Móvil",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "web_and_mobile",
+        "programming"
+      ]
+    },
+    {
+      "id": "database management",
+      "label": "Gestión de Bases de Datos",
+      "sets": [
+        "software_and_technology",
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "programming",
+        "business_intelligence"
+      ]
+    },
+    {
+      "id": "cloud computing",
+      "label": "Cómputo en la Nube",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "systems_and_infrastructure"
+      ]
+    },
+    {
+      "id": "devops",
+      "label": "DevOps",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "systems_and_infrastructure"
+      ]
+    },
+    {
+      "id": "cybersecurity",
+      "label": "Ciberseguridad",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "cybersecurity"
+      ]
+    },
+    {
+      "id": "networking",
+      "label": "Redes",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "systems_and_infrastructure",
+        "cybersecurity"
+      ]
+    },
+    {
+      "id": "software architecture",
+      "label": "Arquitectura de Software",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "programming",
+        "systems_and_infrastructure"
+      ]
+    },
+    {
+      "id": "version control",
+      "label": "Control de Versiones",
+      "sets": [
+        "software_and_technology"
+      ],
+      "subsets": [
+        "programming"
+      ]
+    },
+    {
+      "id": "agile methodologies",
+      "label": "Metodologías Ágiles",
+      "sets": [
+        "software_and_technology",
+        "business_and_management"
+      ],
+      "subsets": [
+        "programming",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "digital business",
+      "label": "Negocios Digitales",
+      "sets": [
+        "software_and_technology",
+        "business_and_management"
+      ],
+      "subsets": [
+        "web_and_mobile",
+        "entrepreneurship"
+      ]
+    },
+    {
+      "id": "statistical analysis",
+      "label": "Análisis Estadístico",
+      "sets": [
+        "data_and_analytics",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "statistics_and_modeling",
+        "research_methods"
+      ]
+    },
+    {
+      "id": "probability theory",
+      "label": "Teoría de Probabilidad",
+      "sets": [
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "statistics_and_modeling"
+      ]
+    },
+    {
+      "id": "data visualization",
+      "label": "Visualización de Datos",
+      "sets": [
+        "data_and_analytics",
+        "design_and_creative"
+      ],
+      "subsets": [
+        "business_intelligence",
+        "visual_and_graphic_design"
+      ]
+    },
+    {
+      "id": "machine learning",
+      "label": "Machine Learning",
+      "sets": [
+        "data_and_analytics",
+        "software_and_technology"
+      ],
+      "subsets": [
+        "machine_learning",
+        "programming"
+      ]
+    },
+    {
+      "id": "deep learning",
+      "label": "Deep Learning",
+      "sets": [
+        "data_and_analytics",
+        "software_and_technology"
+      ],
+      "subsets": [
+        "machine_learning",
+        "programming"
+      ]
+    },
+    {
+      "id": "natural language processing",
+      "label": "Procesamiento de Lenguaje Natural",
+      "sets": [
+        "data_and_analytics",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "machine_learning",
+        "languages_and_linguistics"
+      ]
+    },
+    {
+      "id": "econometrics",
+      "label": "Econometría",
+      "sets": [
+        "data_and_analytics",
+        "finance_and_accounting"
+      ],
+      "subsets": [
+        "statistics_and_modeling",
+        "financial_analysis"
+      ]
+    },
+    {
+      "id": "predictive modeling",
+      "label": "Modelado Predictivo",
+      "sets": [
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "machine_learning",
+        "statistics_and_modeling"
+      ]
+    },
+    {
+      "id": "survey research",
+      "label": "Investigación por Encuesta",
+      "sets": [
+        "data_and_analytics",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "research_methods"
+      ]
+    },
+    {
+      "id": "data engineering",
+      "label": "Ingeniería de Datos",
+      "sets": [
+        "data_and_analytics",
+        "software_and_technology"
+      ],
+      "subsets": [
+        "programming",
+        "machine_learning"
+      ]
+    },
+    {
+      "id": "anatomy",
+      "label": "Anatomía",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice",
+        "biomedical_research"
+      ]
+    },
+    {
+      "id": "physiology",
+      "label": "Fisiología",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice",
+        "biomedical_research"
+      ]
+    },
+    {
+      "id": "pathology",
+      "label": "Patología",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice",
+        "biomedical_research"
+      ]
+    },
+    {
+      "id": "pharmacology",
+      "label": "Farmacología",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice",
+        "biomedical_research"
+      ]
+    },
+    {
+      "id": "clinical diagnosis",
+      "label": "Diagnóstico Clínico",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice"
+      ]
+    },
+    {
+      "id": "patient care",
+      "label": "Atención al Paciente",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice"
+      ]
+    },
+    {
+      "id": "surgery",
+      "label": "Cirugía",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice"
+      ]
+    },
+    {
+      "id": "medical imaging",
+      "label": "Imagen Médica",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "clinical_practice",
+        "biomedical_research"
+      ]
+    },
+    {
+      "id": "public health",
+      "label": "Salud Pública",
+      "sets": [
+        "health_and_medicine",
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "biomedical_research",
+        "public_policy"
+      ]
+    },
+    {
+      "id": "epidemiology",
+      "label": "Epidemiología",
+      "sets": [
+        "health_and_medicine",
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "biomedical_research",
+        "statistics_and_modeling"
+      ]
+    },
+    {
+      "id": "nutrition science",
+      "label": "Ciencias de la Nutrición",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "nutrition_and_wellness",
+        "biomedical_research"
+      ]
+    },
+    {
+      "id": "dietetics",
+      "label": "Dietética",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "nutrition_and_wellness"
+      ]
+    },
+    {
+      "id": "clinical psychology",
+      "label": "Psicología Clínica",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "mental_health"
+      ]
+    },
+    {
+      "id": "cognitive behavioral therapy",
+      "label": "Terapia Cognitivo-Conductual",
+      "sets": [
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "mental_health"
+      ]
+    },
+    {
+      "id": "bioethics",
+      "label": "Bioética",
+      "sets": [
+        "health_and_medicine",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "mental_health",
+        "philosophy_and_ethics"
+      ]
+    },
+    {
+      "id": "leadership",
+      "label": "Liderazgo",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "strategy_and_operations",
+        "human_resources"
+      ]
+    },
+    {
+      "id": "strategic planning",
+      "label": "Planeación Estratégica",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "project management",
+      "label": "Gestión de Proyectos",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "operations management",
+      "label": "Gestión de Operaciones",
+      "sets": [
+        "business_and_management",
+        "engineering"
+      ],
+      "subsets": [
+        "strategy_and_operations",
+        "industrial_and_logistics"
+      ]
+    },
+    {
+      "id": "marketing strategy",
+      "label": "Estrategia de Marketing",
+      "sets": [
+        "business_and_management",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "marketing_and_sales",
+        "public_relations"
+      ]
+    },
+    {
+      "id": "brand management",
+      "label": "Gestión de Marca",
+      "sets": [
+        "business_and_management",
+        "design_and_creative"
+      ],
+      "subsets": [
+        "marketing_and_sales",
+        "visual_and_graphic_design"
+      ]
+    },
+    {
+      "id": "sales",
+      "label": "Ventas",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "marketing_and_sales"
+      ]
+    },
+    {
+      "id": "negotiation",
+      "label": "Negociación",
+      "sets": [
+        "business_and_management",
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "marketing_and_sales",
+        "litigation_and_negotiation"
+      ]
+    },
+    {
+      "id": "human resources management",
+      "label": "Gestión de Recursos Humanos",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "human_resources"
+      ]
+    },
+    {
+      "id": "talent acquisition",
+      "label": "Adquisición de Talento",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "human_resources"
+      ]
+    },
+    {
+      "id": "organizational behavior",
+      "label": "Comportamiento Organizacional",
+      "sets": [
+        "business_and_management",
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "human_resources",
+        "mental_health"
+      ]
+    },
+    {
+      "id": "entrepreneurship",
+      "label": "Emprendimiento",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "entrepreneurship"
+      ]
+    },
+    {
+      "id": "customer experience",
+      "label": "Experiencia del Cliente",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "marketing_and_sales"
+      ]
+    },
+    {
+      "id": "tourism management",
+      "label": "Gestión Turística",
+      "sets": [
+        "business_and_management"
+      ],
+      "subsets": [
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "gastronomy",
+      "label": "Gastronomía",
+      "sets": [
+        "business_and_management",
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "strategy_and_operations",
+        "nutrition_and_wellness"
+      ]
+    },
+    {
+      "id": "corporate social responsibility",
+      "label": "Responsabilidad Social Empresarial",
+      "sets": [
+        "business_and_management",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "strategy_and_operations",
+        "philosophy_and_ethics"
+      ]
+    },
+    {
+      "id": "financial accounting",
+      "label": "Contabilidad Financiera",
+      "sets": [
+        "finance_and_accounting"
+      ],
+      "subsets": [
+        "accounting_and_audit"
+      ]
+    },
+    {
+      "id": "managerial accounting",
+      "label": "Contabilidad Gerencial",
+      "sets": [
+        "finance_and_accounting",
+        "business_and_management"
+      ],
+      "subsets": [
+        "accounting_and_audit",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "auditing",
+      "label": "Auditoría",
+      "sets": [
+        "finance_and_accounting",
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "accounting_and_audit",
+        "regulatory_compliance"
+      ]
+    },
+    {
+      "id": "financial modeling",
+      "label": "Modelado Financiero",
+      "sets": [
+        "finance_and_accounting"
+      ],
+      "subsets": [
+        "financial_analysis"
+      ]
+    },
+    {
+      "id": "corporate finance",
+      "label": "Finanzas Corporativas",
+      "sets": [
+        "finance_and_accounting"
+      ],
+      "subsets": [
+        "financial_analysis"
+      ]
+    },
+    {
+      "id": "investment analysis",
+      "label": "Análisis de Inversiones",
+      "sets": [
+        "finance_and_accounting"
+      ],
+      "subsets": [
+        "investment_and_markets"
+      ]
+    },
+    {
+      "id": "portfolio management",
+      "label": "Gestión de Portafolio",
+      "sets": [
+        "finance_and_accounting"
+      ],
+      "subsets": [
+        "investment_and_markets"
+      ]
+    },
+    {
+      "id": "risk management",
+      "label": "Gestión de Riesgo",
+      "sets": [
+        "finance_and_accounting",
+        "business_and_management"
+      ],
+      "subsets": [
+        "risk_and_actuarial",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "actuarial science",
+      "label": "Ciencias Actuariales",
+      "sets": [
+        "finance_and_accounting",
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "risk_and_actuarial",
+        "statistics_and_modeling"
+      ]
+    },
+    {
+      "id": "tax planning",
+      "label": "Planeación Fiscal",
+      "sets": [
+        "finance_and_accounting",
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "accounting_and_audit",
+        "regulatory_compliance"
+      ]
+    },
+    {
+      "id": "banking operations",
+      "label": "Operaciones Bancarias",
+      "sets": [
+        "finance_and_accounting",
+        "business_and_management"
+      ],
+      "subsets": [
+        "investment_and_markets",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "civil law",
+      "label": "Derecho Civil",
+      "sets": [
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "legal_practice",
+        "litigation_and_negotiation"
+      ]
+    },
+    {
+      "id": "criminal law",
+      "label": "Derecho Penal",
+      "sets": [
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "legal_practice",
+        "litigation_and_negotiation"
+      ]
+    },
+    {
+      "id": "constitutional law",
+      "label": "Derecho Constitucional",
+      "sets": [
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "legal_practice",
+        "public_policy"
+      ]
+    },
+    {
+      "id": "corporate law",
+      "label": "Derecho Corporativo",
+      "sets": [
+        "law_and_compliance",
+        "business_and_management"
+      ],
+      "subsets": [
+        "legal_practice",
+        "regulatory_compliance"
+      ]
+    },
+    {
+      "id": "tax law",
+      "label": "Derecho Fiscal",
+      "sets": [
+        "law_and_compliance",
+        "finance_and_accounting"
+      ],
+      "subsets": [
+        "legal_practice",
+        "regulatory_compliance"
+      ]
+    },
+    {
+      "id": "international law",
+      "label": "Derecho Internacional",
+      "sets": [
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "legal_practice",
+        "public_policy"
+      ]
+    },
+    {
+      "id": "legal writing",
+      "label": "Redacción Jurídica",
+      "sets": [
+        "law_and_compliance",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "legal_practice",
+        "literature_and_writing"
+      ]
+    },
+    {
+      "id": "mediation & arbitration",
+      "label": "Mediación y Arbitraje",
+      "sets": [
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "litigation_and_negotiation"
+      ]
+    },
+    {
+      "id": "public administration",
+      "label": "Administración Pública",
+      "sets": [
+        "law_and_compliance",
+        "business_and_management"
+      ],
+      "subsets": [
+        "public_policy",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "human rights",
+      "label": "Derechos Humanos",
+      "sets": [
+        "law_and_compliance",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "public_policy",
+        "philosophy_and_ethics"
+      ]
+    },
+    {
+      "id": "international relations",
+      "label": "Relaciones Internacionales",
+      "sets": [
+        "law_and_compliance",
+        "business_and_management",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "public_policy",
+        "strategy_and_operations",
+        "history_and_culture"
+      ]
+    },
+    {
+      "id": "geopolitics",
+      "label": "Geopolítica",
+      "sets": [
+        "law_and_compliance",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "public_policy",
+        "history_and_culture"
+      ]
+    },
+    {
+      "id": "diplomacy",
+      "label": "Diplomacia",
+      "sets": [
+        "law_and_compliance",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "public_policy",
+        "public_relations"
+      ]
+    },
+    {
+      "id": "international security",
+      "label": "Seguridad Internacional",
+      "sets": [
+        "law_and_compliance"
+      ],
+      "subsets": [
+        "public_policy"
+      ]
+    },
+    {
+      "id": "journalism",
+      "label": "Periodismo",
+      "sets": [
+        "communication_and_media"
+      ],
+      "subsets": [
+        "journalism_and_editorial"
+      ]
+    },
+    {
+      "id": "editorial writing",
+      "label": "Redacción Editorial",
+      "sets": [
+        "communication_and_media",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "journalism_and_editorial",
+        "literature_and_writing"
+      ]
+    },
+    {
+      "id": "public relations",
+      "label": "Relaciones Públicas",
+      "sets": [
+        "communication_and_media"
+      ],
+      "subsets": [
+        "public_relations"
+      ]
+    },
+    {
+      "id": "crisis communication",
+      "label": "Comunicación en Crisis",
+      "sets": [
+        "communication_and_media"
+      ],
+      "subsets": [
+        "public_relations"
+      ]
+    },
+    {
+      "id": "social media management",
+      "label": "Gestión de Redes Sociales",
+      "sets": [
+        "communication_and_media"
+      ],
+      "subsets": [
+        "digital_media"
+      ]
+    },
+    {
+      "id": "content creation",
+      "label": "Creación de Contenido",
+      "sets": [
+        "communication_and_media",
+        "design_and_creative"
+      ],
+      "subsets": [
+        "digital_media",
+        "visual_and_graphic_design"
+      ]
+    },
+    {
+      "id": "videography",
+      "label": "Videografía",
+      "sets": [
+        "communication_and_media",
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "audiovisual_production",
+        "photography"
+      ]
+    },
+    {
+      "id": "sound design",
+      "label": "Diseño de Sonido",
+      "sets": [
+        "communication_and_media",
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "audiovisual_production",
+        "music_and_audio"
+      ]
+    },
+    {
+      "id": "podcasting",
+      "label": "Podcasting",
+      "sets": [
+        "communication_and_media"
+      ],
+      "subsets": [
+        "audiovisual_production",
+        "digital_media"
+      ]
+    },
+    {
+      "id": "storytelling",
+      "label": "Narrativa",
+      "sets": [
+        "communication_and_media",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "journalism_and_editorial",
+        "literature_and_writing"
+      ]
+    },
+    {
+      "id": "broadcasting",
+      "label": "Radiodifusión",
+      "sets": [
+        "communication_and_media"
+      ],
+      "subsets": [
+        "audiovisual_production"
+      ]
+    },
+    {
+      "id": "graphic design",
+      "label": "Diseño Gráfico",
+      "sets": [
+        "design_and_creative"
+      ],
+      "subsets": [
+        "visual_and_graphic_design"
+      ]
+    },
+    {
+      "id": "typography",
+      "label": "Tipografía",
+      "sets": [
+        "design_and_creative"
+      ],
+      "subsets": [
+        "visual_and_graphic_design"
+      ]
+    },
+    {
+      "id": "illustration",
+      "label": "Ilustración",
+      "sets": [
+        "design_and_creative",
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "visual_and_graphic_design",
+        "visual_arts"
+      ]
+    },
+    {
+      "id": "branding",
+      "label": "Branding",
+      "sets": [
+        "design_and_creative",
+        "business_and_management"
+      ],
+      "subsets": [
+        "visual_and_graphic_design",
+        "marketing_and_sales"
+      ]
+    },
+    {
+      "id": "ux research",
+      "label": "Investigación UX",
+      "sets": [
+        "design_and_creative",
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "ux_ui_design",
+        "research_methods"
+      ]
+    },
+    {
+      "id": "ui design",
+      "label": "Diseño UI",
+      "sets": [
+        "design_and_creative",
+        "software_and_technology"
+      ],
+      "subsets": [
+        "ux_ui_design",
+        "web_and_mobile"
+      ]
+    },
+    {
+      "id": "product design",
+      "label": "Diseño de Producto",
+      "sets": [
+        "design_and_creative"
+      ],
+      "subsets": [
+        "industrial_and_product_design"
+      ]
+    },
+    {
+      "id": "industrial design",
+      "label": "Diseño Industrial",
+      "sets": [
+        "design_and_creative",
+        "engineering"
+      ],
+      "subsets": [
+        "industrial_and_product_design",
+        "mechanical_and_manufacturing"
+      ]
+    },
+    {
+      "id": "fashion design",
+      "label": "Diseño de Moda",
+      "sets": [
+        "design_and_creative"
+      ],
+      "subsets": [
+        "fashion_and_textile"
+      ]
+    },
+    {
+      "id": "pattern making",
+      "label": "Patronaje",
+      "sets": [
+        "design_and_creative"
+      ],
+      "subsets": [
+        "fashion_and_textile"
+      ]
+    },
+    {
+      "id": "textile innovation",
+      "label": "Innovación Textil",
+      "sets": [
+        "design_and_creative",
+        "engineering"
+      ],
+      "subsets": [
+        "fashion_and_textile",
+        "materials_and_energy"
+      ]
+    },
+    {
+      "id": "3d modeling",
+      "label": "Modelado 3D",
+      "sets": [
+        "design_and_creative",
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "3d_and_motion",
+        "architectural_visualization"
+      ]
+    },
+    {
+      "id": "motion graphics",
+      "label": "Motion Graphics",
+      "sets": [
+        "design_and_creative",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "3d_and_motion",
+        "audiovisual_production"
+      ]
+    },
+    {
+      "id": "animation",
+      "label": "Animación",
+      "sets": [
+        "design_and_creative"
+      ],
+      "subsets": [
+        "3d_and_motion"
+      ]
+    },
+    {
+      "id": "architectural drafting",
+      "label": "Dibujo Arquitectónico",
+      "sets": [
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "architectural_design"
+      ]
+    },
+    {
+      "id": "bim modeling",
+      "label": "Modelado BIM",
+      "sets": [
+        "architecture_and_urbanism",
+        "engineering"
+      ],
+      "subsets": [
+        "architectural_design",
+        "civil_and_structural"
+      ]
+    },
+    {
+      "id": "interior design",
+      "label": "Diseño de Interiores",
+      "sets": [
+        "architecture_and_urbanism",
+        "design_and_creative"
+      ],
+      "subsets": [
+        "architectural_design",
+        "visual_and_graphic_design"
+      ]
+    },
+    {
+      "id": "urban planning",
+      "label": "Planeación Urbana",
+      "sets": [
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "urban_planning"
+      ]
+    },
+    {
+      "id": "landscape architecture",
+      "label": "Arquitectura de Paisaje",
+      "sets": [
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "urban_planning",
+        "architectural_design"
+      ]
+    },
+    {
+      "id": "sustainable architecture",
+      "label": "Arquitectura Sustentable",
+      "sets": [
+        "architecture_and_urbanism"
+      ],
+      "subsets": [
+        "sustainable_building"
+      ]
+    },
+    {
+      "id": "heritage conservation",
+      "label": "Conservación del Patrimonio",
+      "sets": [
+        "architecture_and_urbanism",
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "architectural_design",
+        "history_and_culture"
+      ]
+    },
+    {
+      "id": "architectural rendering",
+      "label": "Renderizado Arquitectónico",
+      "sets": [
+        "architecture_and_urbanism",
+        "design_and_creative"
+      ],
+      "subsets": [
+        "architectural_visualization",
+        "3d_and_motion"
+      ]
+    },
+    {
+      "id": "curriculum design",
+      "label": "Diseño Curricular",
+      "sets": [
+        "education_and_pedagogy"
+      ],
+      "subsets": [
+        "teaching_and_curriculum"
+      ]
+    },
+    {
+      "id": "pedagogical planning",
+      "label": "Planeación Pedagógica",
+      "sets": [
+        "education_and_pedagogy"
+      ],
+      "subsets": [
+        "teaching_and_curriculum"
+      ]
+    },
+    {
+      "id": "educational assessment",
+      "label": "Evaluación Educativa",
+      "sets": [
+        "education_and_pedagogy"
+      ],
+      "subsets": [
+        "educational_assessment"
+      ]
+    },
+    {
+      "id": "adult learning",
+      "label": "Andragogía",
+      "sets": [
+        "education_and_pedagogy",
+        "business_and_management"
+      ],
+      "subsets": [
+        "teaching_and_curriculum",
+        "human_resources"
+      ]
+    },
+    {
+      "id": "educational leadership",
+      "label": "Liderazgo Educativo",
+      "sets": [
+        "education_and_pedagogy",
+        "business_and_management"
+      ],
+      "subsets": [
+        "teaching_and_curriculum",
+        "strategy_and_operations"
+      ]
+    },
+    {
+      "id": "instructional design",
+      "label": "Diseño Instruccional",
+      "sets": [
+        "education_and_pedagogy"
+      ],
+      "subsets": [
+        "educational_technology"
+      ]
+    },
+    {
+      "id": "psychopedagogy",
+      "label": "Psicopedagogía",
+      "sets": [
+        "education_and_pedagogy",
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "teaching_and_curriculum",
+        "mental_health"
+      ]
+    },
+    {
+      "id": "philosophy",
+      "label": "Filosofía",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "philosophy_and_ethics"
+      ]
+    },
+    {
+      "id": "ethics",
+      "label": "Ética",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "philosophy_and_ethics"
+      ]
+    },
+    {
+      "id": "logic",
+      "label": "Lógica",
+      "sets": [
+        "humanities_and_research",
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "philosophy_and_ethics",
+        "statistics_and_modeling"
+      ]
+    },
+    {
+      "id": "history",
+      "label": "Historia",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "history_and_culture"
+      ]
+    },
+    {
+      "id": "anthropology",
+      "label": "Antropología",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "history_and_culture",
+        "research_methods"
+      ]
+    },
+    {
+      "id": "cultural studies",
+      "label": "Estudios Culturales",
+      "sets": [
+        "humanities_and_research",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "history_and_culture",
+        "journalism_and_editorial"
+      ]
+    },
+    {
+      "id": "theology",
+      "label": "Teología",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "theology_and_religion"
+      ]
+    },
+    {
+      "id": "hermeneutics",
+      "label": "Hermenéutica",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "theology_and_religion",
+        "philosophy_and_ethics"
+      ]
+    },
+    {
+      "id": "creative writing",
+      "label": "Escritura Creativa",
+      "sets": [
+        "humanities_and_research",
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "literature_and_writing"
+      ]
+    },
+    {
+      "id": "academic writing",
+      "label": "Escritura Académica",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "literature_and_writing",
+        "research_methods"
+      ]
+    },
+    {
+      "id": "translation",
+      "label": "Traducción",
+      "sets": [
+        "humanities_and_research",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "languages_and_linguistics"
+      ]
+    },
+    {
+      "id": "foreign languages",
+      "label": "Idiomas Extranjeros",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "languages_and_linguistics"
+      ]
+    },
+    {
+      "id": "linguistics",
+      "label": "Lingüística",
+      "sets": [
+        "humanities_and_research",
+        "data_and_analytics"
+      ],
+      "subsets": [
+        "languages_and_linguistics",
+        "research_methods"
+      ]
+    },
+    {
+      "id": "classical studies",
+      "label": "Estudios Clásicos",
+      "sets": [
+        "humanities_and_research"
+      ],
+      "subsets": [
+        "history_and_culture",
+        "languages_and_linguistics"
+      ]
+    },
+    {
+      "id": "athletic training",
+      "label": "Entrenamiento Atlético",
+      "sets": [
+        "sports_and_physical",
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "athletic_performance",
+        "nutrition_and_wellness"
+      ]
+    },
+    {
+      "id": "strength & conditioning",
+      "label": "Fuerza y Acondicionamiento",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "athletic_performance"
+      ]
+    },
+    {
+      "id": "team sports",
+      "label": "Deportes de Equipo",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "athletic_performance"
+      ]
+    },
+    {
+      "id": "martial arts",
+      "label": "Artes Marciales",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "combat_and_martial_arts"
+      ]
+    },
+    {
+      "id": "boxing",
+      "label": "Boxeo",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "combat_and_martial_arts"
+      ]
+    },
+    {
+      "id": "brazilian jiu-jitsu",
+      "label": "Jiu-Jitsu Brasileño",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "combat_and_martial_arts"
+      ]
+    },
+    {
+      "id": "yoga",
+      "label": "Yoga",
+      "sets": [
+        "sports_and_physical",
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "athletic_performance",
+        "mental_health"
+      ]
+    },
+    {
+      "id": "sports coaching",
+      "label": "Entrenamiento Deportivo",
+      "sets": [
+        "sports_and_physical",
+        "education_and_pedagogy"
+      ],
+      "subsets": [
+        "sports_management",
+        "teaching_and_curriculum"
+      ]
+    },
+    {
+      "id": "sports nutrition",
+      "label": "Nutrición Deportiva",
+      "sets": [
+        "sports_and_physical",
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "athletic_performance",
+        "nutrition_and_wellness"
+      ]
+    },
+    {
+      "id": "sports psychology",
+      "label": "Psicología del Deporte",
+      "sets": [
+        "sports_and_physical",
+        "health_and_medicine"
+      ],
+      "subsets": [
+        "sports_management",
+        "mental_health"
+      ]
+    },
+    {
+      "id": "outdoor adventure",
+      "label": "Aventura al Aire Libre",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "outdoor_and_adventure"
+      ]
+    },
+    {
+      "id": "climbing",
+      "label": "Escalada",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "outdoor_and_adventure",
+        "athletic_performance"
+      ]
+    },
+    {
+      "id": "swimming",
+      "label": "Natación",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "athletic_performance"
+      ]
+    },
+    {
+      "id": "music theory",
+      "label": "Teoría Musical",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "music_and_audio"
+      ]
+    },
+    {
+      "id": "musical performance",
+      "label": "Interpretación Musical",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "music_and_audio",
+        "theater_and_performance"
+      ]
+    },
+    {
+      "id": "composition",
+      "label": "Composición",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "music_and_audio"
+      ]
+    },
+    {
+      "id": "singing",
+      "label": "Canto",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "music_and_audio",
+        "theater_and_performance"
+      ]
+    },
+    {
+      "id": "dance",
+      "label": "Danza",
+      "sets": [
+        "arts_and_performance",
+        "sports_and_physical"
+      ],
+      "subsets": [
+        "theater_and_performance",
+        "athletic_performance"
+      ]
+    },
+    {
+      "id": "acting",
+      "label": "Actuación",
+      "sets": [
+        "arts_and_performance",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "theater_and_performance",
+        "audiovisual_production"
+      ]
+    },
+    {
+      "id": "theater direction",
+      "label": "Dirección Teatral",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "theater_and_performance"
+      ]
+    },
+    {
+      "id": "painting",
+      "label": "Pintura",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "visual_arts"
+      ]
+    },
+    {
+      "id": "sculpture",
+      "label": "Escultura",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "visual_arts"
+      ]
+    },
+    {
+      "id": "photography",
+      "label": "Fotografía",
+      "sets": [
+        "arts_and_performance"
+      ],
+      "subsets": [
+        "photography"
+      ]
+    },
+    {
+      "id": "cinematography",
+      "label": "Cinematografía",
+      "sets": [
+        "arts_and_performance",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "photography",
+        "audiovisual_production"
+      ]
+    },
+    {
+      "id": "film direction",
+      "label": "Dirección de Cine",
+      "sets": [
+        "arts_and_performance",
+        "communication_and_media"
+      ],
+      "subsets": [
+        "theater_and_performance",
+        "audiovisual_production"
+      ]
+    },
+    {
+      "id": "default",
+      "label": "General",
+      "sets": [],
+      "subsets": []
+    },
+    {
+      "id": "sports performance analysis",
+      "label": "Análisis de Rendimiento Deportivo",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "coaching",
+      "label": "Coaching",
+      "sets": [
+        "sports_and_physical"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "event management",
+      "label": "Gestión de Eventos",
+      "sets": [
+        "sports_and_physical",
+        "business_and_management"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "sports administration",
+      "label": "Administración del Deporte",
+      "sets": [
+        "sports_and_physical",
+        "business_and_management"
+      ],
+      "subsets": []
+    }
+  ]
+}

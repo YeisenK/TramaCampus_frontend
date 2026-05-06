@@ -1,0 +1,100 @@
+{
+  "items": [
+    {
+      "id": "t1",
+      "code": "HKT-12",
+      "title": "Diseñar onboarding de la app",
+      "status": "in_progress",
+      "assignee": {
+        "id": "550e8400-e29b-41d4-a716-446655440001",
+        "display_name": "Camila R.",
+        "avatar_url": null,
+        "hue": 340.0
+      },
+      "due": "2026-11-14",
+      "priority": "high",
+      "created_at": "2026-11-01T10:00:00Z",
+      "updated_at": "2026-11-10T14:30:00Z"
+    },
+    {
+      "id": "t2",
+      "code": "HKT-11",
+      "title": "Auth con Supabase",
+      "status": "done",
+      "assignee": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "display_name": "Javier C.",
+        "avatar_url": null,
+        "hue": 60.0
+      },
+      "due": "2026-11-09",
+      "priority": "med",
+      "created_at": "2026-11-01T10:00:00Z",
+      "updated_at": "2026-11-09T18:00:00Z"
+    },
+    {
+      "id": "t3",
+      "code": "HKT-13",
+      "title": "Pitch deck v2 — slides 6 a 10",
+      "status": "todo",
+      "assignee": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "display_name": "Sofía R.",
+        "avatar_url": "https://cdn.tramacampus.mx/avatars/550e8400.jpg",
+        "hue": 24.0
+      },
+      "due": "2026-11-15",
+      "priority": "high",
+      "created_at": "2026-11-02T09:00:00Z",
+      "updated_at": "2026-11-02T09:00:00Z"
+    },
+    {
+      "id": "t4",
+      "code": "HKT-14",
+      "title": "Demo del flujo de matching",
+      "status": "todo",
+      "assignee": {
+        "id": "550e8400-e29b-41d4-a716-446655440003",
+        "display_name": "Diego N.",
+        "avatar_url": null,
+        "hue": 200.0
+      },
+      "due": "2026-11-14",
+      "priority": "high",
+      "created_at": "2026-11-02T09:00:00Z",
+      "updated_at": "2026-11-02T09:00:00Z"
+    },
+    {
+      "id": "t5",
+      "code": "HKT-10",
+      "title": "Setup CI/CD",
+      "status": "done",
+      "assignee": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "display_name": "Javier C.",
+        "avatar_url": null,
+        "hue": 60.0
+      },
+      "due": "2026-11-08",
+      "priority": "low",
+      "created_at": "2026-10-30T11:00:00Z",
+      "updated_at": "2026-11-08T16:45:00Z"
+    },
+    {
+      "id": "t6",
+      "code": "HKT-15",
+      "title": "Análisis de competencia",
+      "status": "todo",
+      "assignee": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "display_name": "Sofía R.",
+        "avatar_url": "https://cdn.tramacampus.mx/avatars/550e8400.jpg",
+        "hue": 24.0
+      },
+      "due": "2026-11-12",
+      "priority": "med",
+      "created_at": "2026-11-03T08:30:00Z",
+      "updated_at": "2026-11-03T08:30:00Z"
+    }
+  ]
+}

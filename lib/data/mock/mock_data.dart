@@ -1,10 +1,16 @@
 import '../models/affiliate_business.dart';
 import '../models/chat_preview.dart';
 import '../models/conversation_message.dart';
+import '../models/group.dart';
 import '../models/marketplace_listing.dart';
 import '../models/modality.dart';
 import '../models/notification_item.dart';
+import '../models/profile/preferences.dart';
+import '../models/profile/profile.dart';
+import '../models/profile/profile_attribute.dart';
+import '../models/profile/profile_base.dart';
 import '../models/student.dart';
+import '../models/task.dart';
 import '../models/university.dart';
 
 class MockData {
@@ -30,6 +36,36 @@ class MockData {
       'Senderismo',
     ],
     compatibilityScore: 100,
+  );
+
+  // Structured Profile representation of currentUser — backend-compatible.
+  static final currentProfile = Profile(
+    base: const ProfileBase(
+      displayName: 'Sofía Ramírez',
+      firstName: 'Sofía',
+      lastName: 'Ramírez',
+      bio: 'Estudio Ingeniería en Tecnologías de la Información, me apasionan los datos, la IA y el desarrollo de software.',
+      careerId: 'BITDB',
+      semester: 5,
+      universityId: '0001',
+      gender: 'F',
+      genderPreference: 'any',
+    ),
+    preferences: const Preferences(
+      modes: ['study', 'research', 'competition'],
+      uiModality: 'estudio',
+      goals: ['study partner', 'research collaborator'],
+      skills: ['python', 'data analysis', 'academic writing'],
+      connectivityState: 'active',
+    ),
+    attributes: const [
+      HobbyAttribute(hobbyId: 'hiking'),
+      HobbyAttribute(hobbyId: 'photography'),
+      PersonalityAttribute(traitId: 'curioso'),
+      PersonalityAttribute(traitId: 'analítico'),
+      MusicAttribute(genreId: 'folk'),
+      MusicAttribute(genreId: 'indie'),
+    ],
   );
 
   static const universities = [
@@ -464,6 +500,150 @@ class MockData {
       time: 'Lun',
       isRead: true,
       hue: 180,
+    ),
+  ];
+
+  static const List<Group> mockGroups = [
+    Group(
+      id: 'g1',
+      name: 'Hackathon Nacional · Equipo C',
+      tagline: 'Equipo cerrado · Ing. de Software · entrega 14 nov',
+      kind: GroupKind.project,
+      access: GroupAccess.invite,
+      verified: false,
+      featured: true,
+      hue: 60,
+      memberCount: 4,
+      capacity: 5,
+      activity: 'Activo · ahora',
+      nextAction: 'Sprint hoy 19:00 · Lab Cómputo',
+      leader: 'Javier Cortés',
+      description:
+          'Equipo formado para el Hackathon Nacional 2025. Buscamos un quinto miembro con perfil de UI/UX o frontend.',
+    ),
+    Group(
+      id: 'g2',
+      name: 'Filosofía de la mente',
+      tagline: 'Lectura y discusión · martes 18:00',
+      kind: GroupKind.study,
+      access: GroupAccess.open,
+      verified: false,
+      featured: true,
+      hue: 240,
+      memberCount: 14,
+      capacity: 20,
+      activity: 'Activo esta semana',
+      nextAction: 'Sesión martes 18:00 · Biblioteca p.3',
+      leader: 'Diego Navarro',
+      description:
+          'Grupo de lectura interdisciplinar. Este semestre: Hofstadter, Dennett y Chalmers.',
+    ),
+    Group(
+      id: 'g3',
+      name: 'Trama · Anuncios oficiales',
+      tagline: 'Comunicados de la administración del campus',
+      kind: GroupKind.official,
+      access: GroupAccess.open,
+      verified: true,
+      featured: false,
+      hue: 22,
+      memberCount: 2840,
+      activity: 'Oficial · solo lectura',
+      nextAction: 'Sin acción pendiente',
+      leader: 'Anáhuac Oaxaca',
+      description:
+          'Canal oficial. Solo administradores del campus pueden publicar.',
+    ),
+    Group(
+      id: 'g4',
+      name: 'Running Anáhuac',
+      tagline: 'Trail y carrera · 3 sesiones / semana',
+      kind: GroupKind.sport,
+      access: GroupAccess.open,
+      verified: false,
+      featured: false,
+      hue: 120,
+      memberCount: 32,
+      activity: 'Activo hoy',
+      nextAction: 'Quedada sábado 7:00 · Cerro del Fortín',
+      leader: 'Mateo Álvarez',
+      description:
+          'Para corredores de cualquier nivel. Coordinamos quedadas y entrenamos para el maratón de Oaxaca.',
+    ),
+    Group(
+      id: 'g5',
+      name: 'Emprendimiento · founders Oaxaca',
+      tagline: 'Club universitario · pitch nights mensuales',
+      kind: GroupKind.club,
+      access: GroupAccess.request,
+      verified: true,
+      featured: true,
+      hue: 200,
+      memberCount: 48,
+      activity: 'Activo hoy',
+      nextAction: 'Pitch night 28 nov',
+      leader: 'Comité estudiantil',
+      description:
+          'Club oficial reconocido por el campus. Conectamos founders estudiantiles con mentores y aceleradoras.',
+    ),
+  ];
+
+  static const List<String> myGroupIds = ['g1', 'g2', 'g4'];
+
+  static const List<Task> mockGroupTasks = [
+    Task(
+      id: 't1',
+      code: 'HKT-12',
+      title: 'Diseñar onboarding de la app',
+      status: TaskStatus.inProgress,
+      assigneeName: 'Camila R.',
+      due: 'Hoy',
+      priority: TaskPriority.high,
+    ),
+    Task(
+      id: 't2',
+      code: 'HKT-11',
+      title: 'Auth con Supabase',
+      status: TaskStatus.done,
+      assigneeName: 'Javier C.',
+      due: 'Ayer',
+      priority: TaskPriority.med,
+    ),
+    Task(
+      id: 't3',
+      code: 'HKT-13',
+      title: 'Pitch deck v2 — slides 6 a 10',
+      status: TaskStatus.todo,
+      assigneeName: 'Sofía R.',
+      due: 'Mañana',
+      priority: TaskPriority.high,
+    ),
+    Task(
+      id: 't4',
+      code: 'HKT-14',
+      title: 'Demo del flujo de matching',
+      status: TaskStatus.todo,
+      assigneeName: 'Diego N.',
+      due: '14 nov',
+      priority: TaskPriority.high,
+    ),
+    Task(
+      id: 't5',
+      code: 'HKT-10',
+      title: 'Setup CI/CD',
+      status: TaskStatus.done,
+      assigneeName: 'Javier C.',
+      due: 'Hace 2 días',
+      priority: TaskPriority.low,
+    ),
+    Task(
+      id: 't6',
+      code: 'HKT-15',
+      title: 'Análisis de competencia',
+      status: TaskStatus.todo,
+      assigneeName: 'Sofía R.',
+      due: '12 nov',
+      priority: TaskPriority.med,
     ),
   ];
 }

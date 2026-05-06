@@ -1,0 +1,374 @@
+{
+  "catalog": "personality_trait",
+  "_source": "matching_service/src/shared/catalogs/personality_trait_catalog.json",
+  "version": "2026-05-04",
+  "sets": [
+    {
+      "id": "intellectual",
+      "label": "Intelectual",
+      "subsets": [
+        {
+          "id": "curiosity",
+          "label": "Curiosity"
+        },
+        {
+          "id": "analytical",
+          "label": "Analytical"
+        },
+        {
+          "id": "reflective",
+          "label": "Reflective"
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "label": "Social",
+      "subsets": [
+        {
+          "id": "empathetic",
+          "label": "Empathetic"
+        },
+        {
+          "id": "collaborative",
+          "label": "Collaborative"
+        },
+        {
+          "id": "outgoing",
+          "label": "Outgoing"
+        }
+      ]
+    },
+    {
+      "id": "leadership",
+      "label": "Liderazgo",
+      "subsets": [
+        {
+          "id": "ambitious",
+          "label": "Ambitious"
+        },
+        {
+          "id": "decisive",
+          "label": "Decisive"
+        },
+        {
+          "id": "visionary",
+          "label": "Visionary"
+        }
+      ]
+    },
+    {
+      "id": "creative",
+      "label": "Creativo",
+      "subsets": [
+        {
+          "id": "innovative",
+          "label": "Innovative"
+        },
+        {
+          "id": "artistic",
+          "label": "Artistic"
+        },
+        {
+          "id": "imaginative",
+          "label": "Imaginative"
+        }
+      ]
+    },
+    {
+      "id": "organized",
+      "label": "Organizado",
+      "subsets": [
+        {
+          "id": "methodical",
+          "label": "Methodical"
+        },
+        {
+          "id": "perfectionist",
+          "label": "Perfectionist"
+        },
+        {
+          "id": "disciplined",
+          "label": "Disciplined"
+        }
+      ]
+    },
+    {
+      "id": "resilient",
+      "label": "Resiliente",
+      "subsets": [
+        {
+          "id": "adaptable",
+          "label": "Adaptable"
+        },
+        {
+          "id": "persistent",
+          "label": "Persistent"
+        },
+        {
+          "id": "calm",
+          "label": "Calm"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "curioso",
+      "label": "curioso",
+      "sets": [
+        "intellectual"
+      ],
+      "subsets": [
+        "curiosity"
+      ]
+    },
+    {
+      "id": "analítico",
+      "label": "analítico",
+      "sets": [
+        "intellectual"
+      ],
+      "subsets": [
+        "analytical"
+      ]
+    },
+    {
+      "id": "reflexivo",
+      "label": "reflexivo",
+      "sets": [
+        "intellectual"
+      ],
+      "subsets": [
+        "reflective"
+      ]
+    },
+    {
+      "id": "empático",
+      "label": "empático",
+      "sets": [
+        "social"
+      ],
+      "subsets": [
+        "empathetic"
+      ]
+    },
+    {
+      "id": "colaborador",
+      "label": "colaborador",
+      "sets": [
+        "social"
+      ],
+      "subsets": [
+        "collaborative"
+      ]
+    },
+    {
+      "id": "sociable",
+      "label": "sociable",
+      "sets": [
+        "social"
+      ],
+      "subsets": [
+        "outgoing"
+      ]
+    },
+    {
+      "id": "ambicioso",
+      "label": "ambicioso",
+      "sets": [
+        "leadership"
+      ],
+      "subsets": [
+        "ambitious"
+      ]
+    },
+    {
+      "id": "decisivo",
+      "label": "decisivo",
+      "sets": [
+        "leadership"
+      ],
+      "subsets": [
+        "decisive"
+      ]
+    },
+    {
+      "id": "visionario",
+      "label": "visionario",
+      "sets": [
+        "leadership",
+        "creative"
+      ],
+      "subsets": [
+        "visionary"
+      ]
+    },
+    {
+      "id": "innovador",
+      "label": "innovador",
+      "sets": [
+        "creative"
+      ],
+      "subsets": [
+        "innovative"
+      ]
+    },
+    {
+      "id": "artístico",
+      "label": "artístico",
+      "sets": [
+        "creative"
+      ],
+      "subsets": [
+        "artistic"
+      ]
+    },
+    {
+      "id": "imaginativo",
+      "label": "imaginativo",
+      "sets": [
+        "creative"
+      ],
+      "subsets": [
+        "imaginative"
+      ]
+    },
+    {
+      "id": "metódico",
+      "label": "metódico",
+      "sets": [
+        "organized"
+      ],
+      "subsets": [
+        "methodical"
+      ]
+    },
+    {
+      "id": "perfeccionista",
+      "label": "perfeccionista",
+      "sets": [
+        "organized"
+      ],
+      "subsets": [
+        "perfectionist"
+      ]
+    },
+    {
+      "id": "disciplinado",
+      "label": "disciplinado",
+      "sets": [
+        "organized"
+      ],
+      "subsets": [
+        "disciplined"
+      ]
+    },
+    {
+      "id": "adaptable",
+      "label": "adaptable",
+      "sets": [
+        "resilient"
+      ],
+      "subsets": [
+        "adaptable"
+      ]
+    },
+    {
+      "id": "persistente",
+      "label": "persistente",
+      "sets": [
+        "resilient"
+      ],
+      "subsets": [
+        "persistent"
+      ]
+    },
+    {
+      "id": "tranquilo",
+      "label": "tranquilo",
+      "sets": [
+        "resilient"
+      ],
+      "subsets": [
+        "calm"
+      ]
+    },
+    {
+      "id": "líder",
+      "label": "líder",
+      "sets": [
+        "leadership"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "creativo",
+      "label": "creativo",
+      "sets": [
+        "creative"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "entusiasta",
+      "label": "entusiasta",
+      "sets": [
+        "social"
+      ],
+      "subsets": [
+        "outgoing"
+      ]
+    },
+    {
+      "id": "resiliente",
+      "label": "resiliente",
+      "sets": [
+        "resilient"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "organizado",
+      "label": "organizado",
+      "sets": [
+        "organized"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "introvertido",
+      "label": "introvertido",
+      "sets": [
+        "intellectual"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "extrovertido",
+      "label": "extrovertido",
+      "sets": [
+        "social"
+      ],
+      "subsets": [
+        "outgoing"
+      ]
+    },
+    {
+      "id": "competitivo",
+      "label": "competitivo",
+      "sets": [
+        "leadership"
+      ],
+      "subsets": []
+    },
+    {
+      "id": "espontáneo",
+      "label": "espontáneo",
+      "sets": [
+        "social"
+      ],
+      "subsets": []
+    }
+  ]
+}

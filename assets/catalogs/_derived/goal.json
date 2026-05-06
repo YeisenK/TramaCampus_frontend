@@ -1,0 +1,253 @@
+{
+  "catalog": "goal",
+  "_source": "matching_service/src/shared/catalogs/goal_catalog.json",
+  "version": "2026-05-04",
+  "sets": [
+    {
+      "id": "social_and_campus_life",
+      "label": "Social y Vida Universitaria",
+      "subsets": [
+        {
+          "id": "campus_connections",
+          "label": "Conexiones en campus"
+        },
+        {
+          "id": "practical_social",
+          "label": "Social práctico"
+        },
+        {
+          "id": "community_service",
+          "label": "Servicio comunitario"
+        }
+      ]
+    },
+    {
+      "id": "sports_and_fitness",
+      "label": "Deportes y Bienestar",
+      "subsets": [
+        {
+          "id": "fitness_training",
+          "label": "Entrenamiento físico"
+        },
+        {
+          "id": "recreational_sports",
+          "label": "Deportes recreativos"
+        }
+      ]
+    },
+    {
+      "id": "creative_and_competitive",
+      "label": "Creativo y Competitivo",
+      "subsets": [
+        {
+          "id": "competitive_activities",
+          "label": "Actividades competitivas"
+        },
+        {
+          "id": "creative_projects",
+          "label": "Proyectos creativos"
+        }
+      ]
+    },
+    {
+      "id": "professional_and_entrepreneurial",
+      "label": "Profesional y Emprendimiento",
+      "subsets": [
+        {
+          "id": "entrepreneurship",
+          "label": "Emprendimiento"
+        },
+        {
+          "id": "career_networking",
+          "label": "Red profesional"
+        }
+      ]
+    },
+    {
+      "id": "academic_and_mentorship",
+      "label": "Académico y Mentoría",
+      "subsets": [
+        {
+          "id": "academic_study",
+          "label": "Estudio académico"
+        },
+        {
+          "id": "mentoring_relationship",
+          "label": "Mentoría"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "campus friends",
+      "label": "Amigos en el campus",
+      "sets": [
+        "social_and_campus_life"
+      ],
+      "subsets": [
+        "campus_connections"
+      ]
+    },
+    {
+      "id": "open connections",
+      "label": "Conexiones abiertas",
+      "sets": [
+        "social_and_campus_life"
+      ],
+      "subsets": [
+        "campus_connections"
+      ]
+    },
+    {
+      "id": "language practice partner",
+      "label": "Compañero de idiomas",
+      "sets": [
+        "social_and_campus_life"
+      ],
+      "subsets": [
+        "practical_social"
+      ]
+    },
+    {
+      "id": "housing & commute partner",
+      "label": "Compañero de vivienda/transporte",
+      "sets": [
+        "social_and_campus_life"
+      ],
+      "subsets": [
+        "practical_social"
+      ]
+    },
+    {
+      "id": "volunteer partner",
+      "label": "Compañero de voluntariado",
+      "sets": [
+        "social_and_campus_life"
+      ],
+      "subsets": [
+        "community_service"
+      ]
+    },
+    {
+      "id": "workout partner",
+      "label": "Compañero de entrenamiento",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "fitness_training"
+      ]
+    },
+    {
+      "id": "sports activity partner",
+      "label": "Compañero deportivo",
+      "sets": [
+        "sports_and_fitness"
+      ],
+      "subsets": [
+        "recreational_sports"
+      ]
+    },
+    {
+      "id": "gaming & esports partner",
+      "label": "Compañero de gaming/esports",
+      "sets": [
+        "creative_and_competitive"
+      ],
+      "subsets": [
+        "competitive_activities"
+      ]
+    },
+    {
+      "id": "competition team",
+      "label": "Equipo de competencias",
+      "sets": [
+        "creative_and_competitive"
+      ],
+      "subsets": [
+        "competitive_activities"
+      ]
+    },
+    {
+      "id": "creative collaborator",
+      "label": "Colaborador creativo",
+      "sets": [
+        "creative_and_competitive"
+      ],
+      "subsets": [
+        "creative_projects"
+      ]
+    },
+    {
+      "id": "startup co-founder",
+      "label": "Cofundador de startup",
+      "sets": [
+        "professional_and_entrepreneurial"
+      ],
+      "subsets": [
+        "entrepreneurship"
+      ]
+    },
+    {
+      "id": "professional networking",
+      "label": "Networking profesional",
+      "sets": [
+        "professional_and_entrepreneurial"
+      ],
+      "subsets": [
+        "career_networking"
+      ]
+    },
+    {
+      "id": "study partner",
+      "label": "Compañero de estudio",
+      "sets": [
+        "academic_and_mentorship"
+      ],
+      "subsets": [
+        "academic_study"
+      ]
+    },
+    {
+      "id": "thesis partner",
+      "label": "Compañero de tesis",
+      "sets": [
+        "academic_and_mentorship"
+      ],
+      "subsets": [
+        "academic_study"
+      ]
+    },
+    {
+      "id": "research collaborator",
+      "label": "Colaborador de investigación",
+      "sets": [
+        "academic_and_mentorship"
+      ],
+      "subsets": [
+        "academic_study"
+      ]
+    },
+    {
+      "id": "seeking academic mentor",
+      "label": "Busco mentor académico",
+      "sets": [
+        "academic_and_mentorship"
+      ],
+      "subsets": [
+        "mentoring_relationship"
+      ]
+    },
+    {
+      "id": "open to mentoring",
+      "label": "Disponible para mentoría",
+      "sets": [
+        "academic_and_mentorship"
+      ],
+      "subsets": [
+        "mentoring_relationship"
+      ]
+    }
+  ]
+}

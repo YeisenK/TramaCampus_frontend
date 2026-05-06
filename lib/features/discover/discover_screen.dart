@@ -49,9 +49,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               _modality = m;
               _filteredStudents = _filterStudents(m);
             }),
-            onStudentTap: (s) => Navigator.of(
-              context,
-            ).pushNamed(AppRouter.profileDetail, arguments: s),
+            onStudentTap: (s) =>
+                Navigator.of(context).pushNamed(AppRouter.profileDetail, arguments: s),
             onSaveToggle: (id) => setState(() {
               if (_saved.contains(id)) {
                 _saved.remove(id);
@@ -102,7 +101,6 @@ class _DiscoverShell extends StatelessWidget {
         SliverAppBar(
           pinned: true,
           floating: true,
-          snap: true,
           forceElevated: innerBoxIsScrolled,
           title: const TramaMark(size: 32),
           actions: [
@@ -112,9 +110,9 @@ class _DiscoverShell extends StatelessWidget {
             ),
           ],
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(52),
+            preferredSize: const Size.fromHeight(AppSpacing.space9),
             child: Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.space2),
+              padding: const EdgeInsets.only(bottom: AppSpacing.space3),
               child: ModalitySwitch(
                 selected: modality,
                 onChanged: onModalityChanged,

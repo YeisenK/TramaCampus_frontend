@@ -28,3 +28,5 @@ flutter:
     - assets/images/
     - assets/images/avatars/
     - assets/svg/
+    - assets/catalogs/_derived/
+    - assets/catalogs/_frontend/

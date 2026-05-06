@@ -1,0 +1,13 @@
+{
+  "catalog": "campus",
+  "_source": "matching_service/src/shared/catalogs/campus_catalog.json",
+  "version": "2026-05-04",
+  "items": [
+    {
+      "id": "0001",
+      "label": "Universidad Anáhuac Oaxaca",
+      "alias": "UAO",
+      "city": "Oaxaca"
+    }
+  ]
+}

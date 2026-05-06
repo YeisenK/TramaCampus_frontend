@@ -3,6 +3,7 @@ import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../core/widgets/network_texture.dart';
 import '../../core/widgets/t_button.dart';
 import '../../core/widgets/trama_mark.dart';
 
@@ -14,8 +15,30 @@ class WelcomeScreen extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     return Scaffold(
       body: Stack(
+        fit: StackFit.expand,
         children: [
-          Positioned.fill(child: _BackgroundPattern()),
+          // Network texture background
+          NetworkTexture(opacity: 0.04),
+          // Radial brand glow centered
+          Positioned.fill(
+            child: IgnorePointer(
+              child: Center(
+                child: Container(
+                  width: 400,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        AppColors.primary.withValues(alpha: 0.22),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -76,35 +99,6 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class _BackgroundPattern extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return CustomPaint(
-      painter: _DotPatternPainter(color: cs.onSurface.withValues(alpha: 0.04)),
-    );
-  }
-}
-
-class _DotPatternPainter extends CustomPainter {
-  _DotPatternPainter({required this.color});
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = color;
-    const spacing = 24.0;
-    for (double x = 0; x < size.width; x += spacing) {
-      for (double y = 0; y < size.height; y += spacing) {
-        canvas.drawCircle(Offset(x, y), 1.5, paint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_DotPatternPainter oldDelegate) => false;
 }
 
 class _ModalityRow extends StatelessWidget {

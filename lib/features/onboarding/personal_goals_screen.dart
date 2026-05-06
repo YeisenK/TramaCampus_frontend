@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../core/navigation/app_router.dart';
-import '../../core/theme/app_spacing.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../core/widgets/step_dots.dart';
-import '../../core/widgets/t_button.dart';
-import '../../core/widgets/t_chip.dart';
+import '../../core/widgets/error_state.dart';
+import '../../core/widgets/skeleton_loader.dart';
+import '../../core/widgets/selection/selection_experience.dart';
+import '../../data/models/modality_bucket.dart';
+import '../../data/repositories/onboarding_draft_repository.dart';
+import '_selection_step_scaffold.dart';
 
 class PersonalGoalsScreen extends StatefulWidget {
   const PersonalGoalsScreen({super.key});
@@ -14,182 +15,84 @@ class PersonalGoalsScreen extends StatefulWidget {
 }
 
 class _PersonalGoalsScreenState extends State<PersonalGoalsScreen> {
-  final Set<String> _selectedInterests = {};
-  final Set<String> _selectedGoals = {};
+  Set<String> _goals = {};
+  String? _campusId;
+  List<ModalityBucketId> _buckets = [];
+  bool _draftLoaded = false;
+  Object? _draftError;
 
-  static const _interests = [
-    'Café',
-    'Música',
-    'Deportes',
-    'Lectura',
-    'Cine',
-    'Viajes',
-    'Fotografía',
-    'Arte',
-    'Gaming',
-    'Tecnología',
-    'Meditación',
-    'Cocina',
-    'Senderismo',
-    'Teatro',
-    'Anime',
-    'Podcasts',
-    'Yoga',
-    'Idiomas',
-  ];
-
-  static const _goals = [
-    'Mejorar mis calificaciones',
-    'Ampliar mi red de contactos',
-    'Encontrar un equipo para proyectos',
-    'Hacer nuevos amigos',
-    'Practicar idiomas',
-    'Participar en hackathons',
-    'Encontrar pareja',
-    'Explorar la ciudad',
-  ];
+  static const _min = 1;
+  static const _max = 15;
 
   @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _Header(),
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(AppSpacing.space5),
-                children: [
-                  Text('Intereses', style: AppTextStyles.titleMd(cs.onSurface)),
-                  const SizedBox(height: AppSpacing.space1),
-                  Text(
-                    'Elige los que más te representan',
-                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
-                  ),
-                  const SizedBox(height: AppSpacing.space3),
-                  Wrap(
-                    spacing: AppSpacing.space2,
-                    runSpacing: AppSpacing.space2,
-                    children: _interests
-                        .map(
-                          (i) => TChip(
-                            label: i,
-                            selected: _selectedInterests.contains(i),
-                            onTap: () => setState(() {
-                              if (_selectedInterests.contains(i)) {
-                                _selectedInterests.remove(i);
-                              } else {
-                                _selectedInterests.add(i);
-                              }
-                            }),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: AppSpacing.space6),
-                  Text(
-                    'Objetivos en Trama',
-                    style: AppTextStyles.titleMd(cs.onSurface),
-                  ),
-                  const SizedBox(height: AppSpacing.space1),
-                  Text(
-                    '¿Qué esperas encontrar?',
-                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
-                  ),
-                  const SizedBox(height: AppSpacing.space3),
-                  Wrap(
-                    spacing: AppSpacing.space2,
-                    runSpacing: AppSpacing.space2,
-                    children: _goals
-                        .map(
-                          (g) => TChip(
-                            label: g,
-                            selected: _selectedGoals.contains(g),
-                            onTap: () => setState(() {
-                              if (_selectedGoals.contains(g)) {
-                                _selectedGoals.remove(g);
-                              } else {
-                                _selectedGoals.add(g);
-                              }
-                            }),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: AppSpacing.space6),
-                  Text(
-                    'Bio (opcional)',
-                    style: AppTextStyles.titleMd(cs.onSurface),
-                  ),
-                  const SizedBox(height: AppSpacing.space3),
-                  TextField(
-                    maxLines: 3,
-                    decoration: const InputDecoration(
-                      hintText: 'Cuéntanos algo sobre ti...',
-                      alignLabelWithHint: true,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(AppSpacing.space5),
-              child: TButton(
-                label: 'Continuar',
-                onPressed: () =>
-                    Navigator.of(context).pushNamed(AppRouter.profileComplete),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  void initState() {
+    super.initState();
+    _loadDraft();
   }
-}
 
-class _Header extends StatelessWidget {
+  Future<void> _loadDraft() async {
+    try {
+      final draft = await OnboardingDraftRepository.instance.load();
+      if (!mounted) return;
+      setState(() {
+        _goals = (draft.goals ?? []).toSet();
+        _campusId = draft.universityId;
+        _buckets = _resolveBuckets(draft.uiModality);
+        _draftLoaded = true;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _draftError = e);
+    }
+  }
+
+  List<ModalityBucketId> _resolveBuckets(String? uiModality) {
+    if (uiModality == null) return [];
+    return ModalityBucketId.values
+        .where((b) => uiModality.contains(b.name))
+        .toList();
+  }
+
+  Future<void> _continue() async {
+    final draft = await OnboardingDraftRepository.instance.load();
+    draft
+      ..goals = _goals.toList()
+      ..lastCompletedStep = 'goals';
+    await OnboardingDraftRepository.instance.save(draft);
+    if (!mounted) return;
+    Navigator.of(context).pushNamed(AppRouter.profileComplete);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return Container(
-      width: double.infinity,
-      color: cs.surfaceDim,
-      padding: const EdgeInsets.fromLTRB(
-        AppSpacing.space5,
-        AppSpacing.space6,
-        AppSpacing.space5,
-        AppSpacing.space5,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.of(context).maybePop(),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 20,
-                  color: cs.onSurface,
-                ),
-              ),
-              const Spacer(),
-              const StepDots(totalSteps: 6, currentStep: 4),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.space5),
-          Text(
-            'Intereses y metas',
-            style: AppTextStyles.headlineSm(cs.onSurface),
-          ),
-          const SizedBox(height: AppSpacing.space2),
-          Text(
-            'Personaliza tu experiencia en Trama',
-            style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
-          ),
-        ],
+    if (_draftError != null) {
+      return Scaffold(
+        body: ErrorState(
+          message: 'Error cargando perfil.',
+          onRetry: () {
+            setState(() => _draftError = null);
+            _loadDraft();
+          },
+        ),
+      );
+    }
+    if (!_draftLoaded) return const Scaffold(body: SkeletonLoader());
+
+    return SelectionStepScaffold(
+      step: 5,
+      title: 'Objetivos en Trama',
+      subtitle: '¿Qué esperas encontrar?',
+      canContinue: _goals.length >= _min,
+      onContinue: _continue,
+      selection: SelectionExperience(
+        catalogName: 'goal',
+        variant: SelectionVariant.chipCloud,
+        initialSelected: _goals,
+        onChanged: (s) => setState(() => _goals = s),
+        campusId: _campusId,
+        activeBuckets: _buckets,
+        min: _min,
+        max: _max,
       ),
     );
   }

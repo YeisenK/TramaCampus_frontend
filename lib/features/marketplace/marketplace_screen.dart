@@ -1,16 +1,21 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/skeleton_loader.dart';
-import '../../core/widgets/t_app_bar.dart';
 import '../../core/widgets/t_chip.dart';
 import '../../data/models/affiliate_business.dart';
 import '../../data/models/marketplace_listing.dart';
 import '../../data/repositories/marketplace_repository.dart';
-import 'widgets/affiliate_business_card.dart';
-import 'widgets/listing_card.dart';
+import 'publish_sheet.dart';
+import 'widgets/business_card.dart';
+import 'widgets/featured_strip.dart';
+import 'widgets/listing_card_editorial.dart';
+import 'widgets/listing_card_grid.dart';
+import 'widgets/listing_card_list.dart';
+
+enum _ListingVariant { editorial, list, grid }
 
 class MarketplaceScreen extends StatefulWidget {
   const MarketplaceScreen({super.key, this.embedded = false});
@@ -23,6 +28,7 @@ class MarketplaceScreen extends StatefulWidget {
 
 class _MarketplaceScreenState extends State<MarketplaceScreen> {
   ListingCategory? _selectedCategory;
+  _ListingVariant _variant = _ListingVariant.editorial;
   bool _isLoading = true;
   List<AffiliateBusiness> _businesses = [];
   List<MarketplaceListing> _listings = [];
@@ -45,13 +51,11 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
   @override
   void initState() {
     super.initState();
-    _load();
+    _loadData();
   }
 
-  Future<void> _load() async {
-    setState(() => _isLoading = true);
-    final businesses = await MarketplaceRepository.instance
-        .getAffiliateBusinesses();
+  Future<void> _loadData() async {
+    final businesses = await MarketplaceRepository.instance.getAffiliateBusinesses();
     final listings = await MarketplaceRepository.instance.getListings(
       category: _selectedCategory,
     );
@@ -63,33 +67,32 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
     });
   }
 
+  Future<void> _load() async {
+    setState(() => _isLoading = true);
+    await _loadData();
+  }
+
   Future<void> _onCategoryChanged(int index) async {
     setState(() => _selectedCategory = _categories[index]);
     await _load();
   }
 
-  void _onVenderTap() {
+  void _onPublishTap() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.lg)),
       ),
-      builder: (sheetCtx) => _SellOptionsSheet(
-        onCreateListing: () {
-          Navigator.pop(sheetCtx);
-          Navigator.of(context).pushNamed(AppRouter.createListing);
-        },
-        onMyListings: () {
-          Navigator.pop(sheetCtx);
-          _showMyListings();
-        },
-      ),
+      builder: (_) => PublishSheet(onPublished: _load),
     );
   }
 
   void _showMyListings() {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.lg)),
       ),
@@ -100,20 +103,21 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TAppBar(
-        title: 'Marketplace',
-        showBack: false,
-        actions: [
-          IconButton(icon: const Icon(Icons.search_outlined), onPressed: () {}),
-        ],
-      ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: AppSpacing.space3),
+          _EditorialHeader(
+            onSearchTap: () {},
+            onPublishTap: _onPublishTap,
+          ),
           _CategoryFilter(
             selectedIndex: _categories.indexOf(_selectedCategory),
             labels: _categoryLabels,
             onChanged: _onCategoryChanged,
+          ),
+          _VariantSwitcher(
+            selected: _variant,
+            onChanged: (v) => setState(() => _variant = v),
           ),
           const SizedBox(height: AppSpacing.space2),
           Expanded(
@@ -121,21 +125,203 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
               isLoading: _isLoading,
               businesses: _businesses,
               listings: _listings,
+              variant: _variant,
               onRefresh: _load,
+              onShowMyListings: _showMyListings,
             ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _onVenderTap,
-        icon: const Icon(Icons.add),
-        label: const Text('Vender'),
+      floatingActionButton: _PublishFab(onTap: _onPublishTap),
+    );
+  }
+}
+
+// ── Editorial header ──────────────────────────────────────────────────────────
+
+class _EditorialHeader extends StatelessWidget {
+  const _EditorialHeader({
+    required this.onSearchTap,
+    required this.onPublishTap,
+  });
+  final VoidCallback onSearchTap;
+  final VoidCallback onPublishTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.space5,
+          AppSpacing.space4,
+          AppSpacing.space4,
+          AppSpacing.space3,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'MARKET',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: cs.primary,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    'Marketplace',
+                    style: TextStyle(
+                      fontFamily: 'Manrope',
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
+                      color: cs.onSurface,
+                      letterSpacing: -0.025 * 30,
+                      height: 1.1,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            _PillIconButton(
+              icon: Icons.search_outlined,
+              onTap: onSearchTap,
+            ),
+            const SizedBox(width: AppSpacing.space2),
+            _PillIconButton(
+              icon: Icons.add,
+              onTap: onPublishTap,
+              filled: true,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-// ── Category filter ──────────────────────────────────────────────────────────
+class _PillIconButton extends StatelessWidget {
+  const _PillIconButton({
+    required this.icon,
+    required this.onTap,
+    this.filled = false,
+  });
+  final IconData icon;
+  final VoidCallback onTap;
+  final bool filled;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            width: 38,
+            height: 38,
+            decoration: BoxDecoration(
+              gradient: filled ? AppColors.ctaGradient() : null,
+              color: filled ? null : glassBg,
+              shape: BoxShape.circle,
+              border: filled
+                  ? null
+                  : Border.all(
+                      color: cs.outlineVariant.withValues(alpha: 0.4),
+                    ),
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              icon,
+              size: 20,
+              color: filled ? Colors.white : cs.onSurface,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Variant switcher ──────────────────────────────────────────────────────────
+
+class _VariantSwitcher extends StatelessWidget {
+  const _VariantSwitcher({required this.selected, required this.onChanged});
+  final _ListingVariant selected;
+  final ValueChanged<_ListingVariant> onChanged;
+
+  static const _variants = [
+    (_ListingVariant.editorial, Icons.view_agenda_outlined, 'Editorial'),
+    (_ListingVariant.list, Icons.list_outlined, 'Lista'),
+    (_ListingVariant.grid, Icons.grid_view_outlined, 'Grid'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.space5,
+        vertical: AppSpacing.space2,
+      ),
+      child: Row(
+        children: _variants.map((entry) {
+          final (variant, icon, label) = entry;
+          final isActive = selected == variant;
+          return GestureDetector(
+            onTap: () => onChanged(variant),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              margin: const EdgeInsets.only(right: AppSpacing.space2),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.space3,
+                vertical: 6,
+              ),
+              decoration: BoxDecoration(
+                color: isActive ? cs.onSurface : cs.surfaceContainerHigh,
+                borderRadius: BorderRadius.circular(AppRadius.pill),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    icon,
+                    size: 14,
+                    color: isActive ? cs.surface : cs.onSurfaceVariant,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: isActive ? cs.surface : cs.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+// ── Category filter ───────────────────────────────────────────────────────────
 
 class _CategoryFilter extends StatelessWidget {
   const _CategoryFilter({
@@ -154,7 +340,7 @@ class _CategoryFilter extends StatelessWidget {
       height: 36,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space4),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space5),
         itemCount: labels.length,
         separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.space2),
         itemBuilder: (context, i) => TChip(
@@ -167,74 +353,179 @@ class _CategoryFilter extends StatelessWidget {
   }
 }
 
-// ── Explore view ─────────────────────────────────────────────────────────────
+// ── Explore view ──────────────────────────────────────────────────────────────
 
 class _ExploreView extends StatelessWidget {
   const _ExploreView({
     required this.isLoading,
     required this.businesses,
     required this.listings,
+    required this.variant,
     required this.onRefresh,
+    required this.onShowMyListings,
   });
 
   final bool isLoading;
   final List<AffiliateBusiness> businesses;
   final List<MarketplaceListing> listings;
+  final _ListingVariant variant;
   final Future<void> Function() onRefresh;
+  final VoidCallback onShowMyListings;
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     if (isLoading) return const _MarketplaceSkeleton();
 
-    final boosted = listings.where((l) => l.isBoosted).toList();
+    final featured = listings.where((l) => l.isBoosted).toList();
     final rest = listings.where((l) => !l.isBoosted).toList();
-    final sorted = [...boosted, ...rest];
 
     return RefreshIndicator(
       onRefresh: onRefresh,
       child: ListView(
         padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space4,
-          AppSpacing.space4,
-          AppSpacing.space4,
-          100,
+          AppSpacing.space5,
+          AppSpacing.space3,
+          AppSpacing.space5,
+          120,
         ),
         children: [
-          if (businesses.isNotEmpty) ...[
-            Text(
-              'Empresas del campus',
-              style: AppTextStyles.headlineSm(cs.onSurface),
+          if (featured.isNotEmpty) ...[
+            FeaturedStrip(
+              listing: featured.first,
+              onTap: () {},
             ),
+            const SizedBox(height: AppSpacing.space5),
+          ],
+          if (businesses.isNotEmpty) ...[
+            _SectionTitle(title: 'Empresas del campus'),
             const SizedBox(height: AppSpacing.space3),
             ...businesses.map(
               (b) => Padding(
                 padding: const EdgeInsets.only(bottom: AppSpacing.space3),
-                child: AffiliateBusinessCard(business: b),
+                child: BusinessCard(business: b),
               ),
             ),
-            const SizedBox(height: AppSpacing.space4),
-            Divider(color: cs.outlineVariant.withValues(alpha: 0.5)),
-            const SizedBox(height: AppSpacing.space4),
-          ],
-          if (sorted.isNotEmpty) ...[
-            Text('Estudiantes', style: AppTextStyles.headlineSm(cs.onSurface)),
             const SizedBox(height: AppSpacing.space3),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: AppSpacing.space3,
-                mainAxisSpacing: AppSpacing.space3,
-                mainAxisExtent: 268,
-              ),
-              itemCount: sorted.length,
-              itemBuilder: (context, i) => ListingCard(listing: sorted[i]),
-            ),
           ],
-          if (businesses.isEmpty && sorted.isEmpty) const _EmptyState(),
+          if (rest.isNotEmpty) ...[
+            _SectionTitle(title: 'Estudiantes'),
+            const SizedBox(height: AppSpacing.space3),
+            _ListingsBody(listings: rest, variant: variant),
+            const SizedBox(height: AppSpacing.space5),
+          ],
+          if (businesses.isNotEmpty || listings.isNotEmpty)
+            _StatsBar(
+              listingCount: listings.length,
+              businessCount: businesses.length,
+            ),
+          if (businesses.isEmpty && listings.isEmpty) const _EmptyState(),
         ],
+      ),
+    );
+  }
+}
+
+class _SectionTitle extends StatelessWidget {
+  const _SectionTitle({required this.title});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Text(title, style: AppTextStyles.headlineSm(cs.onSurface));
+  }
+}
+
+class _ListingsBody extends StatelessWidget {
+  const _ListingsBody({required this.listings, required this.variant});
+  final List<MarketplaceListing> listings;
+  final _ListingVariant variant;
+
+  @override
+  Widget build(BuildContext context) {
+    if (variant == _ListingVariant.list) {
+      return Column(
+        children: listings
+            .map((l) => ListingCardList(listing: l))
+            .toList(),
+      );
+    }
+    if (variant == _ListingVariant.grid) {
+      return GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: AppSpacing.space3,
+          mainAxisSpacing: AppSpacing.space3,
+          childAspectRatio: 1.0,
+        ),
+        itemCount: listings.length,
+        itemBuilder: (context, i) => ListingCardGrid(listing: listings[i]),
+      );
+    }
+    // Editorial (default)
+    return Column(
+      children: listings
+          .map(
+            (l) => Padding(
+              padding: const EdgeInsets.only(bottom: AppSpacing.space4),
+              child: ListingCardEditorial(listing: l),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
+// ── Stats bar ─────────────────────────────────────────────────────────────────
+
+class _StatsBar extends StatelessWidget {
+  const _StatsBar({required this.listingCount, required this.businessCount});
+  final int listingCount;
+  final int businessCount;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final ghost = isDark ? AppColors.darkOutlineGhost : AppColors.lightOutlineGhost;
+    final stats = [
+      ('Publicaciones', '$listingCount'),
+      ('Empresas', '$businessCount'),
+      ('Categorías', '4'),
+    ];
+    return Container(
+      decoration: BoxDecoration(
+        color: cs.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(AppRadius.md),
+      ),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            for (int i = 0; i < stats.length; i++) ...[
+              if (i > 0)
+                VerticalDivider(width: 1, thickness: 1, color: ghost),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.space4),
+                  child: Column(
+                    children: [
+                      Text(
+                        stats[i].$2,
+                        style: AppTextStyles.headlineSm(cs.primary),
+                      ),
+                      Text(
+                        stats[i].$1,
+                        style: AppTextStyles.labelSm(cs.onSurfaceVariant),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }
@@ -273,7 +564,7 @@ class _EmptyState extends StatelessWidget {
   }
 }
 
-// ── Skeleton ─────────────────────────────────────────────────────────────────
+// ── Skeleton ──────────────────────────────────────────────────────────────────
 
 class _MarketplaceSkeleton extends StatelessWidget {
   const _MarketplaceSkeleton();
@@ -282,133 +573,53 @@ class _MarketplaceSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.space4),
-      children: List.generate(
-        5,
-        (_) => const Padding(
-          padding: EdgeInsets.only(bottom: AppSpacing.space3),
-          child: SkeletonLoader(height: 80, borderRadius: AppRadius.lg),
+      children: [
+        SkeletonLoader(height: 200, borderRadius: AppRadius.lg),
+        const SizedBox(height: AppSpacing.space3),
+        ...List.generate(
+          4,
+          (_) => const Padding(
+            padding: EdgeInsets.only(bottom: AppSpacing.space3),
+            child: SkeletonLoader(height: 80, borderRadius: AppRadius.md),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
 
-// ── Sell options bottom sheet ─────────────────────────────────────────────────
+// ── Publish FAB ───────────────────────────────────────────────────────────────
 
-class _SellOptionsSheet extends StatelessWidget {
-  const _SellOptionsSheet({
-    required this.onCreateListing,
-    required this.onMyListings,
-  });
-
-  final VoidCallback onCreateListing;
-  final VoidCallback onMyListings;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.space4,
-          AppSpacing.space3,
-          AppSpacing.space4,
-          AppSpacing.space4,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 36,
-              height: 4,
-              decoration: BoxDecoration(
-                color: cs.outlineVariant,
-                borderRadius: BorderRadius.circular(AppRadius.pill),
-              ),
-            ),
-            const SizedBox(height: AppSpacing.space4),
-            Text(
-              '¿Qué quieres hacer?',
-              style: AppTextStyles.headlineSm(cs.onSurface),
-            ),
-            const SizedBox(height: AppSpacing.space4),
-            _SheetOption(
-              icon: Icons.add_box_outlined,
-              iconColor: AppColors.primary,
-              title: 'Crear anuncio',
-              subtitle: 'Publica apuntes, servicios, artículos o freelance',
-              onTap: onCreateListing,
-            ),
-            const SizedBox(height: AppSpacing.space3),
-            _SheetOption(
-              icon: Icons.inventory_2_outlined,
-              iconColor: cs.onSurfaceVariant,
-              title: 'Mis publicaciones',
-              subtitle: 'Revisa y administra tus anuncios activos',
-              onTap: onMyListings,
-            ),
-            const SizedBox(height: AppSpacing.space2),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SheetOption extends StatelessWidget {
-  const _SheetOption({
-    required this.icon,
-    required this.iconColor,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final String subtitle;
+class _PublishFab extends StatelessWidget {
+  const _PublishFab({required this.onTap});
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(AppSpacing.space4),
+        height: 52,
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space5),
         decoration: BoxDecoration(
-          color: cs.surfaceContainerLowest,
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
+          gradient: AppColors.ctaGradient(),
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          boxShadow: AppColors.shadowFabLight,
         ),
-        child: Row(
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: iconColor.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(AppRadius.sm),
-              ),
-              alignment: Alignment.center,
-              child: Icon(icon, color: iconColor, size: 22),
-            ),
-            const SizedBox(width: AppSpacing.space3),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: AppTextStyles.titleMd(cs.onSurface)),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    style: AppTextStyles.bodySm(cs.onSurfaceVariant),
-                  ),
-                ],
+            Icon(Icons.add, color: Colors.white, size: 20),
+            SizedBox(width: AppSpacing.space2),
+            Text(
+              'Publicar',
+              style: TextStyle(
+                fontFamily: 'Manrope',
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
-            Icon(Icons.chevron_right, color: cs.onSurfaceVariant, size: 20),
           ],
         ),
       ),
@@ -416,7 +627,7 @@ class _SheetOption extends StatelessWidget {
   }
 }
 
-// ── My listings bottom sheet ──────────────────────────────────────────────────
+// ── My listings sheet ─────────────────────────────────────────────────────────
 
 class _MyListingsSheet extends StatelessWidget {
   const _MyListingsSheet();

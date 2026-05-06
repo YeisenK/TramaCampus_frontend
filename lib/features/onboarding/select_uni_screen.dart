@@ -178,7 +178,7 @@ class _OnboardingHeader extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              StepDots(totalSteps: 6, currentStep: step),
+              StepDots(totalSteps: 7, currentStep: step),
             ],
           ),
           const SizedBox(height: AppSpacing.space5),

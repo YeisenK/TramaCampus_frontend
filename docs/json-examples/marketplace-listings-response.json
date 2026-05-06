@@ -1,0 +1,114 @@
+{
+  "items": [
+    {
+      "id": "uuid-listing-1",
+      "title": "Apuntes Cálculo III — Parcial completo",
+      "description": "Incluye todos los temas del parcial 2, ejercicios resueltos paso a paso. PDF 48 páginas.",
+      "price": 120.0,
+      "category": "apuntes",
+      "type": "student_listing",
+      "is_boosted": true,
+      "is_affiliate": false,
+      "seller": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "display_name": "Diego Navarro",
+        "avatar_url": null,
+        "hue": 60.0
+      },
+      "image_urls": [],
+      "published_at": "2026-04-30T10:00:00Z"
+    },
+    {
+      "id": "uuid-listing-2",
+      "title": "Clases de inglés conversacional",
+      "description": "Nivel B2–C1. Sesiones 1h vía Zoom o presencial. Certificada TOEFL.",
+      "price": 250.0,
+      "category": "servicios",
+      "type": "student_listing",
+      "is_boosted": true,
+      "is_affiliate": false,
+      "seller": {
+        "id": "550e8400-e29b-41d4-a716-446655440004",
+        "display_name": "Camila Ruíz",
+        "avatar_url": null,
+        "hue": 340.0
+      },
+      "image_urls": [],
+      "published_at": "2026-05-01T09:00:00Z"
+    },
+    {
+      "id": "uuid-listing-3",
+      "title": "Guitarra acústica Yamaha F310",
+      "description": "Buen estado, incluye funda y capotraste. Ideal para principiantes.",
+      "price": 1800.0,
+      "category": "articulos",
+      "type": "student_listing",
+      "is_boosted": false,
+      "is_affiliate": false,
+      "seller": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "display_name": "Diego Navarro",
+        "avatar_url": null,
+        "hue": 60.0
+      },
+      "image_urls": [],
+      "published_at": "2026-05-02T14:00:00Z"
+    },
+    {
+      "id": "uuid-listing-4",
+      "title": "Diseño de logo e identidad visual",
+      "description": "Entrega en 5 días: logo vectorial, paleta de color, tipografías, tarjeta de presentación.",
+      "price": 900.0,
+      "category": "freelance",
+      "type": "student_listing",
+      "is_boosted": false,
+      "is_affiliate": false,
+      "seller": {
+        "id": "550e8400-e29b-41d4-a716-446655440005",
+        "display_name": "Javier Cortés",
+        "avatar_url": null,
+        "hue": 60.0
+      },
+      "image_urls": [],
+      "published_at": "2026-05-02T16:30:00Z"
+    },
+    {
+      "id": "uuid-listing-5",
+      "title": "Resumen ejecutivo Derecho Constitucional",
+      "description": "Esquemas y síntesis de los 9 títulos constitucionales. Incluye jurisprudencia relevante 2024.",
+      "price": 80.0,
+      "category": "apuntes",
+      "type": "student_listing",
+      "is_boosted": false,
+      "is_affiliate": false,
+      "seller": {
+        "id": "550e8400-e29b-41d4-a716-446655440006",
+        "display_name": "Lucía Herrera",
+        "avatar_url": null,
+        "hue": 160.0
+      },
+      "image_urls": [],
+      "published_at": "2026-05-03T11:00:00Z"
+    },
+    {
+      "id": "uuid-listing-6",
+      "title": "Tutoría Finanzas Corporativas",
+      "description": "Acompañamiento examen final. Valoración de empresas, CAPM, WACC.",
+      "price": 200.0,
+      "category": "servicios",
+      "type": "student_listing",
+      "is_boosted": false,
+      "is_affiliate": false,
+      "seller": {
+        "id": "550e8400-e29b-41d4-a716-446655440007",
+        "display_name": "Ana Gómez",
+        "avatar_url": null,
+        "hue": 20.0
+      },
+      "image_urls": [],
+      "published_at": "2026-05-03T15:00:00Z"
+    }
+  ],
+  "next_cursor": null,
+  "has_more": false
+}

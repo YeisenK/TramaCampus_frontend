@@ -3,6 +3,8 @@ import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../core/widgets/network_texture.dart';
+import '../../core/widgets/t_button.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/models/student.dart';
 
@@ -52,84 +54,92 @@ class _MatchSuccessScreenState extends State<MatchSuccessScreen>
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     final me = MockData.currentUser;
     final other = widget.student;
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: AppColors.ctaGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SafeArea(
-          child: FadeTransition(
-            opacity: _fade,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.space6,
-              ),
-              child: Column(
-                children: [
-                  const Spacer(flex: 2),
-                  ScaleTransition(
-                    scale: _scale,
-                    child: _AvatarPair(me: me, other: other),
-                  ),
-                  const SizedBox(height: AppSpacing.space6),
-                  AnimatedBuilder(
-                    animation: _slideUp,
-                    builder: (context, child) => Transform.translate(
-                      offset: Offset(0, _slideUp.value),
-                      child: child,
+      backgroundColor: cs.surfaceDim,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Network texture overlay
+          NetworkTexture(opacity: 0.06),
+          SafeArea(
+            child: FadeTransition(
+              opacity: _fade,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.space6,
+                ),
+                child: Column(
+                  children: [
+                    const Spacer(flex: 2),
+                    ScaleTransition(
+                      scale: _scale,
+                      child: _AvatarPair(me: me, other: other),
                     ),
-                    child: Column(
-                      children: [
-                        Text(
-                          '¡Conectaron!',
-                          style: AppTextStyles.headlineLg(Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: AppSpacing.space3),
-                        Text(
-                          'Tú y ${other.firstName} han hecho match.\n¡Empieza la conversación!',
-                          style: AppTextStyles.bodyLg(
-                            Colors.white.withValues(alpha: 0.85),
+                    const SizedBox(height: AppSpacing.space6),
+                    AnimatedBuilder(
+                      animation: _slideUp,
+                      builder: (context, child) => Transform.translate(
+                        offset: Offset(0, _slideUp.value),
+                        child: child,
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            '¡Conexión!',
+                            style: AppTextStyles.headlineLg(cs.onSurface),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Spacer(flex: 3),
-                  _WhiteButton(
-                    label: 'Iniciar conversación',
-                    onPressed: () =>
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          AppRouter.conversation,
-                          (r) => r.settings.name == AppRouter.discover,
-                          arguments: other,
-                        ),
-                  ),
-                  const SizedBox(height: AppSpacing.space3),
-                  TextButton(
-                    onPressed: () => Navigator.of(
-                      context,
-                    ).popUntil((r) => r.settings.name == AppRouter.discover),
-                    child: Text(
-                      'Seguir explorando',
-                      style: AppTextStyles.bodyLg(
-                        Colors.white.withValues(alpha: 0.8),
+                          const SizedBox(height: AppSpacing.space3),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 280),
+                            child: Text(
+                              'Tú y ${other.firstName} han hecho match.\n¡Empieza la conversación!',
+                              style: AppTextStyles.bodyLg(cs.onSurfaceVariant),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  const SizedBox(height: AppSpacing.space6),
-                ],
+                    const Spacer(flex: 3),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 280),
+                      child: TButton(
+                        label: 'Iniciar conversación',
+                        onPressed: () =>
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                          AppRouter.conversation,
+                          (r) =>
+                              r.settings.name == AppRouter.discover ||
+                              r.settings.name == AppRouter.connections,
+                          arguments: other,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.space3),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 280),
+                      child: TButton(
+                        label: 'Seguir explorando',
+                        variant: TButtonVariant.secondary,
+                        onPressed: () => Navigator.of(context).popUntil(
+                          (r) =>
+                              r.settings.name == AppRouter.discover ||
+                              r.settings.name == AppRouter.connections,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.space6),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -142,32 +152,37 @@ class _AvatarPair extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return SizedBox(
-      height: 140,
-      width: 260,
+      height: 112,
+      width: 172,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned(left: 0, child: _AvatarCircle(student: me, size: 110)),
-          Positioned(right: 0, child: _AvatarCircle(student: other, size: 110)),
+          Positioned(left: 0, child: _AvatarCircle(student: me, size: 96)),
+          Positioned(right: 0, child: _AvatarCircle(student: other, size: 96)),
           Container(
-            width: 48,
-            height: 48,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: cs.surfaceDim,
               shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.15),
-                  blurRadius: 12,
-                ),
-              ],
+              border: Border.all(color: cs.surfaceDim, width: 2),
             ),
             alignment: Alignment.center,
-            child: const Icon(
-              Icons.favorite,
-              color: Color(0xFFE85A12),
-              size: 24,
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                gradient: AppColors.ctaGradient(),
+                shape: BoxShape.circle,
+              ),
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.favorite,
+                color: AppColors.lightOnPrimary,
+                size: 16,
+              ),
             ),
           ),
         ],
@@ -183,6 +198,7 @@ class _AvatarCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Container(
       width: size,
       height: size,
@@ -199,38 +215,12 @@ class _AvatarCircle extends StatelessWidget {
             ).toColor(),
           ],
         ),
-        border: Border.all(color: Colors.white, width: 3),
+        border: Border.all(color: cs.surface, width: 4),
       ),
       alignment: Alignment.center,
       child: Text(
         student.initials,
         style: AppTextStyles.headlineSm(Colors.white),
-      ),
-    );
-  }
-}
-
-class _WhiteButton extends StatelessWidget {
-  const _WhiteButton({required this.label, required this.onPressed});
-  final String label;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 56,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          foregroundColor: AppColors.primary,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.md),
-          ),
-        ),
-        child: Text(label, style: AppTextStyles.titleMd(AppColors.primary)),
       ),
     );
   }

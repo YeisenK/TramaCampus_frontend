@@ -1,0 +1,40 @@
+{
+  "catalog": "language",
+  "_note": "Frontend-authored. BCP-47/ISO-639-1 common language list. Spanish excluded from backend matching scoring (universal on campus). Levels: basic, intermediate, advanced, native.",
+  "version": "2026-05-04",
+  "levels": [
+    { "id": "basic",        "label": "Básico" },
+    { "id": "intermediate", "label": "Intermedio" },
+    { "id": "advanced",     "label": "Avanzado" },
+    { "id": "native",       "label": "Nativo" }
+  ],
+  "items": [
+    { "id": "en", "label": "Inglés" },
+    { "id": "fr", "label": "Francés" },
+    { "id": "de", "label": "Alemán" },
+    { "id": "it", "label": "Italiano" },
+    { "id": "pt", "label": "Portugués" },
+    { "id": "zh", "label": "Chino (Mandarín)" },
+    { "id": "ja", "label": "Japonés" },
+    { "id": "ko", "label": "Coreano" },
+    { "id": "ar", "label": "Árabe" },
+    { "id": "ru", "label": "Ruso" },
+    { "id": "hi", "label": "Hindi" },
+    { "id": "nl", "label": "Neerlandés" },
+    { "id": "pl", "label": "Polaco" },
+    { "id": "sv", "label": "Sueco" },
+    { "id": "tr", "label": "Turco" },
+    { "id": "vi", "label": "Vietnamita" },
+    { "id": "th", "label": "Tailandés" },
+    { "id": "id", "label": "Indonesio" },
+    { "id": "uk", "label": "Ucraniano" },
+    { "id": "he", "label": "Hebreo" },
+    { "id": "fa", "label": "Persa" },
+    { "id": "cs", "label": "Checo" },
+    { "id": "hu", "label": "Húngaro" },
+    { "id": "ro", "label": "Rumano" },
+    { "id": "el", "label": "Griego" },
+    { "id": "ca", "label": "Catalán" },
+    { "id": "other", "label": "Otro" }
+  ]
+}

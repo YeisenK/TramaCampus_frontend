@@ -1,0 +1,718 @@
+{
+  "catalog": "sport",
+  "_source": "matching_service/src/shared/catalogs/sport_catalog.json",
+  "version": "2026-05-04",
+  "sets": [
+    {
+      "id": "team_sports",
+      "label": "Deportes de Equipo",
+      "subsets": [
+        {
+          "id": "field_team_sports",
+          "label": "Field Team Sports"
+        },
+        {
+          "id": "court_team_sports",
+          "label": "Court Team Sports"
+        },
+        {
+          "id": "bat_and_ball_sports",
+          "label": "Bat & Ball Sports"
+        }
+      ]
+    },
+    {
+      "id": "racquet_sports",
+      "label": "Deportes de Raqueta",
+      "subsets": [
+        {
+          "id": "court_racquet",
+          "label": "Court Racquet"
+        },
+        {
+          "id": "wall_racquet",
+          "label": "Wall Racquet"
+        }
+      ]
+    },
+    {
+      "id": "combat_sports",
+      "label": "Deportes de Combate",
+      "subsets": [
+        {
+          "id": "striking_combat",
+          "label": "Striking Combat"
+        },
+        {
+          "id": "grappling_combat",
+          "label": "Grappling Combat"
+        },
+        {
+          "id": "mixed_combat",
+          "label": "Mixed Combat"
+        }
+      ]
+    },
+    {
+      "id": "strength_training",
+      "label": "Entrenamiento de Fuerza",
+      "subsets": [
+        {
+          "id": "powerlifting_family",
+          "label": "Powerlifting Family"
+        },
+        {
+          "id": "bodybuilding_family",
+          "label": "Bodybuilding Family"
+        },
+        {
+          "id": "functional_strength",
+          "label": "Functional Strength"
+        }
+      ]
+    },
+    {
+      "id": "endurance_sports",
+      "label": "Deportes de Resistencia",
+      "subsets": [
+        {
+          "id": "running_family",
+          "label": "Running Family"
+        },
+        {
+          "id": "cycling_family",
+          "label": "Cycling Family"
+        },
+        {
+          "id": "swimming_family",
+          "label": "Swimming Family"
+        },
+        {
+          "id": "multi_discipline",
+          "label": "Multi-discipline"
+        }
+      ]
+    },
+    {
+      "id": "outdoor_and_nature",
+      "label": "Aire Libre y Naturaleza",
+      "subsets": [
+        {
+          "id": "walking_and_hiking",
+          "label": "Walking & Hiking"
+        },
+        {
+          "id": "climbing",
+          "label": "Climbing"
+        },
+        {
+          "id": "snow_sports",
+          "label": "Snow Sports"
+        },
+        {
+          "id": "water_sports",
+          "label": "Water Sports"
+        }
+      ]
+    },
+    {
+      "id": "mind_body",
+      "label": "Mente y Cuerpo",
+      "subsets": [
+        {
+          "id": "yoga_family",
+          "label": "Yoga Family"
+        },
+        {
+          "id": "pilates_family",
+          "label": "Pilates Family"
+        }
+      ]
+    },
+    {
+      "id": "aesthetic_sports",
+      "label": "Deportes Estéticos",
+      "subsets": [
+        {
+          "id": "dance_sports",
+          "label": "Dance Sports"
+        },
+        {
+          "id": "gymnastics_family",
+          "label": "Gymnastics Family"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "soccer",
+      "label": "Fútbol",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "field_team_sports"
+      ]
+    },
+    {
+      "id": "american football",
+      "label": "Fútbol Americano",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "field_team_sports"
+      ]
+    },
+    {
+      "id": "rugby",
+      "label": "Rugby",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "field_team_sports"
+      ]
+    },
+    {
+      "id": "field hockey",
+      "label": "Hockey sobre Hierba",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "field_team_sports"
+      ]
+    },
+    {
+      "id": "basketball",
+      "label": "Basquetbol",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "court_team_sports"
+      ]
+    },
+    {
+      "id": "volleyball",
+      "label": "Voleibol",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "court_team_sports"
+      ]
+    },
+    {
+      "id": "handball",
+      "label": "Balonmano",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "court_team_sports"
+      ]
+    },
+    {
+      "id": "baseball",
+      "label": "Béisbol",
+      "sets": [
+        "team_sports"
+      ],
+      "subsets": [
+        "bat_and_ball_sports"
+      ]
+    },
+    {
+      "id": "tennis",
+      "label": "Tenis",
+      "sets": [
+        "racquet_sports"
+      ],
+      "subsets": [
+        "court_racquet"
+      ]
+    },
+    {
+      "id": "padel",
+      "label": "Pádel",
+      "sets": [
+        "racquet_sports"
+      ],
+      "subsets": [
+        "court_racquet"
+      ]
+    },
+    {
+      "id": "badminton",
+      "label": "Bádminton",
+      "sets": [
+        "racquet_sports"
+      ],
+      "subsets": [
+        "court_racquet"
+      ]
+    },
+    {
+      "id": "table tennis",
+      "label": "Tenis de Mesa",
+      "sets": [
+        "racquet_sports"
+      ],
+      "subsets": [
+        "court_racquet"
+      ]
+    },
+    {
+      "id": "squash",
+      "label": "Squash",
+      "sets": [
+        "racquet_sports"
+      ],
+      "subsets": [
+        "wall_racquet"
+      ]
+    },
+    {
+      "id": "boxing",
+      "label": "Boxeo",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "striking_combat"
+      ]
+    },
+    {
+      "id": "muay thai",
+      "label": "Muay Thai",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "striking_combat"
+      ]
+    },
+    {
+      "id": "karate",
+      "label": "Kárate",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "striking_combat"
+      ]
+    },
+    {
+      "id": "taekwondo",
+      "label": "Taekwondo",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "striking_combat"
+      ]
+    },
+    {
+      "id": "kickboxing",
+      "label": "Kickboxing",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "striking_combat"
+      ]
+    },
+    {
+      "id": "brazilian jiu-jitsu",
+      "label": "Jiu-Jitsu Brasileño",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "grappling_combat"
+      ]
+    },
+    {
+      "id": "judo",
+      "label": "Judo",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "grappling_combat"
+      ]
+    },
+    {
+      "id": "wrestling",
+      "label": "Lucha",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "grappling_combat"
+      ]
+    },
+    {
+      "id": "mma",
+      "label": "MMA",
+      "sets": [
+        "combat_sports"
+      ],
+      "subsets": [
+        "mixed_combat"
+      ]
+    },
+    {
+      "id": "powerlifting",
+      "label": "Powerlifting",
+      "sets": [
+        "strength_training"
+      ],
+      "subsets": [
+        "powerlifting_family"
+      ]
+    },
+    {
+      "id": "weightlifting",
+      "label": "Levantamiento de Pesas",
+      "sets": [
+        "strength_training"
+      ],
+      "subsets": [
+        "powerlifting_family"
+      ]
+    },
+    {
+      "id": "bodybuilding",
+      "label": "Fisicoculturismo",
+      "sets": [
+        "strength_training"
+      ],
+      "subsets": [
+        "bodybuilding_family"
+      ]
+    },
+    {
+      "id": "gym training",
+      "label": "Entrenamiento en Gimnasio",
+      "sets": [
+        "strength_training"
+      ],
+      "subsets": [
+        "bodybuilding_family"
+      ]
+    },
+    {
+      "id": "crossfit",
+      "label": "CrossFit",
+      "sets": [
+        "strength_training"
+      ],
+      "subsets": [
+        "functional_strength"
+      ]
+    },
+    {
+      "id": "calisthenics",
+      "label": "Calistenia",
+      "sets": [
+        "strength_training"
+      ],
+      "subsets": [
+        "functional_strength"
+      ]
+    },
+    {
+      "id": "running",
+      "label": "Correr",
+      "sets": [
+        "endurance_sports"
+      ],
+      "subsets": [
+        "running_family"
+      ]
+    },
+    {
+      "id": "marathon",
+      "label": "Maratón",
+      "sets": [
+        "endurance_sports"
+      ],
+      "subsets": [
+        "running_family"
+      ]
+    },
+    {
+      "id": "trail running",
+      "label": "Trail Running",
+      "sets": [
+        "endurance_sports",
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "running_family",
+        "walking_and_hiking"
+      ]
+    },
+    {
+      "id": "cycling",
+      "label": "Ciclismo",
+      "sets": [
+        "endurance_sports"
+      ],
+      "subsets": [
+        "cycling_family"
+      ]
+    },
+    {
+      "id": "mountain biking",
+      "label": "Mountain Bike",
+      "sets": [
+        "endurance_sports",
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "cycling_family"
+      ]
+    },
+    {
+      "id": "spinning",
+      "label": "Spinning",
+      "sets": [
+        "endurance_sports"
+      ],
+      "subsets": [
+        "cycling_family"
+      ]
+    },
+    {
+      "id": "swimming",
+      "label": "Natación",
+      "sets": [
+        "endurance_sports"
+      ],
+      "subsets": [
+        "swimming_family"
+      ]
+    },
+    {
+      "id": "triathlon",
+      "label": "Triatlón",
+      "sets": [
+        "endurance_sports"
+      ],
+      "subsets": [
+        "multi_discipline"
+      ]
+    },
+    {
+      "id": "athletics",
+      "label": "Atletismo",
+      "sets": [
+        "endurance_sports"
+      ],
+      "subsets": [
+        "running_family"
+      ]
+    },
+    {
+      "id": "caminata",
+      "label": "Caminata",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "walking_and_hiking"
+      ]
+    },
+    {
+      "id": "hiking",
+      "label": "Senderismo",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "walking_and_hiking"
+      ]
+    },
+    {
+      "id": "trekking",
+      "label": "Trekking",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "walking_and_hiking"
+      ]
+    },
+    {
+      "id": "rock climbing",
+      "label": "Escalada en Roca",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "climbing"
+      ]
+    },
+    {
+      "id": "bouldering",
+      "label": "Bouldering",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "climbing"
+      ]
+    },
+    {
+      "id": "skiing",
+      "label": "Esquí",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "snow_sports"
+      ]
+    },
+    {
+      "id": "snowboarding",
+      "label": "Snowboard",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "snow_sports"
+      ]
+    },
+    {
+      "id": "surfing",
+      "label": "Surf",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "water_sports"
+      ]
+    },
+    {
+      "id": "sailing",
+      "label": "Vela",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "water_sports"
+      ]
+    },
+    {
+      "id": "kayaking",
+      "label": "Kayak",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "water_sports"
+      ]
+    },
+    {
+      "id": "skateboarding",
+      "label": "Skate",
+      "sets": [
+        "outdoor_and_nature"
+      ],
+      "subsets": [
+        "climbing"
+      ]
+    },
+    {
+      "id": "yoga",
+      "label": "Yoga",
+      "sets": [
+        "mind_body"
+      ],
+      "subsets": [
+        "yoga_family"
+      ]
+    },
+    {
+      "id": "pilates",
+      "label": "Pilates",
+      "sets": [
+        "mind_body"
+      ],
+      "subsets": [
+        "pilates_family"
+      ]
+    },
+    {
+      "id": "dance",
+      "label": "Danza",
+      "sets": [
+        "aesthetic_sports"
+      ],
+      "subsets": [
+        "dance_sports"
+      ]
+    },
+    {
+      "id": "salsa",
+      "label": "Salsa",
+      "sets": [
+        "aesthetic_sports"
+      ],
+      "subsets": [
+        "dance_sports"
+      ]
+    },
+    {
+      "id": "ballet",
+      "label": "Ballet",
+      "sets": [
+        "aesthetic_sports"
+      ],
+      "subsets": [
+        "dance_sports"
+      ]
+    },
+    {
+      "id": "hip hop dance",
+      "label": "Baile Hip Hop",
+      "sets": [
+        "aesthetic_sports"
+      ],
+      "subsets": [
+        "dance_sports"
+      ]
+    },
+    {
+      "id": "gymnastics",
+      "label": "Gimnasia",
+      "sets": [
+        "aesthetic_sports"
+      ],
+      "subsets": [
+        "gymnastics_family"
+      ]
+    },
+    {
+      "id": "cheerleading",
+      "label": "Porrismo",
+      "sets": [
+        "aesthetic_sports"
+      ],
+      "subsets": [
+        "gymnastics_family"
+      ]
+    },
+    {
+      "id": "default",
+      "label": "General",
+      "sets": [],
+      "subsets": []
+    }
+  ]
+}

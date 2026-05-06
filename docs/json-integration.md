@@ -1,7 +1,7 @@
 # Contrato de Integración JSON — Trama Campus
 
-> **Última sincronización con backend:** 2026-05-04  
-> **Versión de contrato:** 1.0  
+> **Última sincronización con backend:** 2026-05-05  
+> **Versión de contrato:** 1.1  
 > **Referencia canónica del backend:** [`matching_service/Docs/matching_input.md`](../../Trama_back/matching_service/Docs/matching_input.md)
 
 Este documento define el contrato de integración entre el cliente Flutter y los servicios backend de Trama Campus. Cubre el esquema de perfil, el protocolo de matching, el modelo de chat, las notificaciones y los ajustes de usuario.
@@ -20,10 +20,12 @@ Este documento define el contrato de integración entre el cliente Flutter y los
 8. [Chats y mensajería](#8-chats-y-mensajería)
 9. [Notificaciones](#9-notificaciones)
 10. [Ajustes y preferencias](#10-ajustes-y-preferencias)
-11. [Catálogos referenciados](#11-catálogos-referenciados)
-12. [Reglas de validación](#12-reglas-de-validación)
-13. [Compatibilidad futura](#13-compatibilidad-futura)
-14. [Apéndice — Glosario](#14-apéndice--glosario)
+11. [Marketplace](#11-marketplace)
+12. [Grupos](#12-grupos)
+13. [Catálogos referenciados](#13-catálogos-referenciados)
+14. [Reglas de validación](#14-reglas-de-validación)
+15. [Compatibilidad futura](#15-compatibilidad-futura)
+16. [Apéndice — Glosario](#16-apéndice--glosario)
 
 ---
 
@@ -153,8 +155,8 @@ Ver: [`matching_input.md §2.3 f_mod`](../../Trama_back/matching_service/Docs/ma
 |-------|------|-----------|-----------|-----------------|
 | `modes` | `string[]` | Sí | ≥ 1 elemento; valores del enum `modality_enum` | Onboarding / Editar perfil |
 | `ui_modality` | `string` | Sí | `"estudio"`, `"amistad"`, `"personal"` | Discover (switch) |
-| `goals` | `string[]` | Sí | ≥ 1, ≤ 5; valores del catálogo `goals` | Onboarding |
-| `skills` | `string[]` | Sí | 3–10 elementos; valores del catálogo `skills` | Onboarding / Editar perfil |
+| `goals` | `string[]` | Sí | ≥ 1, ≤ 15; valores del catálogo `goals` | Onboarding |
+| `skills` | `string[]` | Sí | 3–50 elementos; valores del catálogo `skills` | Onboarding / Editar perfil |
 | `research_interests` | `string[]` | No | 0–8 elementos; catálogo `research_topics` | Editar perfil |
 | `available_days` | `string[]` | Condicional | 21 combinaciones `{día}_{turno}`; activo si `study` ∈ `modes` | Onboarding |
 | `connectivity_state` | `string` | Sí | `"active"`, `"paused"`, `"invisible"` | Ajustes de privacidad |
@@ -585,6 +587,7 @@ El modelo Dart `NotificationItem` mapea:
 | `match` | `NotificationType.match` |
 | `connection_request` | `NotificationType.request` |
 | `group_invite` | `NotificationType.group` |
+| `task_assigned` | `NotificationType.group` (pendiente tipo propio) |
 | `message` | (pendiente en modelo Dart) |
 
 ### 9.2 Payload FCM (push)
@@ -779,7 +782,358 @@ DELETE /v1/settings/blocked-users/{user_id}
 
 ---
 
-## 11. Catálogos referenciados
+## 11. Marketplace
+
+### 11.1 Listados (feed de exploración)
+
+```
+GET /v1/marketplace/listings?category=<category>&variant=editorial&limit=20&cursor=<opaque>
+Authorization: Bearer <jwt>
+```
+
+`category` es opcional. Valores: `apuntes`, `servicios`, `articulos`, `freelance`. Sin categoría devuelve todos.
+
+**Respuesta:**
+
+```json
+{
+  "items": [
+    {
+      "id": "uuid-listing-1",
+      "title": "Apuntes Cálculo III — Parcial completo",
+      "description": "Incluye todos los temas del parcial 2, ejercicios resueltos paso a paso.",
+      "price": 120.0,
+      "category": "apuntes",
+      "type": "student_listing",
+      "is_boosted": true,
+      "is_affiliate": false,
+      "seller": {
+        "id": "uuid-seller",
+        "display_name": "Diego Navarro",
+        "avatar_url": null,
+        "hue": 60.0
+      },
+      "image_urls": ["https://cdn.tramacampus.mx/listings/uuid-listing-1/1.jpg"],
+      "published_at": "2026-04-30T10:00:00Z"
+    }
+  ],
+  "next_cursor": "eyJ...",
+  "has_more": true
+}
+```
+
+El modelo Dart `MarketplaceListing` mapea:
+
+| Campo Dart | Campo JSON |
+|---|---|
+| `id` | `id` |
+| `title` | `title` |
+| `description` | `description` |
+| `price` | `price` |
+| `category` | `category` → `ListingCategory` |
+| `isBoosted` | `is_boosted` |
+| `isAffiliate` | `is_affiliate` |
+| `sellerName` | `seller.display_name` |
+| `sellerAvatarUrl` | `seller.avatar_url` |
+| `imageUrls` | `image_urls` |
+| `publishedAt` | `published_at` |
+
+### 11.2 Empresas afiliadas
+
+```
+GET /v1/marketplace/affiliates
+Authorization: Bearer <jwt>
+```
+
+**Respuesta:**
+
+```json
+{
+  "items": [
+    {
+      "id": "uuid-biz-1",
+      "name": "Copias Campus",
+      "service_type": "copyshop",
+      "promotions": ["20% dto para estudiantes Anáhuac"],
+      "logo_url": null,
+      "is_verified": true
+    }
+  ]
+}
+```
+
+`service_type` valores: `restaurant`, `gym`, `salon`, `copyshop`, `laundry`, `tutoring`, `brand`, `rental`.
+
+### 11.3 Publicar listado
+
+```
+POST /v1/marketplace/listings
+Authorization: Bearer <jwt>
+
+{
+  "title": "Apuntes Cálculo III",
+  "description": "Parcial completo con ejercicios resueltos.",
+  "price": 120.0,
+  "category": "apuntes",
+  "image_urls": []
+}
+```
+
+El `PublishSheet` de la app genera este payload. El campo `is_boosted` lo gestiona el backend (false por defecto). El campo `seller` se deduce del JWT.
+
+**Respuesta (éxito):**
+
+```json
+{ "id": "uuid-listing-nuevo", "published_at": "2026-05-05T14:30:00Z" }
+```
+
+Ver `docs/json-examples/marketplace-listings-response.json` para ejemplos completos.
+
+---
+
+## 12. Grupos
+
+### 12.1 Descubrir grupos
+
+```
+GET /v1/groups?kind=<kind>&limit=20&cursor=<opaque>
+Authorization: Bearer <jwt>
+```
+
+`kind` es opcional. Valores: `project`, `study`, `club`, `sport`, `official`.
+
+**Respuesta:**
+
+```json
+{
+  "items": [
+    {
+      "id": "g1",
+      "name": "Hackathon Nacional · Equipo C",
+      "tagline": "Equipo cerrado · Ing. de Software · entrega 14 nov",
+      "kind": "project",
+      "access": "invite",
+      "verified": false,
+      "featured": true,
+      "hue": 60.0,
+      "member_count": 4,
+      "capacity": 5,
+      "activity": "Activo · ahora",
+      "next_action": "Sprint hoy 19:00 · Lab Cómputo",
+      "leader": "Javier Cortés",
+      "description": "Equipo formado para el Hackathon Nacional 2025.",
+      "is_member": true
+    }
+  ],
+  "next_cursor": "eyJ...",
+  "has_more": false
+}
+```
+
+El modelo Dart `Group` mapea directamente a snake_case ↔ camelCase. El campo `is_member` indica si el usuario autenticado ya pertenece al grupo (usado para el badge "Unido" en `GroupCard`).
+
+| `kind` | `GroupKind` Dart |
+|---|---|
+| `project` | `GroupKind.project` |
+| `study` | `GroupKind.study` |
+| `club` | `GroupKind.club` |
+| `sport` | `GroupKind.sport` |
+| `official` | `GroupKind.official` |
+
+| `access` | `GroupAccess` Dart |
+|---|---|
+| `open` | `GroupAccess.open` |
+| `request` | `GroupAccess.request` |
+| `invite` | `GroupAccess.invite` |
+
+### 12.2 Detalle de grupo
+
+```
+GET /v1/groups/{group_id}
+Authorization: Bearer <jwt>
+```
+
+Respuesta: objeto `Group` individual (mismo esquema que un ítem de la lista), sin cursor/paginación.
+
+### 12.3 Tareas del grupo (tablero)
+
+```
+GET /v1/groups/{group_id}/tasks?status=<status>
+Authorization: Bearer <jwt>
+```
+
+`status` opcional. Valores: `todo`, `in_progress`, `done`.
+
+**Respuesta:**
+
+```json
+{
+  "items": [
+    {
+      "id": "t1",
+      "code": "HKT-12",
+      "title": "Diseñar onboarding de la app",
+      "status": "in_progress",
+      "assignee": {
+        "id": "uuid-camila",
+        "display_name": "Camila R.",
+        "avatar_url": null,
+        "hue": 340.0
+      },
+      "due": "2026-11-14",
+      "priority": "high",
+      "created_at": "2026-11-01T10:00:00Z"
+    }
+  ]
+}
+```
+
+| `status` backend | `TaskStatus` Dart |
+|---|---|
+| `todo` | `TaskStatus.todo` |
+| `in_progress` | `TaskStatus.inProgress` |
+| `done` | `TaskStatus.done` |
+
+| `priority` backend | `TaskPriority` Dart |
+|---|---|
+| `low` | `TaskPriority.low` |
+| `med` | `TaskPriority.med` |
+| `high` | `TaskPriority.high` |
+
+### 12.4 Crear tarea
+
+```
+POST /v1/groups/{group_id}/tasks
+Authorization: Bearer <jwt>
+
+{
+  "title": "Nueva tarea",
+  "assignee_id": "uuid-miembro",
+  "due": "2026-11-20",
+  "priority": "med"
+}
+```
+
+El código (`code`) lo genera el backend con el prefijo del grupo (ej. `HKT-16`).
+
+### 12.5 Actualizar estado de tarea
+
+```
+PATCH /v1/groups/{group_id}/tasks/{task_id}
+Authorization: Bearer <jwt>
+
+{ "status": "done" }
+```
+
+### 12.6 Crear grupo
+
+```
+POST /v1/groups
+Authorization: Bearer <jwt>
+
+{
+  "name": "Filosofía de la mente",
+  "tagline": "Lectura y discusión · martes 18:00",
+  "description": "Grupo de lectura interdisciplinar.",
+  "kind": "study",
+  "access": "open"
+}
+```
+
+El creador queda como líder automáticamente. `hue` se asigna por el backend según el `kind` + hash del `id`.
+
+**Respuesta:**
+
+```json
+{ "id": "g8", "name": "Filosofía de la mente", "created_at": "2026-05-05T15:00:00Z" }
+```
+
+### 12.7 Solicitar ingreso
+
+```
+POST /v1/groups/{group_id}/join
+Authorization: Bearer <jwt>
+```
+
+Para `access = "open"`: ingreso inmediato, devuelve `{ "joined": true }`.  
+Para `access = "request"`: solicitud pendiente, devuelve `{ "requested": true }`.  
+Para `access = "invite"`: error 403 — solo por invitación.
+
+### 12.8 Miembros del grupo
+
+```
+GET /v1/groups/{group_id}/members
+Authorization: Bearer <jwt>
+```
+
+```json
+{
+  "items": [
+    {
+      "user_id": "uuid-javier",
+      "display_name": "Javier Cortés",
+      "role": "leader",
+      "avatar_url": null,
+      "hue": 60.0,
+      "joined_at": "2026-10-01T00:00:00Z"
+    }
+  ]
+}
+```
+
+`role` valores: `leader`, `member`.
+
+Ver `docs/json-examples/group-list-response.json` y `group-tasks-response.json` para ejemplos completos.
+
+---
+
+## 13. Catálogos referenciados
+
+### 13.1 Catálogos locales bundled (fase prototipo)
+
+Mientras no existe API de catálogos, la app lee los JSONs desde `assets/catalogs/`. Hay dos grupos:
+
+**`assets/catalogs/_derived/`** — derivados del backend, regenerar con `tool/sync_catalogs.py` + `tool/translate_catalogs.py`. Nunca editar a mano.
+
+| Archivo | Catálogo | Notas |
+|---|---|---|
+| `academic.json` | Carreras por área | Estructura especial: campo `areas` en lugar de `sets` |
+| `campus.json` | Sedes universitarias | Incluye `alias` y `city`; `id` = código de campus |
+| `goal.json` | Objetivos | Sets + subsets + items |
+| `hobby.json` | Pasatiempos | Sets + subsets (vacíos) + items |
+| `music_genre.json` | Géneros musicales | Sets + items |
+| `personality_trait.json` | Rasgos de personalidad | Items en español, no requiere traducción |
+| `research_interest.json` | Intereses de investigación | Solo activos si `research ∈ modes` |
+| `skill.json` | Habilidades | Sets + items; mínimo 3 requeridos |
+| `sport.json` | Deportes | Sets + items |
+
+**`assets/catalogs/_frontend/`** — authorizados por el equipo frontend. Editar directamente si es necesario.
+
+| Archivo | Catálogo | Notas |
+|---|---|---|
+| `diet.json` | Dieta | 7-enum fijo del backend; sin sets |
+| `language.json` | Idiomas | BCP-47 ids |
+| `available_days.json` | Disponibilidad | 21 combinaciones `{día}_{turno}` |
+| `modality.json` | Modalidades | 13 modos backend derivados del `diet_catalog.json` del backend (mislabeled) |
+
+**Esquema común de catálogo bundled:**
+
+```json
+{
+  "catalog": "skill",
+  "version": "2026-05-04",
+  "sets": [
+    { "id": "software_and_technology", "label": "Software y Tecnología", "subsets": [] }
+  ],
+  "items": [
+    { "id": "web development", "label": "Desarrollo Web", "sets": ["software_and_technology"], "subsets": [] }
+  ]
+}
+```
+
+El campo `id` de cada item es el valor que se guarda en el perfil y se envía al backend. Siempre en minúsculas.
+
+### 13.2 API de catálogos remota (fase integración)
 
 Los catálogos son datos semi-estáticos. La app los descarga al primer arranque y los refresca si `version` cambia.
 
@@ -792,38 +1146,26 @@ Si la versión no ha cambiado: `304 Not Modified`. Si cambió: `200` con el cat�
 
 | `catalog_name` | Descripción | TTL sugerido |
 |---|---|---|
-| `careers` | Carreras universitarias con `faculty_id` y `area_id` | 24 h |
+| `academic` | Carreras universitarias con `area` | 24 h |
+| `campus` | Sedes universitarias con `alias` y `city` | 48 h |
 | `skills` | Habilidades técnicas y blandas | 12 h |
 | `hobbies` | Actividades de ocio | 12 h |
-| `sports` | Deportes con flag `is_institutional` | 12 h |
-| `research_topics` | Temas de investigación | 24 h |
+| `sports` | Deportes | 12 h |
+| `research_interests` | Temas de investigación | 24 h |
 | `personality_traits` | Rasgos de personalidad | 24 h |
 | `music_genres` | Géneros musicales | 48 h |
 | `goals` | Objetivos declarados | 24 h |
-| `universities` | Universidades con `domain` para verificación | 48 h |
 
-**Esquema de respuesta (ejemplo `skills`):**
-
-```json
-{
-  "catalog": "skills",
-  "version": "2026-04-15",
-  "items": [
-    { "key": "python",      "label": "Python",      "category": "programacion" },
-    { "key": "figma",       "label": "Figma",        "category": "diseño" },
-    { "key": "sql",         "label": "SQL",           "category": "bases_de_datos" }
-  ]
-}
-```
+El esquema de respuesta remota debe ser compatible con el esquema bundled (§13.1) para que `BundledCatalogRepository` pueda reemplazarse por un `RemoteCatalogRepository` sin cambiar los consumidores.
 
 ---
 
-## 12. Reglas de validación
+## 14. Reglas de validación
 
 | Campo | Regla | Efecto si no se cumple |
 |-------|-------|----------------------|
 | `bio` | Máx. 300 caracteres; ≥ 20 para bonus `f_prof` | Puntaje `f_prof` reducido |
-| `skills` | 3–10 elementos | `f_skill` calculado con señal reducida |
+| `skills` | 3–50 elementos | `f_skill` calculado con señal reducida si < 3 |
 | `hobbies` | ≤ 10 elementos | Sin efecto en matching |
 | `personality_traits` | ≤ 5 elementos | Default `[curioso, colaborador, reflexivo]` si vacío |
 | `languages` | Máx. 15 idiomas; español excluido del cálculo | Sin efecto (español universal) |
@@ -834,20 +1176,28 @@ Si la versión no ha cambiado: `304 Not Modified`. Si cambió: `200` con el cat�
 | `semester` | 1–12 | `f_sem` incorrecto |
 | `age` | 17–35 años al registrarse | Registro rechazado |
 | `available_days` | Subconjunto de 21 combinaciones `{día}_{turno}` | `f_hora = 0.0` si vacío |
-| `goals` | ≥ 1, ≤ 5 | `f_goal` reducido |
+| `goals` | ≥ 1, ≤ 15 | `f_goal` reducido |
 | `research_interests` | 0–8 elementos | `f_res = 0.0` si vacío |
 | `display_name` | 2–50 caracteres | Perfil incompleto → `f_prof` reducido |
 | `avatar_url` | URL HTTPS válida | Pierde 2× en `f_prof`; `α_global = 0.0` |
 
 ---
 
-## 13. Compatibilidad futura
+## 15. Compatibilidad futura
 
 ### Versionado de API
 
 - Versión actual: `/v1/`
 - Cambios que rompen compatibilidad requieren incrementar a `/v2/`
 - La app verifica `X-API-Min-Version` en cada respuesta y muestra un aviso de actualización si la versión instalada es inferior
+
+### Cambios en v1.1 (actual)
+
+| Área | Cambio |
+|------|--------|
+| Marketplace | Nuevos endpoints `/v1/marketplace/listings` y `/v1/marketplace/affiliates` (secciones 11.1–11.3) |
+| Grupos | Nuevo recurso `/v1/groups` con sub-recursos tasks y members (secciones 12.1–12.8) |
+| Notificaciones | `group_invite` ya documentado; `data.type` ahora debe soportar también `task_assigned` |
 
 ### Campos probables en v2
 
@@ -858,16 +1208,19 @@ Si la versión no ha cambiado: `304 Not Modified`. Si cambió: `200` con el cat�
 | `research_interests` | Pasar de `TEXT[]` a objetos estructurados con relevancia | Parser de catálogo actualizado |
 | `bio` | Aumentar límite a 500 caracteres | Actualizar validación en cliente |
 | `available_days` | Granularidad de hora específica (no solo turno) | Rediseño del selector de disponibilidad |
+| `groups.tasks` | Agregar sub-tareas y comentarios inline (Linear-style) | Nuevo componente `TaskDetailSheet` |
 
 ### Campos que permanecerán estables
 
 - `id` (UUID), `modes`, `skills`, `semester`, `career_id`, `gender`, `gender_preference`
 - Estructura de `breakdown` en respuesta de score
 - Tipos de notificación: `match`, `connection_request`, `group_invite`, `message`
+- Esquema de `Group` (id, name, kind, access, hue, member_count)
+- Esquema de `Task` (id, code, title, status, assignee, due, priority)
 
 ---
 
-## 14. Apéndice — Glosario
+## 16. Apéndice — Glosario
 
 | Término | Definición |
 |---------|-----------|

@@ -3,6 +3,23 @@ import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_text_styles.dart';
 
+/// Button height per size.
+enum TButtonSize {
+  xs, // 32px — icon-only or tight inline actions
+  sm, // 40px — inline actions
+  md, // 48px — standard action
+  lg, // 56px — primary CTA (default)
+}
+
+extension _TButtonSizeHeight on TButtonSize {
+  double get height => switch (this) {
+        TButtonSize.xs => 32,
+        TButtonSize.sm => 40,
+        TButtonSize.md => 48,
+        TButtonSize.lg => 56,
+      };
+}
+
 class TButton extends StatelessWidget {
   const TButton({
     super.key,
@@ -10,6 +27,7 @@ class TButton extends StatelessWidget {
     required this.onPressed,
     this.icon,
     this.variant = TButtonVariant.primary,
+    this.size = TButtonSize.lg,
     this.isFullWidth = true,
     this.isLoading = false,
   });
@@ -18,6 +36,7 @@ class TButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData? icon;
   final TButtonVariant variant;
+  final TButtonSize size;
   final bool isFullWidth;
   final bool isLoading;
 
@@ -27,7 +46,7 @@ class TButton extends StatelessWidget {
 
     return SizedBox(
       width: isFullWidth ? double.infinity : null,
-      height: 56,
+      height: size.height,
       child: switch (variant) {
         TButtonVariant.primary => _GradientButton(
           label: label,
@@ -144,12 +163,19 @@ class _ButtonContent extends StatelessWidget {
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         if (icon != null) ...[
           Icon(icon, size: 20, color: color),
           const SizedBox(width: AppSpacing.space2),
         ],
-        Text(label, style: AppTextStyles.titleMd(color)),
+        Flexible(
+          child: Text(
+            label,
+            style: AppTextStyles.titleMd(color),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }

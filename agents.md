@@ -21,14 +21,28 @@ lib/
     navigation/   # AppRouter (named routes)
     services/     # PreferencesService (meta table wrapper)
     theme/        # Design tokens (colors, typography, spacing)
-    widgets/      # Reusable UI components
-  data/           # Models, mock data, repositories
+    widgets/
+      selection/  # MultiSelectChipsField, CatalogPickerSheet, etc.
+  data/
+    mock/         # MockData constants
+    models/
+      catalog/    # Catalog, CatalogItem, CatalogSet
+      profile/    # Profile, ProfileBase, Preferences, ProfileDraft, ProfileAttribute
+    repositories/ # StudentRepository, BundledCatalogRepository, OnboardingDraftRepository, …
+    services/     # ModalityResolver, ProfileValidator
   features/       # One folder per product feature
   app.dart        # Root widget + theme notifier
   main.dart       # Entry point
+assets/
+  catalogs/
+    _derived/     # backend-derived JSONs — never edit manually
+    _frontend/    # frontend-authored JSONs (diet, modality, available_days, language)
 docs/
   json-integration.md        # Backend API contract (binding)
   json-examples/             # Example payloads for each endpoint
+tool/
+  sync_catalogs.py           # derives _derived/ from backend source JSONs
+  translate_catalogs.py      # applies Spanish label translations to _derived/
 ```
 
 ### Rules
@@ -51,15 +65,21 @@ Defined in `lib/core/theme/app_colors.dart`. Two palettes: light and dark. All c
 
 | Role | Light | Dark |
 |---|---|---|
-| primary | #E85A12 | #FF8A3D |
+| primary | #D94E2F | #E87358 |
 | surface | #F5F6F7 | #111314 |
 | surfaceContainerLowest | #FFFFFF | #0A0C0D |
 | onSurface | #2C2F30 | #E2E5E6 |
 | onSurfaceVariant | #595C5D | #9EA3A5 |
+| glassBlurSigma | 20.0 | 20.0 |
+| glassSaturationBoost | 1.2 | 1.2 |
 
-`AppColors.ctaGradient()` returns the standard 135-degree orange gradient used for primary buttons, FABs, and accent elements.
+`AppColors.ctaGradient()` returns the standard 135-degree coral gradient (`#D94E2F` → `#E87358`) used for primary buttons, FABs, and accent elements.
 
 `AppColors.avatarGradient(hue)` generates per-student gradient from HSL math. Use for all avatar/photo placeholders — never show a broken image state.
+
+`AppColors.lightGlassBg` / `darkGlassBg` — semi-transparent fill for glass surfaces.
+
+`AppColors.lightOutlineGhost` / `darkOutlineGhost` — rgba 12% border for ghost dividers.
 
 ### Typography
 
@@ -112,27 +132,29 @@ BoxShadow(color: cs.onSurface.withValues(alpha: 0.06), blurRadius: 32, offset: O
 BoxShadow(color: cs.onSurface.withValues(alpha: 0.04), blurRadius: 12, offset: Offset(0, 4)),
 
 // FAB / gradient button shadow
-BoxShadow(color: Color(0xFFE85A12).withValues(alpha: 0.22), blurRadius: 24, offset: Offset(0, 8)),
+BoxShadow(color: Color(0xFFD94E2F).withValues(alpha: 0.22), blurRadius: 24, offset: Offset(0, 8)),
 BoxShadow(color: cs.onSurface.withValues(alpha: 0.08), blurRadius: 6, offset: Offset(0, 2)),
 ```
 
 ### Glass Effect
 
-Used in bottom nav, photo area buttons, profile detail action bar. Pattern:
+Used in bottom nav, photo area buttons, glass app bar, composer, profile action bar. Blur sigma is **20** (σ=20). Pattern:
 
 ```dart
 ClipRect(
   child: BackdropFilter(
-    filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+    filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
     child: Container(
-      color: cs.surface.withValues(alpha: 0.85),
+      color: AppColors.lightGlassBg, // or darkGlassBg — resolve via theme
       child: ...,
     ),
   ),
 )
 ```
 
-For pill-shaped glass (e.g., the feed card label): use `ClipRRect` with `BorderRadius.circular(AppRadius.pill)` instead of `ClipRect`.
+For pill-shaped glass (e.g., feed card label, theme toggle): use `ClipRRect` with `BorderRadius.circular(AppRadius.pill)` instead of `ClipRect`.
+
+Where saturation boost is needed, wrap the child in `ColorFiltered(colorFilter: ColorFilter.matrix([...]))` with a 1.2 saturation matrix before the blur.
 
 ---
 
@@ -188,6 +210,7 @@ Defined in `lib/core/navigation/app_router.dart`. All route names are static `St
 | `AppRouter.verifyEmail` | `VerifyEmailScreen` |
 | `AppRouter.modalitySelect` | `ModalitySelectScreen` |
 | `AppRouter.academicProfile` | `AcademicProfileScreen` |
+| `AppRouter.skillsSelect` | `SkillsSelectScreen` |
 | `AppRouter.personalGoals` | `PersonalGoalsScreen` |
 | `AppRouter.profileComplete` | `ProfileCompleteScreen` |
 | `AppRouter.discover` | `DiscoverScreen` (main shell) |
@@ -251,9 +274,18 @@ The `embedded: true` flag suppresses the leading back button on AppBars inside t
 | `Student` | `data/models/student.dart` | id, name, age, program, semester, hue, intent, bio, interests, compatibilityScore, reasons |
 | `University` | `data/models/university.dart` | name, emailDomain, verified |
 | `Modality` | `data/models/modality.dart` | type, label, verb, icon |
+| `ModalityBucket` | `data/models/modality_bucket.dart` | id (`ModalityBucketId`), label, verb, icon, defaultModes |
 | `ChatPreview` | `data/models/chat_preview.dart` | studentId, studentName, hue, lastMessage, time, unreadCount |
 | `ConversationMessage` | `data/models/conversation_message.dart` | id, text, isMe, time |
 | `NotificationItem` | `data/models/notification_item.dart` | id, type, title, subtitle, time, isRead, hue |
+| `Profile` | `data/models/profile/profile.dart` | base, preferences, attributes; `toJson()` applies personality default |
+| `ProfileBase` | `data/models/profile/profile_base.dart` | displayName, firstName, lastName, bio, careerId, semester, universityId, gender, genderPreference, birthDate, avatarUrl |
+| `Preferences` | `data/models/profile/preferences.dart` | modes, uiModality, goals, skills, researchInterests, availableDays, connectivityState, modeOverrides |
+| `ProfileAttribute` | `data/models/profile/profile_attribute.dart` | sealed hierarchy: Hobby, Sport, Personality, Language, Diet, Music |
+| `ProfileDraft` | `data/models/profile/profile_draft.dart` | nullable version of Profile fields; used for onboarding resume |
+| `CatalogItem` | `data/models/catalog/catalog_item.dart` | id, label, sets, subsets |
+| `CatalogSet` | `data/models/catalog/catalog_set.dart` | id, label, subsets |
+| `Catalog` | `data/models/catalog/catalog.dart` | name, version, sets, items; helpers: byId, groupedBySet, search |
 
 ### Mock Data
 
@@ -273,11 +305,26 @@ final byModality = repo.getByModality(ModalityType.estudio);
 final one = repo.getById('diego');
 ```
 
+| Repository | File | Purpose |
+|---|---|---|
+| `BundledCatalogRepository` | `data/repositories/catalog_repository.dart` | Loads catalog JSON from `assets/catalogs/`. Memoized per session. Academic catalog uses `_parseAcademicCatalog` normalizer. |
+| `MockProfileRepository` | `data/repositories/profile_repository.dart` | Reads/writes `Profile` to SQLite `profile` table. Sole implementation for now. |
+| `OnboardingDraftRepository` | `data/repositories/onboarding_draft_repository.dart` | Reads/writes `ProfileDraft` to SQLite `profile_draft` table. Used by all onboarding screens to persist step state. |
+
+### Services
+
+Pure-function utilities in `data/services/`. No state, no constructor — all static methods.
+
+| Service | File | Purpose |
+|---|---|---|
+| `ModalityResolver` | `data/services/modality_resolver.dart` | Authoritative 3-bucket → 13-mode expansion. `expand(buckets, overrides)` returns the final `modes[]` list; `uiModality(buckets)` returns the analytics-only bucket name; `bucketOf(mode)` reverse-maps a backend mode to its bucket. Do not duplicate the mapping table elsewhere. |
+| `ProfileValidator` | `data/services/profile_validator.dart` | Enforces `json-integration.md §12` field rules. `validate(Profile)` returns `Map<String, String>` (fieldKey → Spanish error). `validateOnboarding(ProfileDraft)` is a lighter check used for step gating during onboarding. |
+
 ---
 
 ## Onboarding Flow
 
-6 steps, each step is a separate screen. The band header (surfaceDim bg + dot pattern) and back button are implemented via the `_OnboardingHeader` private widget inside each screen file. Step progress uses `StepDots(totalSteps: 6, currentStep: stepIndex)`.
+7 steps. Step progress uses `StepDots(totalSteps: 7, currentStep: stepIndex)`.
 
 | Step | Screen | Index |
 |---|---|---|
@@ -285,8 +332,9 @@ final one = repo.getById('diego');
 | 2 | VerifyEmailScreen | 1 |
 | 3 | ModalitySelectScreen | 2 |
 | 4 | AcademicProfileScreen | 3 |
-| 5 | PersonalGoalsScreen | 4 |
-| 6 | ProfileCompleteScreen | 5 |
+| 5 | SkillsSelectScreen | 4 |
+| 6 | PersonalGoalsScreen | 5 |
+| 7 | ProfileCompleteScreen | 6 |
 
 The dot pattern overlay is drawn by `_DotPatternPainter` (a `CustomPainter` in `welcome_screen.dart`). If the pattern is needed on other screens, extract it to `core/widgets/`.
 
@@ -447,6 +495,85 @@ The binding contract between the Flutter app and the backend API is documented i
 
 ---
 
+## Structured Selection System & Catalog Governance
+
+### Catalog source of truth
+
+Backend-derived catalogs (academic, goal, hobby, music_genre, personality_trait, research_interest, skill, sport, campus) live under `assets/catalogs/_derived/` and are read-only on the frontend. Frontend-authored catalogs (diet, modality, available_days, language) live under `assets/catalogs/_frontend/`. Never edit derived files by hand — regenerate via `tool/translate_catalogs.py` from upstream backend JSON. See `docs/json-integration.md` for the authoritative payload contract.
+
+### Catalog ID immutability
+
+Never rename or renumber a catalog item ID. The backend's PCA projections depend on stable IDs. To deprecate an item, add `"deprecated": true` (additive, ignored if absent by the parser). The UI already filters deprecated items. A renamed item must be added as a new entry — do not reuse the old ID.
+
+### Lowercase invariant
+
+Every catalog item `id` is lowercase-trimmed at the asset level. Profile models store IDs verbatim from the catalog — no transform is needed at save time. If you add a catalog entry manually, ensure the `id` is already lowercase.
+
+### 3-bucket → 13-mode expansion
+
+The canonical UX→backend translation lives in `lib/data/services/modality_resolver.dart`. Do not duplicate the mapping table in screens or widgets.
+
+- `estudio` → `[study, research, competition]`
+- `amistad` → `[social, networking, gaming, language, creative, volunteer, wellness, lifestyle, startup]`
+- `personal` → `[eros]`
+
+`ModalityResolver.expand(buckets, overrides)` applies bucket defaults unless the user has set granular `overrides` in edit-profile (which take precedence). `ModalityResolver.uiModality(buckets)` returns the first-selected bucket for the analytics-only `ui_modality` field.
+
+### Backend filename pitfall
+
+`Trama_back/.../diet_catalog.json` actually contains **modality** data (a historical mislabeling). The frontend equivalents are:
+- `assets/catalogs/_frontend/diet.json` — 7-enum diet preferences
+- `assets/catalogs/_frontend/modality.json` — 13-enum modalities (derived from the mislabeled backend file)
+
+Never use the backend `diet_catalog.json` as a source for diet data.
+
+### Field validation rules (mirrors `json-integration.md` §12)
+
+| Field | Rule |
+|---|---|
+| campus (university_id) | required |
+| major (career_id) | required |
+| semester | 1–12, required |
+| modalities (modes) | ≥1 required (hard filter — no match if empty) |
+| goals | 1–15 required |
+| skills | **3–50 required** (< 3 degrades `f_skill`) |
+| hobbies | ≤ 10 |
+| sports | ≤ 5 |
+| personality traits | ≤ 5 (defaults to `[curioso, colaborador, reflexivo]` at `Profile.toJson()` if empty — not injected into local state) |
+| music genres | ≤ 4 |
+| diet | ≤ 3 |
+| research interests | ≤ 8 (only relevant when `research ∈ modes`) |
+| languages | ≤ 15 |
+
+`ProfileValidator.validate(Profile)` enforces these rules and returns `Map<String, String>` (fieldKey → Spanish error message). Run it in edit-profile `_save()` before persisting; only surface errors for fields editable in that screen.
+
+### Conditional fields
+
+- `research_interests` is visible only when `modes.contains('research')` (resolved expansion). Encoded via `ConditionalSection`.
+- `available_days` is visible only when `modes.contains('study')`.
+
+### Minors
+
+Out of scope. Rendered as a `Próximamente` tile in edit-profile only. No model field, no JSON payload key. Do not add until a backend catalog ships.
+
+### Catalog versioning
+
+Every asset has a `version` string. The future remote catalog loader will use this for `If-None-Match` cache invalidation. When updating an asset, bump its `version` field.
+
+### Selection widget catalog
+
+| Widget | File | Purpose |
+|---|---|---|
+| `MultiSelectChipsField` | `core/widgets/selection/multi_select_chips_field.dart` | Chip grid with min/max enforcement; grouped or flat |
+| `CatalogPickerSheet` | `core/widgets/selection/catalog_picker_sheet.dart` | Full-screen modal picker with search |
+| `RequiredFieldHint` | `core/widgets/selection/required_field_hint.dart` | "n/min · n/max" hint pill |
+| `SportFrequencyTile` | `core/widgets/selection/sport_frequency_tile.dart` | Sport chip + casual/regular/competitive selector |
+| `ModalityAdvancedToggle` | `core/widgets/selection/modality_advanced_toggle.dart` | 13-mode granular overrides grouped by bucket |
+| `ConditionalSection` | `core/widgets/selection/conditional_section.dart` | Shows/hides child based on `bool condition` |
+| `CompleteProfileChecklist` | `core/widgets/selection/complete_profile_checklist.dart` | Missing-field nudge list with deep-link callbacks |
+
+---
+
 ## Key File Locations
 
 | Purpose | Path |
@@ -460,3 +587,19 @@ The binding contract between the Flutter app and the backend API is documented i
 | Current user | `MockData.currentUser` in mock_data.dart |
 | Theme mode | `themeNotifier` in `lib/app.dart` |
 | Entry point | `lib/main.dart` |
+
+---
+
+## Catalog Tooling
+
+Two Python scripts under `tool/`. Run from the `trama_campus_frontend/` directory.
+
+| Script | Command | Purpose |
+|---|---|---|
+| `tool/sync_catalogs.py` | `python3 tool/sync_catalogs.py` | Reads backend catalog JSONs from `../../Trama_back/matching_service/src/shared/catalogs/` and writes Flutter-format output to `assets/catalogs/_derived/`. Produces `skill`, `hobby`, `sport`, `music_genre`, `personality_trait`, `goal`, `research_interest`, `campus`, and `academic` catalogs. Run this whenever the backend catalog source changes. |
+| `tool/translate_catalogs.py` | `python3 tool/translate_catalogs.py` | Applies Spanish label translations to all files in `assets/catalogs/_derived/`. Run immediately after `sync_catalogs.py`. Translations are defined as dictionaries inside the script; add new entries there when the backend adds new items. |
+
+Workflow for updating a derived catalog:
+1. Edit backend source → `python3 tool/sync_catalogs.py` → `python3 tool/translate_catalogs.py`
+2. Bump the `version` field in the affected JSON if not already updated by the script (the script sets `version` to today's date automatically).
+3. Never edit `_derived/` files by hand.

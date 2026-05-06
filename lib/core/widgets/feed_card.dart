@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../data/models/student.dart';
 import '../theme/app_colors.dart';
@@ -69,17 +70,22 @@ class _PhotoArea extends StatelessWidget {
       : NetworkImage(url);
 
   Widget _gradientFallback(Student s) => Container(
-    decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
-    alignment: Alignment.center,
-    child: Text(
-      s.initials,
-      style: AppTextStyles.display(Colors.white.withValues(alpha: 0.85)),
-    ),
-  );
+        decoration: BoxDecoration(gradient: AppColors.avatarGradient(s.hue)),
+        alignment: Alignment.center,
+        child: Text(
+          s.initials,
+          style: const TextStyle(
+            fontFamily: 'Manrope',
+            fontSize: 56,
+            fontWeight: FontWeight.w700,
+            color: Color(0x52FFFFFF),
+            letterSpacing: -1.12,
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(AppRadius.lg),
@@ -98,29 +104,14 @@ class _PhotoArea extends StatelessWidget {
                     )
                   : _gradientFallback(student),
             ),
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      cs.surfaceContainerLowest.withValues(alpha: 0.85),
-                    ],
-                    stops: const [0.55, 1.0],
-                  ),
-                ),
-              ),
+            Positioned(
+              top: 16,
+              left: 16,
+              child: _CtxPill(student: student),
             ),
             Positioned(
-              top: AppSpacing.space3,
-              left: AppSpacing.space3,
-              child: _GlassPill(student: student),
-            ),
-            Positioned(
-              top: AppSpacing.space3,
-              right: AppSpacing.space3,
+              top: 14,
+              right: 14,
               child: _SaveButton(onSave: onSave, isSaved: isSaved),
             ),
           ],
@@ -130,24 +121,39 @@ class _PhotoArea extends StatelessWidget {
   }
 }
 
-class _GlassPill extends StatelessWidget {
-  const _GlassPill({required this.student});
+class _CtxPill extends StatelessWidget {
+  const _CtxPill({required this.student});
 
   final Student student;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.space3,
-        vertical: AppSpacing.space2,
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+          decoration: BoxDecoration(
+            color: glassBg,
+            borderRadius: BorderRadius.circular(AppRadius.pill),
+          ),
+          child: Text(
+            student.program,
+            style: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              color: cs.onSurface,
+              letterSpacing: 0.3,
+              height: 1,
+            ),
+          ),
+        ),
       ),
-      decoration: BoxDecoration(
-        color: cs.surfaceContainerLowest.withValues(alpha: 0.82),
-        borderRadius: BorderRadius.circular(AppRadius.pill),
-      ),
-      child: Text(student.program, style: AppTextStyles.labelSm(cs.onSurface)),
     );
   }
 }
@@ -161,20 +167,27 @@ class _SaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final glassBg = isDark ? AppColors.darkGlassBg : AppColors.lightGlassBg;
     return GestureDetector(
       onTap: onSave,
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerLowest.withValues(alpha: 0.82),
-          shape: BoxShape.circle,
-        ),
-        alignment: Alignment.center,
-        child: Icon(
-          isSaved ? Icons.bookmark : Icons.bookmark_border,
-          size: 20,
-          color: isSaved ? cs.primary : cs.onSurfaceVariant,
+      child: ClipOval(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+          child: Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: glassBg,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              isSaved ? Icons.bookmark : Icons.bookmark_border,
+              size: 16,
+              color: isSaved ? cs.primary : cs.onSurfaceVariant,
+            ),
+          ),
         ),
       ),
     );
@@ -190,75 +203,133 @@ class _CardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        AppSpacing.space4,
-        AppSpacing.space3,
-        AppSpacing.space4,
-        AppSpacing.space4,
-      ),
+      padding: const EdgeInsets.fromLTRB(20, 18, 20, 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Row 1: name + meta / compatibility pill
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '${student.name}, ${student.age}',
-                style: AppTextStyles.headlineSm(cs.onSurface),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${student.name}, ${student.age}',
+                      style: TextStyle(
+                        fontFamily: 'Manrope',
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
+                        color: cs.onSurface,
+                        letterSpacing: -0.19,
+                        height: 1.15,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '${student.program} · Sem. ${student.semester}',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: cs.onSurfaceVariant,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const Spacer(),
-              if (student.compatibilityScore > 0)
+              if (student.compatibilityScore > 0) ...[
+                const SizedBox(width: 12),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.space2,
-                    vertical: 2,
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
                   decoration: BoxDecoration(
-                    gradient: AppColors.ctaGradient(),
+                    color: cs.primary.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(AppRadius.pill),
                   ),
                   child: Text(
                     '${student.compatibilityScore}%',
-                    style: AppTextStyles.labelSm(Colors.white),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.space1),
-          Text(
-            '${student.program} · Sem. ${student.semester}',
-            style: AppTextStyles.bodyMd(cs.onSurfaceVariant),
-          ),
-          if (student.reasons.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.space3),
-            ...student.reasons
-                .take(2)
-                .map(
-                  (r) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.space1),
-                    child: Row(
-                      children: [
-                        Icon(Icons.check, size: 14, color: cs.primary),
-                        const SizedBox(width: AppSpacing.space2),
-                        Text(
-                          r,
-                          style: AppTextStyles.bodySm(cs.onSurfaceVariant),
-                        ),
-                      ],
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: cs.primary,
+                      letterSpacing: 0.1,
                     ),
                   ),
                 ),
-          ],
-          if (student.bio.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.space3),
-            Text(
-              '"${student.bio.length > 80 ? '${student.bio.substring(0, 80)}…' : student.bio}"',
-              style: AppTextStyles.bodySm(
-                cs.onSurfaceVariant,
-              ).copyWith(fontStyle: FontStyle.italic),
+              ],
+            ],
+          ),
+          // Reasons
+          if (student.reasons.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: student.reasons
+                  .take(3)
+                  .map(
+                    (r) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2),
+                            child: Icon(
+                              Icons.check_circle_outline,
+                              size: 16,
+                              color: cs.primary,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              r,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                                color: cs.onSurface,
+                                height: 1.45,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
           ],
+          // Quote block
+          if (student.bio.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              decoration: BoxDecoration(
+                color: cs.surfaceContainerLow,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Text(
+                '"${student.bio.length > 110 ? '${student.bio.substring(0, 110)}…' : student.bio}"',
+                style: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: cs.onSurface,
+                  letterSpacing: -0.07,
+                  height: 1.5,
+                ),
+              ),
+            ),
+          ],
+          // Interest chips
           if (student.interests.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.space3),
+            const SizedBox(height: 12),
             Wrap(
               spacing: AppSpacing.space2,
               runSpacing: AppSpacing.space2,

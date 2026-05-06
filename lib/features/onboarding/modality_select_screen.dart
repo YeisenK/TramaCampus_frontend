@@ -101,7 +101,7 @@ class _Header extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const StepDots(totalSteps: 6, currentStep: 2),
+              const StepDots(totalSteps: 7, currentStep: 2),
             ],
           ),
           const SizedBox(height: AppSpacing.space5),
@@ -124,7 +124,7 @@ class _ModalityCard extends StatelessWidget {
     required this.onTap,
   });
 
-  final Modality modality;
+  final ModalityBucket modality;
   final bool isSelected;
   final VoidCallback onTap;
 

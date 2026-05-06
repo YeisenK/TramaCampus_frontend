@@ -1,0 +1,40 @@
+{
+  "catalog": "modality",
+  "_note": "Frontend-authored. Derived from Trama_back/.../diet_catalog.json (mislabeled — that file actually contains modality data). Bucket mapping per docs/json-integration.md §2.",
+  "version": "2026-05-04",
+  "buckets": [
+    {
+      "id": "estudio",
+      "label": "Estudio",
+      "verb": "Estudiar juntos",
+      "modes": ["study", "research", "competition"]
+    },
+    {
+      "id": "amistad",
+      "label": "Amistad",
+      "verb": "Conectar",
+      "modes": ["social", "networking", "gaming", "language", "creative", "volunteer", "wellness", "lifestyle", "startup"]
+    },
+    {
+      "id": "personal",
+      "label": "Conexión personal",
+      "verb": "Conocer",
+      "modes": ["eros"]
+    }
+  ],
+  "items": [
+    { "id": "study",       "label": "Estudio",         "bucket": "estudio"  },
+    { "id": "research",    "label": "Investigación",    "bucket": "estudio"  },
+    { "id": "competition", "label": "Competencia",      "bucket": "estudio"  },
+    { "id": "social",      "label": "Social",           "bucket": "amistad"  },
+    { "id": "networking",  "label": "Networking",       "bucket": "amistad"  },
+    { "id": "gaming",      "label": "Gaming",           "bucket": "amistad"  },
+    { "id": "language",    "label": "Idiomas",          "bucket": "amistad"  },
+    { "id": "creative",    "label": "Creatividad",      "bucket": "amistad"  },
+    { "id": "volunteer",   "label": "Voluntariado",     "bucket": "amistad"  },
+    { "id": "wellness",    "label": "Bienestar",        "bucket": "amistad"  },
+    { "id": "lifestyle",   "label": "Estilo de vida",   "bucket": "amistad"  },
+    { "id": "startup",     "label": "Emprendimiento",   "bucket": "amistad"  },
+    { "id": "eros",        "label": "Conexión personal","bucket": "personal" }
+  ]
+}
