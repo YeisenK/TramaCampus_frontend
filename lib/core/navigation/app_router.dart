@@ -47,6 +47,17 @@ import '../../features/legal/terms_conditions_screen.dart';
 import '../../features/legal/privacy_policy_screen.dart';
 import '../../features/legal/community_guidelines_screen.dart';
 import '../../features/legal/about_screen.dart';
+import '../../features/legal/legal_hub_screen.dart';
+import '../../features/legal/documents/aviso_privacidad_screen.dart';
+import '../../features/legal/documents/arco_rights_screen.dart';
+import '../../features/legal/documents/marketplace_policy_screen.dart';
+import '../../features/legal/documents/sponsors_policy_screen.dart';
+import '../../features/legal/documents/moderation_policy_screen.dart';
+import '../../features/legal/documents/account_deletion_policy_screen.dart';
+import '../../features/legal/documents/cookies_telemetry_policy_screen.dart';
+import '../../features/legal/arco/arco_request_screen.dart';
+import '../../features/legal/arco/arco_request_confirm_screen.dart';
+import '../../features/legal/consent/onboarding_consent_screen.dart';
 import '../../features/onboarding/login_screen.dart';
 
 class AppRouter {
@@ -105,11 +116,30 @@ class AppRouter {
   static const String contactSupport = '/help/contact';
   static const String reportProblem = '/help/report';
 
-  // Legal
+  // Legal hub
+  static const String legalHub = '/legal';
+  static const String about = '/about';
+
+  // Legal documents (legacy routes kept for backwards-compat)
   static const String termsConditions = '/legal/terms';
   static const String privacyPolicy = '/legal/privacy';
   static const String communityGuidelines = '/legal/community';
-  static const String about = '/about';
+
+  // Legal documents (new)
+  static const String avisoPrivacidad = '/legal/aviso';
+  static const String arcoRights = '/legal/arco';
+  static const String marketplacePolicy = '/legal/marketplace';
+  static const String sponsorsPolicy = '/legal/sponsors';
+  static const String moderationPolicy = '/legal/moderation';
+  static const String accountDeletionPolicy = '/legal/data-deletion';
+  static const String cookiesPolicy = '/legal/cookies';
+
+  // ARCO request flow
+  static const String arcoRequest = '/legal/arco/request';
+  static const String arcoRequestConfirm = '/legal/arco/request-confirm';
+
+  // Onboarding consent
+  static const String onboardingConsent = '/onboarding/consent';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -215,15 +245,49 @@ class AppRouter {
         final student = settings.arguments as Student?;
         return _slide(ReportProblemScreen(reportedStudent: student), settings);
 
-      // Legal
+      // Legal hub
+      case legalHub:
+        return _slide(const LegalHubScreen(), settings);
+      case about:
+        return _slide(const AboutScreen(), settings);
+
+      // Legal documents (legacy routes)
       case termsConditions:
         return _slide(const TermsConditionsScreen(), settings);
       case privacyPolicy:
         return _slide(const PrivacyPolicyScreen(), settings);
       case communityGuidelines:
         return _slide(const CommunityGuidelinesScreen(), settings);
-      case about:
-        return _slide(const AboutScreen(), settings);
+
+      // Legal documents (new)
+      case avisoPrivacidad:
+        return _slide(const AvisoPrivacidadScreen(), settings);
+      case arcoRights:
+        return _slide(const ArcoRightsScreen(), settings);
+      case marketplacePolicy:
+        return _slide(const MarketplacePolicyScreen(), settings);
+      case sponsorsPolicy:
+        return _slide(const SponsorsPolicyScreen(), settings);
+      case moderationPolicy:
+        return _slide(const ModerationPolicyScreen(), settings);
+      case accountDeletionPolicy:
+        return _slide(const AccountDeletionPolicyScreen(), settings);
+      case cookiesPolicy:
+        return _slide(const CookiesTelemetryPolicyScreen(), settings);
+
+      // ARCO request flow
+      case arcoRequest:
+        return _slide(const ArcoRequestScreen(), settings);
+      case arcoRequestConfirm:
+        final args = settings.arguments as ArcoRequestArgs;
+        return _slide(
+          ArcoRequestConfirmScreen(args: args),
+          settings,
+        );
+
+      // Onboarding consent gate
+      case onboardingConsent:
+        return _slide(const OnboardingConsentScreen(), settings);
 
       default:
         return _slide(const SplashScreen(), settings);

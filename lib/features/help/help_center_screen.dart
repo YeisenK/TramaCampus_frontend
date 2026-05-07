@@ -77,23 +77,11 @@ class HelpCenterScreen extends StatelessWidget {
             title: 'Información legal',
             children: [
               _HelpItem(
-                icon: Icons.description_outlined,
-                label: 'Términos y condiciones',
+                icon: Icons.verified_user,
+                label: 'Centro Legal',
+                subtitle: 'Términos, privacidad, ARCO y más',
                 onTap: () =>
-                    Navigator.of(context).pushNamed(AppRouter.termsConditions),
-              ),
-              _HelpItem(
-                icon: Icons.privacy_tip_outlined,
-                label: 'Política de privacidad',
-                onTap: () =>
-                    Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
-              ),
-              _HelpItem(
-                icon: Icons.people_outline,
-                label: 'Normas de la comunidad',
-                onTap: () => Navigator.of(
-                  context,
-                ).pushNamed(AppRouter.communityGuidelines),
+                    Navigator.of(context).pushNamed(AppRouter.legalHub),
               ),
             ],
           ),

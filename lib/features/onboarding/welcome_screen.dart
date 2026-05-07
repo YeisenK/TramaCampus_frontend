@@ -79,8 +79,8 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: AppSpacing.space7),
                   TButton(
                     label: 'Crear cuenta',
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed(AppRouter.identity),
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed(AppRouter.onboardingConsent),
                     icon: Icons.arrow_upward,
                   ),
                   const SizedBox(height: AppSpacing.space3),

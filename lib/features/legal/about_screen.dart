@@ -59,20 +59,9 @@ class AboutScreen extends StatelessWidget {
             title: 'Legal',
             children: [
               _AboutItem(
-                label: 'Términos y condiciones',
+                label: 'Centro Legal',
                 onTap: () =>
-                    Navigator.of(context).pushNamed(AppRouter.termsConditions),
-              ),
-              _AboutItem(
-                label: 'Política de privacidad',
-                onTap: () =>
-                    Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
-              ),
-              _AboutItem(
-                label: 'Normas de la comunidad',
-                onTap: () => Navigator.of(
-                  context,
-                ).pushNamed(AppRouter.communityGuidelines),
+                    Navigator.of(context).pushNamed(AppRouter.legalHub),
               ),
             ],
           ),
@@ -92,7 +81,7 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(height: AppSpacing.space3),
           Center(
             child: Text(
-              'Hecho con ❤️ para estudiantes mexicanos.',
+              'Hecho para estudiantes mexicanos.',
               style: AppTextStyles.labelSm(AppColors.primary),
               textAlign: TextAlign.center,
             ),

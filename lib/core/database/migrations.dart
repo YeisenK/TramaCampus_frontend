@@ -18,6 +18,8 @@ const List<Migration> kMigrations = [
       _v3GroupMessages,
     ],
   ),
+  Migration(version: 4, up: [_v4ArcoRequests]),
+  Migration(version: 5, up: [_v5ConsentRecords]),
 ];
 
 const String _v1ProfilePhotos = '''
@@ -115,5 +117,31 @@ const String _v3GroupMessages = '''
     group_id TEXT NOT NULL,
     payload  TEXT NOT NULL,
     sent_at  TEXT NOT NULL
+  )
+''';
+
+// v4 — ARCO request local log.
+
+const String _v4ArcoRequests = '''
+  CREATE TABLE arco_requests (
+    id           TEXT PRIMARY KEY,
+    type         TEXT NOT NULL,
+    detail       TEXT NOT NULL DEFAULT '',
+    extra_ctx    TEXT NOT NULL DEFAULT '',
+    docs_version TEXT NOT NULL,
+    created_at   TEXT NOT NULL
+  )
+''';
+
+// v5 — Legal consent records.
+
+const String _v5ConsentRecords = '''
+  CREATE TABLE consent_records (
+    id                 INTEGER PRIMARY KEY AUTOINCREMENT,
+    docs_version       TEXT    NOT NULL,
+    accepted_primary   INTEGER NOT NULL DEFAULT 0,
+    accepted_secondary INTEGER NOT NULL DEFAULT 0,
+    accepted_age       INTEGER NOT NULL DEFAULT 0,
+    timestamp          TEXT    NOT NULL
   )
 ''';

@@ -131,27 +131,16 @@ class SettingsMainScreen extends StatelessWidget {
             title: 'Legal',
             items: [
               _SettingsItem(
-                icon: Icons.description_outlined,
-                label: 'Términos y condiciones',
+                icon: Icons.verified_user,
+                label: 'Centro Legal',
+                description: 'Términos, privacidad, ARCO y más',
                 onTap: () =>
-                    Navigator.of(context).pushNamed(AppRouter.termsConditions),
-              ),
-              _SettingsItem(
-                icon: Icons.privacy_tip_outlined,
-                label: 'Política de privacidad',
-                onTap: () =>
-                    Navigator.of(context).pushNamed(AppRouter.privacyPolicy),
-              ),
-              _SettingsItem(
-                icon: Icons.people_outline,
-                label: 'Normas de la comunidad',
-                onTap: () => Navigator.of(
-                  context,
-                ).pushNamed(AppRouter.communityGuidelines),
+                    Navigator.of(context).pushNamed(AppRouter.legalHub),
               ),
               _SettingsItem(
                 icon: Icons.info_outline,
                 label: 'Acerca de Trama Campus',
+                description: 'Versión e información de la app',
                 onTap: () => Navigator.of(context).pushNamed(AppRouter.about),
               ),
             ],
