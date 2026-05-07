@@ -105,7 +105,9 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
   @override
   Widget build(BuildContext context) {
     final scopeIdx = _categories.indexOf(_selectedCategory);
-    final scopeLabel = scopeIdx >= 0 ? _categoryLabels[scopeIdx] : 'Todo';
+    final scopeLabel = _selectedCategory == null
+        ? 'Todo'
+        : _categoryLabels[scopeIdx];
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,7 +171,7 @@ class _EditorialHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Marketplace · Anáhuac Oaxaca',
+              'MARKET',
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 11,
@@ -184,7 +186,7 @@ class _EditorialHeader extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Mercado del campus',
+                    'Marketplace',
                     style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 30,

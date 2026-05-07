@@ -78,70 +78,64 @@ class DiscoverFeedView extends StatelessWidget {
     final groups = _discoverableGroups(AppStateRepository.instance);
     final items = _build(students, groups);
 
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
+    return Column(
+      children: [
+        Padding(
           padding: const EdgeInsets.fromLTRB(
             AppSpacing.space4,
             AppSpacing.space3,
             AppSpacing.space4,
             AppSpacing.space2,
           ),
-          sliver: SliverToBoxAdapter(
-            child: _FilterRow(
-              selected: filter,
-              onChanged: onFilterChanged,
-              peopleCount: students.length,
-              groupCount: groups.length,
-            ),
+          child: _FilterRow(
+            selected: filter,
+            onChanged: onFilterChanged,
+            peopleCount: students.length,
+            groupCount: groups.length,
           ),
         ),
-        if (items.isEmpty)
-          const SliverFillRemaining(
-            hasScrollBody: false,
-            child: EmptyState(
-              icon: Icons.explore_outlined,
-              title: 'Sin resultados',
-              subtitle: 'Cambia la modalidad o el filtro',
-            ),
-          )
-        else
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.space4,
-              AppSpacing.space2,
-              AppSpacing.space4,
-              120,
-            ),
-            sliver: SliverList.separated(
-              itemCount: items.length,
-              separatorBuilder: (_, _) =>
-                  const SizedBox(height: AppSpacing.space4),
-              itemBuilder: (context, i) {
-                final item = items[i];
-                if (item.student != null) {
-                  final s = item.student!;
-                  return RepaintBoundary(
-                    child: FeedCard(
-                      student: s,
-                      onTap: () => onTap(s),
-                      onSave: () => onSave(s.id),
-                      isSaved: saved.contains(s.id),
-                    ),
-                  );
-                }
-                final g = item.group!;
-                return RepaintBoundary(
-                  child: GroupFeedCard(
-                    group: g,
-                    onTap: () => Navigator.of(
-                      context,
-                    ).pushNamed(AppRouter.groupDetail, arguments: g),
+        Expanded(
+          child: items.isEmpty
+              ? const EmptyState(
+                  icon: Icons.explore_outlined,
+                  title: 'Sin resultados',
+                  subtitle: 'Cambia la modalidad o el filtro',
+                )
+              : SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(
+                    AppSpacing.space4,
+                    AppSpacing.space2,
+                    AppSpacing.space4,
+                    120,
                   ),
-                );
-              },
-            ),
-          ),
+                  child: Column(
+                    children: [
+                      for (int i = 0; i < items.length; i++) ...[
+                        if (i > 0) const SizedBox(height: AppSpacing.space4),
+                        if (items[i].student != null)
+                          RepaintBoundary(
+                            child: FeedCard(
+                              student: items[i].student!,
+                              onTap: () => onTap(items[i].student!),
+                              onSave: () => onSave(items[i].student!.id),
+                              isSaved: saved.contains(items[i].student!.id),
+                            ),
+                          )
+                        else
+                          RepaintBoundary(
+                            child: GroupFeedCard(
+                              group: items[i].group!,
+                              onTap: () => Navigator.of(context).pushNamed(
+                                AppRouter.groupDetail,
+                                arguments: items[i].group!,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ],
+                  ),
+                ),
+        ),
       ],
     );
   }
