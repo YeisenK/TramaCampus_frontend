@@ -26,7 +26,7 @@ class QuickProfileSetupScreen extends StatefulWidget {
 
 class _QuickProfileSetupScreenState extends State<QuickProfileSetupScreen> {
   final _nameCtrl = TextEditingController();
-  final _ageCtrl = TextEditingController();
+  DateTime? _birthDate;
   String _gender = 'F';
   String _genderPreference = 'any';
   String _city = 'Oaxaca';
@@ -62,15 +62,45 @@ class _QuickProfileSetupScreenState extends State<QuickProfileSetupScreen> {
   @override
   void dispose() {
     _nameCtrl.dispose();
-    _ageCtrl.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickBirthDate() async {
+    final now = DateTime.now();
+    final initial = _birthDate ?? DateTime(now.year - 20, now.month, now.day);
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: initial,
+      firstDate: DateTime(now.year - 80),
+      lastDate: DateTime(now.year - 13, now.month, now.day),
+      helpText: 'Tu fecha de nacimiento',
+    );
+    if (picked != null) setState(() => _birthDate = picked);
+  }
+
+  int _ageFromBirthDate(DateTime bd) {
+    final now = DateTime.now();
+    var years = now.year - bd.year;
+    if (now.month < bd.month ||
+        (now.month == bd.month && now.day < bd.day)) {
+      years--;
+    }
+    return years;
   }
 
   Future<void> _save() async {
     final name = _nameCtrl.text.trim();
-    final age = int.tryParse(_ageCtrl.text.trim());
-    if (name.isEmpty || age == null || age < 16 || age > 99) {
-      setState(() => _error = 'Completá nombre y edad (16–99)');
+    if (name.isEmpty) {
+      setState(() => _error = 'Ingresá tu nombre');
+      return;
+    }
+    if (_birthDate == null) {
+      setState(() => _error = 'Elegí tu fecha de nacimiento');
+      return;
+    }
+    final age = _ageFromBirthDate(_birthDate!);
+    if (age < 16 || age > 99) {
+      setState(() => _error = 'La edad calculada debe estar entre 16 y 99');
       return;
     }
     if (_interests.isEmpty) {
@@ -94,7 +124,7 @@ class _QuickProfileSetupScreenState extends State<QuickProfileSetupScreen> {
     final username = email.contains('@')
         ? email.split('@').first.toLowerCase()
         : firstName.toLowerCase();
-    final birthDate = DateTime(DateTime.now().year - age, 6, 15);
+    final birthDate = _birthDate!;
 
     final profile = Profile(
       base: ProfileBase(
@@ -163,12 +193,11 @@ class _QuickProfileSetupScreenState extends State<QuickProfileSetupScreen> {
               _TextField(controller: _nameCtrl, cs: cs, hint: 'Nombre Apellido'),
 
               const SizedBox(height: AppSpacing.space5),
-              _SectionLabel(label: 'Edad'),
-              _TextField(
-                controller: _ageCtrl,
+              _SectionLabel(label: 'Fecha de nacimiento'),
+              _DatePickerField(
+                value: _birthDate,
+                onTap: _pickBirthDate,
                 cs: cs,
-                hint: '21',
-                keyboardType: TextInputType.number,
               ),
 
               const SizedBox(height: AppSpacing.space5),
@@ -277,18 +306,15 @@ class _TextField extends StatelessWidget {
     required this.controller,
     required this.cs,
     this.hint,
-    this.keyboardType,
   });
   final TextEditingController controller;
   final ColorScheme cs;
   final String? hint;
-  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      keyboardType: keyboardType,
       style: AppTextStyles.bodyMd(cs.onSurface),
       decoration: InputDecoration(
         hintText: hint,
@@ -305,6 +331,67 @@ class _TextField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.space4,
           vertical: AppSpacing.space4,
+        ),
+      ),
+    );
+  }
+}
+
+class _DatePickerField extends StatelessWidget {
+  const _DatePickerField({
+    required this.value,
+    required this.onTap,
+    required this.cs,
+  });
+
+  final DateTime? value;
+  final VoidCallback onTap;
+  final ColorScheme cs;
+
+  static const _months = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
+  ];
+
+  String _format(DateTime d) =>
+      '${d.day} de ${_months[d.month - 1]} de ${d.year}';
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadius.sm),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.space4,
+          vertical: AppSpacing.space4,
+        ),
+        decoration: BoxDecoration(
+          color: cs.surfaceContainerHigh,
+          borderRadius: BorderRadius.circular(AppRadius.sm),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.calendar_today_outlined,
+              size: 18,
+              color: cs.onSurfaceVariant,
+            ),
+            const SizedBox(width: AppSpacing.space3),
+            Expanded(
+              child: Text(
+                value == null ? 'Elegí tu fecha' : _format(value!),
+                style: AppTextStyles.bodyMd(
+                  value == null ? cs.onSurfaceVariant : cs.onSurface,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.keyboard_arrow_down,
+              size: 18,
+              color: cs.onSurfaceVariant,
+            ),
+          ],
         ),
       ),
     );
