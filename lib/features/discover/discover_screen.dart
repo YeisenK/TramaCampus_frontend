@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
+
 import '../../core/navigation/app_router.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/widgets/modality_switch.dart';
 import '../../core/widgets/t_bottom_nav.dart';
 import '../../core/widgets/trama_mark.dart';
-import '../../data/mock/mock_data.dart';
+import '../../data/models/mock_person.dart';
 import '../../data/models/modality.dart';
-import '../../data/models/modality_bucket.dart';
-import '../../data/models/recommended_student.dart';
 import '../../data/models/student.dart';
-import '../../data/repositories/api_matching_repository.dart';
 import '../../data/repositories/app_state_repository.dart';
-import '../../data/services/api/recommended_to_student.dart';
+import '../../data/repositories/mock_people_repository.dart';
+import '../../data/services/local_match_to_student.dart';
+import '../../data/services/local_matching_engine.dart';
 import '../chat/chat_list_screen.dart';
 import '../connections/connections_screen.dart';
 import '../marketplace/marketplace_screen.dart';
 import '../profile/my_profile_screen.dart';
 import 'views/feed_view.dart';
-
-// Demo runs against the API by default. Kill-switch:
-// --dart-define=TRAMA_USE_API_MATCHING=false to force-mock for offline dev.
-const bool kUseApiMatching = bool.fromEnvironment(
-  'TRAMA_USE_API_MATCHING',
-  defaultValue: true,
-);
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
@@ -40,70 +33,87 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   FeedFilter _feedFilter = FeedFilter.all;
   final Set<String> _saved = {};
 
-  late List<Student> _filteredStudents;
+  static const LocalMatchingEngine _engine = LocalMatchingEngine();
 
-  ApiMatchingRepository? _apiRepo;
-  MatchResultsDto? _apiMatches;
-  bool _apiLoading = false;
-  String? _apiError;
+  List<MockPerson> _pool = const [];
+  List<LocalMatch> _allMatches = const [];
+  List<Student> _filteredStudents = const [];
+  bool _loading = true;
+  String? _error;
 
   @override
   void initState() {
     super.initState();
-    _filteredStudents = _filterStudents(_modality);
-    if (kUseApiMatching) {
-      _apiRepo = ApiMatchingRepository();
-      _refreshFromApi();
-      AppStateRepository.instance.addListener(_onProfileChanged);
-    }
+    _bootstrap();
+    AppStateRepository.instance.addListener(_onProfileChanged);
   }
 
   @override
   void dispose() {
-    if (kUseApiMatching) {
-      AppStateRepository.instance.removeListener(_onProfileChanged);
-    }
+    AppStateRepository.instance.removeListener(_onProfileChanged);
     super.dispose();
   }
 
-  Future<void> _refreshFromApi() async {
-    final repo = _apiRepo;
-    if (repo == null) return;
-    setState(() {
-      _apiLoading = true;
-      _apiError = null;
-    });
+  Future<void> _bootstrap() async {
     try {
-      final results = await repo.refresh(AppStateRepository.instance.profile);
-      if (!mounted) return;
-      setState(() {
-        _apiMatches = results;
-        _filteredStudents = _filterStudents(_modality);
-        _apiLoading = false;
-      });
+      _pool = await MockPeopleRepository.instance.load();
+      _recompute();
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _apiError = e.toString();
-        _apiLoading = false;
+        _loading = false;
+        _error = 'No se pudo cargar el dataset de personas';
       });
     }
   }
 
   void _onProfileChanged() {
+    if (!mounted || _pool.isEmpty) return;
+    _recompute();
+  }
+
+  void _recompute() {
+    final state = AppStateRepository.instance;
+    final profile = state.profile;
+    final age = _ageFrom(profile.base.birthDate);
+    final city = state.city ?? 'Oaxaca';
+    final matches = _engine.recommend(
+      user: profile,
+      pool: _pool,
+      userAge: age,
+      userCity: city,
+    );
     if (!mounted) return;
-    _refreshFromApi();
+    setState(() {
+      _allMatches = matches;
+      _filteredStudents = _filterStudents(_modality);
+      _loading = false;
+      _error = null;
+    });
+  }
+
+  int _ageFrom(DateTime? bd) {
+    if (bd == null) return 21;
+    final now = DateTime.now();
+    var years = now.year - bd.year;
+    if (now.month < bd.month ||
+        (now.month == bd.month && now.day < bd.day)) {
+      years--;
+    }
+    return years.clamp(16, 99);
   }
 
   List<Student> _filterStudents(ModalityType m) {
-    if (kUseApiMatching && _apiMatches != null) {
-      final bucketModes = ModalityBucket.fromId(m).defaultModes.toSet();
-      return _apiMatches!.topGeneral
-          .where((r) => r.modalities.any(bucketModes.contains))
-          .map((r) => recommendedToStudent(r, m))
-          .toList();
-    }
-    return MockData.students.where((s) => s.intent == m).toList();
+    final bucket = switch (m) {
+      ModalityType.estudio => 'estudio',
+      ModalityType.amistad => 'amistad',
+      ModalityType.personal => 'personal',
+    };
+    return _allMatches
+        .where((lm) => lm.person.modes
+            .any((md) => md.trim().toLowerCase() == bucket))
+        .map((lm) => localMatchToStudent(lm, m))
+        .toList();
   }
 
   void _onNav(int i) => setState(() {
@@ -142,14 +152,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             onNotificationsTap: () =>
                 Navigator.of(context).pushNamed(AppRouter.notifications),
             filteredStudents: _filteredStudents,
-            apiBanner: kUseApiMatching
-                ? _ApiStatusBanner(
-                    loading: _apiLoading,
-                    error: _apiError,
-                    coldStart: _apiMatches?.coldStart ?? false,
-                    onRetry: _refreshFromApi,
-                  )
-                : null,
+            apiBanner: _StatusBanner(
+              loading: _loading,
+              error: _error,
+              emptyMessage: _allMatches.isEmpty && !_loading && _error == null
+                  ? 'Sin recomendaciones todavía — completá más tu perfil'
+                  : null,
+            ),
           ),
           _lazyTab(1, const ConnectionsScreen(embedded: true)),
           _lazyTab(2, const MarketplaceScreen(embedded: true)),
@@ -227,18 +236,16 @@ class _DiscoverShell extends StatelessWidget {
   }
 }
 
-class _ApiStatusBanner extends StatelessWidget {
-  const _ApiStatusBanner({
+class _StatusBanner extends StatelessWidget {
+  const _StatusBanner({
     required this.loading,
     required this.error,
-    required this.coldStart,
-    required this.onRetry,
+    required this.emptyMessage,
   });
 
   final bool loading;
   final String? error;
-  final bool coldStart;
-  final VoidCallback onRetry;
+  final String? emptyMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -262,7 +269,7 @@ class _ApiStatusBanner extends StatelessWidget {
             ),
             const SizedBox(width: AppSpacing.space3),
             Text(
-              'Buscando matches con la API…',
+              'Cargando recomendaciones…',
               style: TextStyle(color: cs.onPrimaryContainer, fontSize: 12),
             ),
           ],
@@ -282,16 +289,15 @@ class _ApiStatusBanner extends StatelessWidget {
             const SizedBox(width: AppSpacing.space2),
             Expanded(
               child: Text(
-                'No se pudo contactar la API de matching',
+                error!,
                 style: TextStyle(color: cs.onErrorContainer, fontSize: 12),
               ),
             ),
-            TextButton(onPressed: onRetry, child: const Text('Reintentar')),
           ],
         ),
       );
     }
-    if (coldStart) {
+    if (emptyMessage != null) {
       return Container(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.space5,
@@ -299,7 +305,7 @@ class _ApiStatusBanner extends StatelessWidget {
         ),
         color: cs.surfaceContainerHigh,
         child: Text(
-          'Cold start: aún no hay interacciones, mostramos exploración amplia.',
+          emptyMessage!,
           style: TextStyle(color: cs.onSurfaceVariant, fontSize: 11),
         ),
       );

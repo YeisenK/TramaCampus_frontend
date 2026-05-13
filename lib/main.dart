@@ -5,6 +5,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'app.dart';
 import 'core/services/preferences_service.dart';
 import 'data/repositories/app_state_repository.dart';
+import 'data/repositories/auth_repository.dart';
 import 'data/repositories/demo_session_repository.dart';
 
 void main() async {
@@ -27,12 +28,14 @@ void main() async {
   // Limit image cache to 60 MB — enough for feed + marketplace without bloat.
   PaintingBinding.instance.imageCache.maximumSizeBytes = 60 << 20;
 
-  // Load runtime mutable state (follow sets, messages, created groups) before first frame.
+  // Auth session — splash uses this to decide first route.
+  await AuthRepository.instance.load();
+
+  // Runtime mutable state (profile, follow sets, messages, created groups).
   await AppStateRepository.instance.load();
 
-  // Warm the demo session cache so any screen reading
-  // DemoSessionRepository.instance.cached gets the persisted id
-  // without waiting for the splash to resolve it.
+  // Legacy demo session (email → user_id) kept for the dormant API
+  // matching path; safe no-op if no row exists.
   await DemoSessionRepository.instance.load();
 
   runApp(const TramaApp());

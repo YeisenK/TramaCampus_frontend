@@ -20,6 +20,7 @@ const List<Migration> kMigrations = [
   ),
   Migration(version: 4, up: [_v4ArcoRequests]),
   Migration(version: 5, up: [_v5ConsentRecords]),
+  Migration(version: 6, up: [_v6Accounts]),
 ];
 
 const String _v1ProfilePhotos = '''
@@ -143,5 +144,17 @@ const String _v5ConsentRecords = '''
     accepted_secondary INTEGER NOT NULL DEFAULT 0,
     accepted_age       INTEGER NOT NULL DEFAULT 0,
     timestamp          TEXT    NOT NULL
+  )
+''';
+
+// v6 — Local account credentials. Demo-grade: SHA-256(password + salt).
+// Not production auth — replace with the user-service when it lands.
+
+const String _v6Accounts = '''
+  CREATE TABLE accounts (
+    email         TEXT    PRIMARY KEY,
+    password_hash TEXT    NOT NULL,
+    salt          TEXT    NOT NULL,
+    created_at    TEXT    NOT NULL
   )
 ''';

@@ -12,6 +12,16 @@ class Tables {
   static const String userGroups = 'user_groups';
   static const String directMessages = 'direct_messages';
   static const String groupMessages = 'group_messages';
+  static const String accounts = 'accounts';
+}
+
+class AccountColumns {
+  AccountColumns._();
+
+  static const String email = 'email';
+  static const String passwordHash = 'password_hash';
+  static const String salt = 'salt';
+  static const String createdAt = 'created_at';
 }
 
 class ProfilePhotoColumns {

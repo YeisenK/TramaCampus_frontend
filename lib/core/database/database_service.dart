@@ -3,7 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'migrations.dart';
 
-const int kDatabaseVersion = 5;
+const int kDatabaseVersion = 6;
 
 class DatabaseService {
   DatabaseService._();

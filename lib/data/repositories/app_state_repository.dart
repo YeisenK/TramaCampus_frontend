@@ -15,6 +15,10 @@ class AppStateRepository extends ChangeNotifier {
   static final AppStateRepository instance = AppStateRepository._();
 
   Profile? _profile;
+  bool _hasUserProfile = false;
+  bool get hasUserProfile => _hasUserProfile;
+  String? _city;
+  String? get city => _city;
   final Set<String> _followedGroupIds = {};
   final Set<String> _memberGroupIds = {};
   final List<Group> _userCreatedGroups = [];
@@ -51,8 +55,10 @@ class AppStateRepository extends ChangeNotifier {
     _loaded = true;
 
     _profile = await MockProfileRepository.instance.load();
+    _hasUserProfile = _profile != null;
 
     final db = await DatabaseService.instance.database;
+    _city = await _metaGet(db, _kCityKey);
 
     await _loadFollowedGroups(db);
     await _loadMemberGroups(db);
@@ -63,6 +69,7 @@ class AppStateRepository extends ChangeNotifier {
 
   static const _kSeedMemberFlag = 'demo_member_seed_v1';
   static const _kSeedFollowFlag = 'demo_follow_seed_v2';
+  static const _kCityKey = 'profile.city';
 
   Future<String?> _metaGet(Database db, String key) async {
     final rows = await db.query(
@@ -174,7 +181,25 @@ class AppStateRepository extends ChangeNotifier {
 
   Future<void> updateProfile(Profile p) async {
     _profile = p;
+    _hasUserProfile = true;
     await MockProfileRepository.instance.save(p);
+    notifyListeners();
+  }
+
+  /// Used on logout: clears in-memory profile cache so the next account
+  /// starts fresh. The SQLite row is preserved (per-account profile
+  /// persistence is out of scope for the demo — we keep the most recent).
+  void clearProfileCache() {
+    _profile = null;
+    _hasUserProfile = false;
+    MockProfileRepository.instance.clearCache();
+    notifyListeners();
+  }
+
+  Future<void> setCity(String city) async {
+    _city = city;
+    final db = await DatabaseService.instance.database;
+    await _metaSet(db, _kCityKey, city);
     notifyListeners();
   }
 

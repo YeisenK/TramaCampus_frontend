@@ -1,0 +1,3086 @@
+{
+  "people": [
+    {
+      "id": "p001",
+      "name": "Javier Romero",
+      "age": 19,
+      "gender": "M",
+      "city": "Guadalajara",
+      "major": "Negocios Internacionales",
+      "semester": 2,
+      "bio": "Combino gastronomía con café porque la vida es corta.",
+      "interests": [
+        "manga",
+        "café",
+        "ciclismo",
+        "gastronomía",
+        "videojuegos",
+        "electrónica",
+        "natación",
+        "ilustración",
+        "ml"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "sociable",
+        "intuitivo",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/11.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/11.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/11.jpg"
+    },
+    {
+      "id": "p002",
+      "name": "Mateo Núñez",
+      "age": 21,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Nutrición",
+      "semester": 9,
+      "bio": "Estudio Nutrición y me interesa todo lo relacionado con danza. Café siempre.",
+      "interests": [
+        "anime",
+        "danza",
+        "ux",
+        "café",
+        "música",
+        "running",
+        "idiomas",
+        "programación"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "analítico",
+        "sociable",
+        "intuitivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/2.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/2.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/2.jpg"
+    },
+    {
+      "id": "p003",
+      "name": "Valeria Espinoza",
+      "age": 19,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Arquitectura",
+      "semester": 7,
+      "bio": "Soy de los que teatro hasta tarde. música también, claro.",
+      "interests": [
+        "voluntariado",
+        "teatro",
+        "ciencia",
+        "música",
+        "cocina",
+        "electrónica",
+        "gym",
+        "activismo",
+        "podcast"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "perfeccionista",
+        "optimista",
+        "reservado",
+        "reflexivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/9.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/9.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/9.jpg"
+    },
+    {
+      "id": "p004",
+      "name": "Kevin Ruiz",
+      "age": 22,
+      "gender": "M",
+      "city": "Monterrey",
+      "major": "Ciencias Políticas",
+      "semester": 10,
+      "bio": "Me encanta voluntariado, aunque mi verdadera obsesión es fútbol.",
+      "interests": [
+        "fútbol",
+        "voluntariado",
+        "running",
+        "electrónica",
+        "indie",
+        "música"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "aventurero",
+        "empático",
+        "curioso",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/8.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/8.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/8.jpg"
+    },
+    {
+      "id": "p005",
+      "name": "Fernanda Miranda",
+      "age": 25,
+      "gender": "F",
+      "city": "Puebla",
+      "major": "Administración",
+      "semester": 1,
+      "bio": "Mitad ml, mitad idiomas. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "videojuegos",
+        "fútbol",
+        "rock",
+        "ml",
+        "indie",
+        "idiomas",
+        "gym"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "sociable",
+        "reservado",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/36.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/36.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/36.jpg"
+    },
+    {
+      "id": "p006",
+      "name": "Tania Lugo",
+      "age": 25,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Diseño Gráfico",
+      "semester": 2,
+      "bio": "Fan del escritura y del diseño. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "senderismo",
+        "danza",
+        "teatro",
+        "diseño",
+        "emprendimiento",
+        "escritura",
+        "rock",
+        "electrónica"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "apasionado",
+        "reservado",
+        "analítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/45.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/45.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/45.jpg"
+    },
+    {
+      "id": "p007",
+      "name": "Gabriel Valencia",
+      "age": 25,
+      "gender": "M",
+      "city": "Guadalajara",
+      "major": "Psicología",
+      "semester": 10,
+      "bio": "En camino a dominar emprendimiento. Mientras tanto, programación.",
+      "interests": [
+        "tatuajes",
+        "gastronomía",
+        "teatro",
+        "meditación",
+        "emprendimiento",
+        "investigación",
+        "programación",
+        "diseño"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "creativo",
+        "crítico",
+        "analítico",
+        "aventurero"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/46.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/46.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/46.jpg"
+    },
+    {
+      "id": "p008",
+      "name": "Alejandro Núñez",
+      "age": 19,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Gastronomía",
+      "semester": 8,
+      "bio": "Mitad tatuajes, mitad meditación. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "ml",
+        "meditación",
+        "viajes",
+        "fotografía",
+        "anime",
+        "escalada",
+        "tatuajes",
+        "activismo",
+        "escritura",
+        "skate"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "apasionado",
+        "optimista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/43.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/43.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/43.jpg"
+    },
+    {
+      "id": "p009",
+      "name": "Natalia Ramírez",
+      "age": 20,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Nutrición",
+      "semester": 4,
+      "bio": "Si no estoy con indie, probablemente estoy con ajedrez.",
+      "interests": [
+        "indie",
+        "viajes",
+        "teatro",
+        "cocina",
+        "ajedrez",
+        "tatuajes",
+        "rock"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "analítico",
+        "optimista",
+        "reservado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/48.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/48.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/48.jpg"
+    },
+    {
+      "id": "p010",
+      "name": "Nadia Miranda",
+      "age": 23,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Ingeniería Civil",
+      "semester": 9,
+      "bio": "Combino anime con ajedrez porque la vida es corta.",
+      "interests": [
+        "activismo",
+        "diseño",
+        "ajedrez",
+        "manga",
+        "ilustración",
+        "política",
+        "anime",
+        "investigación"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "aventurero",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/1.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/1.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/1.jpg"
+    },
+    {
+      "id": "p011",
+      "name": "Gabriel Olvera",
+      "age": 22,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Periodismo",
+      "semester": 5,
+      "bio": "Fan del café y del viajes. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "gastronomía",
+        "tatuajes",
+        "manga",
+        "café",
+        "danza",
+        "escritura",
+        "viajes",
+        "escalada",
+        "ciclismo"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "aventurero",
+        "líder",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/29.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/29.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/29.jpg"
+    },
+    {
+      "id": "p012",
+      "name": "Itzel Romero",
+      "age": 23,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Derecho",
+      "semester": 10,
+      "bio": "Soy de los que yoga hasta tarde. ciclismo también, claro.",
+      "interests": [
+        "escalada",
+        "ciclismo",
+        "podcast",
+        "natación",
+        "tatuajes",
+        "yoga",
+        "fotografía"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "empático",
+        "curioso"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/7.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/7.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/7.jpg"
+    },
+    {
+      "id": "p013",
+      "name": "Renata Bautista",
+      "age": 24,
+      "gender": "F",
+      "city": "Puebla",
+      "major": "Arquitectura",
+      "semester": 8,
+      "bio": "En camino a dominar escalada. Mientras tanto, cocina.",
+      "interests": [
+        "fútbol",
+        "anime",
+        "activismo",
+        "tatuajes",
+        "cocina",
+        "escalada",
+        "skate",
+        "música",
+        "ciclismo"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "optimista",
+        "líder",
+        "analítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/5.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/5.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/5.jpg"
+    },
+    {
+      "id": "p014",
+      "name": "Raquel Castillo",
+      "age": 21,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Diseño Gráfico",
+      "semester": 10,
+      "bio": "Me apasiona fútbol y disfruto café los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "café",
+        "fútbol",
+        "natación",
+        "electrónica",
+        "cocina"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "optimista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/13.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/13.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/13.jpg"
+    },
+    {
+      "id": "p015",
+      "name": "Gabriel Bautista",
+      "age": 19,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Filosofía",
+      "semester": 10,
+      "bio": "Estudio Filosofía y me interesa todo lo relacionado con gastronomía. Café siempre.",
+      "interests": [
+        "podcast",
+        "poesía",
+        "política",
+        "gastronomía",
+        "ciencia",
+        "manga"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "optimista",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/27.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/27.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/27.jpg"
+    },
+    {
+      "id": "p016",
+      "name": "Sebastián Méndez",
+      "age": 23,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Pedagogía",
+      "semester": 1,
+      "bio": "En camino a dominar lectura. Mientras tanto, podcast.",
+      "interests": [
+        "skate",
+        "podcast",
+        "yoga",
+        "lectura",
+        "ciencia",
+        "programación",
+        "escalada",
+        "manga",
+        "ajedrez",
+        "ux"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "empático",
+        "analítico",
+        "metódico",
+        "crítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/12.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/12.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/12.jpg"
+    },
+    {
+      "id": "p017",
+      "name": "César Cortés",
+      "age": 21,
+      "gender": "M",
+      "city": "Mérida",
+      "major": "Mercadotecnia",
+      "semester": 8,
+      "bio": "Mitad podcast, mitad viajes. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "skate",
+        "fútbol",
+        "gastronomía",
+        "podcast",
+        "viajes"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "perfeccionista",
+        "reservado",
+        "metódico",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/49.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/49.jpg"
+    },
+    {
+      "id": "p018",
+      "name": "Pamela Acosta",
+      "age": 19,
+      "gender": "F",
+      "city": "Guadalajara",
+      "major": "Diseño Gráfico",
+      "semester": 3,
+      "bio": "Estudio Diseño Gráfico y me interesa todo lo relacionado con idiomas. Café siempre.",
+      "interests": [
+        "lectura",
+        "escalada",
+        "teatro",
+        "café",
+        "danza",
+        "idiomas",
+        "gastronomía",
+        "ml",
+        "skate"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "reservado",
+        "sociable",
+        "intuitivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/21.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/21.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/21.jpg"
+    },
+    {
+      "id": "p019",
+      "name": "Héctor Núñez",
+      "age": 21,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Periodismo",
+      "semester": 1,
+      "bio": "En camino a dominar café. Mientras tanto, videojuegos.",
+      "interests": [
+        "fotografía",
+        "diseño",
+        "ciencia",
+        "café",
+        "escritura",
+        "videojuegos"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "apasionado",
+        "perfeccionista",
+        "aventurero",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/5.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/5.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/5.jpg"
+    },
+    {
+      "id": "p020",
+      "name": "Quique Acosta",
+      "age": 19,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Psicología",
+      "semester": 5,
+      "bio": "Mitad ux, mitad arte. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "ux",
+        "cine",
+        "arte",
+        "ilustración",
+        "escalada"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "metódico",
+        "perfeccionista",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/34.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/34.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/34.jpg"
+    },
+    {
+      "id": "p021",
+      "name": "Miguel Jiménez",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Periodismo",
+      "semester": 4,
+      "bio": "Si no estoy con ciencia, probablemente estoy con café.",
+      "interests": [
+        "cine",
+        "ciclismo",
+        "ajedrez",
+        "ciencia",
+        "programación",
+        "café"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "reservado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/22.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/22.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/22.jpg"
+    },
+    {
+      "id": "p022",
+      "name": "Daniel Herrera",
+      "age": 20,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Periodismo",
+      "semester": 6,
+      "bio": "Estudio Periodismo y me interesa todo lo relacionado con arte. Café siempre.",
+      "interests": [
+        "rock",
+        "fútbol",
+        "idiomas",
+        "natación",
+        "fotografía",
+        "arte",
+        "voluntariado",
+        "skate",
+        "emprendimiento"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "optimista",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/20.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/20.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/20.jpg"
+    },
+    {
+      "id": "p023",
+      "name": "Valeria Gómez",
+      "age": 25,
+      "gender": "F",
+      "city": "CDMX",
+      "major": "Psicología",
+      "semester": 3,
+      "bio": "Soy de los que ciencia hasta tarde. ciencia también, claro.",
+      "interests": [
+        "electrónica",
+        "anime",
+        "jazz",
+        "rock",
+        "emprendimiento",
+        "escritura",
+        "ciencia",
+        "fotografía"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "curioso",
+        "empático",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/23.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/23.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/23.jpg"
+    },
+    {
+      "id": "p024",
+      "name": "Nicolás Fuentes",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Medicina",
+      "semester": 6,
+      "bio": "Soy de los que electrónica hasta tarde. ciclismo también, claro.",
+      "interests": [
+        "ciencia",
+        "jazz",
+        "música",
+        "ciclismo",
+        "electrónica"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "metódico",
+        "curioso",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/47.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/47.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/47.jpg"
+    },
+    {
+      "id": "p025",
+      "name": "Andrea Navarro",
+      "age": 20,
+      "gender": "F",
+      "city": "Monterrey",
+      "major": "Artes Visuales",
+      "semester": 8,
+      "bio": "Fan del skate y del manga. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "natación",
+        "escritura",
+        "manga",
+        "skate",
+        "voluntariado"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "metódico",
+        "reflexivo",
+        "curioso"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/43.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/43.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/43.jpg"
+    },
+    {
+      "id": "p026",
+      "name": "Javier Salinas",
+      "age": 19,
+      "gender": "M",
+      "city": "Guadalajara",
+      "major": "Administración",
+      "semester": 10,
+      "bio": "Estudio Administración y me interesa todo lo relacionado con gym. Café siempre.",
+      "interests": [
+        "escalada",
+        "manga",
+        "ciencia",
+        "gym",
+        "ilustración"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "reflexivo",
+        "apasionado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/15.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/15.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/15.jpg"
+    },
+    {
+      "id": "p027",
+      "name": "Ximena Ruiz",
+      "age": 23,
+      "gender": "F",
+      "city": "Monterrey",
+      "major": "Finanzas",
+      "semester": 2,
+      "bio": "Me encanta ilustración, aunque mi verdadera obsesión es anime.",
+      "interests": [
+        "ilustración",
+        "anime",
+        "idiomas",
+        "rock",
+        "finanzas",
+        "skate",
+        "ciclismo"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "reflexivo",
+        "optimista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/19.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/19.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/19.jpg"
+    },
+    {
+      "id": "p028",
+      "name": "Raquel Núñez",
+      "age": 26,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Mercadotecnia",
+      "semester": 7,
+      "bio": "Fan del arte y del viajes. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "ciclismo",
+        "idiomas",
+        "lectura",
+        "viajes",
+        "ml",
+        "arte",
+        "emprendimiento"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "reflexivo",
+        "líder"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/18.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/18.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/18.jpg"
+    },
+    {
+      "id": "p029",
+      "name": "Alejandro Valencia",
+      "age": 22,
+      "gender": "M",
+      "city": "Puebla",
+      "major": "Relaciones Internacionales",
+      "semester": 8,
+      "bio": "Combino teatro con idiomas porque la vida es corta.",
+      "interests": [
+        "idiomas",
+        "ux",
+        "café",
+        "diseño",
+        "manga",
+        "teatro",
+        "escalada",
+        "danza"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/36.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/36.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/36.jpg"
+    },
+    {
+      "id": "p030",
+      "name": "Vicente Pérez",
+      "age": 25,
+      "gender": "M",
+      "city": "Guadalajara",
+      "major": "Pedagogía",
+      "semester": 2,
+      "bio": "Estudio Pedagogía y me interesa todo lo relacionado con rock. Café siempre.",
+      "interests": [
+        "anime",
+        "escritura",
+        "programación",
+        "cine",
+        "ux",
+        "rock"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "reflexivo",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/10.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/10.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/10.jpg"
+    },
+    {
+      "id": "p031",
+      "name": "Nicolás Soto",
+      "age": 19,
+      "gender": "M",
+      "city": "Querétaro",
+      "major": "Diseño Gráfico",
+      "semester": 5,
+      "bio": "Me encanta viajes, aunque mi verdadera obsesión es café.",
+      "interests": [
+        "yoga",
+        "rock",
+        "fútbol",
+        "café",
+        "viajes"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "sociable",
+        "perfeccionista",
+        "aventurero",
+        "apasionado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/18.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/18.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/18.jpg"
+    },
+    {
+      "id": "p032",
+      "name": "Joaquín Aguilar",
+      "age": 20,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Finanzas",
+      "semester": 5,
+      "bio": "En camino a dominar música. Mientras tanto, ajedrez.",
+      "interests": [
+        "café",
+        "ml",
+        "podcast",
+        "rock",
+        "música",
+        "indie",
+        "ajedrez"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "sociable",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/37.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/37.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/37.jpg"
+    },
+    {
+      "id": "p033",
+      "name": "Nadia Morales",
+      "age": 22,
+      "gender": "F",
+      "city": "Querétaro",
+      "major": "Cine y TV",
+      "semester": 8,
+      "bio": "Mitad activismo, mitad escalada. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "voluntariado",
+        "escalada",
+        "ilustración",
+        "danza",
+        "activismo",
+        "viajes"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "líder",
+        "apasionado",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/33.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/33.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/33.jpg"
+    },
+    {
+      "id": "p034",
+      "name": "Tania Solís",
+      "age": 19,
+      "gender": "F",
+      "city": "Guadalajara",
+      "major": "Artes Visuales",
+      "semester": 9,
+      "bio": "Combino tatuajes con tatuajes porque la vida es corta.",
+      "interests": [
+        "diseño",
+        "tatuajes",
+        "gastronomía",
+        "electrónica",
+        "fotografía",
+        "finanzas",
+        "escritura",
+        "manga"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "optimista",
+        "reservado",
+        "sociable",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/3.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/3.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/3.jpg"
+    },
+    {
+      "id": "p035",
+      "name": "Valentina Méndez",
+      "age": 22,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Comunicación",
+      "semester": 4,
+      "bio": "Me apasiona meditación y disfruto viajes los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "meditación",
+        "yoga",
+        "manga",
+        "política",
+        "ilustración",
+        "emprendimiento",
+        "skate",
+        "viajes"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "reservado",
+        "curioso",
+        "optimista",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/6.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/6.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/6.jpg"
+    },
+    {
+      "id": "p036",
+      "name": "Sofía Valencia",
+      "age": 22,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Ingeniería en Sistemas",
+      "semester": 1,
+      "bio": "Me encanta danza, aunque mi verdadera obsesión es escritura.",
+      "interests": [
+        "ciencia",
+        "idiomas",
+        "escalada",
+        "yoga",
+        "gastronomía",
+        "danza",
+        "escritura",
+        "teatro"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "reflexivo",
+        "analítico",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/15.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/15.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/15.jpg"
+    },
+    {
+      "id": "p037",
+      "name": "Paulina Cortés",
+      "age": 20,
+      "gender": "F",
+      "city": "Guadalajara",
+      "major": "Comunicación",
+      "semester": 7,
+      "bio": "Si no estoy con ml, probablemente estoy con programación.",
+      "interests": [
+        "ml",
+        "teatro",
+        "arte",
+        "rock",
+        "política",
+        "programación"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "optimista",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/30.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/30.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/30.jpg"
+    },
+    {
+      "id": "p038",
+      "name": "Nadia Castro",
+      "age": 18,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Derecho",
+      "semester": 2,
+      "bio": "Mitad ciclismo, mitad skate. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "teatro",
+        "ciclismo",
+        "videojuegos",
+        "skate",
+        "tatuajes",
+        "ml",
+        "cine",
+        "lectura"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "sociable",
+        "analítico",
+        "intuitivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/12.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/12.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/12.jpg"
+    },
+    {
+      "id": "p039",
+      "name": "Diego Valencia",
+      "age": 26,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Odontología",
+      "semester": 4,
+      "bio": "Combino ciclismo con programación porque la vida es corta.",
+      "interests": [
+        "idiomas",
+        "escritura",
+        "ciclismo",
+        "programación",
+        "finanzas",
+        "diseño",
+        "gym"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "apasionado",
+        "reservado",
+        "líder",
+        "crítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/24.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/24.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/24.jpg"
+    },
+    {
+      "id": "p040",
+      "name": "Valeria Jiménez",
+      "age": 20,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Música",
+      "semester": 1,
+      "bio": "En camino a dominar podcast. Mientras tanto, activismo.",
+      "interests": [
+        "rock",
+        "ilustración",
+        "voluntariado",
+        "activismo",
+        "podcast",
+        "natación",
+        "finanzas"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "creativo",
+        "reservado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/46.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/46.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/46.jpg"
+    },
+    {
+      "id": "p041",
+      "name": "Iván Carrillo",
+      "age": 19,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Música",
+      "semester": 2,
+      "bio": "Mitad rock, mitad cocina. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "natación",
+        "podcast",
+        "ciclismo",
+        "meditación",
+        "rock",
+        "running",
+        "cocina",
+        "indie",
+        "idiomas"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "apasionado",
+        "líder"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/9.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/9.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/9.jpg"
+    },
+    {
+      "id": "p042",
+      "name": "Alejandro Valencia",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Arquitectura",
+      "semester": 2,
+      "bio": "Si no estoy con danza, probablemente estoy con ciclismo.",
+      "interests": [
+        "natación",
+        "activismo",
+        "ciclismo",
+        "indie",
+        "rock",
+        "ml",
+        "diseño",
+        "danza"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "crítico",
+        "perfeccionista",
+        "líder",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/28.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/28.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/28.jpg"
+    },
+    {
+      "id": "p043",
+      "name": "Mariel Fuentes",
+      "age": 23,
+      "gender": "F",
+      "city": "Guadalajara",
+      "major": "Matemáticas Aplicadas",
+      "semester": 3,
+      "bio": "Me encanta fotografía, aunque mi verdadera obsesión es senderismo.",
+      "interests": [
+        "política",
+        "fútbol",
+        "running",
+        "senderismo",
+        "finanzas",
+        "escalada",
+        "danza",
+        "fotografía",
+        "investigación"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "optimista",
+        "perfeccionista",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/32.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/32.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/32.jpg"
+    },
+    {
+      "id": "p044",
+      "name": "Tomás Mendoza",
+      "age": 18,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Arquitectura",
+      "semester": 4,
+      "bio": "Mitad ux, mitad ux. Me cuesta quedarme quieto/a.",
+      "interests": [
+        "yoga",
+        "escalada",
+        "electrónica",
+        "teatro",
+        "ux",
+        "idiomas"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "curioso",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/1.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/1.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/1.jpg"
+    },
+    {
+      "id": "p045",
+      "name": "Tania Espinoza",
+      "age": 19,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Música",
+      "semester": 10,
+      "bio": "Estudio Música y me interesa todo lo relacionado con música. Café siempre.",
+      "interests": [
+        "cine",
+        "tatuajes",
+        "jazz",
+        "ilustración",
+        "manga",
+        "fútbol",
+        "viajes",
+        "idiomas",
+        "música"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "aventurero",
+        "sociable",
+        "reflexivo",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/37.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/37.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/37.jpg"
+    },
+    {
+      "id": "p046",
+      "name": "Brenda Carrillo",
+      "age": 19,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Negocios Internacionales",
+      "semester": 2,
+      "bio": "Me apasiona escalada y disfruto indie los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "activismo",
+        "escalada",
+        "indie",
+        "emprendimiento",
+        "natación",
+        "rock",
+        "ux",
+        "senderismo"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "metódico",
+        "líder"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/47.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/47.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/47.jpg"
+    },
+    {
+      "id": "p047",
+      "name": "Karla Fuentes",
+      "age": 21,
+      "gender": "F",
+      "city": "Guadalajara",
+      "major": "Negocios Internacionales",
+      "semester": 5,
+      "bio": "Combino emprendimiento con viajes porque la vida es corta.",
+      "interests": [
+        "ciencia",
+        "electrónica",
+        "meditación",
+        "cocina",
+        "fotografía",
+        "ajedrez",
+        "viajes",
+        "emprendimiento",
+        "lectura"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "aventurero",
+        "reservado",
+        "creativo",
+        "apasionado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/40.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/40.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/40.jpg"
+    },
+    {
+      "id": "p048",
+      "name": "Manuel Romero",
+      "age": 20,
+      "gender": "M",
+      "city": "Guadalajara",
+      "major": "Periodismo",
+      "semester": 3,
+      "bio": "Me encanta ml, aunque mi verdadera obsesión es arte.",
+      "interests": [
+        "lectura",
+        "running",
+        "arte",
+        "ml",
+        "ilustración"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "empático",
+        "creativo",
+        "apasionado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/44.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/44.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/44.jpg"
+    },
+    {
+      "id": "p049",
+      "name": "Natalia Vázquez",
+      "age": 21,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Psicología",
+      "semester": 2,
+      "bio": "Fan del indie y del gym. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "tatuajes",
+        "gym",
+        "indie",
+        "jazz",
+        "ajedrez",
+        "emprendimiento",
+        "podcast",
+        "fútbol",
+        "manga"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "analítico",
+        "reservado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/25.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/25.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/25.jpg"
+    },
+    {
+      "id": "p050",
+      "name": "Felipe Domínguez",
+      "age": 22,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Mercadotecnia",
+      "semester": 4,
+      "bio": "Estudio Mercadotecnia y me interesa todo lo relacionado con café. Café siempre.",
+      "interests": [
+        "gym",
+        "electrónica",
+        "senderismo",
+        "ajedrez",
+        "videojuegos",
+        "meditación",
+        "café"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "reflexivo",
+        "intuitivo",
+        "líder",
+        "apasionado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/39.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/39.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/39.jpg"
+    },
+    {
+      "id": "p051",
+      "name": "Emilia Salinas",
+      "age": 19,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Pedagogía",
+      "semester": 1,
+      "bio": "Si no estoy con voluntariado, probablemente estoy con skate.",
+      "interests": [
+        "voluntariado",
+        "viajes",
+        "escritura",
+        "skate",
+        "teatro"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "reflexivo",
+        "líder",
+        "metódico",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/27.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/27.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/27.jpg"
+    },
+    {
+      "id": "p052",
+      "name": "Isabela Álvarez",
+      "age": 25,
+      "gender": "F",
+      "city": "Guadalajara",
+      "major": "Relaciones Internacionales",
+      "semester": 2,
+      "bio": "En camino a dominar café. Mientras tanto, indie.",
+      "interests": [
+        "indie",
+        "gym",
+        "viajes",
+        "teatro",
+        "running",
+        "café",
+        "danza",
+        "jazz",
+        "fútbol",
+        "idiomas"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "apasionado",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/34.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/34.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/34.jpg"
+    },
+    {
+      "id": "p053",
+      "name": "Pamela Jiménez",
+      "age": 23,
+      "gender": "F",
+      "city": "Puebla",
+      "major": "Ciencias Políticas",
+      "semester": 3,
+      "bio": "En camino a dominar podcast. Mientras tanto, teatro.",
+      "interests": [
+        "danza",
+        "yoga",
+        "programación",
+        "podcast",
+        "teatro"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "optimista",
+        "analítico",
+        "curioso",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/28.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/28.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/28.jpg"
+    },
+    {
+      "id": "p054",
+      "name": "Sebastián Sánchez",
+      "age": 22,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Periodismo",
+      "semester": 6,
+      "bio": "Fan del ciclismo y del ciclismo. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "voluntariado",
+        "emprendimiento",
+        "videojuegos",
+        "ciclismo",
+        "café",
+        "escritura"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "optimista",
+        "analítico",
+        "líder",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/4.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/4.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/4.jpg"
+    },
+    {
+      "id": "p055",
+      "name": "Manuel Vázquez",
+      "age": 18,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Medicina",
+      "semester": 3,
+      "bio": "Me encanta cocina, aunque mi verdadera obsesión es diseño.",
+      "interests": [
+        "cocina",
+        "fotografía",
+        "yoga",
+        "ml",
+        "idiomas",
+        "emprendimiento",
+        "diseño",
+        "skate",
+        "jazz"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "metódico",
+        "reflexivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/23.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/23.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/23.jpg"
+    },
+    {
+      "id": "p056",
+      "name": "Zoe Méndez",
+      "age": 26,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Finanzas",
+      "semester": 5,
+      "bio": "Estudio Finanzas y me interesa todo lo relacionado con anime. Café siempre.",
+      "interests": [
+        "videojuegos",
+        "programación",
+        "gastronomía",
+        "ajedrez",
+        "anime",
+        "natación"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "reservado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/31.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/31.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/31.jpg"
+    },
+    {
+      "id": "p057",
+      "name": "Silvia Méndez",
+      "age": 20,
+      "gender": "F",
+      "city": "CDMX",
+      "major": "Finanzas",
+      "semester": 8,
+      "bio": "Combino idiomas con tatuajes porque la vida es corta.",
+      "interests": [
+        "emprendimiento",
+        "finanzas",
+        "idiomas",
+        "café",
+        "tatuajes"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "optimista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/42.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/42.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/42.jpg"
+    },
+    {
+      "id": "p058",
+      "name": "Lucía Valencia",
+      "age": 26,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Ciencias Políticas",
+      "semester": 9,
+      "bio": "Estudio Ciencias Políticas y me interesa todo lo relacionado con fotografía. Café siempre.",
+      "interests": [
+        "política",
+        "meditación",
+        "fotografía",
+        "tatuajes",
+        "voluntariado"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "perfeccionista",
+        "curioso",
+        "aventurero"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/38.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/38.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
+    },
+    {
+      "id": "p059",
+      "name": "Eduardo Castillo",
+      "age": 19,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Negocios Internacionales",
+      "semester": 9,
+      "bio": "Combino cine con podcast porque la vida es corta.",
+      "interests": [
+        "investigación",
+        "lectura",
+        "videojuegos",
+        "podcast",
+        "política",
+        "ux",
+        "cine",
+        "ilustración"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "empático",
+        "curioso",
+        "aventurero"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/30.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/30.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/30.jpg"
+    },
+    {
+      "id": "p060",
+      "name": "Miguel Herrera",
+      "age": 18,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Arquitectura",
+      "semester": 4,
+      "bio": "Me encanta manga, aunque mi verdadera obsesión es fútbol.",
+      "interests": [
+        "finanzas",
+        "fútbol",
+        "manga",
+        "natación",
+        "meditación"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "reflexivo",
+        "sociable",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/33.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/33.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/33.jpg"
+    },
+    {
+      "id": "p061",
+      "name": "Esteban Castillo",
+      "age": 26,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Cine y TV",
+      "semester": 3,
+      "bio": "Me apasiona teatro y disfruto ciclismo los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "teatro",
+        "viajes",
+        "jazz",
+        "ciclismo",
+        "tatuajes",
+        "finanzas",
+        "programación",
+        "podcast",
+        "manga",
+        "arte"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "intuitivo",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/26.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/26.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/26.jpg"
+    },
+    {
+      "id": "p062",
+      "name": "Gabriela Pérez",
+      "age": 26,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Odontología",
+      "semester": 3,
+      "bio": "Soy de los que yoga hasta tarde. café también, claro.",
+      "interests": [
+        "skate",
+        "yoga",
+        "gastronomía",
+        "finanzas",
+        "investigación",
+        "café",
+        "fotografía",
+        "voluntariado"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "empático",
+        "apasionado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/11.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/11.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/11.jpg"
+    },
+    {
+      "id": "p063",
+      "name": "Felipe Cabrera",
+      "age": 22,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Odontología",
+      "semester": 9,
+      "bio": "Estudio Odontología y me interesa todo lo relacionado con idiomas. Café siempre.",
+      "interests": [
+        "cocina",
+        "ux",
+        "idiomas",
+        "poesía",
+        "ciencia",
+        "voluntariado",
+        "anime",
+        "natación",
+        "jazz"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "intuitivo",
+        "curioso"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/6.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/6.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/6.jpg"
+    },
+    {
+      "id": "p064",
+      "name": "Sebastián Castro",
+      "age": 23,
+      "gender": "M",
+      "city": "Puebla",
+      "major": "Cine y TV",
+      "semester": 1,
+      "bio": "Me encanta electrónica, aunque mi verdadera obsesión es política.",
+      "interests": [
+        "activismo",
+        "electrónica",
+        "gym",
+        "política",
+        "teatro",
+        "rock",
+        "viajes",
+        "voluntariado",
+        "ilustración",
+        "ajedrez"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "curioso",
+        "optimista",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/3.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/3.jpg"
+    },
+    {
+      "id": "p065",
+      "name": "Daniela Aguilar",
+      "age": 24,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Medicina",
+      "semester": 6,
+      "bio": "Fan del ciclismo y del escalada. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "escalada",
+        "meditación",
+        "escritura",
+        "teatro",
+        "ciclismo",
+        "skate"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "perfeccionista",
+        "crítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/17.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/17.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/17.jpg"
+    },
+    {
+      "id": "p066",
+      "name": "Raúl Romero",
+      "age": 23,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Ingeniería en Sistemas",
+      "semester": 9,
+      "bio": "Me apasiona viajes y disfruto lectura los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "café",
+        "fotografía",
+        "lectura",
+        "rock",
+        "viajes",
+        "natación"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "crítico",
+        "intuitivo",
+        "empático",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/40.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/40.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/40.jpg"
+    },
+    {
+      "id": "p067",
+      "name": "Frida Soto",
+      "age": 23,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Psicología",
+      "semester": 3,
+      "bio": "Soy de los que tatuajes hasta tarde. cine también, claro.",
+      "interests": [
+        "ciclismo",
+        "ciencia",
+        "escritura",
+        "fútbol",
+        "tatuajes",
+        "cine",
+        "teatro",
+        "indie",
+        "videojuegos"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "metódico",
+        "empático",
+        "aventurero"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/20.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/20.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/20.jpg"
+    },
+    {
+      "id": "p068",
+      "name": "Zoe Ruiz",
+      "age": 23,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Finanzas",
+      "semester": 9,
+      "bio": "En camino a dominar skate. Mientras tanto, escalada.",
+      "interests": [
+        "skate",
+        "senderismo",
+        "escalada",
+        "activismo",
+        "meditación",
+        "tatuajes",
+        "poesía"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/39.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/39.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/39.jpg"
+    },
+    {
+      "id": "p069",
+      "name": "Yamile Ramírez",
+      "age": 20,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Matemáticas Aplicadas",
+      "semester": 10,
+      "bio": "Me apasiona teatro y disfruto podcast los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "ilustración",
+        "fotografía",
+        "cine",
+        "teatro",
+        "poesía",
+        "podcast",
+        "cocina"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "sociable",
+        "intuitivo",
+        "reflexivo",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/49.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/49.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/49.jpg"
+    },
+    {
+      "id": "p070",
+      "name": "Emilia Morales",
+      "age": 23,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Medicina",
+      "semester": 1,
+      "bio": "Si no estoy con indie, probablemente estoy con meditación.",
+      "interests": [
+        "investigación",
+        "indie",
+        "gym",
+        "escritura",
+        "meditación",
+        "danza"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "líder",
+        "reflexivo",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/14.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/14.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/14.jpg"
+    },
+    {
+      "id": "p071",
+      "name": "Paula Cárdenas",
+      "age": 25,
+      "gender": "F",
+      "city": "CDMX",
+      "major": "Ingeniería Civil",
+      "semester": 10,
+      "bio": "Me encanta finanzas, aunque mi verdadera obsesión es escalada.",
+      "interests": [
+        "escalada",
+        "ilustración",
+        "skate",
+        "tatuajes",
+        "finanzas",
+        "diseño",
+        "ciclismo",
+        "fútbol"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "empático",
+        "crítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/26.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/26.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/26.jpg"
+    },
+    {
+      "id": "p072",
+      "name": "Raúl Núñez",
+      "age": 20,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Artes Visuales",
+      "semester": 7,
+      "bio": "Soy de los que ciclismo hasta tarde. ciclismo también, claro.",
+      "interests": [
+        "senderismo",
+        "finanzas",
+        "ilustración",
+        "arte",
+        "ciencia",
+        "rock",
+        "música",
+        "ciclismo",
+        "viajes",
+        "videojuegos"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "reflexivo",
+        "crítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/25.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/25.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/25.jpg"
+    },
+    {
+      "id": "p073",
+      "name": "Paulina Ortega",
+      "age": 25,
+      "gender": "F",
+      "city": "CDMX",
+      "major": "Finanzas",
+      "semester": 9,
+      "bio": "Me encanta podcast, aunque mi verdadera obsesión es poesía.",
+      "interests": [
+        "teatro",
+        "idiomas",
+        "podcast",
+        "poesía",
+        "ml",
+        "senderismo",
+        "electrónica"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "aventurero",
+        "creativo",
+        "crítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/41.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/41.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/41.jpg"
+    },
+    {
+      "id": "p074",
+      "name": "Valentina Torres",
+      "age": 22,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Ingeniería en Sistemas",
+      "semester": 6,
+      "bio": "Si no estoy con finanzas, probablemente estoy con teatro.",
+      "interests": [
+        "finanzas",
+        "activismo",
+        "voluntariado",
+        "teatro",
+        "idiomas",
+        "yoga"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "metódico",
+        "reflexivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/24.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/24.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/24.jpg"
+    },
+    {
+      "id": "p075",
+      "name": "Nicolás Torres",
+      "age": 21,
+      "gender": "M",
+      "city": "CDMX",
+      "major": "Ingeniería Industrial",
+      "semester": 8,
+      "bio": "Estudio Ingeniería Industrial y me interesa todo lo relacionado con idiomas. Café siempre.",
+      "interests": [
+        "arte",
+        "ux",
+        "idiomas",
+        "podcast",
+        "ilustración",
+        "finanzas",
+        "lectura",
+        "yoga"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "optimista",
+        "sociable"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/42.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/42.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/42.jpg"
+    },
+    {
+      "id": "p076",
+      "name": "César Bautista",
+      "age": 20,
+      "gender": "M",
+      "city": "Guadalajara",
+      "major": "Arquitectura",
+      "semester": 3,
+      "bio": "Combino investigación con programación porque la vida es corta.",
+      "interests": [
+        "investigación",
+        "cine",
+        "senderismo",
+        "programación",
+        "podcast",
+        "manga"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "analítico",
+        "intuitivo",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/21.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/21.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/21.jpg"
+    },
+    {
+      "id": "p077",
+      "name": "Brenda Álvarez",
+      "age": 24,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Arquitectura",
+      "semester": 7,
+      "bio": "Me apasiona cine y disfruto diseño los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "voluntariado",
+        "anime",
+        "cine",
+        "diseño",
+        "yoga"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "optimista",
+        "aventurero",
+        "intuitivo",
+        "analítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/35.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/35.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/35.jpg"
+    },
+    {
+      "id": "p078",
+      "name": "Elena Ramírez",
+      "age": 22,
+      "gender": "F",
+      "city": "Guadalajara",
+      "major": "Ingeniería en Datos y AI",
+      "semester": 6,
+      "bio": "Fan del emprendimiento y del emprendimiento. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "viajes",
+        "emprendimiento",
+        "voluntariado",
+        "idiomas",
+        "fútbol"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "líder",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/4.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/4.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/4.jpg"
+    },
+    {
+      "id": "p079",
+      "name": "Mariel Bautista",
+      "age": 20,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Comunicación",
+      "semester": 7,
+      "bio": "Me encanta tatuajes, aunque mi verdadera obsesión es ml.",
+      "interests": [
+        "programación",
+        "escalada",
+        "ml",
+        "lectura",
+        "tatuajes",
+        "podcast",
+        "escritura",
+        "skate"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "líder",
+        "optimista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/29.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/29.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/29.jpg"
+    },
+    {
+      "id": "p080",
+      "name": "Eduardo Sánchez",
+      "age": 21,
+      "gender": "M",
+      "city": "Guadalajara",
+      "major": "Ciencias Políticas",
+      "semester": 3,
+      "bio": "En camino a dominar investigación. Mientras tanto, jazz.",
+      "interests": [
+        "café",
+        "investigación",
+        "programación",
+        "jazz",
+        "música"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "perfeccionista",
+        "reservado",
+        "reflexivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/50.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/50.jpg"
+    },
+    {
+      "id": "p081",
+      "name": "Iván Miranda",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Ingeniería en Sistemas",
+      "semester": 2,
+      "bio": "Soy de los que manga hasta tarde. voluntariado también, claro.",
+      "interests": [
+        "anime",
+        "ciencia",
+        "manga",
+        "arte",
+        "ux",
+        "voluntariado",
+        "meditación"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "líder",
+        "aventurero",
+        "metódico",
+        "perfeccionista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/38.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/38.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/38.jpg"
+    },
+    {
+      "id": "p082",
+      "name": "David Acosta",
+      "age": 19,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Matemáticas Aplicadas",
+      "semester": 8,
+      "bio": "Me encanta viajes, aunque mi verdadera obsesión es música.",
+      "interests": [
+        "cocina",
+        "rock",
+        "música",
+        "gym",
+        "electrónica",
+        "café",
+        "programación",
+        "ciclismo",
+        "viajes"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "analítico",
+        "empático",
+        "curioso"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/7.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/7.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/7.jpg"
+    },
+    {
+      "id": "p083",
+      "name": "Esteban Núñez",
+      "age": 19,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Relaciones Internacionales",
+      "semester": 1,
+      "bio": "Fan del gastronomía y del manga. Si te gusta debatir ideas raras, escribime.",
+      "interests": [
+        "manga",
+        "running",
+        "investigación",
+        "gastronomía",
+        "meditación"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "crítico",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/13.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/13.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/13.jpg"
+    },
+    {
+      "id": "p084",
+      "name": "Fernando Álvarez",
+      "age": 19,
+      "gender": "M",
+      "city": "Puebla",
+      "major": "Periodismo",
+      "semester": 5,
+      "bio": "Combino cocina con música porque la vida es corta.",
+      "interests": [
+        "música",
+        "programación",
+        "natación",
+        "tatuajes",
+        "cocina"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "perfeccionista",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/19.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/19.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/19.jpg"
+    },
+    {
+      "id": "p085",
+      "name": "David Vega",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Medicina",
+      "semester": 7,
+      "bio": "Si no estoy con videojuegos, probablemente estoy con diseño.",
+      "interests": [
+        "videojuegos",
+        "activismo",
+        "diseño",
+        "programación",
+        "política",
+        "café",
+        "investigación"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "crítico",
+        "creativo",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/32.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/32.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/32.jpg"
+    },
+    {
+      "id": "p086",
+      "name": "Renata Lugo",
+      "age": 23,
+      "gender": "F",
+      "city": "CDMX",
+      "major": "Psicología",
+      "semester": 4,
+      "bio": "Me encanta running, aunque mi verdadera obsesión es indie.",
+      "interests": [
+        "electrónica",
+        "voluntariado",
+        "indie",
+        "jazz",
+        "café",
+        "running"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "apasionado",
+        "crítico",
+        "empático"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/8.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/8.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/8.jpg"
+    },
+    {
+      "id": "p087",
+      "name": "Quique Mendoza",
+      "age": 18,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Gastronomía",
+      "semester": 6,
+      "bio": "En camino a dominar skate. Mientras tanto, música.",
+      "interests": [
+        "jazz",
+        "skate",
+        "programación",
+        "música",
+        "investigación"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "creativo",
+        "metódico",
+        "aventurero"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/35.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/35.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/35.jpg"
+    },
+    {
+      "id": "p088",
+      "name": "Octavio Valencia",
+      "age": 23,
+      "gender": "M",
+      "city": "Querétaro",
+      "major": "Derecho",
+      "semester": 6,
+      "bio": "En camino a dominar skate. Mientras tanto, skate.",
+      "interests": [
+        "cocina",
+        "ciencia",
+        "natación",
+        "ciclismo",
+        "skate",
+        "arte"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "aventurero",
+        "intuitivo",
+        "creativo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/16.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/16.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/16.jpg"
+    },
+    {
+      "id": "p089",
+      "name": "Inés Navarro",
+      "age": 26,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Matemáticas Aplicadas",
+      "semester": 4,
+      "bio": "Si no estoy con activismo, probablemente estoy con gym.",
+      "interests": [
+        "escritura",
+        "tatuajes",
+        "activismo",
+        "arte",
+        "skate",
+        "investigación",
+        "gym",
+        "natación",
+        "fotografía",
+        "ux"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "empático",
+        "creativo",
+        "crítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/10.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/10.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/10.jpg"
+    },
+    {
+      "id": "p090",
+      "name": "Joaquín Romero",
+      "age": 22,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Ingeniería en Sistemas",
+      "semester": 7,
+      "bio": "Me apasiona ciclismo y disfruto natación los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "ciclismo",
+        "escalada",
+        "ciencia",
+        "running",
+        "activismo",
+        "natación",
+        "finanzas"
+      ],
+      "modes": [
+        "estudio",
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "curioso",
+        "metódico",
+        "reflexivo",
+        "intuitivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/31.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/31.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/31.jpg"
+    },
+    {
+      "id": "p091",
+      "name": "Nadia Lugo",
+      "age": 22,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Cine y TV",
+      "semester": 7,
+      "bio": "Soy de los que meditación hasta tarde. investigación también, claro.",
+      "interests": [
+        "activismo",
+        "escritura",
+        "lectura",
+        "running",
+        "danza",
+        "investigación",
+        "meditación"
+      ],
+      "modes": [
+        "amistad"
+      ],
+      "personality": [
+        "sociable",
+        "aventurero",
+        "reflexivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/50.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/50.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/50.jpg"
+    },
+    {
+      "id": "p092",
+      "name": "Hugo Reyes",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Nutrición",
+      "semester": 9,
+      "bio": "Si no estoy con electrónica, probablemente estoy con fútbol.",
+      "interests": [
+        "podcast",
+        "gastronomía",
+        "fútbol",
+        "ajedrez",
+        "viajes",
+        "videojuegos",
+        "lectura",
+        "ux",
+        "electrónica",
+        "finanzas"
+      ],
+      "modes": [
+        "estudio",
+        "amistad"
+      ],
+      "personality": [
+        "aventurero",
+        "curioso",
+        "crítico",
+        "reflexivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/14.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/14.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/14.jpg"
+    },
+    {
+      "id": "p093",
+      "name": "Valeria Lugo",
+      "age": 25,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Comunicación",
+      "semester": 1,
+      "bio": "Me encanta lectura, aunque mi verdadera obsesión es lectura.",
+      "interests": [
+        "ciencia",
+        "ml",
+        "lectura",
+        "música",
+        "videojuegos",
+        "arte"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "analítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/22.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/22.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/22.jpg"
+    },
+    {
+      "id": "p094",
+      "name": "Silvia Valencia",
+      "age": 22,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Matemáticas Aplicadas",
+      "semester": 7,
+      "bio": "En camino a dominar rock. Mientras tanto, rock.",
+      "interests": [
+        "poesía",
+        "gym",
+        "skate",
+        "rock",
+        "videojuegos"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "empático",
+        "sociable",
+        "metódico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/16.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/16.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/16.jpg"
+    },
+    {
+      "id": "p095",
+      "name": "Tomás Olvera",
+      "age": 18,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Relaciones Internacionales",
+      "semester": 3,
+      "bio": "Si no estoy con danza, probablemente estoy con cine.",
+      "interests": [
+        "danza",
+        "poesía",
+        "gastronomía",
+        "gym",
+        "cine",
+        "tatuajes",
+        "ml"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "perfeccionista",
+        "analítico"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/48.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/48.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/48.jpg"
+    },
+    {
+      "id": "p096",
+      "name": "Sebastián Herrera",
+      "age": 26,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Medicina",
+      "semester": 3,
+      "bio": "Me apasiona danza y disfruto electrónica los fines de semana. Busco gente con buenas conversaciones.",
+      "interests": [
+        "escritura",
+        "manga",
+        "voluntariado",
+        "viajes",
+        "running",
+        "danza",
+        "electrónica"
+      ],
+      "modes": [
+        "amistad",
+        "personal"
+      ],
+      "personality": [
+        "reservado",
+        "reflexivo",
+        "intuitivo",
+        "optimista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/17.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/17.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/17.jpg"
+    },
+    {
+      "id": "p097",
+      "name": "Jimena Fuentes",
+      "age": 20,
+      "gender": "F",
+      "city": "Oaxaca",
+      "major": "Biotecnología",
+      "semester": 6,
+      "bio": "En camino a dominar indie. Mientras tanto, indie.",
+      "interests": [
+        "danza",
+        "yoga",
+        "indie",
+        "activismo",
+        "música"
+      ],
+      "modes": [
+        "estudio"
+      ],
+      "personality": [
+        "analítico",
+        "metódico",
+        "optimista",
+        "apasionado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/2.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/2.jpg"
+    },
+    {
+      "id": "p098",
+      "name": "Kevin Rivera",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Matemáticas Aplicadas",
+      "semester": 1,
+      "bio": "Me encanta diseño, aunque mi verdadera obsesión es cocina.",
+      "interests": [
+        "diseño",
+        "ml",
+        "cocina",
+        "cine",
+        "teatro",
+        "anime",
+        "ilustración",
+        "ux"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "optimista"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/45.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/45.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/45.jpg"
+    },
+    {
+      "id": "p099",
+      "name": "Mónica Olvera",
+      "age": 19,
+      "gender": "F",
+      "city": "Puebla",
+      "major": "Ciencias Políticas",
+      "semester": 6,
+      "bio": "Me encanta gastronomía, aunque mi verdadera obsesión es manga.",
+      "interests": [
+        "diseño",
+        "skate",
+        "café",
+        "manga",
+        "gym",
+        "cine",
+        "senderismo",
+        "gastronomía"
+      ],
+      "modes": [
+        "estudio",
+        "personal"
+      ],
+      "personality": [
+        "metódico",
+        "líder",
+        "creativo",
+        "reservado"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/women/44.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/women/44.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/women/44.jpg"
+    },
+    {
+      "id": "p100",
+      "name": "Gabriel Miranda",
+      "age": 25,
+      "gender": "M",
+      "city": "Oaxaca",
+      "major": "Ingeniería en Datos y AI",
+      "semester": 5,
+      "bio": "Estudio Ingeniería en Datos y AI y me interesa todo lo relacionado con gastronomía. Café siempre.",
+      "interests": [
+        "gym",
+        "escritura",
+        "ciencia",
+        "gastronomía",
+        "poesía",
+        "ilustración",
+        "lectura",
+        "fútbol"
+      ],
+      "modes": [
+        "personal"
+      ],
+      "personality": [
+        "intuitivo",
+        "reflexivo"
+      ],
+      "photoUrl": "https://randomuser.me/api/portraits/men/41.jpg",
+      "photoMediumUrl": "https://randomuser.me/api/portraits/med/men/41.jpg",
+      "photoThumbUrl": "https://randomuser.me/api/portraits/thumb/men/41.jpg"
+    }
+  ]
+}

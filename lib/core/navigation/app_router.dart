@@ -59,6 +59,8 @@ import '../../features/legal/arco/arco_request_screen.dart';
 import '../../features/legal/arco/arco_request_confirm_screen.dart';
 import '../../features/legal/consent/onboarding_consent_screen.dart';
 import '../../features/onboarding/login_screen.dart';
+import '../../features/onboarding/register_screen.dart';
+import '../../features/onboarding/quick_profile_setup_screen.dart';
 
 class AppRouter {
   AppRouter._();
@@ -66,6 +68,8 @@ class AppRouter {
   // Onboarding
   static const String splash = '/';
   static const String login = '/login';
+  static const String register = '/register';
+  static const String quickProfileSetup = '/onboarding/quick-setup';
   static const String welcome = '/welcome';
   static const String identity = '/onboarding/identity';
   static const String selectUni = '/onboarding/select-uni';
@@ -150,6 +154,10 @@ class AppRouter {
         return _slide(const WelcomeScreen(), settings);
       case login:
         return _slide(const LoginScreen(), settings);
+      case register:
+        return _slide(const RegisterScreen(), settings);
+      case quickProfileSetup:
+        return _slide(const QuickProfileSetupScreen(), settings);
       case identity:
         return _slide(const IdentityScreen(), settings);
       case selectUni:

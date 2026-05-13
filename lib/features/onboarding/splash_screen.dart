@@ -6,7 +6,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/trama_mark.dart';
-import '../../data/repositories/demo_session_repository.dart';
+import '../../data/repositories/app_state_repository.dart';
+import '../../data/repositories/auth_repository.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -39,9 +40,16 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _resolveNext() async {
-    final session = await DemoSessionRepository.instance.load();
     if (!mounted) return;
-    final route = session != null ? AppRouter.discover : AppRouter.welcome;
+    final authed = AuthRepository.instance.isAuthenticated;
+    final String route;
+    if (!authed) {
+      route = AppRouter.welcome;
+    } else if (AppStateRepository.instance.hasUserProfile) {
+      route = AppRouter.discover;
+    } else {
+      route = AppRouter.quickProfileSetup;
+    }
     Navigator.of(context).pushReplacementNamed(route);
   }
 
