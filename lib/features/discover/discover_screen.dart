@@ -18,11 +18,11 @@ import '../marketplace/marketplace_screen.dart';
 import '../profile/my_profile_screen.dart';
 import 'views/feed_view.dart';
 
-// Flip with --dart-define=TRAMA_USE_API_MATCHING=true to swap the mock
-// student list for live results from the demo matching API.
+// Demo runs against the API by default. Kill-switch:
+// --dart-define=TRAMA_USE_API_MATCHING=false to force-mock for offline dev.
 const bool kUseApiMatching = bool.fromEnvironment(
   'TRAMA_USE_API_MATCHING',
-  defaultValue: false,
+  defaultValue: true,
 );
 
 class DiscoverScreen extends StatefulWidget {

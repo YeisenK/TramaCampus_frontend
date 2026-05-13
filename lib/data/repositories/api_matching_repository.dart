@@ -4,14 +4,24 @@ import '../models/profile/profile.dart';
 import '../models/recommended_student.dart';
 import '../services/api/matching_api_client.dart';
 import '../services/api/profile_to_student_payload.dart';
+import 'demo_session_repository.dart';
 
 /// Repository that talks to the demo matching HTTP API. Caches the last
 /// successful result so the Discover feed can render synchronously after
 /// the first round-trip; `refresh()` re-ingests when the profile changes.
+///
+/// The `user_id` it sends to the backend comes (in priority order) from:
+///   1. The explicit `userId` constructor arg.
+///   2. `DemoSessionRepository.cached` — the email-derived id stored at
+///      login time.
+///   3. `--dart-define=TRAMA_DEMO_USER_ID` (fallback for headless runs).
 class ApiMatchingRepository {
   ApiMatchingRepository({MatchingApiClient? client, int? userId})
     : _client = client ?? MatchingApiClient(),
-      _userId = userId ?? _demoUserIdFromDefine();
+      _userId =
+          userId ??
+          DemoSessionRepository.instance.cached?.userId ??
+          _demoUserIdFromDefine();
 
   final MatchingApiClient _client;
   final int _userId;

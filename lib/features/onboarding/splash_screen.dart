@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/trama_mark.dart';
+import '../../data/repositories/demo_session_repository.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -34,11 +35,14 @@ class _SplashScreenState extends State<SplashScreen>
       end: 1.0,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
     _controller.forward();
-    _navTimer = Timer(const Duration(milliseconds: 800), () {
-      if (mounted) {
-        Navigator.of(context).pushReplacementNamed(AppRouter.welcome);
-      }
-    });
+    _navTimer = Timer(const Duration(milliseconds: 800), _resolveNext);
+  }
+
+  Future<void> _resolveNext() async {
+    final session = await DemoSessionRepository.instance.load();
+    if (!mounted) return;
+    final route = session != null ? AppRouter.discover : AppRouter.welcome;
+    Navigator.of(context).pushReplacementNamed(route);
   }
 
   @override

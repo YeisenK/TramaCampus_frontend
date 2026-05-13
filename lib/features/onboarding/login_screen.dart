@@ -5,6 +5,7 @@ import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/t_button.dart';
 import '../../core/widgets/trama_mark.dart';
+import '../../data/repositories/demo_session_repository.dart';
 
 const _demoEmail = 'sofia.r@anahuac.mx';
 const _demoPassword = 'trama2024';
@@ -30,7 +31,19 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _login() async {
+    final email = _emailController.text.trim();
+    if (email.isEmpty || !email.contains('@')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Ingresá un correo válido')),
+      );
+      return;
+    }
     setState(() => _loading = true);
+    try {
+      await DemoSessionRepository.instance.save(email);
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
     if (!mounted) return;
     Navigator.of(
       context,

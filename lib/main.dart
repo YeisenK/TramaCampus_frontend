@@ -5,6 +5,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'app.dart';
 import 'core/services/preferences_service.dart';
 import 'data/repositories/app_state_repository.dart';
+import 'data/repositories/demo_session_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,11 @@ void main() async {
 
   // Load runtime mutable state (follow sets, messages, created groups) before first frame.
   await AppStateRepository.instance.load();
+
+  // Warm the demo session cache so any screen reading
+  // DemoSessionRepository.instance.cached gets the persisted id
+  // without waiting for the splash to resolve it.
+  await DemoSessionRepository.instance.load();
 
   runApp(const TramaApp());
 
