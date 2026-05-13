@@ -1,0 +1,42 @@
+# Builds a release APK without needing Flutter / Android SDK on the host.
+#
+# Usage:
+#   mkdir -p out
+#   docker build -f Dockerfile.android \
+#     --build-arg TRAMA_API_BASE=https://api.example.com \
+#     -t trama-frontend-android .
+#   docker run --rm -v "$(pwd)/out:/out" trama-frontend-android
+#   # → out/app-release.apk
+#
+# Pinned to Flutter 3.38.3 (Dart 3.10). The cirruslabs image ships
+# JDK 17 + Android SDK + cmdline-tools, so this Dockerfile only has
+# to run pub get + build apk.
+
+FROM ghcr.io/cirruslabs/flutter:3.38.3 AS builder
+
+ARG TRAMA_API_BASE=http://localhost:8080
+ARG TRAMA_USE_API_MATCHING=true
+
+WORKDIR /app
+COPY pubspec.yaml pubspec.lock ./
+RUN flutter pub get
+
+COPY . .
+
+# `flutter build apk --release` produces build/app/outputs/flutter-apk/
+RUN flutter build apk --release \
+    --dart-define=TRAMA_API_BASE=${TRAMA_API_BASE} \
+    --dart-define=TRAMA_USE_API_MATCHING=${TRAMA_USE_API_MATCHING}
+
+# Copy the APK into a stable location for the runtime stage.
+RUN mkdir -p /artifact && \
+    cp build/app/outputs/flutter-apk/app-release.apk /artifact/app-release.apk
+
+# ---- runtime ----
+# Tiny stage that exists only to copy the APK to a host volume on run.
+FROM alpine:3.20
+RUN apk add --no-cache busybox
+COPY --from=builder /artifact/app-release.apk /artifact/app-release.apk
+
+# On `docker run`, drop the APK into the mounted /out dir and exit.
+CMD ["sh", "-c", "mkdir -p /out && cp /artifact/app-release.apk /out/ && echo 'APK written to /out/app-release.apk' && ls -lh /out/app-release.apk"]

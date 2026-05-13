@@ -1,0 +1,41 @@
+# Build outputs
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+# Platform-specific build dirs not needed for web/android docker builds
+ios/Pods/
+ios/.symlinks/
+macos/Pods/
+linux/build/
+windows/build/
+
+# IDE / editor noise
+.idea/
+.vscode/
+*.iml
+*.swp
+.DS_Store
+
+# Local secrets
+.env
+.env.local
+
+# Docker artifacts (avoid recursion)
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+
+# Git
+.git/
+.gitignore
+
+# Tests output
+coverage/
+
+# Local Claude files
+CLAUDE.md
+agents.md
+.claude/

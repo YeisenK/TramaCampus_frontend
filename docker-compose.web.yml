@@ -1,0 +1,21 @@
+# Local smoke test of the web image. Production deploy lives in the
+# matching_service repo's docker-compose.demo.yml.
+#
+# Build + run:
+#   docker compose -f docker-compose.web.yml up --build
+# Then visit http://localhost:8081
+#
+# Point at a different backend with:
+#   TRAMA_API_BASE=https://api.example.com docker compose ... up --build
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        TRAMA_API_BASE: ${TRAMA_API_BASE:-http://localhost:8080}
+        TRAMA_USE_API_MATCHING: ${TRAMA_USE_API_MATCHING:-true}
+    ports:
+      - "${WEB_PORT:-8081}:80"
+    restart: unless-stopped
